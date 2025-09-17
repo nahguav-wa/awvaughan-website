@@ -1,4 +1,5 @@
 <script lang="ts">
+        import { inView } from '$lib/actions/in-view';
         import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
         const seo = createSeo({
@@ -71,7 +72,12 @@
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
         <div class="mx-auto max-w-5xl space-y-6 px-6">
                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">Contact</p>
-                <h1 class="text-4xl font-semibold text-[var(--text-dark)] sm:text-5xl">Let’s plan your next project</h1>
+                <h1
+                        use:inView
+                        class="text-4xl font-semibold text-[var(--text-dark)] sm:text-5xl reveal"
+                >
+                        Let’s plan your next project
+                </h1>
                 <p class="text-base text-[var(--text-muted)] sm:text-lg">
                         Share your scope, maintenance needs, or emergency request below. We’ll respond quickly with the information you need to move forward.
                 </p>
@@ -83,7 +89,12 @@
                 <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                         <div class="space-y-8">
                                 <div class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm">
-                                        <h2 class="text-2xl font-semibold text-[var(--text-dark)]">Talk with our team</h2>
+                                        <h2
+                                                use:inView
+                                                class="text-2xl font-semibold text-[var(--text-dark)] reveal"
+                                        >
+                                                Talk with our team
+                                        </h2>
                                         <p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
                                                 Reach out using the details provided and let us know how we can help. Include site location, target schedule, and any drawings or
                                                 photos that will help us prepare.

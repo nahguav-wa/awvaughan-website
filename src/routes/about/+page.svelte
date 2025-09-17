@@ -1,5 +1,6 @@
 <script lang="ts">
         import { resolve } from '$app/paths';
+        import { inView } from '$lib/actions/in-view';
         import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
         import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
         import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
@@ -85,7 +86,12 @@
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
         <div class="mx-auto max-w-5xl space-y-6 px-6">
                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">About us</p>
-                <h1 class="text-4xl font-semibold text-[var(--text-dark)] sm:text-5xl">Built on service, grounded in integrity</h1>
+                <h1
+                        use:inView
+                        class="text-4xl font-semibold text-[var(--text-dark)] sm:text-5xl reveal"
+                >
+                        Built on service, grounded in integrity
+                </h1>
                 <p class="text-base text-[var(--text-muted)] sm:text-lg">
                         AW Vaughan Company is a Virginia Beach–based sitework and property maintenance contractor. We partner with builders,
                         HOAs, and facility managers to keep projects moving and properties looking their best throughout Hampton Roads.
@@ -124,7 +130,12 @@
                                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
                                         Our process
                                 </p>
-                                <h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">What to expect when you call us</h2>
+                                <h2
+                                        use:inView
+                                        class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                >
+                                        What to expect when you call us
+                                </h2>
                                 <p class="text-base text-[var(--text-muted)] sm:text-lg">
                                         Every project starts with a conversation. We listen first, align on expectations, and communicate throughout the job so
                                         there are no surprises along the way.
@@ -163,7 +174,12 @@
         <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
                 <div class="flex-1 space-y-4">
                         <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">Service area</p>
-                        <h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">Proud to serve Hampton Roads</h2>
+                        <h2
+                                use:inView
+                                class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                        >
+                                Proud to serve Hampton Roads
+                        </h2>
                         <p class="text-base text-[var(--text-muted)] sm:text-lg">
                                 From the Oceanfront to inland logistics hubs, we support properties across the region with responsive maintenance and civil
                                 crews.

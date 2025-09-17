@@ -34,9 +34,23 @@
                 outline-offset: 4px;
         }
 
-	main:focus {
-		outline: none;
-	}
+        main:focus {
+                outline: none;
+        }
+
+        .reveal {
+                opacity: 0;
+                transform: translateY(1.5rem);
+                transition:
+                        opacity 400ms ease,
+                        transform 500ms ease;
+                will-change: opacity, transform;
+        }
+
+        .reveal[data-in-view='true'] {
+                opacity: 1;
+                transform: translateY(0);
+        }
 }
 
 @layer components {

@@ -1,5 +1,6 @@
 <script lang="ts">
         import { resolve } from '$app/paths';
+        import { inView } from '$lib/actions/in-view';
         import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
         import EmergencyIcon from '$lib/components/icons/EmergencyIcon.svelte';
         import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
@@ -94,7 +95,10 @@
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
         <div class="mx-auto max-w-5xl space-y-6 px-6">
                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">Services</p>
-                <h1 class="text-4xl font-semibold text-[var(--text-dark)] sm:text-5xl">
+                <h1
+                        use:inView
+                        class="text-4xl font-semibold text-[var(--text-dark)] sm:text-5xl reveal"
+                >
                         Comprehensive care for your job sites and communities
                 </h1>
                 <p class="text-base text-[var(--text-muted)] sm:text-lg">
@@ -167,7 +171,7 @@
 <section class="bg-[var(--brand-blue)] py-20 text-white">
         <div class="mx-auto max-w-5xl px-6">
                 <div class="rounded-4xl border border-white/20 bg-white/5 p-10 text-center shadow-[var(--brand-blue)]/30 shadow-2xl">
-                        <h2 class="text-3xl font-semibold sm:text-4xl">Ready for your next project?</h2>
+                        <h2 use:inView class="text-3xl font-semibold sm:text-4xl reveal">Ready for your next project?</h2>
                         <p class="mt-4 text-base text-white/80 sm:text-lg">
                                 Let us know what you need—whether it’s breaking ground on a new build or keeping established properties looking their best. We’ll
                                 put together a plan that respects your schedule and budget.

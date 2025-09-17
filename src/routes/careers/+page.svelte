@@ -1,4 +1,5 @@
 <script lang="ts">
+        import { inView } from '$lib/actions/in-view';
         import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
         const seo = createSeo({
@@ -20,7 +21,7 @@
 </svelte:head>
 
 <section class="mx-auto max-w-4xl px-6 py-20">
-        <h1 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">Careers</h1>
+        <h1 use:inView class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal">Careers</h1>
         <p class="mt-4 text-base text-[var(--text-muted)] sm:text-lg">
                 We are building a team of professionals who care about craftsmanship and customer service. Check back soon for
                 open positions or reach out directly if you would like to share your resume.

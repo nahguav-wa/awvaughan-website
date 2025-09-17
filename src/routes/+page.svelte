@@ -1,5 +1,6 @@
 <script lang="ts">
         import { resolve } from '$app/paths';
+        import { inView } from '$lib/actions/in-view';
         import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
         import { Hero } from '$lib';
         import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
@@ -166,7 +167,10 @@
         <div class="mx-auto max-w-6xl px-6">
                 <div class="max-w-3xl space-y-4">
                         <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">Proof points</p>
-                        <h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
+                        <h2
+                                use:inView
+                                class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                        >
                                 Credentials that match national contractors
                         </h2>
                         <p class="text-base text-[var(--text-muted)] sm:text-lg">
@@ -214,7 +218,10 @@
                                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
                                         Our capabilities
                                 </p>
-                                <h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
+                                <h2
+                                        use:inView
+                                        class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                >
                                         Site-ready solutions from one reliable crew
                                 </h2>
                                 <p class="text-base text-[var(--text-muted)] sm:text-lg">
@@ -286,7 +293,10 @@
                                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
                                         Featured projects
                                 </p>
-                                <h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
+                                <h2
+                                        use:inView
+                                        class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                >
                                         Recent scopes we have delivered
                                 </h2>
                                 <p class="text-base text-[var(--text-muted)] sm:text-lg">
@@ -371,7 +381,7 @@
 <section id="contact" class="bg-[var(--brand-blue)] py-20 text-white">
         <div class="mx-auto max-w-4xl rounded-3xl border border-white/20 bg-white/5 px-6 py-16 text-center shadow-[var(--brand-blue)]/30 shadow-2xl">
                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">Let’s get to work</p>
-                <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">
+                <h2 use:inView class="mt-4 text-3xl font-semibold sm:text-4xl reveal">
                         Count on AW Vaughan Company for responsive support
                 </h2>
                 <p class="mt-3 text-base text-white/80 sm:text-lg">
