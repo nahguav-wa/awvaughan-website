@@ -1,45 +1,60 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
+        import { resolve } from '$app/paths';
 
-	const currentYear = new Date().getFullYear();
-	const email = 'alex.vaughan@awvaughan.com';
-	const phoneLabel = '(757) 402-1100';
+        const currentYear = new Date().getFullYear();
 </script>
 
-<footer class="border-t border-white/10 bg-[var(--brand-navy-900)] py-10">
-	<div
-		class="mx-auto flex max-w-6xl flex-col gap-8 px-6 text-sm text-slate-200 lg:flex-row lg:items-start lg:justify-between"
-	>
-		<div class="space-y-3 text-center lg:text-left">
-			<p
-				class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold tracking-[0.3em] text-[var(--brand-teal)] uppercase"
-			>
-				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--brand-orange)]"
-				></span>
-				Serving Hampton Roads
-			</p>
-			<p class="text-sm text-slate-200">
-				&copy; {currentYear} AW Vaughan Company LLC. Jeremiah 29:11
-			</p>
-		</div>
+<footer class="border-t border-[var(--border-soft)] bg-[var(--surface-base)] py-12">
+        <div class="mx-auto max-w-6xl px-6">
+                <div class="grid gap-10 text-sm text-[var(--text-muted)] md:grid-cols-3">
+                        <div class="space-y-3">
+                                <p class="text-base font-semibold text-[var(--text-dark)]">A.W. Vaughan Company, LLC</p>
+                                <p class="text-sm text-[var(--text-muted)]">“Jeremiah 29:11”</p>
+                        </div>
+                        <div>
+                                <h3 class="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--text-dark)]">Company</h3>
+                                <ul class="mt-4 space-y-3">
+                                        <li>
+                                                <a class="transition hover:text-[var(--brand-blue)]" href={resolve('/about')}>
+                                                        About Us
+                                                </a>
+                                        </li>
+                                        <li>
+                                                <a class="transition hover:text-[var(--brand-blue)]" href={resolve('/services')}>
+                                                        Services
+                                                </a>
+                                        </li>
+                                        <li>
+                                                <a class="transition hover:text-[var(--brand-blue)]" href="/#projects">
+                                                        Projects
+                                                </a>
+                                        </li>
+                                        <li>
+                                                <a class="transition hover:text-[var(--brand-blue)]" href={resolve('/careers')}>
+                                                        Careers
+                                                </a>
+                                        </li>
+                                </ul>
+                        </div>
+                        <div>
+                                <h3 class="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--text-dark)]">Legal</h3>
+                                <ul class="mt-4 space-y-3">
+                                        <li>
+                                                <a class="transition hover:text-[var(--brand-blue)]" href={resolve('/privacy-policy')}>
+                                                        Privacy Policy
+                                                </a>
+                                        </li>
+                                        <li>
+                                                <a class="transition hover:text-[var(--brand-blue)]" href={resolve('/terms-of-service')}>
+                                                        Terms of Service
+                                                </a>
+                                        </li>
+                                </ul>
+                        </div>
+                </div>
 
-		<nav
-			aria-label="Footer navigation"
-			class="flex flex-wrap items-center justify-center gap-4 text-[0.7rem] font-semibold tracking-[0.28em] text-slate-300 uppercase lg:justify-end lg:text-xs"
-		>
-			<a class="transition hover:text-[var(--brand-orange)]" href={resolve('/about')}>About</a>
-			<a class="transition hover:text-[var(--brand-orange)]" href={resolve('/services')}>Services</a
-			>
-			<a class="transition hover:text-[var(--brand-orange)]" href={resolve('/contact')}>Contact</a>
-		</nav>
-
-		<address
-			class="flex flex-col items-center gap-3 text-center text-sm text-slate-200 not-italic lg:items-end lg:text-right"
-		>
-			<a class="transition hover:text-[var(--brand-orange)]" href={`mailto:${email}`}>{email}</a>
-			<a class="transition hover:text-[var(--brand-orange)]" href="tel:+17574021100">{phoneLabel}</a
-			>
-			<span class="text-xs tracking-[0.35em] text-slate-400 uppercase">Virginia Beach, VA</span>
-		</address>
-	</div>
+                <div class="mt-12 border-t border-[var(--border-soft)] pt-6 text-xs text-[var(--text-muted)]">
+                        <p class="text-center">&copy; {currentYear} A.W. Vaughan Company, LLC. All rights reserved.</p>
+                </div>
+        </div>
 </footer>

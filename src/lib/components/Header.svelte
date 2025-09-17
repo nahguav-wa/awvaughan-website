@@ -1,168 +1,247 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+        import { resolve } from '$app/paths';
+        import { page } from '$app/stores';
+        import { onDestroy, onMount } from 'svelte';
+        import type { ComponentType } from 'svelte';
+        import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
 
-	const navigation = [
-		{ href: '/about', label: 'About' },
-		{ href: '/services', label: 'Services' }
-	] as const;
+        type NavItem = {
+                href: string;
+                label: string;
+                isAnchor?: boolean;
+        };
 
-	const contactPath = '/contact' as const;
+        type ContactDetail = {
+                icon: ComponentType;
+                label: string;
+                href?: string;
+        };
 
-	// Normalize paths to avoid false negatives due to trailing slashes
-	const normalize = (path: string) =>
-		path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
-	$: currentPath = normalize($page.url.pathname);
-	const isActive = (href: Parameters<typeof resolve>[0]) =>
-		normalize(resolve(href)) === currentPath;
+        const navigation: readonly NavItem[] = [
+                { href: '/about', label: 'About' },
+                { href: '/services', label: 'Services' },
+                { href: '/#projects', label: 'Projects', isAnchor: true }
+        ];
 
-	let menuOpen = false;
-	let previousPath: string | null = null;
-	const navId = 'primary-navigation';
+        const contactPath = '/contact' as const;
 
-	const toggleMenu = () => {
-		menuOpen = !menuOpen;
-	};
+        const contactDetails: readonly ContactDetail[] = [
+                { icon: MapPin, label: 'Virginia Beach, VA' },
+                {
+                        icon: Mail,
+                        label: 'alex.vaughan@awvaughan.com',
+                        href: 'mailto:alex.vaughan@awvaughan.com'
+                },
+                { icon: Phone, label: '757-402-1100', href: 'tel:+17574021100' }
+        ];
 
-	const closeMenu = () => {
-		menuOpen = false;
-	};
+        const normalize = (path: string) =>
+                path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
 
-	const handleEscape = (event: KeyboardEvent) => {
-		if (event.key === 'Escape') {
-			closeMenu();
-		}
-	};
+        $: currentPath = normalize($page.url.pathname);
 
-	onMount(() => {
-		window.addEventListener('keydown', handleEscape);
-		return () => {
-			window.removeEventListener('keydown', handleEscape);
-		};
-	});
+        const getHref = (item: NavItem) =>
+                item.isAnchor ? item.href : resolve(item.href as Parameters<typeof resolve>[0]);
 
-	$: if (previousPath !== currentPath) {
-		previousPath = currentPath;
-		menuOpen = false;
-	}
+        const isActive = (item: NavItem) =>
+                !item.isAnchor && normalize(resolve(item.href as Parameters<typeof resolve>[0])) === currentPath;
 
-	const handleLinkActivate = () => {
-		closeMenu();
-	};
+        const isContactActive = () => normalize(resolve(contactPath)) === currentPath;
+
+        let menuOpen = false;
+        let previousPath: string | null = null;
+        let isAtTop = true;
+        $: showSolidBackground = !isAtTop || menuOpen;
+
+        const navId = 'primary-navigation';
+
+        const toggleMenu = () => {
+                menuOpen = !menuOpen;
+        };
+
+        const closeMenu = () => {
+                menuOpen = false;
+        };
+
+        const handleEscape = (event: KeyboardEvent) => {
+                if (event.key === 'Escape') {
+                        closeMenu();
+                }
+        };
+
+        const updateScrollPosition = () => {
+                isAtTop = window.scrollY < 10;
+        };
+
+        onMount(() => {
+                updateScrollPosition();
+                window.addEventListener('keydown', handleEscape);
+                window.addEventListener('scroll', updateScrollPosition, { passive: true });
+        });
+
+        onDestroy(() => {
+                window.removeEventListener('keydown', handleEscape);
+                window.removeEventListener('scroll', updateScrollPosition);
+        });
+
+        $: if (previousPath !== currentPath) {
+                previousPath = currentPath;
+                menuOpen = false;
+        }
+
+        const handleLinkActivate = () => {
+                closeMenu();
+        };
 </script>
 
-<header
-	class="sticky top-0 z-50 border-b border-white/10 bg-[var(--brand-navy-900)]/90 backdrop-blur"
->
-	<div class="mx-auto flex w-full max-w-6xl items-center gap-x-4 px-6 py-4">
-		<a
-			href={resolve('/')}
-			class="flex items-center gap-3 rounded-full bg-white/5 px-4 py-2 text-left text-white transition hover:bg-white/10"
-		>
-			<span
-				class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand-orange)] text-sm font-semibold text-[var(--brand-navy-900)]"
-				aria-hidden="true"
-			>
-				AW
-			</span>
-			<span class="text-sm leading-tight font-semibold tracking-[0.25em] text-slate-100 uppercase">
-				AW Vaughan Company
-			</span>
-		</a>
+<header class="sticky top-0 z-50">
+        <div
+                class={`overflow-hidden border-b border-[var(--border-soft)] bg-[var(--surface-base)] transition-all duration-300 ease-out ${
+                        isAtTop
+                                ? 'max-h-16 opacity-100 pointer-events-auto'
+                                : 'max-h-0 opacity-0 pointer-events-none'
+                }`}
+                aria-hidden={!isAtTop}
+        >
+                <div
+                        class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-2 text-xs font-medium text-[var(--text-muted)]"
+                >
+                        {#each contactDetails as detail (detail.label)}
+                                {#if detail.href}
+                                        <a
+                                                class="flex items-center gap-2 transition hover:text-[var(--brand-blue)]"
+                                                href={detail.href}
+                                        >
+                                                <svelte:component this={detail.icon} class="h-4 w-4 text-[var(--brand-blue)]" />
+                                                <span>{detail.label}</span>
+                                        </a>
+                                {:else}
+                                        <span class="flex items-center gap-2">
+                                                <svelte:component this={detail.icon} class="h-4 w-4 text-[var(--brand-blue)]" />
+                                                <span>{detail.label}</span>
+                                        </span>
+                                {/if}
+                        {/each}
+                </div>
+        </div>
 
-		<button
-			type="button"
-			class="ml-auto inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs font-semibold tracking-[0.3em] text-slate-100 uppercase transition hover:border-white/30 hover:text-[var(--brand-orange)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-orange)] sm:hidden"
-			aria-expanded={menuOpen}
-			aria-controls={navId}
-			on:click={toggleMenu}
-		>
-			<svg
-				aria-hidden="true"
-				class="h-4 w-4"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="1.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				{#if menuOpen}
-					<path d="M6 6l12 12M6 18L18 6" />
-				{:else}
-					<path d="M4 7h16M4 12h16M4 17h16" />
-				{/if}
-			</svg>
-			<span class="text-[0.6rem]">Menu</span>
-		</button>
+        <div
+                class={`transition-[background-color,box-shadow,border-color] duration-300 ${
+                        showSolidBackground
+                                ? 'border-b border-[var(--border-soft)]/80 bg-[var(--surface-base)]/95 text-[var(--text-dark)] shadow-sm backdrop-blur'
+                                : 'border-b border-transparent bg-transparent text-white'
+                }`}
+        >
+                <div class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
+                        <a
+                                href={resolve('/')}
+                                class={`text-lg font-semibold tracking-tight ${
+                                        showSolidBackground ? 'text-[var(--text-dark)]' : 'text-white'
+                                }`}
+                        >
+                                A.W. Vaughan Company
+                        </a>
 
-		<div class="ml-auto hidden items-center gap-x-6 sm:flex">
-			<nav
-				aria-label="Primary navigation"
-				class="flex items-center gap-x-6 text-[0.7rem] font-semibold tracking-[0.32em] text-slate-200 uppercase lg:text-xs"
-			>
-				{#each navigation as item (item.href)}
-					<a
-						href={resolve(item.href)}
-						class={`relative px-1 py-1 transition hover:text-[var(--brand-orange)] ${
-							isActive(item.href) ? 'text-[var(--brand-orange)]' : ''
-						}`}
-						aria-current={isActive(item.href) ? 'page' : undefined}
-					>
-						<span>{item.label}</span>
-						{#if isActive(item.href)}
-							<span
-								class="absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-[var(--brand-orange)]"
-								aria-hidden="true"
-							></span>
-						{/if}
-					</a>
-				{/each}
-			</nav>
+                        <button
+                                type="button"
+                                class={`ml-auto inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)] sm:hidden ${
+                                        showSolidBackground
+                                                ? 'border-[var(--border-soft)]/80 bg-[var(--surface-base)] text-[var(--text-dark)] hover:bg-[var(--surface-soft)]'
+                                                : 'border-white/60 bg-white/10 text-white hover:bg-white/20'
+                                }`}
+                                aria-expanded={menuOpen}
+                                aria-controls={navId}
+                                on:click={toggleMenu}
+                        >
+                                {#if menuOpen}
+                                        <X class="h-4 w-4" aria-hidden="true" />
+                                {:else}
+                                        <Menu class="h-4 w-4" aria-hidden="true" />
+                                {/if}
+                                <span class="text-[0.6rem] tracking-[0.3em]">Menu</span>
+                        </button>
 
-			<a
-				class={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--brand-navy-900)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-cream)] md:text-sm ${
-					isActive(contactPath)
-						? 'ring-2 ring-white/60 ring-offset-2 ring-offset-[var(--brand-navy-900)]'
-						: ''
-				}`}
-				href={resolve(contactPath)}
-				aria-current={isActive(contactPath) ? 'page' : undefined}
-			>
-				Contact Us
-			</a>
-		</div>
-	</div>
+                        <div class="ml-auto hidden items-center gap-6 md:flex">
+                                <nav
+                                        aria-label="Primary navigation"
+                                        class={`flex items-center gap-x-8 text-xs font-semibold uppercase tracking-[0.28em] ${
+                                                showSolidBackground
+                                                        ? 'text-[var(--text-muted)]'
+                                                        : 'text-white/90'
+                                        }`}
+                                >
+                                        {#each navigation as item (item.href)}
+                                                <a
+                                                        href={getHref(item)}
+                                                        class={`relative px-1 py-1 transition ${
+                                                                showSolidBackground
+                                                                        ? 'hover:text-[var(--brand-blue)]'
+                                                                        : 'hover:text-[var(--brand-orange)]'
+                                                        } ${
+                                                                isActive(item)
+                                                                        ? showSolidBackground
+                                                                                ? 'text-[var(--brand-blue)]'
+                                                                                : 'text-[var(--brand-orange)]'
+                                                                        : ''
+                                                        }`}
+                                                        aria-current={isActive(item) ? 'page' : undefined}
+                                                >
+                                                        <span>{item.label}</span>
+                                                        {#if isActive(item)}
+                                                                <span
+                                                                        class={`absolute inset-x-0 -bottom-1 h-0.5 rounded-full ${
+                                                                                showSolidBackground
+                                                                                        ? 'bg-[var(--brand-blue)]'
+                                                                                        : 'bg-[var(--brand-orange)]'
+                                                                        }`}
+                                                                        aria-hidden="true"
+                                                                ></span>
+                                                        {/if}
+                                                </a>
+                                        {/each}
+                                </nav>
 
-	{#if menuOpen}
-		<div class="border-t border-white/10 bg-[var(--brand-navy-800)]/95 px-6 py-4 sm:hidden">
-			<nav
-				id={navId}
-				aria-label="Primary navigation"
-				class="flex flex-col gap-4 text-sm tracking-[0.3em]"
-			>
-				{#each navigation as item (item.href)}
-					<a
-						href={resolve(item.href)}
-						class={`rounded-xl bg-white/5 px-4 py-3 text-slate-100 transition hover:bg-white/10 ${
-							isActive(item.href) ? 'bg-white/15 text-white' : ''
-						}`}
-						on:click={handleLinkActivate}
-						aria-current={isActive(item.href) ? 'page' : undefined}
-					>
-						{item.label}
-					</a>
-				{/each}
-			</nav>
-			<a
-				class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-3 text-xs font-semibold tracking-[0.25em] text-[var(--brand-navy-900)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5"
-				href={resolve(contactPath)}
-				on:click={handleLinkActivate}
-				aria-current={isActive(contactPath) ? 'page' : undefined}
-			>
-				Contact Us
-			</a>
-		</div>
-	{/if}
+                                <a
+                                        class={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--text-dark)] shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)] md:text-sm ${
+                                                isContactActive()
+                                                        ? 'ring-2 ring-[var(--brand-blue)]/30 ring-offset-2 ring-offset-[var(--surface-base)]'
+                                                        : ''
+                                        }`}
+                                        href={resolve(contactPath)}
+                                        aria-current={isContactActive() ? 'page' : undefined}
+                                >
+                                        Contact Us
+                                </a>
+                        </div>
+                </div>
+        </div>
+
+        {#if menuOpen}
+                <div class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] px-6 py-4 shadow-lg sm:hidden">
+                        <nav
+                                id={navId}
+                                aria-label="Primary navigation"
+                                class="flex flex-col gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-[var(--text-dark)]"
+                        >
+                                {#each navigation as item (item.href)}
+                                        <a
+                                                href={getHref(item)}
+                                                class="rounded-xl bg-[var(--surface-soft)] px-4 py-3 transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)]"
+                                                on:click={handleLinkActivate}
+                                                aria-current={isActive(item) ? 'page' : undefined}
+                                        >
+                                                {item.label}
+                                        </a>
+                                {/each}
+                        </nav>
+                        <a
+                                class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--text-dark)] shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5"
+                                href={resolve(contactPath)}
+                                on:click={handleLinkActivate}
+                                aria-current={isContactActive() ? 'page' : undefined}
+                        >
+                                Contact Us
+                        </a>
+                </div>
+        {/if}
 </header>
