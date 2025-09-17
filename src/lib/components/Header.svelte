@@ -189,30 +189,20 @@
                                         {#each navigation as item (item.href)}
                                                 <a
                                                         href={getHref(item)}
-                                                        class={`relative px-1 py-1 transition ${
+                                                        class={`relative px-1 py-1 transition after:absolute after:-bottom-1 after:left-0 after:right-0 after:h-0.5 after:origin-center after:scale-x-0 after:rounded-full after:bg-[var(--brand-orange)] after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100 ${
                                                                 showSolidBackground
                                                                         ? 'hover:text-[var(--brand-blue)]'
                                                                         : 'hover:text-[var(--brand-orange)]'
                                                         } ${
                                                                 isActive(item)
                                                                         ? showSolidBackground
-                                                                                ? 'text-[var(--brand-blue)]'
-                                                                                : 'text-[var(--brand-orange)]'
+                                                                                ? 'text-[var(--brand-blue)] after:scale-x-100'
+                                                                                : 'text-[var(--brand-orange)] after:scale-x-100'
                                                                         : ''
                                                         }`}
                                                         aria-current={isActive(item) ? 'page' : undefined}
                                                 >
                                                         <span>{item.label}</span>
-                                                        {#if isActive(item)}
-                                                                <span
-                                                                        class={`absolute inset-x-0 -bottom-1 h-0.5 rounded-full ${
-                                                                                showSolidBackground
-                                                                                        ? 'bg-[var(--brand-blue)]'
-                                                                                        : 'bg-[var(--brand-orange)]'
-                                                                        }`}
-                                                                        aria-hidden="true"
-                                                                ></span>
-                                                        {/if}
                                                 </a>
                                         {/each}
                                 </nav>
