@@ -1,0 +1,31 @@
+# Canonical domain
+https://www.awvaughan.com/* https://awvaughan.com/:splat 301!
+http://www.awvaughan.com/* https://awvaughan.com/:splat 301!
+http://awvaughan.com/* https://awvaughan.com/:splat 301!
+
+# Remove trailing slashes
+/*/ /:splat 301!
+
+# Legacy URLs
+/about-us /about 301!
+/about-us.html /about 301!
+/about.html /about 301!
+/services.html /services 301!
+/services/sitework /services 301!
+/services/drainage /services 301!
+/services/property-maintenance /services 301!
+/site-work /services 301!
+/property-maintenance /services 301!
+/employment /careers 301!
+/career /careers 301!
+/careers/apply /careers 301!
+/contact-us /contact 301!
+/contact-us.html /contact 301!
+/privacy /privacy-policy 301!
+/privacy-policy.html /privacy-policy 301!
+/terms /terms-of-service 301!
+/terms-of-service.html /terms-of-service 301!
+/index.php / 301!
+/home / 301!
+/home.html / 301!
+
