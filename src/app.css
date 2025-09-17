@@ -67,7 +67,21 @@
 		opacity: 1;
 		transform: translate(-50%, 0);
 		pointer-events: auto;
-	}
+        }
+
+	.reveal {
+		opacity: 0;
+		transform: translateY(1.5rem);
+		transition:
+		        opacity 450ms ease,
+		        transform 450ms ease;
+		will-change: opacity, transform;
+        }
+
+	.reveal[data-in-view='true'] {
+		opacity: 1;
+		transform: translateY(0);
+        }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,5 +92,10 @@
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
-	}
+        }
+
+	.reveal {
+		opacity: 1;
+		transform: none;
+        }
 }

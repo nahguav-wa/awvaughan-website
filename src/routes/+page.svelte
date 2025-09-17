@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
-	import { Hero } from '$lib';
+        import { Hero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
 	import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
 	import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
 	import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
@@ -168,9 +169,12 @@
 			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 				Proof points
 			</p>
-			<h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
-				Credentials that match national contractors
-			</h2>
+                        <h2
+                                class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                use:inView
+                        >
+                                Credentials that match national contractors
+                        </h2>
 			<p class="text-base text-[var(--text-muted)] sm:text-lg">
 				Clients choose us for Garney-level reliability with a tight-knit crew. These highlights
 				reinforce why builders and property managers across Hampton Roads keep us on call.
@@ -216,9 +220,12 @@
 				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 					Our capabilities
 				</p>
-				<h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
-					Site-ready solutions from one reliable crew
-				</h2>
+                                <h2
+                                        class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                        use:inView
+                                >
+                                        Site-ready solutions from one reliable crew
+                                </h2>
 				<p class="text-base text-[var(--text-muted)] sm:text-lg">
 					We combine responsive leadership with the resources to tackle grading, drainage, and
 					ongoing property maintenance.
@@ -290,9 +297,12 @@
 				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 					Featured projects
 				</p>
-				<h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
-					Recent scopes we have delivered
-				</h2>
+                                <h2
+                                        class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                        use:inView
+                                >
+                                        Recent scopes we have delivered
+                                </h2>
 				<p class="text-base text-[var(--text-muted)] sm:text-lg">
 					While we keep client names private, these highlights mirror the heavy civil and
 					maintenance work we perform across Hampton Roads.
@@ -390,9 +400,9 @@
 		class="mx-auto max-w-4xl rounded-3xl border border-white/20 bg-white/5 px-6 py-16 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
 	>
 		<p class="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">Let’s get to work</p>
-		<h2 class="mt-4 text-3xl font-semibold sm:text-4xl">
-			Count on AW Vaughan Company for responsive support
-		</h2>
+                <h2 class="mt-4 text-3xl font-semibold sm:text-4xl reveal" use:inView>
+                        Count on AW Vaughan Company for responsive support
+                </h2>
 		<p class="mt-3 text-base text-white/80 sm:text-lg">
 			Share your scope, timeline, and maintenance needs. We’ll provide a plan that keeps your
 			property accessible, safe, and ready for the next milestone.

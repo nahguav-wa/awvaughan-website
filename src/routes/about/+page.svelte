@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { PageHero } from '$lib';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 	import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
 	import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
@@ -123,9 +124,12 @@
 				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 					Our process
 				</p>
-				<h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
-					What to expect when you call us
-				</h2>
+                                <h2
+                                        class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                        use:inView
+                                >
+                                        What to expect when you call us
+                                </h2>
 				<p class="text-base text-[var(--text-muted)] sm:text-lg">
 					Every project starts with a conversation. We listen first, align on expectations, and
 					communicate throughout the job so there are no surprises along the way.
@@ -172,9 +176,12 @@
 			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 				Service area
 			</p>
-			<h2 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">
-				Proud to serve Hampton Roads
-			</h2>
+                        <h2
+                                class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl reveal"
+                                use:inView
+                        >
+                                Proud to serve Hampton Roads
+                        </h2>
 			<p class="text-base text-[var(--text-muted)] sm:text-lg">
 				From the Oceanfront to inland logistics hubs, we support properties across the region with
 				responsive maintenance and civil crews.
@@ -240,7 +247,9 @@
 		<p class="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">
 			Ready when you are
 		</p>
-		<h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Let’s plan your next project</h2>
+            <h2 class="mt-4 text-3xl font-semibold sm:text-4xl reveal" use:inView>
+                    Let’s plan your next project
+            </h2>
 		<p class="mt-3 text-base text-white/80 sm:text-lg">
 			Share your scope, maintenance needs, or emergency request. We’ll respond quickly with the
 			information you need to move forward.
