@@ -10,8 +10,12 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="flex min-h-screen flex-col bg-slate-950 text-slate-100">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="relative flex min-h-screen flex-col bg-[var(--brand-navy-900)] text-slate-100">
 	<Header />
-	<main class="flex-1">{@render children?.()}</main>
+	<main id="main-content" tabindex="-1" class="flex-1 focus:outline-none">
+		{@render children?.()}
+	</main>
 	<Footer />
 </div>
