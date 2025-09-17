@@ -8,6 +8,11 @@
 	] as const;
 
 	const contactPath = '/contact' as const;
+
+	// Normalize paths to avoid false negatives due to trailing slashes
+	const normalize = (path: string) => (path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path);
+	$: currentPath = normalize($page.url.pathname);
+	const isActive = (href: string) => normalize(resolve(href)) === currentPath;
 </script>
 
 <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur">
@@ -26,8 +31,8 @@
 					<a
 						href={resolve(item.href)}
 						class="transition hover:text-cyan-300"
-						class:text-cyan-300={$page.url.pathname === item.href}
-						aria-current={$page.url.pathname === item.href ? 'page' : undefined}
+						class:text-cyan-300={isActive(item.href)}
+						aria-current={isActive(item.href) ? 'page' : undefined}
 					>
 						{item.label}
 					</a>
@@ -37,8 +42,8 @@
 			<a
 				class="rounded-full border border-cyan-400/70 px-5 py-2 text-xs font-semibold tracking-[0.2em] text-cyan-300 uppercase transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-white sm:text-sm sm:tracking-[0.25em]"
 				href={resolve(contactPath)}
-				class:text-white={$page.url.pathname === contactPath}
-				aria-current={$page.url.pathname === contactPath ? 'page' : undefined}
+				class:text-white={isActive(contactPath)}
+				aria-current={isActive(contactPath) ? 'page' : undefined}
 			>
 				Contact Us
 			</a>
