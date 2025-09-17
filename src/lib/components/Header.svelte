@@ -189,7 +189,7 @@
                                         {#each navigation as item (item.href)}
                                                 <a
                                                         href={getHref(item)}
-                                                        class={`relative px-1 py-1 transition after:absolute after:-bottom-1 after:left-0 after:right-0 after:h-0.5 after:origin-center after:scale-x-0 after:rounded-full after:bg-[var(--brand-orange)] after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100 ${
+                                                        class={`relative px-1 py-1 transition after:pointer-events-none after:absolute after:-bottom-1 after:left-0 after:right-0 after:block after:h-0.5 after:origin-center after:scale-x-0 after:rounded-full after:bg-[var(--brand-orange)] after:content-[''] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100 ${
                                                                 showSolidBackground
                                                                         ? 'hover:text-[var(--brand-blue)]'
                                                                         : 'hover:text-[var(--brand-orange)]'
