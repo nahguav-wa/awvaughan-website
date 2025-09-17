@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PageHero } from '$lib';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
 	const seo = createSeo({
@@ -34,9 +35,9 @@
 />
 
 <section class="mx-auto max-w-4xl px-6 py-16">
-	<h2 class="text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl">
-		Grow with AW Vaughan Company
-	</h2>
+        <h2 class="text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl reveal" use:inView>
+                Grow with AW Vaughan Company
+        </h2>
 	<p class="mt-4 text-base text-[var(--text-muted)] sm:text-lg">
 		We are building a team of professionals who care about craftsmanship and customer service. Check
 		back soon for open positions or reach out directly if you would like to share your resume.
