@@ -107,7 +107,7 @@
         };
 </script>
 
-<header class="sticky top-0 z-50">
+<header class="fixed inset-x-0 top-0 z-50">
         <div
                 class={`overflow-hidden border-b border-[var(--brand-orange)] bg-[var(--brand-orange)] transition-all duration-300 ease-out ${
                         isAtTop
