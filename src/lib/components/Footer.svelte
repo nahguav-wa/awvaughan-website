@@ -6,32 +6,40 @@
 	const phoneLabel = '(757) 402-1100';
 </script>
 
-<footer class="border-t border-white/5 bg-slate-950 py-10">
+<footer class="border-t border-white/10 bg-[var(--brand-navy-900)] py-10">
 	<div
-		class="mx-auto flex max-w-6xl flex-col gap-6 px-6 text-sm text-slate-300 sm:flex-row sm:items-start sm:justify-between"
+		class="mx-auto flex max-w-6xl flex-col gap-8 px-6 text-sm text-slate-200 lg:flex-row lg:items-start lg:justify-between"
 	>
-		<div class="text-center sm:text-left">
-			<p class="text-sm font-semibold text-white">Serving Virginia Beach, Virginia</p>
-			<p class="mt-2 text-sm text-slate-400">
+		<div class="space-y-3 text-center lg:text-left">
+			<p
+				class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold tracking-[0.3em] text-[var(--brand-teal)] uppercase"
+			>
+				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--brand-orange)]"
+				></span>
+				Serving Hampton Roads
+			</p>
+			<p class="text-sm text-slate-200">
 				&copy; {currentYear} AW Vaughan Company LLC. Jeremiah 29:11
 			</p>
 		</div>
 
-		<div class="flex flex-col items-center gap-4 text-center sm:items-end sm:text-right">
-			<nav
-				class="flex flex-wrap items-center justify-center gap-4 text-[0.7rem] tracking-[0.25em] text-slate-400 uppercase sm:justify-end sm:text-xs md:text-sm"
+		<nav
+			aria-label="Footer navigation"
+			class="flex flex-wrap items-center justify-center gap-4 text-[0.7rem] font-semibold tracking-[0.28em] text-slate-300 uppercase lg:justify-end lg:text-xs"
+		>
+			<a class="transition hover:text-[var(--brand-orange)]" href={resolve('/about')}>About</a>
+			<a class="transition hover:text-[var(--brand-orange)]" href={resolve('/services')}>Services</a
 			>
-				<a class="transition hover:text-cyan-300" href={resolve('/about')}>About</a>
-				<a class="transition hover:text-cyan-300" href={resolve('/services')}>Services</a>
-				<a class="transition hover:text-cyan-300" href={resolve('/contact')}>Contact</a>
-			</nav>
-			<div class="flex flex-wrap items-center justify-center gap-4 text-slate-300 sm:justify-end">
-				<a class="transition hover:text-cyan-300" href="mailto:alex.vaughan@awvaughan.com"
-					>{email}</a
-				>
-				<span class="hidden h-4 w-px bg-white/20 sm:block" aria-hidden="true"></span>
-				<a class="transition hover:text-cyan-300" href="tel:+17574021100">{phoneLabel}</a>
-			</div>
-		</div>
+			<a class="transition hover:text-[var(--brand-orange)]" href={resolve('/contact')}>Contact</a>
+		</nav>
+
+		<address
+			class="flex flex-col items-center gap-3 text-center text-sm text-slate-200 not-italic lg:items-end lg:text-right"
+		>
+			<a class="transition hover:text-[var(--brand-orange)]" href={`mailto:${email}`}>{email}</a>
+			<a class="transition hover:text-[var(--brand-orange)]" href="tel:+17574021100">{phoneLabel}</a
+			>
+			<span class="text-xs tracking-[0.35em] text-slate-400 uppercase">Virginia Beach, VA</span>
+		</address>
 	</div>
 </footer>
