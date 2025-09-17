@@ -10,14 +10,15 @@
 	const contactPath = '/contact' as const;
 
 	// Normalize paths to avoid false negatives due to trailing slashes
-	const normalize = (path: string) => (path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path);
+	const normalize = (path: string) =>
+		path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
 	$: currentPath = normalize($page.url.pathname);
 	const isActive = (href: string) => normalize(resolve(href)) === currentPath;
 </script>
 
 <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur">
 	<div class="mx-auto flex w-full max-w-6xl items-center gap-x-6 px-6 py-4">
-		<a href={resolve('/')} class="text-lg font-semibold tracking-wide text-white"
+		<a href={resolve('/')} class="text-lg font-semibold tracking-wide whitespace-nowrap text-white"
 			>AW Vaughan Company</a
 		>
 
