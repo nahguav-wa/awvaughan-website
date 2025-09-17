@@ -1,5 +1,5 @@
 <script lang="ts">
-        import { resolve } from '$app/paths';
+        import { base } from '$app/paths';
         import { page } from '$app/stores';
         import { browser } from '$app/environment';
         import { onDestroy, onMount } from 'svelte';
@@ -41,13 +41,13 @@
 
         $: currentPath = normalize($page.url.pathname);
 
-        const getHref = (item: NavItem) =>
-                item.isAnchor ? item.href : resolve(item.href as Parameters<typeof resolve>[0]);
+        const withBase = (path: string) => `${base}${path}`;
 
-        const isActive = (item: NavItem) =>
-                !item.isAnchor && normalize(resolve(item.href as Parameters<typeof resolve>[0])) === currentPath;
+        const getHref = (item: NavItem) => (item.isAnchor ? `${base}${item.href}` : withBase(item.href));
 
-        const isContactActive = () => normalize(resolve(contactPath)) === currentPath;
+        const isActive = (item: NavItem) => !item.isAnchor && normalize(withBase(item.href)) === currentPath;
+
+        const isContactActive = () => normalize(withBase(contactPath)) === currentPath;
 
         let menuOpen = false;
         let previousPath: string | null = null;
@@ -150,7 +150,7 @@
         >
                 <div class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
                         <a
-                                href={resolve('/')}
+                                href={withBase('/')}
                                 class={`text-lg font-semibold tracking-tight ${
                                         showSolidBackground ? 'text-[var(--text-dark)]' : 'text-white'
                                 }`}
@@ -223,7 +223,7 @@
                                                         ? 'ring-2 ring-[var(--brand-blue)]/30 ring-offset-2 ring-offset-[var(--surface-base)]'
                                                         : ''
                                         }`}
-                                        href={resolve(contactPath)}
+                                        href={withBase(contactPath)}
                                         aria-current={isContactActive() ? 'page' : undefined}
                                 >
                                         Contact Us
@@ -252,7 +252,7 @@
                         </nav>
                         <a
                                 class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--text-dark)] shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5"
-                                href={resolve(contactPath)}
+                                href={withBase(contactPath)}
                                 on:click={handleLinkActivate}
                                 aria-current={isContactActive() ? 'page' : undefined}
                         >

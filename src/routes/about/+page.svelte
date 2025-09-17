@@ -1,17 +1,13 @@
 <script lang="ts">
         import { resolve } from '$app/paths';
-        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { seoHead } from '$lib/seo';
         import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
         import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
         import ServiceIcon from '$lib/components/icons/ServiceIcon.svelte';
         import type { ComponentType } from 'svelte';
 
-        const seo = createSeo({
-                title: 'About AW Vaughan Company | Virginia Beach Sitework Contractors',
-                description:
-                        'Learn how AW Vaughan Company delivers Garney-level civil services with a local, owner-led team serving Virginia Beach and Hampton Roads.',
-                path: '/about'
-        });
+        let { data } = $props();
+        const head = $derived(seoHead(data?.seo));
 
         const values: readonly {
                 title: string;
@@ -72,15 +68,7 @@
         ] as const;
 </script>
 
-<svelte:head>
-        <title>{seo.title}</title>
-        {#each seo.meta as tag (getMetaKey(tag))}
-                <meta {...tag} />
-        {/each}
-        {#each seo.links as link (getLinkKey(link))}
-                <link {...link} />
-        {/each}
-</svelte:head>
+{@render head()}
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
         <div class="mx-auto max-w-5xl space-y-6 px-6">

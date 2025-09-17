@@ -1,6 +1,6 @@
 <script lang="ts">
         import { resolve } from '$app/paths';
-        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { seoHead } from '$lib/seo';
         import { Hero } from '$lib';
         import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
         import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
@@ -10,12 +10,8 @@
         import WaterIcon from '$lib/components/icons/WaterIcon.svelte';
         import type { ComponentType } from 'svelte';
 
-        const seo = createSeo({
-                title: 'AW Vaughan Company — Sitework & Property Maintenance in Virginia Beach, VA',
-                description:
-                        'AW Vaughan Company delivers sitework, drainage, emergency response, and property maintenance services for builders, HOAs, and facility managers across Hampton Roads.',
-                path: '/'
-        });
+        let { data } = $props();
+        const head = $derived(seoHead(data?.seo));
 
         const email = 'alex.vaughan@awvaughan.com';
         const phoneLabel = '(757) 402-1100';
@@ -150,15 +146,7 @@
         ];
 </script>
 
-<svelte:head>
-        <title>{seo.title}</title>
-        {#each seo.meta as tag (getMetaKey(tag))}
-                <meta {...tag} />
-        {/each}
-        {#each seo.links as link (getLinkKey(link))}
-                <link {...link} />
-        {/each}
-</svelte:head>
+{@render head()}
 
 <Hero />
 

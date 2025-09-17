@@ -1,12 +1,8 @@
 <script lang="ts">
-        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { seoHead } from '$lib/seo';
 
-        const seo = createSeo({
-                title: 'Contact AW Vaughan Company | Sitework & Property Maintenance in Virginia Beach',
-                description:
-                        'Contact AW Vaughan Company at (757) 402-1100 or alex.vaughan@awvaughan.com for sitework, drainage, and property maintenance services in Virginia Beach and Hampton Roads.',
-                path: '/contact'
-        });
+        let { data } = $props();
+        const head = $derived(seoHead(data?.seo));
 
         const commitments = [
                 {
@@ -58,15 +54,7 @@
         };
 </script>
 
-<svelte:head>
-        <title>{seo.title}</title>
-        {#each seo.meta as tag (getMetaKey(tag))}
-                <meta {...tag} />
-        {/each}
-        {#each seo.links as link (getLinkKey(link))}
-                <link {...link} />
-        {/each}
-</svelte:head>
+{@render head()}
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
         <div class="mx-auto max-w-5xl space-y-6 px-6">

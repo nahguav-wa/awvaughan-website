@@ -1,23 +1,11 @@
 <script lang="ts">
-        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { seoHead } from '$lib/seo';
 
-        const seo = createSeo({
-                title: 'Careers — AW Vaughan Company',
-                description:
-                        'Explore career opportunities with AW Vaughan Company. Share your resume to join our Virginia Beach sitework and property maintenance team.',
-                path: '/careers'
-        });
+        let { data } = $props();
+        const head = $derived(seoHead(data?.seo));
 </script>
 
-<svelte:head>
-        <title>{seo.title}</title>
-        {#each seo.meta as tag (getMetaKey(tag))}
-                <meta {...tag} />
-        {/each}
-        {#each seo.links as link (getLinkKey(link))}
-                <link {...link} />
-        {/each}
-</svelte:head>
+{@render head()}
 
 <section class="mx-auto max-w-4xl px-6 py-20">
         <h1 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">Careers</h1>

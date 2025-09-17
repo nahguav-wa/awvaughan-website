@@ -1,23 +1,11 @@
 <script lang="ts">
-        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { seoHead } from '$lib/seo';
 
-        const seo = createSeo({
-                title: 'Terms of Service — AW Vaughan Company',
-                description:
-                        'Understand the terms that govern AW Vaughan Company’s website, proposals, and client communication for projects across Hampton Roads.',
-                path: '/terms-of-service'
-        });
+        let { data } = $props();
+        const head = $derived(seoHead(data?.seo));
 </script>
 
-<svelte:head>
-        <title>{seo.title}</title>
-        {#each seo.meta as tag (getMetaKey(tag))}
-                <meta {...tag} />
-        {/each}
-        {#each seo.links as link (getLinkKey(link))}
-                <link {...link} />
-        {/each}
-</svelte:head>
+{@render head()}
 
 <section class="mx-auto max-w-4xl px-6 py-20 space-y-6">
         <h1 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">Terms of Service</h1>

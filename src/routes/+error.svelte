@@ -1,7 +1,8 @@
 <script lang="ts">
         import { dev } from '$app/environment';
         import { resolve } from '$app/paths';
-        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { page } from '$app/stores';
+        import { seoHead } from '$lib/seo';
 
         let { error, status } = $props();
 
@@ -20,22 +21,18 @@
 
         const detailMessage = typeof error?.message === 'string' ? error.message : null;
 
-        const seo = createSeo({
-                title: `${status} — ${title}`,
-                description,
-                robots: 'noindex'
-        });
+        const canonical = $derived($page.url.href);
+        const head = $derived(
+                seoHead({
+                        title: `${status} — ${title}`,
+                        description,
+                        canonical,
+                        robots: 'noindex'
+                })
+        );
 </script>
 
-<svelte:head>
-        <title>{seo.title}</title>
-        {#each seo.meta as tag (getMetaKey(tag))}
-                <meta {...tag} />
-        {/each}
-        {#each seo.links as link (getLinkKey(link))}
-                <link {...link} />
-        {/each}
-</svelte:head>
+{@render head()}
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-24">
         <div class="mx-auto max-w-4xl space-y-12 px-6 text-[var(--text-dark)]">

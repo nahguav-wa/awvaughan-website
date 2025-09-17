@@ -1,110 +1,103 @@
-const SITE_NAME = 'AW Vaughan Company' as const;
-const SITE_URL = 'https://www.awvaughan.com/' as const;
+import { createRawSnippet, type Snippet } from 'svelte';
+import { appConfig, type SeoImage as ConfigSeoImage } from '../app.config';
 
-export type SeoImage = {
-        /**
-         * Absolute or relative path to the social share image. Relative paths are resolved against SITE_URL.
-         */
-        src: string;
-        /** Text alternative for the social share image. */
-        alt?: string;
-        /** Width of the social share image in pixels. */
-        width?: number;
-        /** Height of the social share image in pixels. */
-        height?: number;
-};
+export type SeoImage = ConfigSeoImage;
 
-export type CreateSeoInput = {
-        /** Page-specific title that will also be used for Open Graph and Twitter cards. */
-        title: string;
-        /** Concise description used for meta, Open Graph, and Twitter tags. */
-        description: string;
-        /**
-         * Route path or absolute URL for the page. When provided, canonical, Open Graph, and Twitter URLs will be generated.
-         * Accepts either a leading-slash path (e.g., `/about`) or a full URL.
-         */
-        path?: string;
-        /** Optional robots directive for the page. */
+export type SeoData = {
+        title?: string;
+        description?: string;
+        canonical?: string;
         robots?: string;
-        /** Social image configuration used for Open Graph and Twitter cards. */
         image?: SeoImage;
 };
 
-export type SeoMetaTag =
-        | {
-                      name: string;
-                      content: string;
-              }
-        | {
-                      property: string;
-                      content: string;
-              };
-
-export type SeoLinkTag = {
-        rel: string;
-        href: string;
-};
-
-export type SeoHead = {
+type ResolvedSeo = {
         title: string;
-        meta: readonly SeoMetaTag[];
-        links: readonly SeoLinkTag[];
+        description: string;
+        canonical?: string;
+        robots?: string;
+        image?: SeoImage;
 };
 
-const toAbsoluteUrl = (value: string) => new URL(value, SITE_URL).toString();
+const isAbsoluteUrl = (value: string) => /^https?:\/\//.test(value);
 
-const normalisePath = (path: string) => (path.startsWith('http://') || path.startsWith('https://') ? path : path.startsWith('/') ? path : `/${path}`);
+const normaliseUrl = (value: string) => (isAbsoluteUrl(value) ? value : new URL(value, appConfig.siteUrl).toString());
 
-export const getMetaKey = (tag: SeoMetaTag) => ('name' in tag ? tag.name : tag.property);
+const escapeHtml = (value: string) =>
+        value
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
 
-export const getLinkKey = (link: SeoLinkTag) => `${link.rel}:${link.href}`;
+const escapeAttribute = (value: string) => escapeHtml(value).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-export const createSeo = ({ title, description, path, robots, image }: CreateSeoInput): SeoHead => {
-        const canonicalUrl = path ? toAbsoluteUrl(normalisePath(path)) : undefined;
+const resolveSeo = (input?: SeoData): ResolvedSeo => {
+        const defaults = appConfig.seo;
 
-        const meta: SeoMetaTag[] = [
-                { name: 'description', content: description },
-                { property: 'og:site_name', content: SITE_NAME },
-                { property: 'og:type', content: 'website' },
-                { property: 'og:title', content: title },
-                { property: 'og:description', content: description },
-                { name: 'twitter:title', content: title },
-                { name: 'twitter:description', content: description },
-                { name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' }
+        return {
+                title: input?.title ?? defaults.title,
+                description: input?.description ?? defaults.description,
+                canonical: input?.canonical,
+                robots: input?.robots,
+                image: input?.image ?? defaults.image
+        };
+};
+
+const renderHead = (seo: ResolvedSeo) => {
+        const canonical = seo.canonical ? normaliseUrl(seo.canonical) : undefined;
+        const image = seo.image ? { ...seo.image, src: normaliseUrl(seo.image.src) } : undefined;
+
+        const tags: string[] = [
+                '<svelte:head>',
+                `        <title>${escapeHtml(seo.title)}</title>`,
+                `        <meta name="description" content="${escapeAttribute(seo.description)}" />`,
+                `        <meta property="og:site_name" content="${escapeAttribute(appConfig.siteName)}" />`,
+                '        <meta property="og:type" content="website" />',
+                `        <meta property="og:title" content="${escapeAttribute(seo.title)}" />`,
+                `        <meta property="og:description" content="${escapeAttribute(seo.description)}" />`,
+                `        <meta name="twitter:title" content="${escapeAttribute(seo.title)}" />`,
+                `        <meta name="twitter:description" content="${escapeAttribute(seo.description)}" />`,
+                `        <meta name="twitter:card" content="${image ? 'summary_large_image' : 'summary'}" />`
         ];
 
-        if (robots) {
-                meta.push({ name: 'robots', content: robots });
+        if (seo.robots) {
+                tags.push(`        <meta name="robots" content="${escapeAttribute(seo.robots)}" />`);
         }
 
-        if (canonicalUrl) {
-                meta.push({ property: 'og:url', content: canonicalUrl });
-                meta.push({ name: 'twitter:url', content: canonicalUrl });
+        if (canonical) {
+                const escapedCanonical = escapeAttribute(canonical);
+                tags.push(`        <link rel="canonical" href="${escapedCanonical}" />`);
+                tags.push(`        <meta property="og:url" content="${escapedCanonical}" />`);
+                tags.push(`        <meta name="twitter:url" content="${escapedCanonical}" />`);
         }
 
         if (image) {
-                const imageUrl = toAbsoluteUrl(image.src);
-                meta.push({ property: 'og:image', content: imageUrl });
-                if (image.width) {
-                        meta.push({ property: 'og:image:width', content: image.width.toString() });
-                }
-                if (image.height) {
-                        meta.push({ property: 'og:image:height', content: image.height.toString() });
-                }
+                const escapedSrc = escapeAttribute(image.src);
+                tags.push(`        <meta property="og:image" content="${escapedSrc}" />`);
                 if (image.alt) {
-                        meta.push({ property: 'og:image:alt', content: image.alt });
+                        tags.push(`        <meta property="og:image:alt" content="${escapeAttribute(image.alt)}" />`);
                 }
-                meta.push({ name: 'twitter:image', content: imageUrl });
+                if (typeof image.width === 'number') {
+                        tags.push(`        <meta property="og:image:width" content="${escapeAttribute(String(image.width))}" />`);
+                }
+                if (typeof image.height === 'number') {
+                        tags.push(`        <meta property="og:image:height" content="${escapeAttribute(String(image.height))}" />`);
+                }
+                tags.push(`        <meta name="twitter:image" content="${escapedSrc}" />`);
                 if (image.alt) {
-                        meta.push({ name: 'twitter:image:alt', content: image.alt });
+                        tags.push(`        <meta name="twitter:image:alt" content="${escapeAttribute(image.alt)}" />`);
                 }
         }
 
-        const links: SeoLinkTag[] = canonicalUrl ? [{ rel: 'canonical', href: canonicalUrl }] : [];
+        tags.push('</svelte:head>');
 
-        return {
-                title,
-                meta,
-                links
-        };
+        return tags.join('\n');
+};
+
+export const seoHead = (input?: SeoData): Snippet => {
+        const resolved = resolveSeo(input);
+
+        return createRawSnippet(() => ({
+                render: () => renderHead(resolved)
+        }));
 };
