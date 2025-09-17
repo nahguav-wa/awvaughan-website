@@ -1,11 +1,13 @@
 <script lang="ts">
-	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
-	import { Footer, Header } from '$lib';
+        import '../app.css';
+        import favicon from '$lib/assets/favicon.svg';
+        import { Footer, Header } from '$lib';
+        import { page } from '$app/stores';
 
-	let { children } = $props();
-	const emergencyPhone = '+17574021100';
-	const emergencyLabel = 'Call (757) 402-1100';
+        let { children } = $props();
+        const emergencyPhone = '+17574021100';
+        const emergencyLabel = 'Call (757) 402-1100';
+        const isHome = $derived($page.url.pathname === '/');
 </script>
 
 <svelte:head>
@@ -15,10 +17,14 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
 <div class="relative flex min-h-screen flex-col bg-[var(--surface-muted)] text-[var(--text-dark)]">
-	<Header />
-	<main id="main-content" tabindex="-1" class="flex-1 focus:outline-none">
-		{@render children?.()}
-	</main>
+        <Header />
+        <main
+                id="main-content"
+                tabindex="-1"
+                class={`flex-1 focus:outline-none ${isHome ? '' : 'pt-32 lg:pt-36'}`}
+        >
+                {@render children?.()}
+        </main>
 	<Footer />
 
         <a
