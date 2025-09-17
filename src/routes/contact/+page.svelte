@@ -1,4 +1,13 @@
 <script lang="ts">
+        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+
+        const seo = createSeo({
+                title: 'Contact AW Vaughan Company | Sitework & Property Maintenance in Virginia Beach',
+                description:
+                        'Contact AW Vaughan Company at (757) 402-1100 or alex.vaughan@awvaughan.com for sitework, drainage, and property maintenance services in Virginia Beach and Hampton Roads.',
+                path: '/contact'
+        });
+
         const commitments = [
                 {
                         title: 'Quick response',
@@ -50,11 +59,13 @@
 </script>
 
 <svelte:head>
-        <title>Contact AW Vaughan Company | Sitework &amp; Maintenance in Virginia Beach</title>
-        <meta
-                name="description"
-                content="Contact AW Vaughan Company at (757) 402-1100 or alex.vaughan@awvaughan.com for sitework, drainage, and property maintenance services in Virginia Beach and Hampton Roads."
-        />
+        <title>{seo.title}</title>
+        {#each seo.meta as tag (getMetaKey(tag))}
+                <meta {...tag} />
+        {/each}
+        {#each seo.links as link (getLinkKey(link))}
+                <link {...link} />
+        {/each}
 </svelte:head>
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">

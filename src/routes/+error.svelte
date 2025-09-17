@@ -1,6 +1,7 @@
 <script lang="ts">
         import { dev } from '$app/environment';
         import { resolve } from '$app/paths';
+        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
         let { error, status } = $props();
 
@@ -18,11 +19,22 @@
                 : 'An unexpected error kept this page from loading. Try the options below or reach out and we\'ll help right away.';
 
         const detailMessage = typeof error?.message === 'string' ? error.message : null;
+
+        const seo = createSeo({
+                title: `${status} — ${title}`,
+                description,
+                robots: 'noindex'
+        });
 </script>
 
 <svelte:head>
-        <title>{status} — {title}</title>
-        <meta name="robots" content="noindex" />
+        <title>{seo.title}</title>
+        {#each seo.meta as tag (getMetaKey(tag))}
+                <meta {...tag} />
+        {/each}
+        {#each seo.links as link (getLinkKey(link))}
+                <link {...link} />
+        {/each}
 </svelte:head>
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-24">
