@@ -3,36 +3,36 @@
 @plugin '@tailwindcss/typography';
 
 @layer base {
-        :root {
-                --brand-blue: #1b4d8a;
-                --brand-blue-soft: #e6eef8;
-                --brand-orange: #ffa500;
-                --text-dark: #27251f;
-                --text-muted: #5f6368;
-                --surface-base: #ffffff;
-                --surface-muted: #f5f7fa;
-                --surface-soft: #eef2f6;
-                --border-soft: #d9dee6;
-        }
+	:root {
+		--brand-blue: #1b4d8a;
+		--brand-blue-soft: #e6eef8;
+		--brand-orange: #ffa500;
+		--text-dark: #27251f;
+		--text-muted: #5f6368;
+		--surface-base: #ffffff;
+		--surface-muted: #f5f7fa;
+		--surface-soft: #eef2f6;
+		--border-soft: #d9dee6;
+	}
 
-        body {
-                background-color: var(--surface-muted);
-                color: var(--text-dark);
-                font-feature-settings:
-                        'liga' 1,
-                        'kern' 1;
-                text-rendering: optimizeLegibility;
-        }
+	body {
+		background-color: var(--surface-muted);
+		color: var(--text-dark);
+		font-feature-settings:
+			'liga' 1,
+			'kern' 1;
+		text-rendering: optimizeLegibility;
+	}
 
-        ::selection {
-                background: color-mix(in srgb, var(--brand-orange) 70%, white);
-                color: var(--text-dark);
-        }
+	::selection {
+		background: color-mix(in srgb, var(--brand-orange) 70%, white);
+		color: var(--text-dark);
+	}
 
-        :focus-visible {
-                outline: 2px solid var(--brand-blue);
-                outline-offset: 4px;
-        }
+	:focus-visible {
+		outline: 2px solid var(--brand-blue);
+		outline-offset: 4px;
+	}
 
 	main:focus {
 		outline: none;
@@ -48,13 +48,13 @@
 		z-index: 60;
 		padding: 0.75rem 1.25rem;
 		border-radius: 9999px;
-                background-color: var(--brand-blue);
-                color: white;
-                font-size: 0.75rem;
-                font-weight: 700;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                box-shadow: 0 20px 45px rgb(15 35 65 / 25%);
+		background-color: var(--brand-blue);
+		color: white;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		box-shadow: 0 20px 45px rgb(15 35 65 / 25%);
 		transition:
 			transform 150ms ease,
 			opacity 150ms ease;
