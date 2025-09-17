@@ -1,5 +1,22 @@
+<script lang="ts">
+        import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+
+        const seo = createSeo({
+                title: 'Careers — AW Vaughan Company',
+                description:
+                        'Explore career opportunities with AW Vaughan Company. Share your resume to join our Virginia Beach sitework and property maintenance team.',
+                path: '/careers'
+        });
+</script>
+
 <svelte:head>
-        <title>Careers — AW Vaughan Company</title>
+        <title>{seo.title}</title>
+        {#each seo.meta as tag (getMetaKey(tag))}
+                <meta {...tag} />
+        {/each}
+        {#each seo.links as link (getLinkKey(link))}
+                <link {...link} />
+        {/each}
 </svelte:head>
 
 <section class="mx-auto max-w-4xl px-6 py-20">
