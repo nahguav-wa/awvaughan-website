@@ -109,7 +109,7 @@
 
 <header class="sticky top-0 z-50">
         <div
-                class={`overflow-hidden border-b border-[var(--border-soft)] bg-[var(--surface-base)] transition-all duration-300 ease-out ${
+                class={`overflow-hidden border-b border-[var(--brand-orange)] bg-[var(--brand-orange)] transition-all duration-300 ease-out ${
                         isAtTop
                                 ? 'max-h-16 opacity-100 pointer-events-auto'
                                 : 'max-h-0 opacity-0 pointer-events-none'
@@ -117,20 +117,23 @@
                 aria-hidden={!isAtTop}
         >
                 <div
-                        class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-2 text-xs font-medium text-[var(--text-muted)]"
+                        class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-2 text-xs font-medium text-white"
                 >
                         {#each contactDetails as detail (detail.label)}
                                 {#if detail.href}
                                         <a
-                                                class="flex items-center gap-2 transition hover:text-[var(--brand-blue)]"
+                                                class="group flex items-center gap-2 text-white transition hover:text-[var(--brand-blue)]"
                                                 href={detail.href}
                                         >
-                                                <svelte:component this={detail.icon} class="h-4 w-4 text-[var(--brand-blue)]" />
+                                                <svelte:component
+                                                        this={detail.icon}
+                                                        class="h-4 w-4 text-white transition group-hover:text-[var(--brand-blue)]"
+                                                />
                                                 <span>{detail.label}</span>
                                         </a>
                                 {:else}
-                                        <span class="flex items-center gap-2">
-                                                <svelte:component this={detail.icon} class="h-4 w-4 text-[var(--brand-blue)]" />
+                                        <span class="flex items-center gap-2 text-white">
+                                                <svelte:component this={detail.icon} class="h-4 w-4 text-white" />
                                                 <span>{detail.label}</span>
                                         </span>
                                 {/if}
