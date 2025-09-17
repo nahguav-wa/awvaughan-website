@@ -1,6 +1,7 @@
 <script lang="ts">
         import { resolve } from '$app/paths';
         import { page } from '$app/stores';
+        import { browser } from '$app/environment';
         import { onDestroy, onMount } from 'svelte';
         import type { ComponentType } from 'svelte';
         import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
@@ -70,16 +71,28 @@
         };
 
         const updateScrollPosition = () => {
+                if (!browser) {
+                        return;
+                }
+
                 isAtTop = window.scrollY < 10;
         };
 
         onMount(() => {
+                if (!browser) {
+                        return;
+                }
+
                 updateScrollPosition();
                 window.addEventListener('keydown', handleEscape);
                 window.addEventListener('scroll', updateScrollPosition, { passive: true });
         });
 
         onDestroy(() => {
+                if (!browser) {
+                        return;
+                }
+
                 window.removeEventListener('keydown', handleEscape);
                 window.removeEventListener('scroll', updateScrollPosition);
         });
