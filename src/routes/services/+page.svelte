@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 	import EmergencyIcon from '$lib/components/icons/EmergencyIcon.svelte';
 	import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
@@ -175,9 +175,9 @@
 		<div
 			class="rounded-4xl border border-white/20 bg-white/5 p-10 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
 		>
-                        <h2 class="text-3xl font-semibold sm:text-4xl reveal" use:inView>
-                                Ready for your next project?
-                        </h2>
+			<h2 class="reveal text-3xl font-semibold sm:text-4xl" use:inView>
+				Ready for your next project?
+			</h2>
 			<p class="mt-4 text-base text-white/80 sm:text-lg">
 				Let us know what you need—whether it’s breaking ground on a new build or keeping established
 				properties looking their best. We’ll put together a plan that respects your schedule and

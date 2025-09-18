@@ -1,10 +1,10 @@
 <script lang="ts">
-        import { inView } from '$lib/actions/in-view';
+	import { inView } from '$lib/actions/in-view';
 
-        type BackgroundImage = {
-                src: string;
-                alt?: string;
-                srcset?: string;
+	type BackgroundImage = {
+		src: string;
+		alt?: string;
+		srcset?: string;
 		sizes?: string;
 	};
 
@@ -63,12 +63,9 @@
 			</p>
 		{/if}
 
-                <h1
-                        class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl reveal"
-                        use:inView
-                >
-                        {heading}
-                </h1>
+		<h1 class="reveal mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl" use:inView>
+			{heading}
+		</h1>
 
 		{#if descriptionLines.length}
 			<div class="mt-6 space-y-4 text-base leading-relaxed text-white/85 sm:text-lg">

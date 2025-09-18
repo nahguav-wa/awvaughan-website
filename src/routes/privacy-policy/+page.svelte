@@ -1,6 +1,6 @@
 <script lang="ts">
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
 	const seo = createSeo({
@@ -35,9 +35,9 @@
 />
 
 <section class="mx-auto max-w-4xl space-y-6 px-6 py-16">
-        <h2 class="text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl reveal" use:inView>
-                Our current commitments
-        </h2>
+	<h2 class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl" use:inView>
+		Our current commitments
+	</h2>
 	<div class="space-y-4 text-sm leading-relaxed text-[var(--text-muted)]">
 		<p>
 			We only use the details you provide through our contact form or direct emails to respond to

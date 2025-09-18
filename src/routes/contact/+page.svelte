@@ -1,6 +1,6 @@
 <script lang="ts">
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
 	const seo = createSeo({
@@ -93,12 +93,9 @@
 				<div
 					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
 				>
-                                        <h2
-                                                class="text-2xl font-semibold text-[var(--text-dark)] reveal"
-                                                use:inView
-                                        >
-                                                Talk with our team
-                                        </h2>
+					<h2 class="reveal text-2xl font-semibold text-[var(--text-dark)]" use:inView>
+						Talk with our team
+					</h2>
 					<p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
 						Reach out using the details provided and let us know how we can help. Include site
 						location, target schedule, and any drawings or photos that will help us prepare.
@@ -290,9 +287,9 @@
 
 <section class="bg-[var(--brand-blue)] py-20 text-white">
 	<div class="mx-auto max-w-4xl px-6 text-center">
-            <h2 class="text-3xl font-semibold sm:text-4xl reveal" use:inView>
-                    We look forward to working with you
-            </h2>
+		<h2 class="reveal text-3xl font-semibold sm:text-4xl" use:inView>
+			We look forward to working with you
+		</h2>
 		<p class="mt-4 text-base text-white/80 sm:text-lg">
 			Tell us about your project, community, or maintenance program. We’ll follow up with next steps
 			and a plan tailored to your goals.
