@@ -1,7 +1,7 @@
 <script lang="ts">
-        import { resolve } from '$app/paths';
-        import { inView } from '$lib/actions/in-view';
-        import { onMount } from 'svelte';
+	import { resolve } from '$app/paths';
+	import { inView } from '$lib/actions/in-view';
+	import { onMount } from 'svelte';
 
 	type BackgroundImage = {
 		src: string;
@@ -119,19 +119,19 @@
 			{eyebrow}
 		</div>
 
-                <h1
-                        class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl reveal"
-                        use:inView
-                >
-                        {heading}
-                </h1>
+		<h1
+			class="reveal mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl"
+			use:inView
+		>
+			{heading}
+		</h1>
 
-                <p
-                        class="mt-4 text-base font-semibold tracking-[0.28em] text-white/80 uppercase sm:text-lg reveal"
-                        use:inView
-                >
-                        {subheading}
-                </p>
+		<p
+			class="reveal mt-4 text-base font-semibold tracking-[0.28em] text-white/80 uppercase sm:text-lg"
+			use:inView
+		>
+			{subheading}
+		</p>
 
 		<div class="mt-6 space-y-4 text-base leading-relaxed text-slate-100/90 sm:text-lg">
 			{#each description as paragraph (paragraph)}
