@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
-        import { getLinkKey, getMetaKey } from '$lib/seo';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
+	import { getLinkKey, getMetaKey } from '$lib/seo';
 	import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
 	import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
 	import ServiceIcon from '$lib/components/icons/ServiceIcon.svelte';
 	import type { ComponentType } from 'svelte';
 
-        let { data } = $props();
-        const seo = $derived(data.seo);
+	let { data } = $props();
+	const seo = $derived(data.seo);
 
 	const values: readonly {
 		title: string;
@@ -95,7 +95,20 @@
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
 	<div class="mx-auto max-w-6xl px-6">
-		<div class="grid gap-8 md:grid-cols-3">
+		<div class="max-w-3xl space-y-4">
+			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+				Our values
+			</p>
+			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+				Principles that guide every project
+			</h2>
+			<p class="text-base text-[var(--text-muted)] sm:text-lg">
+				We show up prepared, communicate clearly, and hold ourselves accountable to the service
+				standards our clients expect.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-8 md:grid-cols-3">
 			{#each values as value (value.title)}
 				<article
 					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
@@ -105,7 +118,7 @@
 					>
 						<svelte:component this={value.icon} class="h-6 w-6" />
 					</span>
-					<h2 class="mt-6 text-xl font-semibold text-[var(--text-dark)]">{value.title}</h2>
+					<h3 class="mt-6 text-xl font-semibold text-[var(--text-dark)]">{value.title}</h3>
 					<p class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{value.description}</p>
 				</article>
 			{/each}

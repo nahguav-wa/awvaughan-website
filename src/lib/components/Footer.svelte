@@ -12,8 +12,11 @@
 				<p class="text-base font-semibold text-[var(--text-dark)]">A.W. Vaughan Company, LLC</p>
 				<p class="text-sm text-[var(--text-muted)]">“Jeremiah 29:11”</p>
 			</div>
-			<div>
-				<h3 class="text-xs font-semibold tracking-[0.3em] text-[var(--text-dark)] uppercase">
+			<nav aria-labelledby="footer-company-heading">
+				<h3
+					id="footer-company-heading"
+					class="text-xs font-semibold tracking-[0.3em] text-[var(--text-dark)] uppercase"
+				>
 					Company
 				</h3>
 				<ul class="mt-4 space-y-3">
@@ -37,9 +40,12 @@
 						</a>
 					</li>
 				</ul>
-			</div>
-			<div>
-				<h3 class="text-xs font-semibold tracking-[0.3em] text-[var(--text-dark)] uppercase">
+			</nav>
+			<nav aria-labelledby="footer-legal-heading">
+				<h3
+					id="footer-legal-heading"
+					class="text-xs font-semibold tracking-[0.3em] text-[var(--text-dark)] uppercase"
+				>
 					Legal
 				</h3>
 				<ul class="mt-4 space-y-3">
@@ -57,7 +63,7 @@
 						</a>
 					</li>
 				</ul>
-			</div>
+			</nav>
 		</div>
 
 		<div class="mt-12 border-t border-[var(--border-soft)] pt-6 text-xs text-[var(--text-muted)]">

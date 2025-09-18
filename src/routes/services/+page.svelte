@@ -1,16 +1,16 @@
 <script lang="ts">
-        import { resolve } from '$app/paths';
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
-        import { getLinkKey, getMetaKey } from '$lib/seo';
+	import { resolve } from '$app/paths';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
+	import { getLinkKey, getMetaKey } from '$lib/seo';
 	import EmergencyIcon from '$lib/components/icons/EmergencyIcon.svelte';
 	import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
 	import MaintenanceIcon from '$lib/components/icons/MaintenanceIcon.svelte';
 	import WaterIcon from '$lib/components/icons/WaterIcon.svelte';
 	import type { ComponentType } from 'svelte';
 
-        let { data } = $props();
-        const seo = $derived(data.seo);
+	let { data } = $props();
+	const seo = $derived(data.seo);
 
 	const offerings: readonly {
 		title: string;
@@ -104,7 +104,20 @@
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
 	<div class="mx-auto max-w-6xl px-6">
-		<div class="grid gap-8 md:grid-cols-2">
+		<div class="max-w-3xl space-y-4">
+			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+				Service offerings
+			</p>
+			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+				Comprehensive packages for Hampton Roads properties
+			</h2>
+			<p class="text-base text-[var(--text-muted)] sm:text-lg">
+				Explore how we combine sitework, drainage, and responsive maintenance to support builders,
+				associations, and facility teams.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-8 md:grid-cols-2">
 			{#each offerings as offering (offering.title)}
 				<article
 					class="group flex h-full flex-col overflow-hidden rounded-4xl border border-[var(--border-soft)] bg-[var(--surface-base)] shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
@@ -125,7 +138,7 @@
 						>
 							<svelte:component this={offering.icon} class="h-6 w-6" />
 						</span>
-						<h2 class="text-2xl font-semibold text-[var(--text-dark)]">{offering.title}</h2>
+						<h3 class="text-2xl font-semibold text-[var(--text-dark)]">{offering.title}</h3>
 						<p class="text-sm leading-relaxed text-[var(--text-muted)]">{offering.description}</p>
 						<ul class="mt-4 space-y-3 text-sm leading-relaxed text-[var(--text-muted)]">
 							{#each offering.items as item (item)}

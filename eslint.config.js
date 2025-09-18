@@ -6,6 +6,7 @@ import globals from 'globals';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript-eslint';
 import svelteConfig from './svelte.config.js';
+import requireImgAltRule from './eslint/rules/require-img-alt.js';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
@@ -36,6 +37,19 @@ export default ts.config(
 				parser: ts.parser,
 				svelteConfig
 			}
+		}
+	},
+	{
+		files: ['src/routes/**/*.svelte', 'src/routes/**/*.svelte.ts', 'src/routes/**/*.svelte.js'],
+		plugins: {
+			'awv-a11y': {
+				rules: {
+					'require-img-alt': requireImgAltRule
+				}
+			}
+		},
+		rules: {
+			'awv-a11y/require-img-alt': 'error'
 		}
 	}
 );

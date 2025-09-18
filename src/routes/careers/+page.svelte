@@ -1,10 +1,10 @@
 <script lang="ts">
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
-        import { getLinkKey, getMetaKey } from '$lib/seo';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
+	import { getLinkKey, getMetaKey } from '$lib/seo';
 
-        let { data } = $props();
-        const seo = $derived(data.seo);
+	let { data } = $props();
+	const seo = $derived(data.seo);
 </script>
 
 <svelte:head>
