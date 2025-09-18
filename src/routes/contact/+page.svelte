@@ -1,10 +1,10 @@
 <script lang="ts">
-        import { PageHero } from '$lib';
-        import { inView } from '$lib/actions/in-view';
-        import { getLinkKey, getMetaKey } from '$lib/seo';
+	import { PageHero } from '$lib';
+	import { inView } from '$lib/actions/in-view';
+	import { getLinkKey, getMetaKey } from '$lib/seo';
 
-        let { data } = $props();
-        const seo = $derived(data.seo);
+	let { data } = $props();
+	const seo = $derived(data.seo);
 
 	const commitments = [
 		{
@@ -150,6 +150,14 @@
 				</div>
 
 				<div class="space-y-6">
+					<div class="space-y-2">
+						<h2 class="text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl">
+							Our commitments to you
+						</h2>
+						<p class="text-sm text-[var(--text-muted)]">
+							Expect clear communication, tidy sites, and reliable follow-through from our crew.
+						</p>
+					</div>
 					{#each commitments as commitment (commitment.title)}
 						<article
 							class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
@@ -163,9 +171,9 @@
 					<div
 						class="rounded-3xl border border-[var(--border-soft)] bg-[var(--brand-blue)]/10 p-8 text-center text-[var(--text-dark)]"
 					>
-						<p class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+						<h3 class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 							Need fast help?
-						</p>
+						</h3>
 						<p class="mt-3 text-base text-[var(--text-muted)]">
 							Call us at
 							<a
@@ -183,7 +191,25 @@
 			<div
 				class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
 			>
-				<form class="space-y-6" on:submit={handleSubmit} aria-describedby="form-helper" novalidate>
+				<div class="space-y-3">
+					<h2
+						id="contact-form-heading"
+						class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl"
+						use:inView
+					>
+						Start your request
+					</h2>
+					<p class="text-sm text-[var(--text-muted)]">
+						Share your project details and we will follow up with next steps.
+					</p>
+				</div>
+				<form
+					class="mt-6 space-y-6"
+					on:submit={handleSubmit}
+					aria-labelledby="contact-form-heading"
+					aria-describedby="form-helper"
+					novalidate
+				>
 					<div>
 						<label
 							class="text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"

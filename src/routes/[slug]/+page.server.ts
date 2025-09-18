@@ -5,20 +5,20 @@ import { findContentEntry } from '$lib/data/content';
 import { createSeo } from '$lib/seo';
 
 export const load: PageServerLoad = async ({ params, url }) => {
-        const entry = findContentEntry(params.slug);
+	const entry = findContentEntry(params.slug);
 
-        if (!entry) {
-                throw error(404, 'Not found');
-        }
+	if (!entry) {
+		throw error(404, 'Not found');
+	}
 
-        const contextLabel = entry.type === 'project' ? 'Project' : 'Insights';
+	const contextLabel = entry.type === 'project' ? 'Project' : 'Insights';
 
-        return {
-                entry,
-                seo: createSeo({
-                        title: `${entry.title} | ${contextLabel} | ${appConfig.siteName}`,
-                        description: entry.description,
-                        url
-                })
-        };
+	return {
+		entry,
+		seo: createSeo({
+			title: `${entry.title} | ${contextLabel} | ${appConfig.siteName}`,
+			description: entry.description,
+			url
+		})
+	};
 };
