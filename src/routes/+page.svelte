@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
-	import { Hero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
+        import { resolve } from '$app/paths';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
+        import { Hero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
 	import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
 	import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
 	import MaintenanceIcon from '$lib/components/icons/MaintenanceIcon.svelte';
@@ -11,12 +11,8 @@
 	import WaterIcon from '$lib/components/icons/WaterIcon.svelte';
 	import type { ComponentType } from 'svelte';
 
-	const seo = createSeo({
-		title: 'AW Vaughan Company — Sitework & Property Maintenance in Virginia Beach, VA',
-		description:
-			'AW Vaughan Company delivers sitework, drainage, emergency response, and property maintenance services for builders, HOAs, and facility managers across Hampton Roads.',
-		path: '/'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 
 	const email = 'alex.vaughan@awvaughan.com';
 	const phoneLabel = '(757) 402-1100';

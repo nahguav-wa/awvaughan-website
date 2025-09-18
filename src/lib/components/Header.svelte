@@ -6,11 +6,27 @@
 	import type { ComponentType } from 'svelte';
 	import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
 
-	type NavItem = {
-		href: string;
-		label: string;
-		isAnchor?: boolean;
-	};
+        type RouteHref =
+                | '/about'
+                | '/services'
+                | '/contact'
+                | '/careers'
+                | '/privacy-policy'
+                | '/terms-of-service';
+
+        type RouteNavItem = {
+                href: RouteHref;
+                label: string;
+                isAnchor?: false;
+        };
+
+        type AnchorNavItem = {
+                href: string;
+                label: string;
+                isAnchor: true;
+        };
+
+        type NavItem = RouteNavItem | AnchorNavItem;
 
 	type ContactDetail = {
 		icon: ComponentType;
@@ -18,11 +34,11 @@
 		href?: string;
 	};
 
-	const navigation: readonly NavItem[] = [
-		{ href: '/about', label: 'About' },
-		{ href: '/services', label: 'Services' },
-		{ href: '#projects', label: 'Projects', isAnchor: true }
-	];
+        const navigation: readonly NavItem[] = [
+                { href: '/about', label: 'About' },
+                { href: '/services', label: 'Services' },
+                { href: '#projects', label: 'Projects', isAnchor: true }
+        ];
 
 	const projectsHref = `${resolve('/')}#projects`;
 
@@ -43,9 +59,7 @@
 
 	$: currentPath = normalize($page.url.pathname);
 
-	const isActive = (item: NavItem) =>
-		!item.isAnchor &&
-		normalize(resolve(item.href as Parameters<typeof resolve>[0])) === currentPath;
+        const isActive = (item: NavItem) => !item.isAnchor && normalize(resolve(item.href)) === currentPath;
 
 	const isContactActive = () => normalize(resolve(contactPath)) === currentPath;
 
@@ -198,8 +212,8 @@
 								<span>{item.label}</span>
 							</a>
 						{:else}
-							<a
-								href={resolve(item.href as Parameters<typeof resolve>[0])}
+                                                        <a
+                                                                href={resolve(item.href)}
 								class={`relative px-1 py-1 transition ${
 									showSolidBackground
 										? 'hover:text-[var(--brand-blue)]'
@@ -263,8 +277,8 @@
 							{item.label}
 						</a>
 					{:else}
-						<a
-							href={resolve(item.href as Parameters<typeof resolve>[0])}
+                                                <a
+                                                        href={resolve(item.href)}
 							class="rounded-xl bg-[var(--surface-soft)] px-4 py-3 transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)]"
 							on:click={handleLinkActivate}
 							aria-current={isActive(item) ? 'page' : undefined}

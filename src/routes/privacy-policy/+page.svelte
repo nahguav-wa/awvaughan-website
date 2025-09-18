@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { PageHero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
 
-	const seo = createSeo({
-		title: 'Privacy Policy — AW Vaughan Company',
-		description:
-			'Review AW Vaughan Company’s privacy policy to understand how we handle inquiries and safeguard information shared through our Virginia Beach website.',
-		path: '/privacy-policy'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 </script>
 
 <svelte:head>

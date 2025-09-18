@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { PageHero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
 
-	const seo = createSeo({
-		title: 'Contact AW Vaughan Company | Sitework & Property Maintenance in Virginia Beach',
-		description:
-			'Contact AW Vaughan Company at (757) 402-1100 or alex.vaughan@awvaughan.com for sitework, drainage, and property maintenance services in Virginia Beach and Hampton Roads.',
-		path: '/contact'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 
 	const commitments = [
 		{

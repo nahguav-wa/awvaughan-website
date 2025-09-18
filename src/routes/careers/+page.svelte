@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { PageHero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
 
-	const seo = createSeo({
-		title: 'Careers — AW Vaughan Company',
-		description:
-			'Explore career opportunities with AW Vaughan Company. Share your resume to join our Virginia Beach sitework and property maintenance team.',
-		path: '/careers'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 </script>
 
 <svelte:head>
