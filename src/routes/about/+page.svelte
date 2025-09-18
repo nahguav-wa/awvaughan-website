@@ -1,19 +1,15 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { PageHero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
 	import CoastalIcon from '$lib/components/icons/CoastalIcon.svelte';
 	import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
 	import ServiceIcon from '$lib/components/icons/ServiceIcon.svelte';
 	import type { ComponentType } from 'svelte';
 
-	const seo = createSeo({
-		title: 'About AW Vaughan Company | Virginia Beach Sitework Contractors',
-		description:
-			'Learn how AW Vaughan Company delivers Garney-level civil services with a local, owner-led team serving Virginia Beach and Hampton Roads.',
-		path: '/about'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 
 	const values: readonly {
 		title: string;

@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { PageHero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
 
-	const seo = createSeo({
-		title: 'Terms of Service — AW Vaughan Company',
-		description:
-			'Understand the terms that govern AW Vaughan Company’s website, proposals, and client communication for projects across Hampton Roads.',
-		path: '/terms-of-service'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 </script>
 
 <svelte:head>

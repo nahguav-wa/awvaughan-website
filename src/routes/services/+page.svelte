@@ -1,20 +1,16 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { PageHero } from '$lib';
-	import { inView } from '$lib/actions/in-view';
-	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
+        import { resolve } from '$app/paths';
+        import { PageHero } from '$lib';
+        import { inView } from '$lib/actions/in-view';
+        import { getLinkKey, getMetaKey } from '$lib/seo';
 	import EmergencyIcon from '$lib/components/icons/EmergencyIcon.svelte';
 	import ExcavatorIcon from '$lib/components/icons/ExcavatorIcon.svelte';
 	import MaintenanceIcon from '$lib/components/icons/MaintenanceIcon.svelte';
 	import WaterIcon from '$lib/components/icons/WaterIcon.svelte';
 	import type { ComponentType } from 'svelte';
 
-	const seo = createSeo({
-		title: 'Services | AW Vaughan Company',
-		description:
-			"Explore AW Vaughan Company's sitework, drainage, maintenance, and emergency response services for Virginia Beach and Hampton Roads properties.",
-		path: '/services'
-	});
+        let { data } = $props();
+        const seo = $derived(data.seo);
 
 	const offerings: readonly {
 		title: string;
