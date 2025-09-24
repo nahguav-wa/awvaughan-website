@@ -1,6 +1,4 @@
 import type { RequestHandler } from './$types';
-import { join } from 'node:path';
-
 import { appConfig } from '../../app.config';
 import { contentEntries } from '$lib/data/content';
 
@@ -10,14 +8,6 @@ const normalizeFilePath = (filePath: string) =>
 	filePath.startsWith('/') ? filePath.slice(1) : filePath;
 
 const isNodeEnvironment = typeof process !== 'undefined' && Boolean(process.versions?.node);
-
-const toAbsolutePath = (filePath: string) => {
-        if (!isNodeEnvironment) {
-                throw new Error('Cannot resolve absolute paths outside of a Node.js environment');
-        }
-
-        return join(process.cwd(), normalizeFilePath(filePath));
-};
 
 const formatRoutePath = (filePath: string) => {
 	const normalized = normalizeFilePath(filePath);
@@ -42,10 +32,13 @@ const getLastModifiedIso = async (files: readonly string[]) => {
                 return new Date().toISOString();
         }
 
-        const { existsSync, statSync } = await import('node:fs');
+        const [{ join }, { existsSync, statSync }] = await Promise.all([
+                import('node:path'),
+                import('node:fs')
+        ]);
 
         const timestamps = files
-                .map(toAbsolutePath)
+                .map((filePath) => join(process.cwd(), normalizeFilePath(filePath)))
                 .filter((absolutePath) => existsSync(absolutePath))
                 .map((absolutePath) => statSync(absolutePath).mtime.getTime());
 
