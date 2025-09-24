@@ -17,134 +17,135 @@
 	const email = 'alex.vaughan@awvaughan.com';
 	const phoneLabel = '(757) 402-1100';
 
-	const proofPoints = [
-		{
-			value: '20+ years',
-			title: 'Crew experience',
-			description:
-				'Civil, utilities, and maintenance backgrounds that keep complex scopes on schedule.'
-		},
-		{
-			value: '< 24 hrs',
-			title: 'Emergency response',
-			description: 'Rapid mobilization for washouts, storm cleanup, and urgent safety repairs.'
-		},
-		{
-			value: 'Class A',
-			title: 'Licensed & insured',
-			description:
-				'Virginia contractor with full coverage, safety planning, and site documentation.'
-		}
-	] as const;
+        const proofPoints = [
+                {
+                        value: 'Owner-operated',
+                        title: 'Hands-on service',
+                        description:
+                                'You work directly with me—Alex Vaughan—from the first walk-through to the final cleanup.'
+                },
+                {
+                        value: 'Compact tractor',
+                        title: 'Right-sized equipment',
+                        description:
+                                'A nimble setup that fits through gates, works around trees, and leaves a tidy finish.'
+                },
+                {
+                        value: 'Flexible scheduling',
+                        title: 'Quick turnaround',
+                        description:
+                                'Most mowing, cleanup, and driveway touchups are completed within days of your call.'
+                }
+        ] as const;
 
 	type IconComponent = ComponentType;
 
-	const services: readonly {
-		title: string;
-		description: string;
-		icon: IconComponent;
-		image: string;
-		alt: string;
-	}[] = [
-		{
-			title: 'Sitework & Grading',
-			description:
-				'Fine grading, earthwork, and structural prep that set the pace for builders and commercial crews throughout Hampton Roads.',
-			icon: ExcavatorIcon,
-			image:
-				'https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?auto=format&fit=crop&w=1200&q=80',
-			alt: 'Excavator shaping soil on an active job site.'
-		},
-		{
-			title: 'Drainage & Utilities',
-			description:
-				'Stormwater repairs, tie-ins, and erosion control tailored to coastal soils so properties stay accessible year-round.',
-			icon: WaterIcon,
-			image:
-				'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80',
-			alt: 'Crew lowering new drainage pipe into place.'
-		},
-		{
-			title: 'Property Maintenance',
-			description:
-				'Recurring mowing, cleanup, and amenity upkeep that reflect well on your residents, tenants, and guests.',
-			icon: MaintenanceIcon,
-			image:
-				'https://images.unsplash.com/photo-1487956382158-bb926046304a?auto=format&fit=crop&w=1200&q=80',
-			alt: 'Grounds team trimming landscaping around a community amenity.'
-		}
-	];
+        const services: readonly {
+                title: string;
+                description: string;
+                icon: IconComponent;
+                image: string;
+                alt: string;
+        }[] = [
+                {
+                        title: 'Field & pasture mowing',
+                        description:
+                                'Bush hogging for large yards, pastures, and roadside frontage so tall grass and weeds stay under control.',
+                        icon: ExcavatorIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1200&q=80',
+                        alt: 'Compact tractor cutting tall grass in an open field.'
+                },
+                {
+                        title: 'Brush & limb cleanup',
+                        description:
+                                'Storm cleanups, fallen limbs, and brush piles hauled off to give your property a fresh start.',
+                        icon: MaintenanceIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1520854221050-0f4caff449fb?auto=format&fit=crop&w=1200&q=80',
+                        alt: 'Trailer loaded with trimmed limbs ready for hauling.'
+                },
+                {
+                        title: 'Driveway & dirt work',
+                        description:
+                                'Light grading, driveway touchups, and drainage improvements that keep rural properties accessible.',
+                        icon: WaterIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=1200&q=80',
+                        alt: 'Gravel driveway being leveled with tractor attachments.'
+                }
+        ];
 
-	const featuredProjects = [
-		{
-			title: 'Coastal resort stormwater rehab',
-			sector: 'Hospitality, Virginia Beach',
-			summary:
-				'Stabilized dunes, regraded parking courts, and reset drainage in 72 hours so the resort could reopen ahead of the weekend.',
-			image:
-				'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Stormwater crew restoring a beachfront property.'
-		},
-		{
-			title: 'HOA amenity refresh & drainage',
-			sector: 'Community Association, Chesapeake',
-			summary:
-				'Rebuilt walking trails, corrected drainage around the clubhouse, and delivered a phased landscaping plan with minimal disruption.',
-			image:
-				'https://images.unsplash.com/photo-1556760544-74068565f05c?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Neighborhood walking path construction at sunset.'
-		},
-		{
-			title: 'Logistics yard expansion',
-			sector: 'Industrial, Norfolk',
-			summary:
-				'Cut/fill balancing, aggregate surfacing, and lighting trenching completed under an accelerated schedule for a regional carrier.',
-			image:
-				'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Industrial site graded and compacted for expansion.'
-		}
-	] as const;
+        const featuredProjects = [
+                {
+                        title: 'Five-acre bush hogging & driveway pass',
+                        sector: 'Pungo, Virginia Beach',
+                        summary:
+                                'Cleared waist-high growth, trimmed fencelines, and refreshed the gravel lane so the owners could show the property to buyers.',
+                        image:
+                                'https://images.unsplash.com/photo-1611224885990-d1d73c5a19fb?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Freshly mowed acreage with a compact tractor in the distance.'
+                },
+                {
+                        title: 'Storm brush cleanup & haul off',
+                        sector: 'Chesapeake, VA',
+                        summary:
+                                'Cut and chipped fallen limbs across a wooded lot, then hauled debris away so the homeowners could reopen their trails.',
+                        image:
+                                'https://images.unsplash.com/photo-1613326104654-eef70f6d07fa?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Pile of storm debris being loaded for hauling.'
+                },
+                {
+                        title: 'Driveway reshaping & drainage swale',
+                        sector: 'Moyock, NC',
+                        summary:
+                                'Pulled the crown back into a long gravel drive, installed a shallow swale, and packed new stone to stop washouts after heavy rain.',
+                        image:
+                                'https://images.unsplash.com/photo-1523419409543-0c1df022bdd7?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Gravel driveway after grading with proper drainage.'
+                }
+        ] as const;
 
-	const testimonial = {
-		quote:
-			'We plan each project like we are part of your team—clear communication, tidy sites, and follow-through when weather or schedules change.',
-		name: 'Alex Vaughan',
-		role: 'Owner, AW Vaughan Company'
-	} as const;
+        const testimonial = {
+                quote:
+                        'Every job gets the same care I would give my own place. I walk the site with you, explain the plan, and stay until you are happy with the finish.',
+                name: 'Alex Vaughan',
+                role: 'Owner & operator, AW Vaughan Company'
+        } as const;
 
-	const serviceArea = [
-		'Virginia Beach',
-		'Norfolk',
-		'Chesapeake',
-		'Portsmouth',
-		'Suffolk',
-		'Greater Hampton Roads'
-	] as const;
+        const serviceArea = [
+                'Virginia Beach',
+                'Chesapeake',
+                'Norfolk',
+                'Suffolk',
+                'Isle of Wight',
+                'Currituck County, NC'
+        ] as const;
 
-	const valueHighlights: readonly {
-		title: string;
-		description: string;
-		icon: IconComponent;
-	}[] = [
-		{
-			title: 'Grounded in service',
-			description:
-				'Clients count on us for steady communication and reliable crews. We show up prepared, keep jobsites tidy, and deliver when we say we will.',
-			icon: ServiceIcon
-		},
-		{
-			title: 'Coastal expertise',
-			description:
-				'From sandy soils to salt-laden air, Hampton Roads presents unique challenges. We tailor solutions and materials that stand up to local conditions.',
-			icon: CoastalIcon
-		},
-		{
-			title: 'Hands-on leadership',
-			description:
-				'Owner Alex Vaughan stays engaged from estimate through closeout so every detail reflects our standards and your expectations.',
-			icon: LeadershipIcon
-		}
-	];
+        const valueHighlights: readonly {
+                title: string;
+                description: string;
+                icon: IconComponent;
+        }[] = [
+                {
+                        title: 'Respect for your property',
+                        description:
+                                'I treat every acre like my own—mindful of septic fields, fences, landscaping, and neighbors.',
+                        icon: ServiceIcon
+                },
+                {
+                        title: 'Local know-how',
+                        description:
+                                'Coastal soils, soggy ditches, sandy drives—I live here too and know how to keep them in shape.',
+                        icon: CoastalIcon
+                },
+                {
+                        title: 'Clear communication',
+                        description:
+                                'Text me pictures, call with questions, and expect honest updates before, during, and after the job.',
+                        icon: LeadershipIcon
+                }
+        ];
 </script>
 
 <svelte:head>
@@ -162,16 +163,16 @@
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-20">
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="max-w-3xl space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				Proof points
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-				Credentials that match national contractors
-			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
-				Clients choose us for Garney-level reliability with a tight-knit crew. These highlights
-				reinforce why builders and property managers across Hampton Roads keep us on call.
-			</p>
+                        <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                Why neighbors call me
+                        </p>
+                        <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                Small-business care with professional results
+                        </h2>
+                        <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                Here is what you can expect when you invite me onto your property. No large crews—just
+                                dependable service from the person who owns the equipment.
+                        </p>
 		</div>
 
 		<div class="mt-10 grid gap-6 md:grid-cols-3">
@@ -210,23 +211,23 @@
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
 			<div class="max-w-3xl space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-					Our capabilities
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-					Site-ready solutions from one reliable crew
-				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
-					We combine responsive leadership with the resources to tackle grading, drainage, and
-					ongoing property maintenance.
-				</p>
+                                <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                        Tractor services
+                                </p>
+                                <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                        Practical help for large residential properties
+                                </h2>
+                                <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                        Whether you just bought land or need a seasonal tune-up, I bring dependable equipment
+                                        and a careful approach to every visit.
+                                </p>
 			</div>
-			<a
-				class="inline-flex items-center justify-center gap-2 self-start rounded-full border border-[var(--border-soft)] bg-[var(--surface-base)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
-				href={resolve('/services')}
-			>
-				View full services
-			</a>
+                        <a
+                                class="inline-flex items-center justify-center gap-2 self-start rounded-full border border-[var(--border-soft)] bg-[var(--surface-base)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+                                href={resolve('/services')}
+                        >
+                                See everything I offer
+                        </a>
 		</div>
 
 		<div class="mt-12 grid gap-8 md:grid-cols-3">
@@ -284,22 +285,22 @@
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
 			<div class="max-w-3xl space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-					Featured projects
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-					Recent scopes we have delivered
-				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
-					While we keep client names private, these highlights mirror the heavy civil and
-					maintenance work we perform across Hampton Roads.
-				</p>
+                                <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                        Recent jobs
+                                </p>
+                                <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                        A look at the kind of work I handle
+                                </h2>
+                                <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                        Every property is different, but these jobs show the type of mowing, cleanup, and dirt
+                                        work I am called for most often.
+                                </p>
 			</div>
 			<a
 				class="inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--brand-orange)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
 				href={resolve('/contact')}
 			>
-				Request a similar plan
+                                Request a quote
 			</a>
 		</div>
 
@@ -325,7 +326,7 @@
 								href={resolve('/contact')}
 								class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[var(--brand-orange)] uppercase transition hover:text-[var(--brand-blue)]"
 							>
-								Start your project
+                                                                Start a project
 								<svg
 									class="h-3 w-3"
 									viewBox="0 0 16 16"
@@ -353,9 +354,9 @@
 		<div
 			class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] p-10 shadow-sm"
 		>
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				From our owner
-			</p>
+                        <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                From the operator
+                        </p>
 			<blockquote class="mt-6 text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl">
 				“{testimonial.quote}”
 			</blockquote>
@@ -386,14 +387,14 @@
 	<div
 		class="mx-auto max-w-4xl rounded-3xl border border-white/20 bg-white/5 px-6 py-16 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
 	>
-		<p class="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">Let’s get to work</p>
-		<h2 class="reveal mt-4 text-3xl font-semibold sm:text-4xl" use:inView>
-			Count on AW Vaughan Company for responsive support
-		</h2>
-		<p class="mt-3 text-base text-white/80 sm:text-lg">
-			Share your scope, timeline, and maintenance needs. We’ll provide a plan that keeps your
-			property accessible, safe, and ready for the next milestone.
-		</p>
+                <p class="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">Let’s talk through your property</p>
+                <h2 class="reveal mt-4 text-3xl font-semibold sm:text-4xl" use:inView>
+                        Ready when your land needs a little extra muscle
+                </h2>
+                <p class="mt-3 text-base text-white/80 sm:text-lg">
+                        Tell me what you are dealing with—overgrown fields, storm debris, rough driveways, or something
+                        similar. I will recommend a straightforward plan and schedule.
+                </p>
 		<div
 			class="mt-8 flex flex-col items-center justify-center gap-4 text-sm text-white/80 sm:flex-row sm:text-base"
 		>

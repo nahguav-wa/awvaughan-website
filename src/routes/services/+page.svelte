@@ -12,71 +12,71 @@
 	let { data } = $props();
 	const seo = $derived(data.seo);
 
-	const offerings: readonly {
-		title: string;
-		description: string;
-		icon: ComponentType;
-		image: string;
-		alt: string;
-		items: readonly string[];
-	}[] = [
-		{
-			title: 'Sitework & earthwork',
-			description:
-				'Grading, excavation, and structural prep that set the foundation for residential and commercial improvements across Hampton Roads.',
-			icon: ExcavatorIcon,
-			image:
-				'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Excavator grading soil at dusk.',
-			items: [
-				'Cut/fill balancing for new builds, additions, and amenities',
-				'Fine grading for slabs, driveways, and hardscape crews',
-				'Structural fill placement, compaction, and haul off'
-			]
-		},
-		{
-			title: 'Drainage & utilities',
-			description:
-				'Coastal-ready drainage, erosion control, and light utility tie-ins that keep properties dry and accessible.',
-			icon: WaterIcon,
-			image:
-				'https://images.unsplash.com/photo-1514474959185-1472dbf27c9d?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Crew installing underground drainage pipe.',
-			items: [
-				'French drains, swales, and erosion control installations',
-				'Downspout tie-ins, stormwater repairs, and culvert resets',
-				'Trenching and backfill for light utility upgrades'
-			]
-		},
-		{
-			title: 'Property maintenance',
-			description:
-				'Recurring care for neighborhoods, campuses, and commercial spaces tailored to Virginia Beach’s climate.',
-			icon: MaintenanceIcon,
-			image:
-				'https://images.unsplash.com/photo-1523419409543-0c1df022bdd7?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Grounds team caring for community landscaping.',
-			items: [
-				'Seasonal mowing, edging, and landscape cleanups',
-				'Parking lot sweeping, debris removal, and disposal',
-				'Light carpentry, fencing, and amenity upkeep'
-			]
-		},
-		{
-			title: 'Responsive support',
-			description:
-				'On-call crews ready when storms or surprises threaten schedules, safety, or accessibility.',
-			icon: EmergencyIcon,
-			image:
-				'https://images.unsplash.com/photo-1521208914987-0a2f4e1f3d9e?auto=format&fit=crop&w=1600&q=80',
-			alt: 'Team clearing debris after a storm.',
-			items: [
-				'Storm cleanup and washout mitigation',
-				'Emergency board-ups and site safety repairs',
-				'Weekend and after-hours mobilization when needed'
-			]
-		}
-	] as const;
+        const offerings: readonly {
+                title: string;
+                description: string;
+                icon: ComponentType;
+                image: string;
+                alt: string;
+                items: readonly string[];
+        }[] = [
+                {
+                        title: 'Field & pasture mowing',
+                        description:
+                                'Bush hogging for large yards, horse pastures, roadside frontage, and utility easements. I keep growth knocked down and sight lines clear.',
+                        icon: ExcavatorIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Compact tractor mowing tall grass beside a fence line.',
+                        items: [
+                                'One-time knockdowns or seasonal maintenance for 1+ acre properties',
+                                'Fence line trimming and edge pass cleanups',
+                                'Pasture clipping to promote healthy regrowth'
+                        ]
+                },
+                {
+                        title: 'Brush, limb & debris cleanup',
+                        description:
+                                'Storms and projects leave piles behind. I can cut, load, and haul brush, small trees, and yard debris so you can enjoy your land again.',
+                        icon: MaintenanceIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1520854221050-0f4caff449fb?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Utility trailer filled with limbs ready for disposal.',
+                        items: [
+                                'Storm and hurricane debris clearing',
+                                'Brush pile removal and disposal',
+                                'Trail and fenceline reopening'
+                        ]
+                },
+                {
+                        title: 'Driveway & light grading',
+                        description:
+                                'Refresh gravel drives, correct low spots, and restore drainage. My box blade, land plane, and rake attachments leave a smooth finish.',
+                        icon: WaterIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Tractor grading a gravel driveway.',
+                        items: [
+                                'Driveway regrading and pothole repair',
+                                'Shaping ditches and shallow swales',
+                                'Light dirt work and final grading for sheds or patios'
+                        ]
+                },
+                {
+                        title: 'Hauling & odd jobs',
+                        description:
+                                'Need a load of gravel delivered with the work, or have an awkward project that requires a tractor and trailer? I can help.',
+                        icon: EmergencyIcon,
+                        image:
+                                'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
+                        alt: 'Truck and trailer hauling materials down a rural road.',
+                        items: [
+                                'Material delivery paired with installation',
+                                'Small demolition and cleanup',
+                                'Custom tractor projects—let’s talk through your idea'
+                        ]
+                }
+        ] as const;
 </script>
 
 <svelte:head>
@@ -90,31 +90,31 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="Services"
-	heading="Comprehensive care for your job sites and communities"
-	description="Sitework, drainage, and property maintenance packages tailored for builders, HOAs, and facility managers across Hampton Roads."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1590490360182-663c1e0c0131?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1590490360182-663c1e0c0131?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1590490360182-663c1e0c0131?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1590490360182-663c1e0c0131?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Excavator and crew shaping a construction site at sunrise.'
-	}}
+        eyebrow="Services"
+        heading="Small tractor work that keeps your property in shape"
+        description="From bush hogging to driveway touchups, each job is handled start to finish by owner-operator Alex Vaughan. Serving Virginia Beach, Chesapeake, Norfolk, Suffolk, and nearby communities."
+        backgroundImage={{
+                src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
+                srcset:
+                        'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
+                sizes: '(min-width: 1024px) 100vw, 100vw',
+                alt: 'Compact tractor mowing a large grassy property at sunset.'
+        }}
 />
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="max-w-3xl space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				Service offerings
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-				Comprehensive packages for Hampton Roads properties
-			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
-				Explore how we combine sitework, drainage, and responsive maintenance to support builders,
-				associations, and facility teams.
-			</p>
+                        <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                What I can help with
+                        </p>
+                        <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                Practical services for acreage homes and small farms
+                        </h2>
+                        <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                Mix and match the support you need. I am happy to walk the property, explain the plan, and put
+                                together a clear quote before getting to work.
+                        </p>
 		</div>
 
 		<div class="mt-12 grid gap-8 md:grid-cols-2">
@@ -156,7 +156,7 @@
 								href={resolve('/contact')}
 								class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[var(--brand-blue)] uppercase transition hover:text-[var(--brand-orange)]"
 							>
-								Request a proposal
+                                                                Request a quote
 								<svg
 									class="h-3 w-3"
 									viewBox="0 0 16 16"
@@ -184,14 +184,13 @@
 		<div
 			class="rounded-4xl border border-white/20 bg-white/5 p-10 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
 		>
-			<h2 class="reveal text-3xl font-semibold sm:text-4xl" use:inView>
-				Ready for your next project?
-			</h2>
-			<p class="mt-4 text-base text-white/80 sm:text-lg">
-				Let us know what you need—whether it’s breaking ground on a new build or keeping established
-				properties looking their best. We’ll put together a plan that respects your schedule and
-				budget.
-			</p>
+                        <h2 class="reveal text-3xl font-semibold sm:text-4xl" use:inView>
+                                Need an extra set of hands and a tractor?
+                        </h2>
+                        <p class="mt-4 text-base text-white/80 sm:text-lg">
+                                Call, text, or email what you are facing. I will share honest feedback, photos from similar
+                                jobs, and a plan that fits your property and budget.
+                        </p>
 			<div
 				class="mt-8 flex flex-col items-center justify-center gap-4 text-sm text-white/80 sm:flex-row sm:text-base"
 			>
