@@ -11,63 +11,63 @@
 	let { data } = $props();
 	const seo = $derived(data.seo);
 
-	const values: readonly {
-		title: string;
-		description: string;
-		icon: ComponentType;
-	}[] = [
-		{
-			title: 'Grounded in service',
-			description:
-				'Clients count on us for steady communication and reliable crews. We show up prepared, keep jobsites tidy, and deliver when we say we will.',
-			icon: ServiceIcon
-		},
-		{
-			title: 'Coastal expertise',
-			description:
-				'From sandy soils to salt-laden air, Hampton Roads presents unique challenges. We tailor solutions and materials that stand up to local conditions.',
-			icon: CoastalIcon
-		},
-		{
-			title: 'Hands-on leadership',
-			description:
-				'Owner Alex Vaughan stays engaged from estimate through closeout so every detail reflects our standards and your expectations.',
-			icon: LeadershipIcon
-		}
-	];
+        const values: readonly {
+                title: string;
+                description: string;
+                icon: ComponentType;
+        }[] = [
+                {
+                        title: 'Owner-operated',
+                        description:
+                                'You do not get handed off to a crew. I show up, run the tractor, and make sure the job is completed the right way.',
+                        icon: ServiceIcon
+                },
+                {
+                        title: 'Local roots',
+                        description:
+                                'I grew up in Hampton Roads and understand our soils, drainage challenges, and weather. That experience guides every plan.',
+                        icon: CoastalIcon
+                },
+                {
+                        title: 'Respectful communication',
+                        description:
+                                'From the first phone call to the final sweep, I keep you informed and treat your property like my own.',
+                        icon: LeadershipIcon
+                }
+        ];
 
-	const steps = [
-		{
-			title: 'Walk the site',
-			description:
-				'We meet with you in person to understand the scope, inspect site conditions, and review scheduling needs or access constraints.'
-		},
-		{
-			title: 'Plan the work',
-			description:
-				'You receive a clear proposal outlining crew size, equipment, and timeline so you know what to expect before we mobilize.'
-		},
-		{
-			title: 'Deliver consistently',
-			description:
-				'Our team executes safely and efficiently, communicating updates along the way and leaving the site ready for the next trade.'
-		}
-	] as const;
+        const steps = [
+                {
+                        title: 'Walk the property',
+                        description:
+                                'We look over the site together, talk through trouble spots, and discuss access for the tractor and trailer.'
+                },
+                {
+                        title: 'Outline the plan',
+                        description:
+                                'I follow up with a clear quote covering the work, equipment, timing, and any material deliveries needed.'
+                },
+                {
+                        title: 'Do the work right',
+                        description:
+                                'I show up when promised, handle the work carefully, and walk the site with you before loading up.'
+                }
+        ] as const;
 
-	const certifications = [
-		{ label: 'Virginia Class A Contractor', detail: 'License #2705181906' },
-		{ label: 'SWaM-certified small business', detail: 'Commonwealth of Virginia' },
-		{ label: 'OSHA 30 & CPR trained crews', detail: 'Jobsite safety is our baseline' }
-	] as const;
+        const certifications = [
+                { label: 'Fully insured', detail: 'Commercial liability and equipment coverage' },
+                { label: 'Virginia-based', detail: 'Serving Hampton Roads and northeast North Carolina' },
+                { label: 'Reliable equipment', detail: 'Well-maintained tractor, implements, and dump trailer' }
+        ] as const;
 
-	const serviceArea = [
-		'Virginia Beach',
-		'Norfolk',
-		'Chesapeake',
-		'Portsmouth',
-		'Suffolk',
-		'Greater Hampton Roads'
-	] as const;
+        const serviceArea = [
+                'Virginia Beach',
+                'Chesapeake',
+                'Norfolk',
+                'Suffolk',
+                'Isle of Wight County',
+                'Currituck County, NC'
+        ] as const;
 </script>
 
 <svelte:head>
@@ -81,31 +81,31 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="About us"
-	heading="Built on service, grounded in integrity"
-	description="AW Vaughan Company is a Virginia Beach–based sitework and property maintenance contractor led by hands-on crews who keep projects moving and properties looking their best."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Crew reviewing site plans together before breaking ground.'
-	}}
+        eyebrow="About"
+        heading="A neighbor with the tools to tackle your to-do list"
+        description="I am Alex Vaughan—born and raised in Hampton Roads and committed to helping landowners keep their properties looking sharp without hiring a big crew."
+        backgroundImage={{
+                src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
+                srcset:
+                        'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
+                sizes: '(min-width: 1024px) 100vw, 100vw',
+                alt: 'Owner-operated tractor working across a grassy property.'
+        }}
 />
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="max-w-3xl space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				Our values
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-				Principles that guide every project
-			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
-				We show up prepared, communicate clearly, and hold ourselves accountable to the service
-				standards our clients expect.
-			</p>
+                        <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                What matters most
+                        </p>
+                        <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                The promise behind every job I take on
+                        </h2>
+                        <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                I built this business to help people who need dependable help with larger properties. These
+                                principles guide every visit.
+                        </p>
 		</div>
 
 		<div class="mt-12 grid gap-8 md:grid-cols-3">
@@ -130,23 +130,23 @@
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-center">
 			<div class="flex-1 space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-					Our process
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-					What to expect when you call us
-				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
-					Every project starts with a conversation. We listen first, align on expectations, and
-					communicate throughout the job so there are no surprises along the way.
-				</p>
+                                <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                        How it works
+                                </p>
+                                <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                        Clear steps from first call to final pass
+                                </h2>
+                                <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                        Working with me is straightforward. We talk through your goals, agree on a plan, and I
+                                        handle the work with the same care I would on my own land.
+                                </p>
 			</div>
 			<div
 				class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] p-6 shadow-sm lg:w-80"
 			>
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-orange)] uppercase">
-					Credentials
-				</p>
+                                <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-orange)] uppercase">
+                                        What you can count on
+                                </p>
 				<ul class="mt-4 space-y-3 text-sm text-[var(--text-muted)]">
 					{#each certifications as item (item.label)}
 						<li>
@@ -179,16 +179,16 @@
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-20">
 	<div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
 		<div class="flex-1 space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				Service area
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-				Proud to serve Hampton Roads
-			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
-				From the Oceanfront to inland logistics hubs, we support properties across the region with
-				responsive maintenance and civil crews.
-			</p>
+                        <p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+                                Service area
+                        </p>
+                        <h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+                                Helping landowners across Hampton Roads
+                        </h2>
+                        <p class="text-base text-[var(--text-muted)] sm:text-lg">
+                                I routinely travel across coastal Virginia and up into northeast North Carolina. If you are
+                                nearby and need tractor help, let’s talk.
+                        </p>
 			<ul class="mt-6 grid grid-cols-1 gap-3 text-sm text-[var(--text-muted)] sm:grid-cols-2">
 				{#each serviceArea as area (area)}
 					<li
