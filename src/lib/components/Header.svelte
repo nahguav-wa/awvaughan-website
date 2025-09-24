@@ -9,24 +9,16 @@
 	type RouteHref =
 		| '/about'
 		| '/services'
+		| '/projects'
 		| '/contact'
 		| '/careers'
 		| '/privacy-policy'
 		| '/terms-of-service';
 
-	type RouteNavItem = {
+	type NavItem = {
 		href: RouteHref;
 		label: string;
-		isAnchor?: false;
 	};
-
-	type AnchorNavItem = {
-		href: string;
-		label: string;
-		isAnchor: true;
-	};
-
-	type NavItem = RouteNavItem | AnchorNavItem;
 
 	type ContactDetail = {
 		icon: ComponentType;
@@ -37,10 +29,8 @@
 	const navigation: readonly NavItem[] = [
 		{ href: '/about', label: 'About' },
 		{ href: '/services', label: 'Services' },
-		{ href: '#projects', label: 'Projects', isAnchor: true }
+		{ href: '/projects', label: 'Projects' }
 	];
-
-	const projectsHref = `${resolve('/')}#projects`;
 
 	const contactPath = '/contact' as const;
 
@@ -59,8 +49,7 @@
 
 	$: currentPath = normalize($page.url.pathname);
 
-	const isActive = (item: NavItem) =>
-		!item.isAnchor && normalize(resolve(item.href)) === currentPath;
+	const isActive = (item: NavItem) => normalize(resolve(item.href)) === currentPath;
 
 	const isContactActive = () => normalize(resolve(contactPath)) === currentPath;
 
@@ -201,44 +190,31 @@
 				>
 					<!-- eslint-disable svelte/no-navigation-without-resolve -->
 					{#each navigation as item (item.href)}
-						{#if item.isAnchor}
-							<a
-								href={projectsHref}
-								class={`relative px-1 py-1 transition ${
-									showSolidBackground
-										? 'hover:text-[var(--brand-blue)]'
-										: 'hover:text-[var(--brand-orange)]'
-								}`}
-							>
-								<span>{item.label}</span>
-							</a>
-						{:else}
-							<a
-								href={resolve(item.href)}
-								class={`relative px-1 py-1 transition ${
-									showSolidBackground
-										? 'hover:text-[var(--brand-blue)]'
-										: 'hover:text-[var(--brand-orange)]'
-								} ${
-									isActive(item)
-										? showSolidBackground
-											? 'text-[var(--brand-blue)]'
-											: 'text-[var(--brand-orange)]'
-										: ''
-								}`}
-								aria-current={isActive(item) ? 'page' : undefined}
-							>
-								<span>{item.label}</span>
-								{#if isActive(item)}
-									<span
-										class={`absolute inset-x-0 -bottom-1 h-0.5 rounded-full ${
-											showSolidBackground ? 'bg-[var(--brand-blue)]' : 'bg-[var(--brand-orange)]'
-										}`}
-										aria-hidden="true"
-									></span>
-								{/if}
-							</a>
-						{/if}
+						<a
+							href={resolve(item.href)}
+							class={`relative px-1 py-1 transition ${
+								showSolidBackground
+									? 'hover:text-[var(--brand-blue)]'
+									: 'hover:text-[var(--brand-orange)]'
+							} ${
+								isActive(item)
+									? showSolidBackground
+										? 'text-[var(--brand-blue)]'
+										: 'text-[var(--brand-orange)]'
+									: ''
+							}`}
+							aria-current={isActive(item) ? 'page' : undefined}
+						>
+							<span>{item.label}</span>
+							{#if isActive(item)}
+								<span
+									class={`absolute inset-x-0 -bottom-1 h-0.5 rounded-full ${
+										showSolidBackground ? 'bg-[var(--brand-blue)]' : 'bg-[var(--brand-orange)]'
+									}`}
+									aria-hidden="true"
+								></span>
+							{/if}
+						</a>
 					{/each}
 					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</nav>
@@ -269,24 +245,14 @@
 			>
 				<!-- eslint-disable svelte/no-navigation-without-resolve -->
 				{#each navigation as item (item.href)}
-					{#if item.isAnchor}
-						<a
-							href={projectsHref}
-							class="rounded-xl bg-[var(--surface-soft)] px-4 py-3 transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)]"
-							on:click={handleLinkActivate}
-						>
-							{item.label}
-						</a>
-					{:else}
-						<a
-							href={resolve(item.href)}
-							class="rounded-xl bg-[var(--surface-soft)] px-4 py-3 transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)]"
-							on:click={handleLinkActivate}
-							aria-current={isActive(item) ? 'page' : undefined}
-						>
-							{item.label}
-						</a>
-					{/if}
+					<a
+						href={resolve(item.href)}
+						class="rounded-xl bg-[var(--surface-soft)] px-4 py-3 transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)]"
+						on:click={handleLinkActivate}
+						aria-current={isActive(item) ? 'page' : undefined}
+					>
+						{item.label}
+					</a>
 				{/each}
 				<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			</nav>

@@ -24,27 +24,27 @@
 		backgroundVideo?: BackgroundVideo | null;
 	}
 
-        const defaultBackgroundImage: BackgroundImage = {
-                src: 'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1920&q=80',
-                alt: 'Compact tractor mowing tall grass along a rural property',
-                srcset:
-                        'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1920&q=80 1920w',
-                sizes: '(min-width: 1024px) 100vw, 100vw'
-        };
+	const defaultBackgroundImage: BackgroundImage = {
+		src: 'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1920&q=80',
+		alt: 'Compact tractor mowing tall grass along a rural property',
+		srcset:
+			'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1920&q=80 1920w',
+		sizes: '(min-width: 1024px) 100vw, 100vw'
+	};
 
-        const defaultBackgroundVideo: BackgroundVideo | null = null;
+	const defaultBackgroundVideo: BackgroundVideo | null = null;
 
-        const defaultProps: Required<
-                Pick<HeroProps, 'eyebrow' | 'heading' | 'subheading' | 'description'>
-        > = {
-                eyebrow: 'Small tractor work in Hampton Roads',
-                heading: 'Owner-operated tractor services for properties 1 acre and up.',
-                subheading: 'Right-sized equipment, careful work, and friendly communication.',
-                description: [
-                        'I help landowners tame overgrown acreage, tidy up storm damage, and keep rural homes looking their best.',
-                        'Bush hogging, brush cleanup, light grading, and hauling—handled by the same owner who answers your call.'
-                ]
-        };
+	const defaultProps: Required<
+		Pick<HeroProps, 'eyebrow' | 'heading' | 'subheading' | 'description'>
+	> = {
+		eyebrow: 'Small tractor work in Hampton Roads',
+		heading: 'Owner-operated tractor services for properties 1 acre and up.',
+		subheading: 'Right-sized equipment, careful work, and friendly communication.',
+		description: [
+			'I help landowners tame overgrown acreage, tidy up storm damage, and keep rural homes looking their best.',
+			'Bush hogging, brush cleanup, light grading, and hauling—handled by the same owner who answers your call.'
+		]
+	};
 
 	let {
 		eyebrow = defaultProps.eyebrow,
@@ -52,8 +52,8 @@
 		subheading = defaultProps.subheading,
 		description = defaultProps.description,
 		backgroundImage = defaultBackgroundImage,
-                backgroundVideo = defaultBackgroundVideo
-        }: HeroProps = $props();
+		backgroundVideo = defaultBackgroundVideo
+	}: HeroProps = $props();
 
 	let prefersReducedMotion = false;
 

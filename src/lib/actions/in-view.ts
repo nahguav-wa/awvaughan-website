@@ -30,6 +30,9 @@ export function inView(node: HTMLElement, options: InViewOptions = {}) {
 
 	let observer: IntersectionObserver | null = null;
 	const mediaQuery = window.matchMedia(MEDIA_QUERY);
+	const canUseMediaQueryEvents =
+		typeof mediaQuery.addEventListener === 'function' ||
+		typeof mediaQuery.addListener === 'function';
 
 	const canObserve = 'IntersectionObserver' in window;
 
@@ -102,7 +105,13 @@ export function inView(node: HTMLElement, options: InViewOptions = {}) {
 		}
 	};
 
-	mediaQuery.addEventListener('change', handleMediaChange);
+	if (canUseMediaQueryEvents) {
+		if (typeof mediaQuery.addEventListener === 'function') {
+			mediaQuery.addEventListener('change', handleMediaChange);
+		} else {
+			mediaQuery.addListener(handleMediaChange);
+		}
+	}
 	applyPreferences();
 
 	return {
@@ -112,7 +121,13 @@ export function inView(node: HTMLElement, options: InViewOptions = {}) {
 		},
 		destroy() {
 			cleanupObserver();
-			mediaQuery.removeEventListener('change', handleMediaChange);
+			if (canUseMediaQueryEvents) {
+				if (typeof mediaQuery.removeEventListener === 'function') {
+					mediaQuery.removeEventListener('change', handleMediaChange);
+				} else {
+					mediaQuery.removeListener(handleMediaChange);
+				}
+			}
 		}
 	};
 }
