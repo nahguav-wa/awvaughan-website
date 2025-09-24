@@ -6,23 +6,23 @@
 	let { data } = $props();
 	const seo = $derived(data.seo);
 
-        const commitments = [
-                {
-                        title: 'Prompt replies',
-                        description:
-                                'Call, text, or email and I will get back to you quickly—usually the same day—to talk through what you need.'
-                },
-                {
-                        title: 'Straightforward pricing',
-                        description:
-                                'You will know the cost before the tractor unloads. I outline the work, equipment, and any material charges up front.'
-                },
-                {
-                        title: 'Careful cleanup',
-                        description:
-                                'I leave the site tidy, safe, and ready for you to enjoy. Brush and debris leave with me unless you prefer otherwise.'
-                }
-        ] as const;
+	const commitments = [
+		{
+			title: 'Prompt replies',
+			description:
+				'Call, text, or email and I will get back to you quickly—usually the same day—to talk through what you need.'
+		},
+		{
+			title: 'Straightforward pricing',
+			description:
+				'You will know the cost before the tractor unloads. I outline the work, equipment, and any material charges up front.'
+		},
+		{
+			title: 'Careful cleanup',
+			description:
+				'I leave the site tidy, safe, and ready for you to enjoy. Brush and debris leave with me unless you prefer otherwise.'
+		}
+	] as const;
 
 	let submissionMessage = '';
 
@@ -67,19 +67,20 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="Contact"
-        heading="Let’s get your property back in shape"
-        description={[
-                'Tell me about your acreage, the problem areas, and any deadlines. I will respond quickly with next steps and available dates.',
-                'Call or text (757) 402-1100 or email alex.vaughan@awvaughan.com for fast help.'
-        ]}
-        backgroundImage={{
-                src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
-                srcset:
-                        'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
-                sizes: '(min-width: 1024px) 100vw, 100vw',
-                alt: 'Compact tractor parked on a rural driveway ready for work.'
-        }}
+	eyebrow="Contact"
+	align="center"
+	heading="Let’s get your property back in shape"
+	description={[
+		'Tell me about your acreage, the problem areas, and any deadlines. I will respond quickly with next steps and available dates.',
+		'Call or text (757) 402-1100 or email alex.vaughan@awvaughan.com for fast help.'
+	]}
+	backgroundImage={{
+		src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
+		srcset:
+			'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
+		sizes: '(min-width: 1024px) 100vw, 100vw',
+		alt: 'Compact tractor parked on a rural driveway ready for work.'
+	}}
 />
 
 <section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
@@ -89,12 +90,12 @@
 				<div
 					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
 				>
-                                        <h2 class="reveal text-2xl font-semibold text-[var(--text-dark)]" use:inView>
-                                                Talk directly with Alex
+					<h2 class="reveal text-2xl font-semibold text-[var(--text-dark)]" use:inView>
+						Talk directly with Alex
 					</h2>
 					<p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
-                                                Reach out using the details provided and let me know how I can help. Include the
-                                                location, timing, and any photos that show what you are dealing with.
+						Reach out using the details provided and let me know how I can help. Include the
+						location, timing, and any photos that show what you are dealing with.
 					</p>
 					<address class="mt-6 space-y-4 text-sm text-[var(--text-muted)] not-italic">
 						<div>
@@ -127,8 +128,8 @@
 							<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 								Service area
 							</p>
-                                                        <p class="mt-1 text-base text-[var(--text-dark)]">
-                                                                Virginia Beach, Chesapeake, Norfolk, Suffolk, Isle of Wight, and nearby Northeast NC
+							<p class="mt-1 text-base text-[var(--text-dark)]">
+								Virginia Beach, Chesapeake, Norfolk, Suffolk, Isle of Wight, and nearby Northeast NC
 							</p>
 						</div>
 					</address>
@@ -151,8 +152,11 @@
 
 				<div class="space-y-6">
 					<div class="space-y-2">
-                                                <h2 class="text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl">
-                                                        What you can expect
+						<h2
+							class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl"
+							use:inView
+						>
+							What you can expect
 						</h2>
 						<p class="text-sm text-[var(--text-muted)]">
 							Expect clear communication, tidy sites, and reliable follow-through from our crew.
@@ -162,7 +166,9 @@
 						<article
 							class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
 						>
-							<h3 class="text-xl font-semibold text-[var(--text-dark)]">{commitment.title}</h3>
+							<h3 class="reveal text-xl font-semibold text-[var(--text-dark)]" use:inView>
+								{commitment.title}
+							</h3>
 							<p class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
 								{commitment.description}
 							</p>
@@ -171,11 +177,11 @@
 					<div
 						class="rounded-3xl border border-[var(--border-soft)] bg-[var(--brand-blue)]/10 p-8 text-center text-[var(--text-dark)]"
 					>
-                                                <h3 class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-                                                        Need help soon?
+						<h3 class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+							Need help soon?
 						</h3>
 						<p class="mt-3 text-base text-[var(--text-muted)]">
-                                                        Call or text
+							Call or text
 							<a
 								class="font-semibold text-[var(--brand-blue)] transition hover:text-[var(--brand-orange)]"
 								href="tel:+17574021100"

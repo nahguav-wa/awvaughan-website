@@ -2,7 +2,6 @@
 	import { resolve } from '$app/paths';
 
 	const currentYear = new Date().getFullYear();
-	const projectsHref = `${resolve('/')}#projects`;
 </script>
 
 <footer class="border-t border-[var(--border-soft)] bg-[var(--surface-base)] py-12">
@@ -31,8 +30,9 @@
 						</a>
 					</li>
 					<li>
-						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-						<a class="transition hover:text-[var(--brand-blue)]" href={projectsHref}> Projects </a>
+						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/projects')}>
+							Projects
+						</a>
 					</li>
 					<li>
 						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/careers')}>
