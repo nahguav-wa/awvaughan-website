@@ -5,19 +5,17 @@ category: "Web Development"
 author: "Alex Vaughan"
 authorUrl: "https://awvaughan.com"
 tags:
-  [
-    "sveltekit",
-    "tailwind",
-    "typescript",
-    "pnpm",
-    "cloudflare",
-    "git",
-    "eslint",
-    "prettier",
-    "shadcn",
-    "seo"
-  ]
-lastUpdated: "2025-09-24"
+  - "sveltekit"
+  - "tailwind"
+  - "typescript"
+  - "pnpm"
+  - "cloudflare"
+  - "git"
+  - "eslint"
+  - "prettier"
+  - "shadcn"
+  - "seo"
+lastUpdated: "2024-05-27"
 ---
 
 # A.W. Vaughan Company, LLC Website Development Guide
@@ -49,8 +47,8 @@ This is **not** a complex web app — keep it **lean** and **easy to maintain**.
 4. **Simple, Readable, and Optimized** code with minimal complexity.
 
 ## Development Workflow
-1. **Create a task** in OpenAI Codex or project board.
-2. **Codex worker** generates code changes in a PR branch.
+1. **Create a task** in your AI assistant or project board.
+2. **AI assistant** generates code changes in a PR branch.
 3. **Review & merge** PR into `main`.
 4. **Cloudflare Pages** automatically deploys on merge.
 
@@ -156,6 +154,7 @@ This is **not** a complex web app — keep it **lean** and **easy to maintain**.
     # lint & format
     pnpm lint
     pnpm format
+    pnpm check
 
     # production build
     pnpm build
