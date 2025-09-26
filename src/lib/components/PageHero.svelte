@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { inView } from '$lib/actions/in-view';
+	import { Badge } from '$lib/components/ui';
 
 	type BackgroundImage = {
 		src: string;
@@ -45,22 +46,22 @@
 		/>
 	</picture>
 
-	<div class="absolute inset-0 bg-[var(--text-dark)]/55 mix-blend-multiply"></div>
+	<div class="bg-[var(--text-dark)]/55 absolute inset-0 mix-blend-multiply"></div>
 	<div
-		class="absolute inset-0 bg-gradient-to-b from-black/60 via-[var(--brand-blue)]/35 to-[var(--text-dark)]/75"
+		class="via-[var(--brand-blue)]/35 to-[var(--text-dark)]/75 absolute inset-0 bg-gradient-to-b from-black/60"
 	></div>
 
 	<div
 		class={`relative z-10 mx-auto flex min-h-[24rem] w-full max-w-5xl flex-col justify-center px-6 py-24 ${alignmentClass}`}
 	>
 		{#if eyebrow}
-			<p
-				class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-[0.65rem] font-semibold tracking-[0.32em] text-[var(--brand-orange)] uppercase"
+			<Badge
+				variant="accent"
+				class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-[0.65rem] normal-case tracking-[0.32em] text-white"
 			>
-				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--brand-orange)]"
-				></span>
+				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-white/80"></span>
 				{eyebrow}
-			</p>
+			</Badge>
 		{/if}
 
 		<h1 class="reveal mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl" use:inView>

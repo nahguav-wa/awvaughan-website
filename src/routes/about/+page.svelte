@@ -7,6 +7,17 @@
 	import LeadershipIcon from '$lib/components/icons/LeadershipIcon.svelte';
 	import ServiceIcon from '$lib/components/icons/ServiceIcon.svelte';
 	import type { ComponentType } from 'svelte';
+	import {
+		Badge,
+		Button,
+		Card,
+		CardContent,
+		CardDescription,
+		CardFooter,
+		CardHeader,
+		CardTitle,
+		Separator
+	} from '$lib/components/ui';
 
 	let { data } = $props();
 	const seo = $derived(data.seo);
@@ -94,183 +105,159 @@
 	}}
 />
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
-	<div class="mx-auto max-w-6xl px-6">
+<section class="border-b border-border/60 bg-background py-16">
+	<div class="mx-auto max-w-6xl space-y-12 px-6">
 		<div class="max-w-3xl space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 				What matters most
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+			</Badge>
+			<h2
+				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+				use:inView
+			>
 				The promise behind every job I take on
 			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
+			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 				I built this business to help people who need dependable help with larger properties. These
 				principles guide every visit.
 			</p>
 		</div>
 
-		<div class="mt-12 grid gap-8 md:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-3">
 			{#each values as value (value.title)}
-				<article
-					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-				>
-					<span
-						class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--brand-blue-soft)] text-[var(--brand-blue)]"
-					>
-						<svelte:component this={value.icon} class="h-6 w-6" />
-					</span>
-					<h3 class="mt-6 text-xl font-semibold text-[var(--text-dark)]">{value.title}</h3>
-					<p class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{value.description}</p>
-				</article>
+				<Card class="h-full">
+					<CardHeader class="space-y-4">
+						<span
+							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+						>
+							<svelte:component this={value.icon} class="h-6 w-6" />
+						</span>
+						<CardTitle>{value.title}</CardTitle>
+						<CardDescription>{value.description}</CardDescription>
+					</CardHeader>
+				</Card>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
-	<div class="mx-auto max-w-6xl px-6">
-		<div class="flex flex-col gap-10 lg:flex-row lg:items-center">
-			<div class="flex-1 space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-					How it works
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+<section class="border-b border-border/60 bg-muted/40 py-20">
+	<div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_340px]">
+		<div class="space-y-6">
+			<div class="space-y-4">
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">How it works</Badge>
+				<h2
+					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+					use:inView
+				>
 					Clear steps from first call to final pass
 				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
+				<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 					Working with me is straightforward. We talk through your goals, agree on a plan, and I
 					handle the work with the same care I would on my own land.
 				</p>
 			</div>
-			<div
-				class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] p-6 shadow-sm lg:w-80"
-			>
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-orange)] uppercase">
-					What you can count on
-				</p>
-				<ul class="mt-4 space-y-3 text-sm text-[var(--text-muted)]">
-					{#each certifications as item (item.label)}
-						<li>
-							<p class="font-semibold text-[var(--text-dark)]">{item.label}</p>
-							<p>{item.detail}</p>
-						</li>
-					{/each}
-				</ul>
+
+			<div class="grid gap-6 md:grid-cols-3">
+				{#each steps as step, index (step.title)}
+					<Card class="h-full">
+						<CardHeader class="space-y-3">
+							<Badge variant="accent" class="w-fit rounded-full text-[0.65rem]">
+								Step {index + 1}
+							</Badge>
+							<CardTitle class="text-lg">{step.title}</CardTitle>
+							<CardDescription>{step.description}</CardDescription>
+						</CardHeader>
+					</Card>
+				{/each}
 			</div>
 		</div>
 
-		<div class="mt-12 grid gap-8 md:grid-cols-3">
-			{#each steps as step, index (step.title)}
-				<article
-					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-				>
-					<div
-						class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand-orange)]/15 text-sm font-semibold text-[var(--brand-orange)]"
-					>
-						{index + 1}
+		<Card class="h-full">
+			<CardHeader class="space-y-3">
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
+					What you can count on
+				</Badge>
+			</CardHeader>
+			<CardContent class="space-y-4">
+				{#each certifications as item (item.label)}
+					<div>
+						<CardTitle class="text-base">{item.label}</CardTitle>
+						<CardDescription>{item.detail}</CardDescription>
 					</div>
-					<h3 class="mt-4 text-lg font-semibold text-[var(--text-dark)]">{step.title}</h3>
-					<p class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{step.description}</p>
-				</article>
-			{/each}
-		</div>
+				{/each}
+			</CardContent>
+		</Card>
 	</div>
 </section>
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-20">
+<section class="border-b border-border/60 bg-background py-20">
 	<div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
 		<div class="flex-1 space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				Service area
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">Service area</Badge>
+			<h2
+				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+				use:inView
+			>
 				Helping landowners across Hampton Roads
 			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
+			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 				I routinely travel across coastal Virginia and up into northeast North Carolina. If you are
 				nearby and need tractor help, let’s talk.
 			</p>
-			<ul class="mt-6 grid grid-cols-1 gap-3 text-sm text-[var(--text-muted)] sm:grid-cols-2">
+			<div
+				class="mt-6 grid grid-cols-1 gap-3 text-sm text-[hsl(var(--muted-foreground))] sm:grid-cols-2"
+			>
 				{#each serviceArea as area (area)}
-					<li
-						class="inline-flex items-center gap-2 rounded-full border border-[var(--border-soft)] px-4 py-2"
-					>
+					<Badge variant="outline" class="gap-2 rounded-full normal-case tracking-[0.2em]">
 						<span
 							aria-hidden="true"
-							class="inline-flex h-1.5 w-1.5 rounded-full bg-[var(--brand-orange)]"
+							class="inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]"
 						></span>
 						{area}
-					</li>
+					</Badge>
 				{/each}
-			</ul>
-		</div>
-		<div
-			class="flex-1 rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-6 shadow-sm"
-		>
-			<svg
-				viewBox="0 0 320 200"
-				class="h-full w-full"
-				role="img"
-				aria-labelledby="mapTitle mapDesc"
-			>
-				<title id="mapTitle">Stylized service map of Hampton Roads</title>
-				<desc id="mapDesc"
-					>Illustrative map highlighting the Hampton Roads region where AW Vaughan Company works.</desc
-				>
-				<defs>
-					<linearGradient id="gradient" x1="0" x2="1" y1="1" y2="0">
-						<stop offset="0" stop-color="var(--brand-blue)" />
-						<stop offset="1" stop-color="var(--brand-orange)" />
-					</linearGradient>
-				</defs>
-				<path
-					d="M40 140 C80 60, 160 40, 240 70 C280 90, 300 120, 260 150 C220 180, 140 190, 80 170 Z"
-					fill="url(#gradient)"
-					stroke="rgba(39,37,31,0.15)"
-					stroke-width="3"
-				/>
-				<g fill="var(--brand-orange)">
-					<circle cx="120" cy="120" r="6" />
-					<circle cx="200" cy="110" r="6" />
-					<circle cx="170" cy="150" r="6" />
-				</g>
-				<g fill="white" font-size="12" font-weight="600">
-					<text x="110" y="115">VB</text>
-					<text x="192" y="105">NOR</text>
-					<text x="160" y="145">CHS</text>
-				</g>
-			</svg>
-		</div>
-	</div>
-</section>
-
-<section class="bg-[var(--brand-blue)] py-20 text-white">
-	<div
-		class="mx-auto max-w-4xl rounded-4xl border border-white/20 bg-white/5 px-6 py-12 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
-	>
-		<p class="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">
-			Ready when you are
-		</p>
-		<h2 class="reveal mt-4 text-3xl font-semibold sm:text-4xl" use:inView>
-			Let’s plan your next project
-		</h2>
-		<p class="mt-3 text-base text-white/80 sm:text-lg">
-			Share your scope, maintenance needs, or emergency request. We’ll respond quickly with the
-			information you need to move forward.
-		</p>
-		<div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-			<a
-				href={resolve('/services')}
-				class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-white"
-			>
-				Explore our services
-			</a>
-			<a
+			</div>
+			<Button
 				href={resolve('/contact')}
-				class="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.28em] text-white uppercase transition hover:border-white hover:bg-white/20"
+				variant="default"
+				size="sm"
+				class="mt-6 w-fit rounded-full"
 			>
-				Contact our team
-			</a>
+				Plan a visit
+			</Button>
 		</div>
+
+		<Card class="flex-1 self-stretch">
+			<CardHeader class="space-y-4">
+				<CardTitle class="text-2xl font-semibold text-[hsl(var(--foreground))]">
+					Why I keep it small
+				</CardTitle>
+				<CardDescription>
+					Running the tractor myself means I know every pass that is made on your property. It keeps
+					scheduling simple, quality high, and communication clear.
+				</CardDescription>
+			</CardHeader>
+			<CardContent class="space-y-4 text-sm text-[hsl(var(--muted-foreground))]">
+				<p>
+					I pair modern equipment with a neighborly approach. You get a single point of contact,
+					transparent pricing, and work delivered with care.
+				</p>
+				<p>
+					When the job wraps up, I walk the site with you to confirm the results. If something needs
+					a touch-up, I take care of it right then.
+				</p>
+			</CardContent>
+			<CardFooter class="pt-0">
+				<Separator />
+				<p class="pt-4 text-xs text-[hsl(var(--muted-foreground))]">
+					Curious how I can help? <Button
+						href={resolve('/projects')}
+						variant="link"
+						class="text-[hsl(var(--accent))]">See recent projects.</Button
+					>
+				</p>
+			</CardFooter>
+		</Card>
 	</div>
 </section>

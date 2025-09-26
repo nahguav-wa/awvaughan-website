@@ -1,75 +1,85 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { Badge, Button, Separator } from '$lib/components/ui';
 
 	const currentYear = new Date().getFullYear();
+
+	const companyLinks = [
+		{ href: '/about', label: 'About Us' },
+		{ href: '/services', label: 'Services' },
+		{ href: '/projects', label: 'Projects' },
+		{ href: '/careers', label: 'Careers' }
+	] as const;
+
+	const legalLinks = [
+		{ href: '/privacy-policy', label: 'Privacy Policy' },
+		{ href: '/terms-of-service', label: 'Terms of Service' }
+	] as const;
 </script>
 
-<footer class="border-t border-[var(--border-soft)] bg-[var(--surface-base)] py-12">
+<footer class="border-t border-border/60 bg-background py-12">
 	<div class="mx-auto max-w-6xl px-6">
-		<div class="grid gap-10 text-sm text-[var(--text-muted)] md:grid-cols-3">
-			<div class="space-y-3">
-				<p class="text-base font-semibold text-[var(--text-dark)]">A.W. Vaughan Company, LLC</p>
-				<p class="text-sm text-[var(--text-muted)]">“Jeremiah 29:11”</p>
+		<div class="grid gap-10 text-sm text-[hsl(var(--muted-foreground))] md:grid-cols-3">
+			<div class="space-y-4">
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.2em]">
+					A.W. Vaughan Company, LLC
+				</Badge>
+				<p class="text-base font-semibold text-[hsl(var(--foreground))]">
+					Neighbor-first tractor work for Hampton Roads and Northeast North Carolina.
+				</p>
+				<Button
+					href={resolve('/contact')}
+					variant="default"
+					size="sm"
+					class="mt-2 w-fit rounded-full"
+				>
+					Plan a project
+				</Button>
 			</div>
-			<nav aria-labelledby="footer-company-heading">
-				<h3
+			<nav aria-labelledby="footer-company-heading" class="space-y-3">
+				<p
 					id="footer-company-heading"
-					class="text-xs font-semibold tracking-[0.3em] text-[var(--text-dark)] uppercase"
+					class="text-xs font-semibold uppercase tracking-[0.3em] text-[hsl(var(--foreground))]"
 				>
 					Company
-				</h3>
-				<ul class="mt-4 space-y-3">
-					<li>
-						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/about')}>
-							About Us
-						</a>
-					</li>
-					<li>
-						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/services')}>
-							Services
-						</a>
-					</li>
-					<li>
-						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/projects')}>
-							Projects
-						</a>
-					</li>
-					<li>
-						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/careers')}>
-							Careers
-						</a>
-					</li>
+				</p>
+				<ul class="space-y-3">
+					<!-- eslint-disable svelte/no-navigation-without-resolve -->
+					{#each companyLinks as link (link.href)}
+						<li>
+							<a class="transition hover:text-[hsl(var(--foreground))]" href={resolve(link.href)}>
+								{link.label}
+							</a>
+						</li>
+					{/each}
+					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</ul>
 			</nav>
-			<nav aria-labelledby="footer-legal-heading">
-				<h3
+			<nav aria-labelledby="footer-legal-heading" class="space-y-3">
+				<p
 					id="footer-legal-heading"
-					class="text-xs font-semibold tracking-[0.3em] text-[var(--text-dark)] uppercase"
+					class="text-xs font-semibold uppercase tracking-[0.3em] text-[hsl(var(--foreground))]"
 				>
 					Legal
-				</h3>
-				<ul class="mt-4 space-y-3">
-					<li>
-						<a class="transition hover:text-[var(--brand-blue)]" href={resolve('/privacy-policy')}>
-							Privacy Policy
-						</a>
-					</li>
-					<li>
-						<a
-							class="transition hover:text-[var(--brand-blue)]"
-							href={resolve('/terms-of-service')}
-						>
-							Terms of Service
-						</a>
-					</li>
+				</p>
+				<ul class="space-y-3">
+					<!-- eslint-disable svelte/no-navigation-without-resolve -->
+					{#each legalLinks as link (link.href)}
+						<li>
+							<a class="transition hover:text-[hsl(var(--foreground))]" href={resolve(link.href)}>
+								{link.label}
+							</a>
+						</li>
+					{/each}
+					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</ul>
 			</nav>
 		</div>
 
-		<div class="mt-12 border-t border-[var(--border-soft)] pt-6 text-xs text-[var(--text-muted)]">
-			<p class="text-center">
-				&copy; {currentYear} A.W. Vaughan Company, LLC. All rights reserved.
-			</p>
-		</div>
+		<Separator class="mt-12" />
+
+		<p class="pt-6 text-center text-xs text-[hsl(var(--muted-foreground))]">
+			&copy; {currentYear} A.W. Vaughan Company, LLC. All rights reserved.
+		</p>
 	</div>
 </footer>

@@ -11,6 +11,17 @@
 	import ServiceIcon from '$lib/components/icons/ServiceIcon.svelte';
 	import WaterIcon from '$lib/components/icons/WaterIcon.svelte';
 	import type { ComponentType } from 'svelte';
+	import {
+		Badge,
+		Button,
+		Card,
+		CardContent,
+		CardDescription,
+		CardFooter,
+		CardHeader,
+		CardTitle,
+		Separator
+	} from '$lib/components/ui';
 
 	let { data } = $props();
 	const seo = $derived(data.seo);
@@ -131,81 +142,89 @@
 
 <Hero />
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-20">
-	<div class="mx-auto max-w-6xl px-6">
+<section class="border-b border-border/60 bg-background py-20">
+	<div class="mx-auto max-w-6xl space-y-14 px-6">
 		<div class="max-w-3xl space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 				Why neighbors call me
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+			</Badge>
+			<h2
+				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+				use:inView
+			>
 				Small-business care with professional results
 			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
+			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 				Here is what you can expect when you invite me onto your property. No large crews—just
 				dependable service from the person who owns the equipment.
 			</p>
 		</div>
 
-		<div class="mt-10 grid gap-6 md:grid-cols-3">
+		<div class="grid gap-6 md:grid-cols-3">
 			{#each proofPoints as point (point.title)}
-				<article
-					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-				>
-					<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-						{point.title}
-					</p>
-					<p class="mt-3 text-2xl font-bold text-[var(--text-dark)]">{point.value}</p>
-					<p class="mt-3 text-sm text-[var(--text-muted)]">{point.description}</p>
-				</article>
+				<Card class="h-full">
+					<CardHeader class="space-y-2">
+						<Badge variant="secondary" class="w-fit rounded-full normal-case tracking-[0.2em]">
+							{point.title}
+						</Badge>
+						<CardTitle class="text-2xl font-bold">{point.value}</CardTitle>
+						<CardDescription>{point.description}</CardDescription>
+					</CardHeader>
+				</Card>
 			{/each}
 		</div>
 
-		<div class="mt-16 grid gap-6 md:grid-cols-3">
+		<Separator class="hidden md:block" />
+
+		<div class="grid gap-6 md:grid-cols-3">
 			{#each valueHighlights as highlight (highlight.title)}
-				<article
-					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-				>
-					<span
-						class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--brand-blue-soft)] text-[var(--brand-blue)]"
-					>
-						<svelte:component this={highlight.icon} class="h-6 w-6" />
-					</span>
-					<h3 class="mt-4 text-lg font-semibold text-[var(--text-dark)]">{highlight.title}</h3>
-					<p class="mt-2 text-sm text-[var(--text-muted)]">{highlight.description}</p>
-				</article>
+				<Card class="h-full">
+					<CardHeader class="space-y-4">
+						<span
+							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+						>
+							<svelte:component this={highlight.icon} class="h-6 w-6" />
+						</span>
+						<CardTitle>{highlight.title}</CardTitle>
+						<CardDescription>{highlight.description}</CardDescription>
+					</CardHeader>
+				</Card>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<section id="services" class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
-	<div class="mx-auto max-w-6xl px-6">
+<section id="services" class="border-b border-border/60 bg-muted/40 py-20">
+	<div class="mx-auto max-w-6xl space-y-12 px-6">
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
 			<div class="max-w-3xl space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 					Tractor services
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+				</Badge>
+				<h2
+					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+					use:inView
+				>
 					Practical help for large residential properties
 				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
+				<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 					Whether you just bought land or need a seasonal tune-up, I bring dependable equipment and
 					a careful approach to every visit.
 				</p>
 			</div>
-			<a
-				class="inline-flex items-center justify-center gap-2 self-start rounded-full border border-[var(--border-soft)] bg-[var(--surface-base)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+			<Button
 				href={resolve('/services')}
+				variant="outline"
+				size="sm"
+				class="self-start rounded-full"
 			>
 				See everything I offer
-			</a>
+			</Button>
 		</div>
 
-		<div class="mt-12 grid gap-8 md:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-3">
 			{#each services as service (service.title)}
-				<article
-					class="group flex h-full flex-col overflow-hidden rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-				>
+				<Card class="group flex h-full flex-col overflow-hidden">
 					<div class="relative h-48 overflow-hidden">
 						<img
 							src={service.image}
@@ -216,192 +235,210 @@
 							class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40"
 						></div>
 					</div>
-					<div class="flex flex-1 flex-col gap-4 p-6">
+					<CardHeader class="flex flex-1 flex-col gap-4">
 						<span
-							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--brand-blue-soft)] text-[var(--brand-blue)]"
+							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
 						>
 							<svelte:component this={service.icon} class="h-6 w-6" />
 						</span>
-						<h3 class="text-xl font-semibold text-[var(--text-dark)]">{service.title}</h3>
-						<p class="text-sm text-[var(--text-muted)]">{service.description}</p>
-						<div class="mt-auto pt-4">
-							<a
-								href={resolve('/services')}
-								class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[var(--brand-blue)] uppercase transition hover:text-[var(--brand-orange)]"
+						<CardTitle>{service.title}</CardTitle>
+						<CardDescription>{service.description}</CardDescription>
+					</CardHeader>
+					<CardFooter class="pt-0">
+						<Button
+							href={resolve('/services')}
+							variant="link"
+							class="gap-2 text-[hsl(var(--primary))]"
+						>
+							Explore more
+							<svg
+								class="h-3 w-3"
+								viewBox="0 0 16 16"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
 							>
-								Explore more
-								<svg
-									class="h-3 w-3"
-									viewBox="0 0 16 16"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="1.5"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									aria-hidden="true"
-								>
-									<path d="M3 8h10" />
-									<path d="M9 4l4 4-4 4" />
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
+								<path d="M3 8h10" />
+								<path d="M9 4l4 4-4 4" />
+							</svg>
+						</Button>
+					</CardFooter>
+				</Card>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<section id="projects" class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-20">
-	<div class="mx-auto max-w-6xl px-6">
+<section id="projects" class="border-b border-border/60 bg-background py-20">
+	<div class="mx-auto max-w-6xl space-y-12 px-6">
 		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
 			<div class="max-w-3xl space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-					Recent jobs
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">Recent jobs</Badge>
+				<h2
+					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+					use:inView
+				>
 					A look at the kind of work I handle
 				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
+				<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 					Every property is different, but these jobs show the type of mowing, cleanup, and dirt
 					work I am called for most often.
 				</p>
 			</div>
-			<a
-				class="inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--brand-orange)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
-				href={resolve('/contact')}
+			<Button
+				href={resolve('/projects')}
+				variant="default"
+				size="sm"
+				class="self-start rounded-full"
 			>
-				Request a quote
-			</a>
+				View more projects
+			</Button>
 		</div>
 
-		<div class="mt-12 grid gap-8 md:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-3">
 			{#each featuredProjects as project (project.title)}
-				<article
-					class="flex h-full flex-col overflow-hidden rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-				>
-					<div class="relative h-56 overflow-hidden">
-						<img src={project.image} alt={project.alt} class="h-full w-full object-cover" />
+				<Card class="flex h-full flex-col overflow-hidden">
+					<div class="relative h-48 overflow-hidden">
+						<img
+							src={project.image.src}
+							alt={project.image.alt}
+							class="h-full w-full object-cover transition duration-500 hover:scale-105"
+						/>
 						<div
-							class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent"
+							class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40"
 						></div>
 					</div>
-					<div class="flex flex-1 flex-col gap-4 p-6">
-						<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+					<CardHeader class="flex flex-1 flex-col gap-4">
+						<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 							{project.sector}
-						</p>
-						<h3 class="text-xl font-semibold text-[var(--text-dark)]">{project.title}</h3>
-						<p class="text-sm text-[var(--text-muted)]">{project.summary}</p>
-						<div class="mt-auto pt-4">
-							<a
-								href={resolve('/contact')}
-								class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[var(--brand-orange)] uppercase transition hover:text-[var(--brand-blue)]"
+						</Badge>
+						<CardTitle>{project.title}</CardTitle>
+						<CardDescription>{project.summary}</CardDescription>
+					</CardHeader>
+					<CardFooter class="pt-0">
+						<Button
+							href={resolve('/contact')}
+							variant="link"
+							class="gap-2 text-[hsl(var(--accent))]"
+						>
+							Start a project
+							<svg
+								class="h-3 w-3"
+								viewBox="0 0 16 16"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
 							>
-								Start a project
-								<svg
-									class="h-3 w-3"
-									viewBox="0 0 16 16"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="1.5"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									aria-hidden="true"
-								>
-									<path d="M3 8h10" />
-									<path d="M9 4l4 4-4 4" />
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
+								<path d="M3 8h10" />
+								<path d="M9 4l4 4-4 4" />
+							</svg>
+						</Button>
+					</CardFooter>
+				</Card>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
+<section class="border-b border-border/60 bg-muted/40 py-20">
 	<div class="mx-auto max-w-5xl px-6">
-		<div
-			class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] p-10 shadow-sm"
-		>
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-				From the operator
-			</p>
-			<blockquote class="mt-6 text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl">
-				“{testimonial.quote}”
-			</blockquote>
-			<p class="mt-6 text-sm font-semibold tracking-[0.3em] text-[var(--brand-orange)] uppercase">
-				{testimonial.name}
-			</p>
-			<p class="text-sm text-[var(--text-muted)]">{testimonial.role}</p>
-			<div
-				class="mt-8 flex flex-wrap gap-3 text-xs font-semibold tracking-[0.28em] text-[var(--text-muted)] uppercase"
-			>
-				{#each serviceArea as area (area)}
-					<span
-						class="inline-flex items-center gap-2 rounded-full border border-[var(--border-soft)] px-4 py-2"
-					>
-						<span
-							aria-hidden="true"
-							class="inline-flex h-1.5 w-1.5 rounded-full bg-[var(--brand-orange)]"
-						></span>
-						{area}
-					</span>
-				{/each}
-			</div>
-		</div>
+		<Card>
+			<CardHeader class="space-y-3">
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
+					From the operator
+				</Badge>
+				<CardTitle class="text-2xl font-semibold sm:text-3xl">
+					“{testimonial.quote}”
+				</CardTitle>
+				<CardDescription
+					class="text-sm font-semibold uppercase tracking-[0.3em] text-[hsl(var(--accent))]"
+				>
+					{testimonial.name}
+				</CardDescription>
+				<p class="text-sm text-[hsl(var(--muted-foreground))]">{testimonial.role}</p>
+			</CardHeader>
+			<CardContent class="pt-0">
+				<div
+					class="mt-6 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]"
+				>
+					{#each serviceArea as area (area)}
+						<Badge variant="outline" class="gap-2 rounded-full normal-case tracking-[0.2em]">
+							<span
+								aria-hidden="true"
+								class="inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]"
+							></span>
+							{area}
+						</Badge>
+					{/each}
+				</div>
+			</CardContent>
+		</Card>
 	</div>
 </section>
 
-<section id="contact" class="bg-[var(--brand-blue)] py-20 text-white">
-	<div
-		class="mx-auto max-w-4xl rounded-3xl border border-white/20 bg-white/5 px-6 py-16 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
-	>
-		<p class="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">
-			Let’s talk through your property
-		</p>
-		<h2 class="reveal mt-4 text-3xl font-semibold sm:text-4xl" use:inView>
-			Ready when your land needs a little extra muscle
-		</h2>
-		<p class="mt-3 text-base text-white/80 sm:text-lg">
-			Tell me what you are dealing with—overgrown fields, storm debris, rough driveways, or
-			something similar. I will recommend a straightforward plan and schedule.
-		</p>
-		<div
-			class="mt-8 flex flex-col items-center justify-center gap-4 text-sm text-white/80 sm:flex-row sm:text-base"
-		>
-			<div class="inline-flex items-center gap-2">
-				<span class="h-2 w-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-				Virginia Beach, Virginia
-			</div>
-			<span class="hidden h-4 w-px bg-white/30 sm:inline" aria-hidden="true"></span>
-			<a
-				class="inline-flex items-center gap-2 transition hover:text-white"
-				href={`mailto:${email}`}
-			>
-				<span class="h-2 w-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-				{email}
-			</a>
-			<span class="hidden h-4 w-px bg-white/30 sm:inline" aria-hidden="true"></span>
-			<a class="inline-flex items-center gap-2 transition hover:text-white" href="tel:+17574021100">
-				<span class="h-2 w-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-				{phoneLabel}
-			</a>
-		</div>
-		<div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-			<a
-				class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
-				href={resolve('/contact')}
-			>
-				Visit the contact page
-			</a>
-			<a
-				class="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.28em] text-white uppercase transition hover:border-white hover:bg-white/20 sm:text-base"
-				href="tel:+17574021100"
-			>
-				Call us directly
-			</a>
-		</div>
+<section id="contact" class="bg-[hsl(var(--primary))] py-20 text-white">
+	<div class="mx-auto max-w-4xl px-6">
+		<Card class="border-white/20 bg-white/5 text-white shadow-2xl shadow-[rgba(27,77,138,0.35)]">
+			<CardHeader class="items-center space-y-4 text-center">
+				<Badge variant="accent" class="bg-white/10 normal-case tracking-[0.3em] text-white">
+					Let’s talk through your property
+				</Badge>
+				<CardTitle class="text-3xl sm:text-4xl">
+					Ready when your land needs a little extra muscle
+				</CardTitle>
+				<CardDescription class="text-base text-white/80 sm:text-lg">
+					Tell me what you are dealing with—overgrown fields, storm debris, rough driveways, or
+					something similar. I will recommend a straightforward plan and schedule.
+				</CardDescription>
+			</CardHeader>
+			<CardContent class="space-y-4 text-sm text-white/80 sm:text-base">
+				<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+					<div class="inline-flex items-center gap-2">
+						<span class="h-2 w-2 rounded-full bg-white/80" aria-hidden="true"></span>
+						Virginia Beach, Virginia
+					</div>
+					<Separator orientation="vertical" class="hidden h-4 bg-white/30 sm:inline" />
+					<a
+						class="inline-flex items-center gap-2 transition hover:text-white"
+						href={`mailto:${email}`}
+					>
+						<span class="h-2 w-2 rounded-full bg-white/80" aria-hidden="true"></span>
+						{email}
+					</a>
+					<Separator orientation="vertical" class="hidden h-4 bg-white/30 sm:inline" />
+					<a
+						class="inline-flex items-center gap-2 transition hover:text-white"
+						href="tel:+17574021100"
+					>
+						<span class="h-2 w-2 rounded-full bg-white/80" aria-hidden="true"></span>
+						{phoneLabel}
+					</a>
+				</div>
+			</CardContent>
+			<CardFooter class="flex flex-col justify-center gap-4 pt-0 sm:flex-row">
+				<Button
+					href={resolve('/contact')}
+					variant="default"
+					size="lg"
+					class="rounded-full bg-white text-[hsl(var(--primary))] hover:bg-white/90"
+				>
+					Visit the contact page
+				</Button>
+				<Button
+					href="tel:+17574021100"
+					variant="ghost"
+					size="lg"
+					class="rounded-full border border-white/60 bg-white/10 text-white hover:bg-white/20"
+				>
+					Call now
+				</Button>
+			</CardFooter>
+		</Card>
 	</div>
 </section>

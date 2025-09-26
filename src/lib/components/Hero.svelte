@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { inView } from '$lib/actions/in-view';
+	import { Badge, Button } from '$lib/components/ui';
 	import { onMount } from 'svelte';
 
 	type BackgroundImage = {
@@ -100,21 +101,21 @@
 		</picture>
 	{/if}
 
-	<div class="absolute inset-0 bg-[var(--text-dark)]/40 mix-blend-multiply"></div>
+	<div class="bg-[var(--text-dark)]/40 absolute inset-0 mix-blend-multiply"></div>
 	<div
-		class="absolute inset-0 bg-gradient-to-b from-black/70 via-[var(--brand-blue)]/40 to-[var(--text-dark)]/70"
+		class="via-[var(--brand-blue)]/40 to-[var(--text-dark)]/70 absolute inset-0 bg-gradient-to-b from-black/70"
 	></div>
 
 	<div
 		class="relative z-10 mx-auto flex min-h-[75vh] w-full max-w-4xl flex-col items-center justify-center px-6 py-28 text-center"
 	>
-		<div
-			class="inline-flex items-center gap-3 rounded-full bg-white/10 px-5 py-2 text-[0.65rem] font-semibold tracking-[0.35em] text-[var(--brand-orange)] uppercase"
+		<Badge
+			variant="accent"
+			class="inline-flex items-center gap-3 rounded-full bg-white/10 px-5 py-2 text-[0.65rem] normal-case tracking-[0.35em] text-white"
 		>
-			<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--brand-orange)]"
-			></span>
+			<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-white/80"></span>
 			{eyebrow}
-		</div>
+		</Badge>
 
 		<h1
 			class="reveal mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl"
@@ -124,7 +125,7 @@
 		</h1>
 
 		<p
-			class="reveal mt-4 text-base font-semibold tracking-[0.28em] text-white/80 uppercase sm:text-lg"
+			class="reveal mt-4 text-base font-semibold uppercase tracking-[0.28em] text-white/80 sm:text-lg"
 			use:inView
 		>
 			{subheading}
@@ -137,20 +138,23 @@
 		</div>
 
 		<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-			<a
+			<Button
 				href={resolve('/contact')}
-				class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-7 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+				variant="default"
+				size="lg"
+				class="rounded-full text-[var(--text-dark)]"
 			>
 				Plan a project
-			</a>
-			<a
+			</Button>
+			<Button
 				href="tel:+17574021100"
-				class="inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.28em] text-white uppercase transition hover:border-white/60 hover:bg-white/20"
+				variant="ghost"
+				size="lg"
+				class="gap-3 rounded-full border border-white/40 bg-white/10 text-white hover:bg-white/20"
 			>
-				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--brand-orange)]"
-				></span>
+				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-white/80"></span>
 				Call (757) 402-1100
-			</a>
+			</Button>
 		</div>
 	</div>
 </section>
