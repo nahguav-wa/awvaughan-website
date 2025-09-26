@@ -1,23 +1,96 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@plugin 'tailwindcss-animate';
 
 @layer base {
 	:root {
+		--background: 216 33% 96%;
+		--foreground: 222 47% 11%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 222 47% 11%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 222 47% 11%;
+
+		--primary: 213 64% 32%;
+		--primary-foreground: 0 0% 100%;
+
+		--secondary: 216 33% 92%;
+		--secondary-foreground: 222 47% 11%;
+
+		--muted: 216 33% 92%;
+		--muted-foreground: 222 16% 40%;
+
+		--accent: 33 100% 50%;
+		--accent-foreground: 222 47% 11%;
+
+		--destructive: 0 84% 60%;
+		--destructive-foreground: 0 0% 98%;
+
+		--border: 214 31% 80%;
+		--input: 214 31% 80%;
+		--ring: 213 64% 32%;
+
+		--radius: 1.25rem;
+
 		--brand-blue: #1b4d8a;
 		--brand-blue-soft: #e6eef8;
 		--brand-orange: #ffa500;
-		--text-dark: #27251f;
-		--text-muted: #5f6368;
-		--surface-base: #ffffff;
-		--surface-muted: #f5f7fa;
-		--surface-soft: #eef2f6;
-		--border-soft: #d9dee6;
+		--text-dark: hsl(var(--foreground));
+		--text-muted: hsl(var(--muted-foreground));
+		--surface-base: hsl(var(--card));
+		--surface-muted: hsl(216 33% 94%);
+		--surface-soft: hsl(216 33% 91%);
+		--border-soft: hsl(var(--border));
+	}
+
+	.dark {
+		--background: 223 33% 9%;
+		--foreground: 213 31% 91%;
+
+		--card: 223 33% 12%;
+		--card-foreground: 213 31% 91%;
+
+		--popover: 223 33% 12%;
+		--popover-foreground: 213 31% 91%;
+
+		--primary: 213 64% 58%;
+		--primary-foreground: 223 33% 12%;
+
+		--secondary: 223 22% 17%;
+		--secondary-foreground: 213 31% 91%;
+
+		--muted: 223 22% 17%;
+		--muted-foreground: 215 20% 75%;
+
+		--accent: 28 96% 61%;
+		--accent-foreground: 223 33% 12%;
+
+		--destructive: 0 80% 55%;
+		--destructive-foreground: 0 0% 98%;
+
+		--border: 223 23% 25%;
+		--input: 223 23% 25%;
+		--ring: 213 64% 58%;
+
+		--surface-base: hsl(var(--card));
+		--surface-muted: hsl(223 24% 15%);
+		--surface-soft: hsl(223 24% 18%);
+		--text-dark: hsl(var(--foreground));
+		--text-muted: hsl(var(--muted-foreground));
+		--border-soft: hsl(var(--border));
+	}
+}
+
+@layer base {
+	* {
+		border-color: hsl(var(--border));
 	}
 
 	body {
-		background-color: var(--surface-muted);
-		color: var(--text-dark);
+		@apply bg-background text-foreground antialiased;
 		font-feature-settings:
 			'liga' 1,
 			'kern' 1;
@@ -25,12 +98,12 @@
 	}
 
 	::selection {
-		background: color-mix(in srgb, var(--brand-orange) 70%, white);
-		color: var(--text-dark);
+		background: color-mix(in srgb, hsl(var(--primary)) 70%, white);
+		color: hsl(var(--foreground));
 	}
 
 	:focus-visible {
-		outline: 2px solid var(--brand-blue);
+		outline: 2px solid hsl(var(--primary));
 		outline-offset: 4px;
 	}
 
@@ -48,7 +121,7 @@
 		z-index: 60;
 		padding: 0.75rem 1.25rem;
 		border-radius: 9999px;
-		background-color: var(--brand-blue);
+		background-color: hsl(var(--primary));
 		color: white;
 		font-size: 0.75rem;
 		font-weight: 700;

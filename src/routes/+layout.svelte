@@ -28,7 +28,7 @@
 	<Footer />
 
 	<a
-		class="fixed right-5 bottom-5 z-40 inline-flex items-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-3 text-sm font-semibold tracking-[0.18em] text-[var(--text-dark)] uppercase shadow-xl shadow-slate-400/40 transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)] sm:hidden"
+		class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--text-dark)] shadow-xl shadow-slate-400/40 transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)] sm:hidden"
 		href={`tel:${emergencyPhone}`}
 	>
 		<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--text-dark)]"></span>

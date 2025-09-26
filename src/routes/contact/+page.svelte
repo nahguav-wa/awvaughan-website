@@ -2,6 +2,19 @@
 	import { PageHero } from '$lib';
 	import { inView } from '$lib/actions/in-view';
 	import { getLinkKey, getMetaKey } from '$lib/seo';
+	import {
+		Badge,
+		Button,
+		Card,
+		CardContent,
+		CardDescription,
+		CardFooter,
+		CardHeader,
+		CardTitle,
+		Input,
+		Label,
+		Textarea
+	} from '$lib/components/ui';
 
 	let { data } = $props();
 	const seo = $derived(data.seo);
@@ -31,7 +44,7 @@
 		const form = event.currentTarget as HTMLFormElement;
 		const data = new FormData(form);
 		const name = (data.get('name') ?? 'Prospective client').toString();
-		const email = (data.get('email') ?? '').toString();
+		const emailAddress = (data.get('email') ?? '').toString();
 		const phone = (data.get('phone') ?? '').toString();
 		const service = (data.get('service') ?? 'General inquiry').toString();
 		const message = (data.get('message') ?? '').toString();
@@ -39,7 +52,7 @@
 		const subject = encodeURIComponent(`Project inquiry from ${name}`);
 		const bodyLines = [
 			`Name: ${name}`,
-			email ? `Email: ${email}` : '',
+			emailAddress ? `Email: ${emailAddress}` : '',
 			phone ? `Phone: ${phone}` : '',
 			`Service area: ${service}`,
 			'',
@@ -83,258 +96,171 @@
 	}}
 />
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
+<section class="border-b border-border/60 bg-background py-16">
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-			<div class="space-y-8">
-				<div
-					class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
-				>
-					<h2 class="reveal text-2xl font-semibold text-[var(--text-dark)]" use:inView>
-						Talk directly with Alex
-					</h2>
-					<p class="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
-						Reach out using the details provided and let me know how I can help. Include the
-						location, timing, and any photos that show what you are dealing with.
-					</p>
-					<address class="mt-6 space-y-4 text-sm text-[var(--text-muted)] not-italic">
-						<div>
-							<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-								Phone
-							</p>
-							<a
-								class="mt-1 inline-flex items-center gap-2 text-base text-[var(--text-dark)] transition hover:text-[var(--brand-blue)]"
-								href="tel:+17574021100"
-							>
-								<span class="h-1.5 w-1.5 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"
-								></span>
-								(757) 402-1100
-							</a>
-						</div>
-						<div>
-							<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-								Email
-							</p>
-							<a
-								class="mt-1 inline-flex items-center gap-2 text-base text-[var(--text-dark)] transition hover:text-[var(--brand-blue)]"
-								href="mailto:alex.vaughan@awvaughan.com"
-							>
-								<span class="h-1.5 w-1.5 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"
-								></span>
-								alex.vaughan@awvaughan.com
-							</a>
-						</div>
-						<div>
-							<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-								Service area
-							</p>
-							<p class="mt-1 text-base text-[var(--text-dark)]">
-								Virginia Beach, Chesapeake, Norfolk, Suffolk, Isle of Wight, and nearby Northeast NC
-							</p>
-						</div>
-					</address>
-					<div
-						class="mt-8 rounded-2xl border border-[var(--border-soft)] bg-white/70 p-6 text-sm text-[var(--text-muted)]"
-					>
-						<p class="font-semibold text-[var(--text-dark)]">Prefer email?</p>
-						<p class="mt-2">
-							Send project details and attachments to
-							<a
-								class="font-semibold text-[var(--brand-blue)] transition hover:text-[var(--brand-orange)]"
-								href="mailto:alex.vaughan@awvaughan.com"
-							>
-								alex.vaughan@awvaughan.com
-							</a>
-							and we’ll schedule a follow-up call.
-						</p>
-					</div>
-				</div>
+			<div class="space-y-10">
+				<Card>
+					<CardHeader class="space-y-3">
+						<CardTitle
+							class="reveal text-2xl font-semibold text-[hsl(var(--foreground))]"
+							use:inView
+						>
+							Talk directly with Alex
+						</CardTitle>
+						<CardDescription>
+							Reach out using the details provided and let me know how I can help. Include the
+							location, timing, and any photos that show what you are dealing with.
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<address class="space-y-4 text-sm not-italic text-[hsl(var(--muted-foreground))]">
+							<div class="space-y-1">
+								<Label class="text-[0.65rem] text-[hsl(var(--accent))]">Phone</Label>
+								<a
+									class="inline-flex items-center gap-2 text-base text-[hsl(var(--foreground))] transition hover:text-[hsl(var(--primary))]"
+									href="tel:+17574021100"
+								>
+									<span class="h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]" aria-hidden="true"
+									></span>
+									(757) 402-1100
+								</a>
+							</div>
+							<div class="space-y-1">
+								<Label class="text-[0.65rem] text-[hsl(var(--accent))]">Email</Label>
+								<a
+									class="inline-flex items-center gap-2 text-base text-[hsl(var(--foreground))] transition hover:text-[hsl(var(--primary))]"
+									href="mailto:alex.vaughan@awvaughan.com"
+								>
+									<span class="h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]" aria-hidden="true"
+									></span>
+									alex.vaughan@awvaughan.com
+								</a>
+							</div>
+							<div class="space-y-1">
+								<Label class="text-[0.65rem] text-[hsl(var(--accent))]">Service area</Label>
+								<p class="text-base text-[hsl(var(--foreground))]">
+									Virginia Beach, Chesapeake, Norfolk, Suffolk, Isle of Wight, and nearby Northeast
+									NC
+								</p>
+							</div>
+						</address>
+						<Card
+							class="border-dashed border-[hsl(var(--accent))]/40 bg-white/70 text-sm text-[hsl(var(--muted-foreground))]"
+						>
+							<CardContent class="space-y-2">
+								<p class="font-semibold text-[hsl(var(--foreground))]">Prefer email?</p>
+								<p>
+									Send project details and attachments to
+									<a
+										class="font-semibold text-[hsl(var(--primary))] transition hover:text-[hsl(var(--accent))]"
+										href="mailto:alex.vaughan@awvaughan.com"
+									>
+										alex.vaughan@awvaughan.com
+									</a>
+									and we’ll schedule a follow-up call.
+								</p>
+							</CardContent>
+						</Card>
+					</CardContent>
+				</Card>
 
 				<div class="space-y-6">
 					<div class="space-y-2">
-						<h2
-							class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl"
+						<CardTitle
+							class="reveal text-2xl font-semibold text-[hsl(var(--foreground))] sm:text-3xl"
 							use:inView
 						>
 							What you can expect
-						</h2>
-						<p class="text-sm text-[var(--text-muted)]">
+						</CardTitle>
+						<CardDescription>
 							Expect clear communication, tidy sites, and reliable follow-through from our crew.
-						</p>
+						</CardDescription>
 					</div>
 					{#each commitments as commitment (commitment.title)}
-						<article
-							class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
-						>
-							<h3 class="reveal text-xl font-semibold text-[var(--text-dark)]" use:inView>
-								{commitment.title}
-							</h3>
-							<p class="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-								{commitment.description}
-							</p>
-						</article>
+						<Card>
+							<CardHeader>
+								<CardTitle
+									class="reveal text-xl font-semibold text-[hsl(var(--foreground))]"
+									use:inView
+								>
+									{commitment.title}
+								</CardTitle>
+								<CardDescription>{commitment.description}</CardDescription>
+							</CardHeader>
+						</Card>
 					{/each}
-					<div
-						class="rounded-3xl border border-[var(--border-soft)] bg-[var(--brand-blue)]/10 p-8 text-center text-[var(--text-dark)]"
-					>
-						<h3 class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
-							Need help soon?
-						</h3>
-						<p class="mt-3 text-base text-[var(--text-muted)]">
-							Call or text
-							<a
-								class="font-semibold text-[var(--brand-blue)] transition hover:text-[var(--brand-orange)]"
-								href="tel:+17574021100"
-							>
-								(757) 402-1100
-							</a>
-							for urgent storm response or safety repairs.
-						</p>
-					</div>
+					<Card class="bg-[hsl(var(--secondary))]/50 text-center text-[hsl(var(--foreground))]">
+						<CardHeader class="space-y-3">
+							<Badge variant="secondary" class="w-fit self-center normal-case tracking-[0.3em]">
+								Need help soon?
+							</Badge>
+							<CardDescription class="text-base text-[hsl(var(--muted-foreground))]">
+								Call or text
+								<a
+									class="font-semibold text-[hsl(var(--primary))] transition hover:text-[hsl(var(--accent))]"
+									href="tel:+17574021100"
+								>
+									(757) 402-1100
+								</a>
+								for urgent storm response or safety repairs.
+							</CardDescription>
+						</CardHeader>
+					</Card>
 				</div>
 			</div>
 
-			<div
-				class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
-			>
-				<div class="space-y-3">
-					<h2
-						id="contact-form-heading"
-						class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl"
-						use:inView
-					>
-						Start your request
-					</h2>
-					<p class="text-sm text-[var(--text-muted)]">
-						Share your project details and we will follow up with next steps.
-					</p>
-				</div>
-				<form
-					class="mt-6 space-y-6"
-					on:submit={handleSubmit}
-					aria-labelledby="contact-form-heading"
-					aria-describedby="form-helper"
-					novalidate
-				>
-					<div>
-						<label
-							class="text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"
-							for="name">Name</label
-						>
-						<input
-							id="name"
-							name="name"
-							type="text"
-							required
-							autocomplete="name"
-							class="mt-2 w-full rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-base)] px-4 py-3 text-sm text-[var(--text-dark)] placeholder:text-[var(--text-muted)] focus:border-[var(--brand-blue)] focus:ring-0"
-							placeholder="Your name"
-						/>
-					</div>
-					<div class="grid gap-6 sm:grid-cols-2">
-						<div>
-							<label
-								class="text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"
-								for="email">Email</label
-							>
-							<input
-								id="email"
-								name="email"
-								type="email"
-								required
-								autocomplete="email"
-								class="mt-2 w-full rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-base)] px-4 py-3 text-sm text-[var(--text-dark)] placeholder:text-[var(--text-muted)] focus:border-[var(--brand-blue)] focus:ring-0"
-								placeholder="name@example.com"
-							/>
+			<Card>
+				<CardHeader class="space-y-2">
+					<CardTitle class="text-2xl font-semibold text-[hsl(var(--foreground))]">
+						Send a quick overview
+					</CardTitle>
+					<CardDescription>
+						Share your name, contact information, and a short note about the work. I will reply with
+						next steps.
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<form class="space-y-5" on:submit={handleSubmit}>
+						<div class="space-y-2">
+							<Label for="name">Name</Label>
+							<Input id="name" name="name" placeholder="Your name" />
 						</div>
-						<div>
-							<label
-								class="text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"
-								for="phone">Phone</label
-							>
-							<input
-								id="phone"
-								name="phone"
-								type="tel"
-								autocomplete="tel"
-								class="mt-2 w-full rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-base)] px-4 py-3 text-sm text-[var(--text-dark)] placeholder:text-[var(--text-muted)] focus:border-[var(--brand-blue)] focus:ring-0"
-								placeholder="(757) 555-0123"
-							/>
+						<div class="grid gap-4 sm:grid-cols-2">
+							<div class="space-y-2">
+								<Label for="email">Email</Label>
+								<Input id="email" name="email" type="email" placeholder="you@example.com" />
+							</div>
+							<div class="space-y-2">
+								<Label for="phone">Phone</Label>
+								<Input id="phone" name="phone" type="tel" placeholder="(757) 402-1100" />
+							</div>
 						</div>
-					</div>
-					<div>
-						<label
-							class="text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"
-							for="service">Service area</label
-						>
-						<select
-							id="service"
-							name="service"
-							class="mt-2 w-full rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-base)] px-4 py-3 text-sm text-[var(--text-dark)] focus:border-[var(--brand-blue)] focus:ring-0"
-						>
-							<option value="Virginia Beach">Virginia Beach</option>
-							<option value="Norfolk">Norfolk</option>
-							<option value="Chesapeake">Chesapeake</option>
-							<option value="Portsmouth">Portsmouth</option>
-							<option value="Suffolk">Suffolk</option>
-							<option value="Other Hampton Roads community">Other Hampton Roads community</option>
-						</select>
-					</div>
-					<div>
-						<label
-							class="text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"
-							for="message">Project details</label
-						>
-						<textarea
-							id="message"
-							name="message"
-							rows={4}
-							class="mt-2 w-full rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-base)] px-4 py-3 text-sm text-[var(--text-dark)] placeholder:text-[var(--text-muted)] focus:border-[var(--brand-blue)] focus:ring-0"
-							placeholder="Tell us about your scope, timeline, or emergency request."
-						></textarea>
-					</div>
-					<p id="form-helper" class="text-xs text-[var(--text-muted)]">
-						Submitting this form will open your email client with a draft message to our team.
-					</p>
-					{#if submissionMessage}
-						<p class="text-sm font-semibold text-[var(--brand-blue)]" aria-live="polite">
-							{submissionMessage}
-						</p>
-					{/if}
-					<button
-						type="submit"
-						class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
-					>
-						Open email to send
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="bg-[var(--brand-blue)] py-20 text-white">
-	<div class="mx-auto max-w-4xl px-6 text-center">
-		<h2 class="reveal text-3xl font-semibold sm:text-4xl" use:inView>
-			We look forward to working with you
-		</h2>
-		<p class="mt-4 text-base text-white/80 sm:text-lg">
-			Tell us about your project, community, or maintenance program. We’ll follow up with next steps
-			and a plan tailored to your goals.
-		</p>
-		<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-			<a
-				href="tel:+17574021100"
-				class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
-			>
-				Call (757) 402-1100
-			</a>
-			<a
-				href="mailto:alex.vaughan@awvaughan.com"
-				class="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.28em] text-white uppercase transition hover:border-white hover:bg-white/20 sm:text-base"
-			>
-				Email us directly
-			</a>
+						<div class="space-y-2">
+							<Label for="service">Service area</Label>
+							<Input id="service" name="service" placeholder="City or county" />
+						</div>
+						<div class="space-y-2">
+							<Label for="message">Project details</Label>
+							<Textarea id="message" name="message" placeholder="Tell me what you need help with" />
+						</div>
+						{#if submissionMessage}
+							<p class="text-sm text-[hsl(var(--muted-foreground))]">{submissionMessage}</p>
+						{/if}
+						<CardFooter class="justify-end gap-3 pt-0">
+							<Button type="submit" variant="default" class="rounded-full">Draft an email</Button>
+							<Button
+								type="button"
+								variant="ghost"
+								class="rounded-full"
+								href="mailto:alex.vaughan@awvaughan.com"
+							>
+								Email Alex directly
+							</Button>
+						</CardFooter>
+					</form>
+				</CardContent>
+			</Card>
 		</div>
 	</div>
 </section>

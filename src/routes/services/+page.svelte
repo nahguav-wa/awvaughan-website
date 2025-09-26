@@ -8,6 +8,17 @@
 	import MaintenanceIcon from '$lib/components/icons/MaintenanceIcon.svelte';
 	import WaterIcon from '$lib/components/icons/WaterIcon.svelte';
 	import type { ComponentType } from 'svelte';
+	import {
+		Badge,
+		Button,
+		Card,
+		CardContent,
+		CardDescription,
+		CardFooter,
+		CardHeader,
+		CardTitle,
+		Separator
+	} from '$lib/components/ui';
 
 	let { data } = $props();
 	const seo = $derived(data.seo);
@@ -103,26 +114,27 @@
 	}}
 />
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-16">
-	<div class="mx-auto max-w-6xl px-6">
+<section class="border-b border-border/60 bg-background py-16">
+	<div class="mx-auto max-w-6xl space-y-12 px-6">
 		<div class="max-w-3xl space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 				What I can help with
-			</p>
-			<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+			</Badge>
+			<h2
+				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+				use:inView
+			>
 				Practical services for acreage homes and small farms
 			</h2>
-			<p class="text-base text-[var(--text-muted)] sm:text-lg">
+			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 				Mix and match the support you need. I am happy to walk the property, explain the plan, and
 				put together a clear quote before getting to work.
 			</p>
 		</div>
 
-		<div class="mt-12 grid gap-8 md:grid-cols-2">
+		<div class="grid gap-8 md:grid-cols-2">
 			{#each offerings as offering (offering.title)}
-				<article
-					class="group flex h-full flex-col overflow-hidden rounded-4xl border border-[var(--border-soft)] bg-[var(--surface-base)] shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-				>
+				<Card class="group flex h-full flex-col overflow-hidden">
 					<div class="relative h-48 overflow-hidden">
 						<img
 							src={offering.image}
@@ -133,105 +145,74 @@
 							class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/35"
 						></div>
 					</div>
-					<div class="flex flex-1 flex-col gap-4 p-6">
+					<CardHeader class="flex flex-1 flex-col gap-4">
 						<span
-							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--brand-blue-soft)] text-[var(--brand-blue)]"
+							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
 						>
 							<svelte:component this={offering.icon} class="h-6 w-6" />
 						</span>
-						<h3 class="reveal text-2xl font-semibold text-[var(--text-dark)]" use:inView>
-							{offering.title}
-						</h3>
-						<p class="text-sm leading-relaxed text-[var(--text-muted)]">{offering.description}</p>
-						<ul class="mt-4 space-y-3 text-sm leading-relaxed text-[var(--text-muted)]">
+						<CardTitle class="reveal text-2xl" use:inView>{offering.title}</CardTitle>
+						<CardDescription>{offering.description}</CardDescription>
+					</CardHeader>
+					<CardContent class="pt-0">
+						<ul class="space-y-3 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
 							{#each offering.items as item (item)}
 								<li class="flex items-start gap-2">
 									<span
 										aria-hidden="true"
-										class="mt-1 inline-flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-orange)]"
+										class="mt-1 inline-flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[hsl(var(--accent))]"
 									></span>
 									<span>{item}</span>
 								</li>
 							{/each}
 						</ul>
-						<div class="mt-auto pt-4">
-							<a
-								href={resolve('/contact')}
-								class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[var(--brand-blue)] uppercase transition hover:text-[var(--brand-orange)]"
+					</CardContent>
+					<CardFooter class="pt-0">
+						<Button
+							href={resolve('/contact')}
+							variant="link"
+							class="gap-2 text-[hsl(var(--primary))]"
+						>
+							Request a quote
+							<svg
+								class="h-3 w-3"
+								viewBox="0 0 16 16"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
 							>
-								Request a quote
-								<svg
-									class="h-3 w-3"
-									viewBox="0 0 16 16"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="1.5"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									aria-hidden="true"
-								>
-									<path d="M3 8h10" />
-									<path d="M9 4l4 4-4 4" />
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
+								<path d="M3 8h10" />
+								<path d="M9 4l4 4-4 4" />
+							</svg>
+						</Button>
+					</CardFooter>
+				</Card>
 			{/each}
 		</div>
-	</div>
-</section>
 
-<section class="bg-[var(--brand-blue)] py-20 text-white">
-	<div class="mx-auto max-w-5xl px-6">
-		<div
-			class="rounded-4xl border border-white/20 bg-white/5 p-10 text-center shadow-[var(--brand-blue)]/30 shadow-2xl"
-		>
-			<h2 class="reveal text-3xl font-semibold sm:text-4xl" use:inView>
-				Need an extra set of hands and a tractor?
-			</h2>
-			<p class="mt-4 text-base text-white/80 sm:text-lg">
-				Call, text, or email what you are facing. I will share honest feedback, photos from similar
-				jobs, and a plan that fits your property and budget.
-			</p>
-			<div
-				class="mt-8 flex flex-col items-center justify-center gap-4 text-sm text-white/80 sm:flex-row sm:text-base"
-			>
-				<div class="inline-flex items-center gap-2">
-					<span class="h-2 w-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-					Virginia Beach, Virginia
-				</div>
-				<span class="hidden h-4 w-px bg-white/30 sm:inline" aria-hidden="true"></span>
-				<a
-					class="inline-flex items-center gap-2 transition hover:text-white"
-					href="mailto:alex.vaughan@awvaughan.com"
-				>
-					<span class="h-2 w-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-					alex.vaughan@awvaughan.com
-				</a>
-				<span class="hidden h-4 w-px bg-white/30 sm:inline" aria-hidden="true"></span>
-				<a
-					class="inline-flex items-center gap-2 transition hover:text-white"
-					href="tel:+17574021100"
-				>
-					<span class="h-2 w-2 rounded-full bg-[var(--brand-orange)]" aria-hidden="true"></span>
-					(757) 402-1100
-				</a>
-			</div>
-			<div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-				<a
-					href={resolve('/contact')}
-					class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
-				>
+		<Separator />
+
+		<Card class="bg-muted/60">
+			<CardHeader class="space-y-3 text-center">
+				<CardTitle class="text-2xl text-[hsl(var(--foreground))]">
+					Not seeing what you need?
+				</CardTitle>
+				<CardDescription>
+					I am happy to quote custom tractor work, materials hauling, or seasonal maintenance. If it
+					involves a compact tractor and a careful operator, we can figure it out together.
+				</CardDescription>
+			</CardHeader>
+			<CardFooter class="justify-center gap-4 pt-0">
+				<Button href={resolve('/contact')} variant="default" size="sm" class="rounded-full">
 					Start a conversation
-				</a>
-				<a
-					href="tel:+17574021100"
-					class="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.28em] text-white uppercase transition hover:border-white hover:bg-white/20 sm:text-base"
-				>
-					Call (757) 402-1100
-				</a>
-			</div>
-		</div>
+				</Button>
+				<Button href={resolve('/projects')} variant="ghost" size="sm" class="rounded-full">
+					Browse recent projects
+				</Button>
+			</CardFooter>
+		</Card>
 	</div>
 </section>

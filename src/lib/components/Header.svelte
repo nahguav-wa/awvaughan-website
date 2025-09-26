@@ -5,6 +5,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
 	import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
+	import { Badge, Button, Separator } from '$lib/components/ui';
 
 	type RouteHref =
 		| '/about'
@@ -113,32 +114,41 @@
 
 <header class="fixed inset-x-0 top-0 z-50">
 	<div
-		class={`overflow-hidden border-b border-[var(--brand-orange)] bg-[var(--brand-orange)] transition-all duration-300 ease-out ${
+		class={`overflow-hidden border-b border-[hsl(var(--accent))] bg-[hsl(var(--accent))] transition-all duration-300 ease-out ${
 			isAtTop ? 'pointer-events-auto max-h-16 opacity-100' : 'pointer-events-none max-h-0 opacity-0'
 		}`}
 		aria-hidden={!isAtTop}
 	>
 		<div
-			class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-2 text-xs font-medium text-white"
+			class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-3 px-6 py-2 text-xs font-medium"
 		>
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-			{#each contactDetails as detail (detail.label)}
+			{#each contactDetails as detail, index (detail.label)}
 				{#if detail.href}
-					<a
-						class="group flex items-center gap-2 text-white transition hover:text-[var(--brand-blue)]"
-						href={detail.href}
-					>
-						<svelte:component
-							this={detail.icon}
-							class="h-4 w-4 text-white transition group-hover:text-[var(--brand-blue)]"
-						/>
-						<span>{detail.label}</span>
+					<a class="transition hover:opacity-90" href={detail.href}>
+						<Badge
+							variant="accent"
+							class="gap-2 rounded-full bg-white/10 text-[0.6rem] normal-case text-white shadow-none"
+						>
+							<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+							<span>{detail.label}</span>
+						</Badge>
 					</a>
 				{:else}
-					<span class="flex items-center gap-2 text-white">
-						<svelte:component this={detail.icon} class="h-4 w-4 text-white" />
+					<Badge
+						variant="accent"
+						class="gap-2 rounded-full bg-white/10 text-[0.6rem] normal-case text-white shadow-none"
+					>
+						<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
 						<span>{detail.label}</span>
-					</span>
+					</Badge>
+				{/if}
+				{#if index < contactDetails.length - 1}
+					<Separator
+						orientation="vertical"
+						class="hidden h-6 bg-white/30 sm:inline-flex"
+						decorative
+					/>
 				{/if}
 			{/each}
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->
@@ -148,27 +158,27 @@
 	<div
 		class={`transition-[background-color,box-shadow,border-color] duration-300 ${
 			showSolidBackground
-				? 'border-b border-[var(--border-soft)]/80 bg-[var(--surface-base)]/95 text-[var(--text-dark)] shadow-sm backdrop-blur'
+				? 'border-b border-border/60 bg-background/95 text-[hsl(var(--foreground))] shadow-sm backdrop-blur'
 				: 'border-b border-transparent bg-transparent text-white'
 		}`}
 	>
-		<div class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
+		<div class="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
 			<a
 				href={resolve('/')}
-				class={`text-lg font-semibold tracking-tight ${
-					showSolidBackground ? 'text-[var(--text-dark)]' : 'text-white'
+				class={`text-lg font-semibold tracking-tight transition-colors ${
+					showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
 				}`}
 			>
 				A.W. Vaughan Company
 			</a>
 
-			<button
+			<Button
 				type="button"
-				class={`ml-auto inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold tracking-[0.25em] uppercase transition focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)] sm:hidden ${
-					showSolidBackground
-						? 'border-[var(--border-soft)]/80 bg-[var(--surface-base)] text-[var(--text-dark)] hover:bg-[var(--surface-soft)]'
-						: 'border-white/60 bg-white/10 text-white hover:bg-white/20'
+				class={`ml-auto gap-2 sm:hidden ${
+					showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
 				}`}
+				variant={showSolidBackground ? 'secondary' : 'ghost'}
+				size="sm"
 				aria-expanded={menuOpen}
 				aria-controls={navId}
 				on:click={toggleMenu}
@@ -179,91 +189,86 @@
 					<Menu class="h-4 w-4" aria-hidden="true" />
 				{/if}
 				<span class="text-[0.6rem] tracking-[0.3em]">Menu</span>
-			</button>
+			</Button>
 
-			<div class="ml-auto hidden items-center gap-6 md:flex">
-				<nav
-					aria-label="Primary navigation"
-					class={`flex items-center gap-x-8 text-xs font-semibold tracking-[0.28em] uppercase ${
-						showSolidBackground ? 'text-[var(--text-muted)]' : 'text-white/90'
-					}`}
-				>
+			<div class="ml-auto hidden items-center gap-4 md:flex">
+				<nav aria-label="Primary navigation" class="flex items-center gap-3">
 					<!-- eslint-disable svelte/no-navigation-without-resolve -->
 					{#each navigation as item (item.href)}
-						<a
+						<Button
 							href={resolve(item.href)}
-							class={`relative px-1 py-1 transition ${
+							variant="ghost"
+							size="sm"
+							class={`rounded-full px-4 text-[0.65rem] tracking-[0.28em] ${
 								showSolidBackground
-									? 'hover:text-[var(--brand-blue)]'
-									: 'hover:text-[var(--brand-orange)]'
+									? 'text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]'
+									: 'text-white/80 hover:text-white'
 							} ${
 								isActive(item)
 									? showSolidBackground
-										? 'text-[var(--brand-blue)]'
-										: 'text-[var(--brand-orange)]'
+										? 'bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]'
+										: 'bg-white/10 text-white'
 									: ''
 							}`}
 							aria-current={isActive(item) ? 'page' : undefined}
 						>
-							<span>{item.label}</span>
-							{#if isActive(item)}
-								<span
-									class={`absolute inset-x-0 -bottom-1 h-0.5 rounded-full ${
-										showSolidBackground ? 'bg-[var(--brand-blue)]' : 'bg-[var(--brand-orange)]'
-									}`}
-									aria-hidden="true"
-								></span>
-							{/if}
-						</a>
+							{item.label}
+						</Button>
 					{/each}
 					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				</nav>
 
-				<a
-					class={`inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)] md:text-sm ${
+				<Button
+					href={resolve(contactPath)}
+					variant="default"
+					size="sm"
+					class={`gap-2 rounded-full px-5 text-[0.7rem] tracking-[0.28em] text-[hsl(var(--primary-foreground))] md:text-sm ${
 						isContactActive()
-							? 'ring-2 ring-[var(--brand-blue)]/30 ring-offset-2 ring-offset-[var(--surface-base)]'
+							? 'ring-2 ring-[hsl(var(--ring))]/60 ring-offset-2 ring-offset-[hsl(var(--background))]'
 							: ''
 					}`}
-					href={resolve(contactPath)}
 					aria-current={isContactActive() ? 'page' : undefined}
 				>
 					Contact Us
-				</a>
+				</Button>
 			</div>
 		</div>
 	</div>
 
 	{#if menuOpen}
-		<div
-			class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] px-6 py-4 shadow-lg sm:hidden"
-		>
+		<div class="border-b border-border/60 bg-background/95 px-6 py-4 shadow-lg sm:hidden">
 			<nav
 				id={navId}
 				aria-label="Primary navigation"
-				class="flex flex-col gap-3 text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase"
+				class="flex flex-col gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-[hsl(var(--foreground))]"
 			>
 				<!-- eslint-disable svelte/no-navigation-without-resolve -->
 				{#each navigation as item (item.href)}
-					<a
+					<Button
 						href={resolve(item.href)}
-						class="rounded-xl bg-[var(--surface-soft)] px-4 py-3 transition hover:bg-[var(--brand-blue-soft)] hover:text-[var(--brand-blue)]"
+						variant="secondary"
+						size="sm"
+						class={`w-full justify-start rounded-2xl normal-case ${
+							isActive(item) ? 'ring-1 ring-[hsl(var(--ring))]/30' : ''
+						}`}
 						on:click={handleLinkActivate}
 						aria-current={isActive(item) ? 'page' : undefined}
 					>
 						{item.label}
-					</a>
+					</Button>
 				{/each}
 				<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			</nav>
-			<a
-				class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-5 py-3 text-xs font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5"
+			<Button
+				class="mt-4 w-full justify-center rounded-full"
 				href={resolve(contactPath)}
+				variant="default"
+				size="sm"
 				on:click={handleLinkActivate}
 				aria-current={isContactActive() ? 'page' : undefined}
 			>
 				Contact Us
-			</a>
+			</Button>
 		</div>
 	{/if}
 </header>

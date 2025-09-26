@@ -4,6 +4,16 @@
 	import { inView } from '$lib/actions/in-view';
 	import { featuredProjects } from '$lib/data/projects';
 	import { getLinkKey, getMetaKey } from '$lib/seo';
+	import {
+		Badge,
+		Button,
+		Card,
+		CardContent,
+		CardDescription,
+		CardFooter,
+		CardHeader,
+		CardTitle
+	} from '$lib/components/ui';
 
 	let { data } = $props();
 	const seo = $derived(data.seo);
@@ -59,26 +69,27 @@
 	}}
 />
 
-<section id="projects" class="border-b border-[var(--border-soft)] bg-[var(--surface-base)] py-20">
-	<div class="mx-auto max-w-6xl px-6">
-		<div class="mx-auto max-w-3xl text-center">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+<section id="projects" class="border-b border-border/60 bg-background py-20">
+	<div class="mx-auto max-w-6xl space-y-12 px-6">
+		<div class="mx-auto max-w-3xl space-y-4 text-center">
+			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 				Recent highlights
-			</p>
-			<h2 class="reveal mt-4 text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+			</Badge>
+			<h2
+				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+				use:inView
+			>
 				Acreage projects finished with care
 			</h2>
-			<p class="mt-4 text-base text-[var(--text-muted)] sm:text-lg">
+			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 				Every project starts with listening and ends with a tidy site. These spotlights show the
 				type of mowing, cleanup, and driveway work landowners trust me to handle.
 			</p>
 		</div>
 
-		<div class="mt-14 grid gap-8 md:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-3">
 			{#each featuredProjects as project (project.title)}
-				<article
-					class="group flex h-full flex-col overflow-hidden rounded-4xl border border-[var(--border-soft)] bg-[var(--surface-soft)] shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-				>
+				<Card class="group flex h-full flex-col overflow-hidden">
 					<div class="relative h-52 overflow-hidden">
 						<img
 							src={project.image}
@@ -89,99 +100,105 @@
 							class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40"
 						></div>
 					</div>
-					<div class="flex flex-1 flex-col gap-4 p-6 text-left">
-						<span
-							class="text-xs font-semibold tracking-[0.3em] text-[var(--brand-orange)] uppercase"
-						>
+					<CardHeader class="flex flex-1 flex-col gap-4 text-left">
+						<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 							{project.sector}
-						</span>
-						<h3 class="reveal text-xl font-semibold text-[var(--text-dark)]" use:inView>
-							{project.title}
-						</h3>
-						<p class="text-sm leading-relaxed text-[var(--text-muted)]">{project.summary}</p>
-						<a
-							class="mt-auto inline-flex items-center gap-2 text-xs font-semibold tracking-[0.28em] text-[var(--brand-blue)] uppercase transition hover:text-[var(--brand-orange)]"
-							href={contactHref}
-						>
+						</Badge>
+						<CardTitle class="reveal text-xl" use:inView>{project.title}</CardTitle>
+						<CardDescription>{project.summary}</CardDescription>
+					</CardHeader>
+					<CardFooter class="pt-0">
+						<Button class="gap-2 text-[hsl(var(--primary))]" href={contactHref} variant="link">
 							Start a similar project
-						</a>
-					</div>
-				</article>
+							<svg
+								class="h-3 w-3"
+								viewBox="0 0 16 16"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+							>
+								<path d="M3 8h10" />
+								<path d="M9 4l4 4-4 4" />
+							</svg>
+						</Button>
+					</CardFooter>
+				</Card>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<section class="border-b border-[var(--border-soft)] bg-[var(--surface-muted)] py-20">
+<section class="border-b border-border/60 bg-muted/40 py-20">
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="flex flex-col gap-12 lg:flex-row lg:items-center">
 			<div class="flex-1 space-y-4">
-				<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 					How we handle each job
-				</p>
-				<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
+				</Badge>
+				<h2
+					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+					use:inView
+				>
 					A proven process for tidy results
 				</h2>
-				<p class="text-base text-[var(--text-muted)] sm:text-lg">
+				<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 					Clear communication, right-sized equipment, and careful passes keep projects on schedule.
 					Here is what to expect when we plan work together.
 				</p>
 			</div>
 			<div class="flex-1 space-y-6">
 				{#each approach as step (step.title)}
-					<article
-						class="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-base)] p-6 shadow-sm"
-					>
-						<h3 class="reveal text-lg font-semibold text-[var(--text-dark)]" use:inView>
-							{step.title}
-						</h3>
-						<p class="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{step.description}</p>
-					</article>
+					<Card>
+						<CardHeader class="space-y-2">
+							<CardTitle class="reveal text-lg" use:inView>{step.title}</CardTitle>
+							<CardDescription>{step.description}</CardDescription>
+						</CardHeader>
+					</Card>
 				{/each}
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="bg-[var(--surface-base)] py-20">
-	<div
-		class="mx-auto max-w-5xl rounded-4xl border border-[var(--border-soft)] bg-gradient-to-br from-[var(--surface-base)] via-[var(--surface-soft)] to-[var(--surface-muted)] px-6 py-16 text-center shadow-md"
-	>
-		<h2 class="reveal text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl" use:inView>
-			Ready to talk about your property?
-		</h2>
-		<p class="mt-4 text-base text-[var(--text-muted)] sm:text-lg">
-			Tell me what you are facing—overgrowth, brush piles, drainage issues, or driveway ruts. I will
-			share recommendations and schedule the passes needed to get you back on track.
-		</p>
-		<ul
-			class="mt-8 flex flex-col gap-3 text-sm text-[var(--text-muted)] sm:flex-row sm:justify-center"
+<section class="bg-background py-20">
+	<div class="mx-auto max-w-5xl px-6">
+		<Card
+			class="rounded-4xl bg-gradient-to-br from-background via-[hsl(var(--secondary))]/30 to-background text-center shadow-md"
 		>
-			{#each assurances as item (item)}
-				<li
-					class="inline-flex items-center gap-2 rounded-full border border-[var(--border-soft)] bg-white/70 px-4 py-2"
+			<CardHeader class="space-y-4">
+				<CardTitle
+					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+					use:inView
 				>
-					<span
-						aria-hidden="true"
-						class="inline-flex h-1.5 w-1.5 rounded-full bg-[var(--brand-orange)]"
-					></span>
-					{item}
-				</li>
-			{/each}
-		</ul>
-		<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-			<a
-				href={contactHref}
-				class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-8 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5"
-			>
-				Plan a project
-			</a>
-			<a
-				href="tel:+17574021100"
-				class="inline-flex items-center gap-3 rounded-full border border-[var(--border-soft)] bg-white/70 px-6 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--brand-blue)] uppercase transition hover:border-[var(--brand-blue)] hover:text-[var(--brand-orange)]"
-			>
-				Call (757) 402-1100
-			</a>
-		</div>
+					Ready to talk about your property?
+				</CardTitle>
+				<CardDescription class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
+					Tell me what you are facing—overgrowth, brush piles, drainage issues, or driveway ruts. I
+					will share recommendations and schedule the passes needed to get you back on track.
+				</CardDescription>
+			</CardHeader>
+			<CardContent class="space-y-3 text-sm text-[hsl(var(--muted-foreground))] sm:text-base">
+				<ul class="flex flex-col gap-3 sm:flex-row sm:justify-center">
+					{#each assurances as item (item)}
+						<li class="flex items-center justify-center gap-2">
+							<span class="h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]" aria-hidden="true"
+							></span>
+							{item}
+						</li>
+					{/each}
+				</ul>
+			</CardContent>
+			<CardFooter class="justify-center gap-4 pt-0">
+				<Button href={contactHref} variant="default" size="lg" class="rounded-full">
+					Plan a project
+				</Button>
+				<Button href={resolve('/services')} variant="ghost" size="lg" class="rounded-full">
+					Explore services
+				</Button>
+			</CardFooter>
+		</Card>
 	</div>
 </section>
