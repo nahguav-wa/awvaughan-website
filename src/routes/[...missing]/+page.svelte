@@ -21,7 +21,7 @@
 <section class="flex min-h-[70vh] items-center bg-[var(--surface-base)] py-24">
 	<div class="mx-auto flex max-w-3xl flex-col gap-10 px-6 text-[var(--text-dark)]">
 		<div class="space-y-4">
-			<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
+			<p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
 				404 error
 			</p>
 			<h1 class="text-4xl font-semibold sm:text-5xl">We couldn't find that page.</h1>
@@ -34,14 +34,14 @@
 		<div
 			class="flex flex-col gap-6 rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-sm"
 		>
-			<h2 class="text-sm font-semibold tracking-[0.25em] text-[var(--brand-blue)] uppercase">
+			<h2 class="text-sm font-semibold uppercase tracking-[0.25em] text-[var(--brand-blue)]">
 				Popular destinations
 			</h2>
 			<ul class="grid gap-4 sm:grid-cols-2">
 				{#each links as link (link.href)}
 					<li>
 						<a
-							class="flex items-center justify-between rounded-2xl border border-transparent bg-white px-5 py-4 text-base font-medium text-[var(--text-dark)] shadow-xs transition hover:border-[var(--border-soft)] hover:text-[var(--brand-blue)] hover:shadow-sm"
+							class="shadow-xs flex items-center justify-between rounded-2xl border border-transparent bg-white px-5 py-4 text-base font-medium text-[var(--text-dark)] transition hover:border-[var(--border-soft)] hover:text-[var(--brand-blue)] hover:shadow-sm"
 							href={resolve(link.href)}
 						>
 							<span>{link.label}</span>
