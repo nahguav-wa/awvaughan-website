@@ -101,17 +101,10 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="Services"
-	align="center"
-	heading="Small tractor work that keeps your property in shape"
-	description="From bush hogging to driveway touchups, each job is handled start to finish by owner-operator Alex Vaughan. Serving Virginia Beach, Chesapeake, Norfolk, Suffolk, and nearby communities."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Compact tractor mowing a large grassy property at sunset.'
-	}}
+        eyebrow="Services"
+        align="center"
+        heading="Small tractor work that keeps your property in shape"
+        description="From bush hogging to driveway touchups, each job is handled start to finish by owner-operator Alex Vaughan. Serving Virginia Beach, Chesapeake, Norfolk, Suffolk, and nearby communities."
 />
 
 <section class="border-b border-border/60 bg-background py-16">

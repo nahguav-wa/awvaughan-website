@@ -18,16 +18,9 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="Privacy policy"
-	heading="How we protect your information"
-	description="We respect your privacy and only use the details you share to respond to your inquiry. Review the commitments below while we finalize our formal policy."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Business owner reviewing paperwork at a desk with a cup of coffee.'
-	}}
+        eyebrow="Privacy policy"
+        heading="How we protect your information"
+        description="We respect your privacy and only use the details you share to respond to your inquiry. Review the commitments below while we finalize our formal policy."
 />
 
 <section class="mx-auto max-w-4xl space-y-6 px-6 py-16">
