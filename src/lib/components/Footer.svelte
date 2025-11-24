@@ -2,6 +2,7 @@
         import { resolve } from '$app/paths';
         import { Button, Separator } from '$lib/components/ui';
         import { Facebook, Globe2, Instagram, Youtube } from 'lucide-svelte';
+        import logoAsset from '$lib/assets/Asset 3@1x.png';
 
         const currentYear = new Date().getFullYear();
 
@@ -44,19 +45,21 @@
 	<div class="mx-auto max-w-6xl px-6">
                 <div class="grid gap-10 text-sm text-[hsl(var(--muted-foreground))] md:grid-cols-4">
                         <div class="space-y-4">
-                                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[hsl(var(--foreground))]">
-                                        A.W. Vaughan Company, LLC
-                                </p>
+                                <img
+                                        src={logoAsset}
+                                        alt="A.W. Vaughan Company logo"
+                                        class="h-14 w-auto"
+                                />
                                 <p class="text-base font-semibold text-[hsl(var(--foreground))]">Jeremiah 29:11</p>
                                 <Button
                                         href={resolve('/contact')}
                                         variant="default"
                                         size="sm"
-					class="mt-2 w-fit rounded-full"
-				>
-					Plan a project
-				</Button>
-			</div>
+                                        class="mt-2 w-fit rounded-full"
+                                >
+                                        Plan a project
+                                </Button>
+                        </div>
 			<nav aria-labelledby="footer-company-heading" class="space-y-3">
 				<p
 					id="footer-company-heading"

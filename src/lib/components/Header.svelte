@@ -5,6 +5,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
         import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
+        import accentMark from '$lib/assets/Asset 1@1x.png';
         import { Button, Separator } from '$lib/components/ui';
 
         type RouteHref =
@@ -156,14 +157,21 @@
 		}`}
 	>
 		<div class="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
-			<a
-				href={resolve('/')}
-				class={`text-lg font-semibold tracking-tight transition-colors ${
-					showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
-				}`}
-			>
-				A.W. Vaughan Company
-			</a>
+                        <a
+                                href={resolve('/')}
+                                class={`group inline-flex items-center gap-3 transition-colors ${
+                                        showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
+                                }`}
+                        >
+                                <img
+                                        src={accentMark}
+                                        alt="A.W. Vaughan emblem"
+                                        class="h-10 w-auto drop-shadow-sm transition duration-200 group-hover:scale-[1.03] sm:h-12"
+                                />
+                                <div class="leading-tight">
+                                        <span class="text-sm font-semibold tracking-[0.2em] sm:text-base">A.W. Vaughan Co.</span>
+                                </div>
+                        </a>
 
 			<Button
 				type="button"
