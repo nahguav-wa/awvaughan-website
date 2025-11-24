@@ -5,16 +5,15 @@
 	import { onDestroy, onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
 	import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
-	import { Badge, Button, Separator } from '$lib/components/ui';
+        import { Badge, Button, Separator } from '$lib/components/ui';
 
-	type RouteHref =
-		| '/about'
-		| '/services'
-		| '/projects'
-		| '/contact'
-		| '/careers'
-		| '/privacy-policy'
-		| '/terms-of-service';
+        type RouteHref =
+                | '/about'
+                | '/services'
+                | '/contact'
+                | '/careers'
+                | '/privacy-policy'
+                | '/terms-of-service';
 
 	type NavItem = {
 		href: RouteHref;
@@ -25,13 +24,12 @@
 		icon: ComponentType;
 		label: string;
 		href?: string;
-	};
+        };
 
-	const navigation: readonly NavItem[] = [
-		{ href: '/about', label: 'About' },
-		{ href: '/services', label: 'Services' },
-		{ href: '/projects', label: 'Projects' }
-	];
+        const navigation: readonly NavItem[] = [
+                { href: '/about', label: 'About' },
+                { href: '/services', label: 'Services' }
+        ];
 
 	const contactPath = '/contact' as const;
 

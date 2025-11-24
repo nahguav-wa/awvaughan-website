@@ -2,14 +2,14 @@
 	import { resolve } from '$app/paths';
 	import { Badge, Button, Separator } from '$lib/components/ui';
 
-	const currentYear = new Date().getFullYear();
+        const currentYear = new Date().getFullYear();
 
-	const companyLinks = [
-		{ href: '/about', label: 'About Us' },
-		{ href: '/services', label: 'Services' },
-		{ href: '/projects', label: 'Projects' },
-		{ href: '/careers', label: 'Careers' }
-	] as const;
+        const companyLinks = [
+                { href: '/about', label: 'About Us' },
+                { href: '/services', label: 'Services' },
+                { href: '/contact', label: 'Contact' },
+                { href: '/careers', label: 'Careers' }
+        ] as const;
 
 	const legalLinks = [
 		{ href: '/privacy-policy', label: 'Privacy Policy' },

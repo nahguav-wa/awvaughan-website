@@ -208,14 +208,14 @@
 					involves a compact tractor and a careful operator, we can figure it out together.
 				</CardDescription>
 			</CardHeader>
-			<CardFooter class="justify-center gap-4 pt-0">
-				<Button href={resolve('/contact')} variant="default" size="sm" class="rounded-full">
-					Start a conversation
-				</Button>
-				<Button href={resolve('/projects')} variant="ghost" size="sm" class="rounded-full">
-					Browse recent projects
-				</Button>
-			</CardFooter>
-		</Card>
-	</div>
+                        <CardFooter class="justify-center gap-4 pt-0">
+                                <Button href={resolve('/contact')} variant="default" size="sm" class="rounded-full">
+                                        Start a conversation
+                                </Button>
+                                <Button href={resolve('/about')} variant="ghost" size="sm" class="rounded-full">
+                                        Learn about the company
+                                </Button>
+                        </CardFooter>
+                </Card>
+        </div>
 </section>

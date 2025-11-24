@@ -250,15 +250,15 @@
 				</p>
 			</CardContent>
 			<CardFooter class="pt-0">
-				<Separator />
-				<p class="pt-4 text-xs text-[hsl(var(--muted-foreground))]">
-					Curious how I can help? <Button
-						href={resolve('/projects')}
-						variant="link"
-						class="text-[hsl(var(--accent))]">See recent projects.</Button
-					>
-				</p>
-			</CardFooter>
-		</Card>
-	</div>
+                                <Separator />
+                                <p class="pt-4 text-xs text-[hsl(var(--muted-foreground))]">
+                                        Curious how I can help? <Button
+                                                href={resolve('/services')}
+                                                variant="link"
+                                                class="text-[hsl(var(--accent))]">Explore available services.</Button
+                                        >
+                                </p>
+                        </CardFooter>
+                </Card>
+        </div>
 </section>
