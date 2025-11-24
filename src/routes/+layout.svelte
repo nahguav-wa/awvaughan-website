@@ -18,13 +18,9 @@
 
 <div class="relative flex min-h-screen flex-col bg-[var(--surface-muted)] text-[var(--text-dark)]">
 	<Header />
-	<main
-		id="main-content"
-		tabindex="-1"
-		class={`flex-1 focus:outline-none ${isHome ? '' : 'pt-32 lg:pt-36'}`}
-	>
-		{@render children?.()}
-	</main>
+        <main id="main-content" tabindex="-1" class="flex-1 focus:outline-none">
+                {@render children?.()}
+        </main>
 	<Footer />
 
 	<a
