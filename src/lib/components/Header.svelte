@@ -5,8 +5,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
 	import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
-	import accentMark from '$lib/assets/Asset 1@1x.png';
-	import { Button, Separator } from '$lib/components/ui';
+	import { Badge, Button, Separator } from '$lib/components/ui';
 
 	type RouteHref =
 		| '/about'
@@ -113,7 +112,7 @@
 
 <header class="fixed inset-x-0 top-0 z-50">
 	<div
-		class={`overflow-hidden border-b border-[#ffa500] bg-[#ffa500] transition-all duration-300 ease-out ${
+		class={`overflow-hidden border-b border-[hsl(var(--accent))] bg-[hsl(var(--accent))] transition-all duration-300 ease-out ${
 			isAtTop ? 'pointer-events-auto max-h-16 opacity-100' : 'pointer-events-none max-h-0 opacity-0'
 		}`}
 		aria-hidden={!isAtTop}
@@ -124,20 +123,23 @@
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
 			{#each contactDetails as detail, index (detail.label)}
 				{#if detail.href}
-					<a
-						class="inline-flex items-center gap-2 text-[0.65rem] font-semibold tracking-[0.14em] text-white/90 uppercase transition hover:text-white"
-						href={detail.href}
-					>
-						<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
-						<span>{detail.label}</span>
+					<a class="transition hover:opacity-90" href={detail.href}>
+						<Badge
+							variant="accent"
+							class="gap-2 rounded-full bg-white/10 text-[0.6rem] text-white normal-case shadow-none"
+						>
+							<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+							<span>{detail.label}</span>
+						</Badge>
 					</a>
 				{:else}
-					<div
-						class="inline-flex items-center gap-2 text-[0.65rem] font-semibold tracking-[0.14em] text-white/90 uppercase"
+					<Badge
+						variant="accent"
+						class="gap-2 rounded-full bg-white/10 text-[0.6rem] text-white normal-case shadow-none"
 					>
 						<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
 						<span>{detail.label}</span>
-					</div>
+					</Badge>
 				{/if}
 				{#if index < contactDetails.length - 1}
 					<Separator
@@ -161,20 +163,11 @@
 		<div class="content-container flex items-center gap-4 py-4">
 			<a
 				href={resolve('/')}
-				class={`group inline-flex items-center gap-3 transition-colors ${
+				class={`text-lg font-semibold tracking-tight transition-colors ${
 					showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
 				}`}
 			>
-				<img
-					src={accentMark}
-					alt="A.W. Vaughan emblem"
-					class="h-10 w-auto drop-shadow-sm transition duration-200 group-hover:scale-[1.03] sm:h-12"
-				/>
-				<div class="leading-tight">
-					<span class="text-sm font-semibold tracking-[0.2em] uppercase sm:text-base"
-						>A.W. Vaughan Co.</span
-					>
-				</div>
+				A.W. Vaughan Company
 			</a>
 
 			<Button
@@ -187,14 +180,13 @@
 				aria-expanded={menuOpen}
 				aria-controls={navId}
 				on:click={toggleMenu}
-				aria-pressed={menuOpen}
 			>
 				{#if menuOpen}
 					<X class="h-4 w-4" aria-hidden="true" />
 				{:else}
 					<Menu class="h-4 w-4" aria-hidden="true" />
 				{/if}
-				<span class="text-[0.6rem] tracking-[0.3em] uppercase">Menu</span>
+				<span class="text-[0.6rem] tracking-[0.3em]">Menu</span>
 			</Button>
 
 			<div class="ml-auto hidden items-center gap-4 md:flex">
@@ -205,7 +197,7 @@
 							href={resolve(item.href)}
 							variant="ghost"
 							size="sm"
-							class={`rounded-full px-4 text-[0.65rem] tracking-[0.28em] uppercase ${
+							class={`rounded-full px-4 text-[0.65rem] tracking-[0.28em] ${
 								showSolidBackground
 									? 'text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]'
 									: 'text-white/80 hover:text-white'
@@ -235,7 +227,7 @@
 					}`}
 					aria-current={isContactActive() ? 'page' : undefined}
 				>
-					CONTACT US
+					Contact Us
 				</Button>
 			</div>
 		</div>
@@ -254,7 +246,7 @@
 						href={resolve(item.href)}
 						variant="secondary"
 						size="sm"
-						class={`w-full justify-start rounded-2xl uppercase ${
+						class={`w-full justify-start rounded-2xl normal-case ${
 							isActive(item) ? 'ring-1 ring-[hsl(var(--ring))]/30' : ''
 						}`}
 						on:click={handleLinkActivate}
@@ -273,7 +265,7 @@
 				on:click={handleLinkActivate}
 				aria-current={isContactActive() ? 'page' : undefined}
 			>
-				CONTACT US
+				Contact Us
 			</Button>
 		</div>
 	{/if}
