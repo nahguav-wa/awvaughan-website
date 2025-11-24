@@ -1,7 +1,7 @@
 <script lang="ts">
-        import { inView } from '$lib/actions/in-view';
-        import { Badge } from '$lib/components/ui';
-        import heroImage from '$lib/assets/hero-image-01.jpeg';
+	import { inView } from '$lib/actions/in-view';
+	import { Badge } from '$lib/components/ui';
+	import heroImage from '$lib/assets/hero-image-01.jpeg';
 
 	type BackgroundImage = {
 		src: string;
@@ -15,16 +15,19 @@
 		heading: string;
 		description?: string | string[];
 		align?: 'left' | 'center';
-                backgroundImage?: BackgroundImage;
-        };
+		backgroundImage?: BackgroundImage;
+	};
 
-        let {
-                eyebrow = '',
-                heading,
-                description = [],
-                align = 'left',
-                backgroundImage = { src: heroImage, alt: 'Compact tractor finishing a pass on a cleared property' }
-        }: PageHeroProps = $props();
+	let {
+		eyebrow = '',
+		heading,
+		description = [],
+		align = 'left',
+		backgroundImage = {
+			src: heroImage,
+			alt: 'Compact tractor finishing a pass on a cleared property'
+		}
+	}: PageHeroProps = $props();
 
 	const descriptionLines = $derived(
 		Array.isArray(description) ? description : description ? [description] : []
@@ -36,9 +39,9 @@
 </script>
 
 <section class="relative isolate overflow-hidden text-white">
-        <picture aria-hidden="true">
-                {#if backgroundImage.srcset}
-                        <source srcset={backgroundImage.srcset} sizes={backgroundImage.sizes} />
+	<picture aria-hidden="true">
+		{#if backgroundImage.srcset}
+			<source srcset={backgroundImage.srcset} sizes={backgroundImage.sizes} />
 		{/if}
 		<img
 			class="absolute inset-0 h-full w-full object-cover object-center"
@@ -47,18 +50,18 @@
 		/>
 	</picture>
 
-	<div class="bg-[var(--text-dark)]/55 absolute inset-0 mix-blend-multiply"></div>
+	<div class="absolute inset-0 bg-[var(--text-dark)]/55 mix-blend-multiply"></div>
 	<div
-		class="via-[var(--brand-blue)]/35 to-[var(--text-dark)]/75 absolute inset-0 bg-gradient-to-b from-black/60"
+		class="absolute inset-0 bg-gradient-to-b from-black/60 via-[var(--brand-blue)]/35 to-[var(--text-dark)]/75"
 	></div>
 
-        <div
-                class={`relative z-10 mx-auto flex min-h-[65vh] w-full max-w-4xl flex-col justify-center px-6 py-28 ${alignmentClass}`}
-        >
+	<div
+		class={`relative z-10 mx-auto flex min-h-[60vh] w-full max-w-4xl flex-col justify-center px-6 py-24 ${alignmentClass}`}
+	>
 		{#if eyebrow}
 			<Badge
 				variant="accent"
-				class="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-[0.65rem] normal-case tracking-[0.32em] text-white"
+				class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white"
 			>
 				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-white/80"></span>
 				{eyebrow}
@@ -70,7 +73,7 @@
 		</h1>
 
 		{#if descriptionLines.length}
-			<div class="mt-6 space-y-4 text-base leading-relaxed text-white/85 sm:text-lg">
+			<div class="mt-4 space-y-3 text-lg leading-relaxed text-white/90 sm:text-xl">
 				{#each descriptionLines as paragraph (paragraph)}
 					<p>{paragraph}</p>
 				{/each}

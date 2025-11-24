@@ -18,9 +18,9 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="Careers"
-        heading="Join a crew that leads with service"
-        description="Share your resume to be considered for upcoming roles supporting sitework and property maintenance projects across Hampton Roads."
+	eyebrow="Careers"
+	heading="Join a crew that leads with service"
+	description="Share your resume to be considered for upcoming roles supporting sitework and property maintenance projects across Hampton Roads."
 />
 
 <section class="mx-auto max-w-4xl px-6 py-16">
@@ -33,7 +33,7 @@
 	</p>
 	<div class="mt-8">
 		<a
-			class="shadow-[var(--brand-orange)]/30 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-[var(--text-dark)] shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+			class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--brand-orange)] px-6 py-3 text-sm font-semibold tracking-[0.25em] text-[var(--text-dark)] uppercase shadow-[var(--brand-orange)]/30 shadow-lg transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
 			href="mailto:alex.vaughan@awvaughan.com"
 		>
 			Email your resume

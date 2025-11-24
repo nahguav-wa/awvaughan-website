@@ -1,9 +1,9 @@
 <script lang="ts">
-        import { resolve } from '$app/paths';
-        import { inView } from '$lib/actions/in-view';
-        import { Button } from '$lib/components/ui';
-        import heroImage from '$lib/assets/hero-image-01.jpeg';
-        import { onMount } from 'svelte';
+	import { resolve } from '$app/paths';
+	import { inView } from '$lib/actions/in-view';
+	import { Button } from '$lib/components/ui';
+	import heroImage from '$lib/assets/hero-image-01.jpeg';
+	import { onMount } from 'svelte';
 
 	type BackgroundImage = {
 		src: string;
@@ -18,30 +18,32 @@
 	};
 
 	interface HeroProps {
-                heading?: string;
-                subheading?: string;
-                description?: string[];
+		heading?: string;
+		subheading?: string;
+		description?: string[];
 		backgroundImage?: BackgroundImage;
 		backgroundVideo?: BackgroundVideo | null;
 	}
 
-        const defaultBackgroundImage: BackgroundImage = {
-                src: heroImage,
-                alt: 'Compact tractor finishing a pass on a cleared property'
-        };
+	const defaultBackgroundImage: BackgroundImage = {
+		src: heroImage,
+		alt: 'Compact tractor finishing a pass on a cleared property'
+	};
 
 	const defaultBackgroundVideo: BackgroundVideo | null = null;
 
-        const defaultProps: Required<Pick<HeroProps, 'heading' | 'subheading' | 'description'>> = {
-                heading: 'Owner-operated grading, drainage, and driveway repair.',
-                subheading: 'Clean cuts. Solid ground. No nonsense.',
-                description: ['Brush cleanup, hauling, and problem-area fixes—done by the same operator who shows up on site.']
-        };
+	const defaultProps: Required<Pick<HeroProps, 'heading' | 'subheading' | 'description'>> = {
+		heading: 'Simple tractor work for tidy, dry properties.',
+		subheading: 'Local, owner-operated help.',
+		description: [
+			'Brush cleanup, light grading, and hauling handled start to finish by one person.'
+		]
+	};
 
-        let {
-                heading = defaultProps.heading,
-                subheading = defaultProps.subheading,
-                description = defaultProps.description,
+	let {
+		heading = defaultProps.heading,
+		subheading = defaultProps.subheading,
+		description = defaultProps.description,
 		backgroundImage = defaultBackgroundImage,
 		backgroundVideo = defaultBackgroundVideo
 	}: HeroProps = $props();
@@ -91,29 +93,23 @@
 		</picture>
 	{/if}
 
-	<div class="bg-[var(--text-dark)]/40 absolute inset-0 mix-blend-multiply"></div>
+	<div class="absolute inset-0 bg-[var(--text-dark)]/40 mix-blend-multiply"></div>
 	<div
-		class="via-[var(--brand-blue)]/40 to-[var(--text-dark)]/70 absolute inset-0 bg-gradient-to-b from-black/70"
+		class="absolute inset-0 bg-gradient-to-b from-black/70 via-[var(--brand-blue)]/40 to-[var(--text-dark)]/70"
 	></div>
 
 	<div
-		class="relative z-10 mx-auto flex min-h-[75vh] w-full max-w-4xl flex-col items-center justify-center px-6 py-28 text-center"
+		class="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-4xl flex-col items-center justify-center px-6 py-24 text-center"
 	>
-                <h1
-                        class="reveal text-4xl font-bold tracking-tight text-white sm:text-5xl xl:text-6xl"
-                        use:inView
-                >
+		<h1 class="reveal text-4xl font-semibold tracking-tight text-white sm:text-5xl" use:inView>
 			{heading}
 		</h1>
 
-		<p
-			class="reveal mt-4 text-base font-semibold uppercase tracking-[0.28em] text-white/80 sm:text-lg"
-			use:inView
-		>
+		<p class="reveal mt-3 text-lg font-medium text-white/85 sm:text-xl" use:inView>
 			{subheading}
 		</p>
 
-		<div class="mt-6 space-y-4 text-base leading-relaxed text-slate-100/90 sm:text-lg">
+		<div class="mt-6 space-y-3 text-lg leading-relaxed text-slate-100/90 sm:text-xl">
 			{#each description as paragraph (paragraph)}
 				<p>{paragraph}</p>
 			{/each}

@@ -29,20 +29,18 @@
 	}[] = [
 		{
 			title: 'Owner-operated',
-			description:
-				'You do not get handed off to a crew. I show up, run the tractor, and make sure the job is completed the right way.',
+			description: 'I show up, run the tractor, and stay until the work is finished.',
 			icon: ServiceIcon
 		},
 		{
 			title: 'Local roots',
-			description:
-				'I grew up in Hampton Roads and understand our soils, drainage challenges, and weather. That experience guides every plan.',
+			description: 'Hampton Roads soils and weather shape every plan I share with you.',
 			icon: CoastalIcon
 		},
 		{
 			title: 'Respectful communication',
 			description:
-				'From the first phone call to the final sweep, I keep you informed and treat your property like my own.',
+				'I keep you updated, answer questions quickly, and treat your property with care.',
 			icon: LeadershipIcon
 		}
 	];
@@ -50,18 +48,15 @@
 	const steps = [
 		{
 			title: 'Walk the property',
-			description:
-				'We look over the site together, talk through trouble spots, and discuss access for the tractor and trailer.'
+			description: 'We review the site together and note access points for the tractor and trailer.'
 		},
 		{
 			title: 'Outline the plan',
-			description:
-				'I follow up with a clear quote covering the work, equipment, timing, and any material deliveries needed.'
+			description: 'I follow up with a simple quote that lists the work, equipment, and timing.'
 		},
 		{
 			title: 'Do the work right',
-			description:
-				'I show up when promised, handle the work carefully, and walk the site with you before loading up.'
+			description: 'I arrive on time, complete the work, and walk the site with you before leaving.'
 		}
 	] as const;
 
@@ -92,40 +87,37 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="About"
-        align="center"
-        heading="A neighbor with the tools to tackle your to-do list"
-        description="I am Alex Vaughan—born and raised in Hampton Roads and committed to helping landowners keep their properties looking sharp without hiring a big crew."
+	eyebrow="About"
+	align="center"
+	heading="A neighbor with a tractor and a clear plan"
+	description="I am Alex Vaughan. I grew up in Hampton Roads and keep the work personal, simple, and tidy."
 />
 
-<section class="border-b border-border/60 bg-background py-16">
+<section class="border-border/60 border-b bg-background py-16">
 	<div class="mx-auto max-w-6xl space-y-12 px-6">
 		<div class="max-w-3xl space-y-4">
-			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
-				What matters most
-			</Badge>
+			<Badge variant="secondary" class="w-fit text-xs font-semibold">What matters</Badge>
 			<h2
 				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
 				use:inView
 			>
-				The promise behind every job I take on
+				How I approach every job
 			</h2>
 			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
-				I built this business to help people who need dependable help with larger properties. These
-				principles guide every visit.
+				Clear quotes, careful work, and direct communication keep each visit easy to follow.
 			</p>
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-3">
-                        {#each values as value (value.title)}
-                                {@const Icon = value.icon}
-                                <Card class="h-full">
-                                        <CardHeader class="space-y-4">
-                                                <span
-                                                        class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
-                                                >
-                                                        <Icon class="h-6 w-6" />
-                                                </span>
+			{#each values as value (value.title)}
+				{@const Icon = value.icon}
+				<Card class="h-full">
+					<CardHeader class="space-y-4">
+						<span
+							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+						>
+							<Icon class="h-6 w-6" />
+						</span>
 						<CardTitle>{value.title}</CardTitle>
 						<CardDescription>{value.description}</CardDescription>
 					</CardHeader>
@@ -135,20 +127,19 @@
 	</div>
 </section>
 
-<section class="border-b border-border/60 bg-muted/40 py-20">
+<section class="border-border/60 border-b bg-muted/40 py-20">
 	<div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_340px]">
 		<div class="space-y-6">
 			<div class="space-y-4">
-				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">How it works</Badge>
+				<Badge variant="secondary" class="w-fit text-xs font-semibold">How it works</Badge>
 				<h2
 					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
 					use:inView
 				>
-					Clear steps from first call to final pass
+					Straightforward steps from call to cleanup
 				</h2>
 				<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
-					Working with me is straightforward. We talk through your goals, agree on a plan, and I
-					handle the work with the same care I would on my own land.
+					We walk the site, agree on a plan, and I handle the work without surprises.
 				</p>
 			</div>
 
@@ -156,10 +147,13 @@
 				{#each steps as step, index (step.title)}
 					<Card class="h-full">
 						<CardHeader class="space-y-3">
-							<Badge variant="accent" class="w-fit rounded-full text-[0.65rem]">
+							<Badge
+								variant="accent"
+								class="w-fit rounded-full px-3 py-1 text-[0.7rem] font-semibold"
+							>
 								Step {index + 1}
 							</Badge>
-							<CardTitle class="text-lg">{step.title}</CardTitle>
+							<CardTitle class="text-lg font-semibold">{step.title}</CardTitle>
 							<CardDescription>{step.description}</CardDescription>
 						</CardHeader>
 					</Card>
@@ -169,9 +163,7 @@
 
 		<Card class="h-full">
 			<CardHeader class="space-y-3">
-				<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
-					What you can count on
-				</Badge>
+				<Badge variant="secondary" class="w-fit text-xs font-semibold">What you can count on</Badge>
 			</CardHeader>
 			<CardContent class="space-y-4">
 				{#each certifications as item (item.label)}
@@ -185,10 +177,10 @@
 	</div>
 </section>
 
-<section class="border-b border-border/60 bg-background py-20">
+<section class="border-border/60 border-b bg-background py-20">
 	<div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
 		<div class="flex-1 space-y-4">
-			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">Service area</Badge>
+			<Badge variant="secondary" class="w-fit text-xs font-semibold">Service area</Badge>
 			<h2
 				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
 				use:inView
@@ -196,14 +188,14 @@
 				Helping landowners across Hampton Roads
 			</h2>
 			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
-				I routinely travel across coastal Virginia and up into northeast North Carolina. If you are
-				nearby and need tractor help, let’s talk.
+				I travel across coastal Virginia and into northeast North Carolina. If you are close by, I
+				can help.
 			</p>
 			<div
 				class="mt-6 grid grid-cols-1 gap-3 text-sm text-[hsl(var(--muted-foreground))] sm:grid-cols-2"
 			>
 				{#each serviceArea as area (area)}
-					<Badge variant="outline" class="gap-2 rounded-full normal-case tracking-[0.2em]">
+					<Badge variant="outline" class="gap-2 rounded-full px-3 py-1 text-xs font-semibold">
 						<span
 							aria-hidden="true"
 							class="inline-flex h-1.5 w-1.5 rounded-full bg-[hsl(var(--accent))]"
@@ -228,30 +220,26 @@
 					Why I keep it small
 				</CardTitle>
 				<CardDescription>
-					Running the tractor myself means I know every pass that is made on your property. It keeps
-					scheduling simple, quality high, and communication clear.
+					Running the tractor myself keeps scheduling simple, quality consistent, and communication
+					clear.
 				</CardDescription>
 			</CardHeader>
 			<CardContent class="space-y-4 text-sm text-[hsl(var(--muted-foreground))]">
+				<p>You get one point of contact, straightforward pricing, and work delivered with care.</p>
 				<p>
-					I pair modern equipment with a neighborly approach. You get a single point of contact,
-					transparent pricing, and work delivered with care.
-				</p>
-				<p>
-					When the job wraps up, I walk the site with you to confirm the results. If something needs
-					a touch-up, I take care of it right then.
+					I walk the site with you before packing up so we can make any quick touch-ups together.
 				</p>
 			</CardContent>
 			<CardFooter class="pt-0">
-                                <Separator />
-                                <p class="pt-4 text-xs text-[hsl(var(--muted-foreground))]">
-                                        Curious how I can help? <Button
-                                                href={resolve('/services')}
-                                                variant="link"
-                                                class="text-[hsl(var(--accent))]">Explore available services.</Button
-                                        >
-                                </p>
-                        </CardFooter>
-                </Card>
-        </div>
+				<Separator />
+				<p class="pt-4 text-xs text-[hsl(var(--muted-foreground))]">
+					Curious how I can help? <Button
+						href={resolve('/services')}
+						variant="link"
+						class="text-[hsl(var(--accent))]">Explore available services.</Button
+					>
+				</p>
+			</CardFooter>
+		</Card>
+	</div>
 </section>
