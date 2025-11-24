@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { cva, type VariantProps } from 'class-variance-authority';
-	import { cn } from '$lib/utils/cn';
+        import { cva, type VariantProps } from 'class-variance-authority';
+        import type { HTMLAnchorAttributes, HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
+        import type { Snippet } from 'svelte';
+
+        import { cn } from '$lib/utils/cn';
 
 	const buttonVariants = cva(
 		'inline-flex items-center justify-center whitespace-nowrap rounded-full text-xs font-semibold tracking-[0.28em] uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50',
@@ -32,14 +35,22 @@
 		}
 	);
 
-	type ButtonProps = {
-		class?: string;
-		variant?: VariantProps<typeof buttonVariants>['variant'];
-		size?: VariantProps<typeof buttonVariants>['size'];
-		type?: 'button' | 'submit' | 'reset';
-		href?: string;
-		external?: boolean;
-	};
+        type ButtonRestProps = HTMLAnchorAttributes & HTMLButtonAttributes & HTMLAttributes<HTMLButtonElement>;
+
+        type ButtonProps = ButtonRestProps & {
+                class?: string;
+                variant?: VariantProps<typeof buttonVariants>['variant'];
+                size?: VariantProps<typeof buttonVariants>['size'];
+                type?: 'button' | 'submit' | 'reset';
+                href?: string;
+                external?: boolean;
+                children?: Snippet;
+        };
+
+        type $$Events = { click: MouseEvent };
+
+        type $$Props = ButtonProps;
+        type $$Slots = { default: Snippet };
 
         let {
                 class: className = '',
@@ -47,11 +58,12 @@
                 size = 'default',
                 type = 'button',
                 href,
-                external = false
-        }: ButtonProps = $props();
+                external = false,
+                children,
+                ...restProps
+        }: $$Props = $props();
 
-        const restProps = $restProps();
-        const classes = $derived(cn(buttonVariants({ variant, size }), className, restProps.class));
+        const classes = $derived(cn(buttonVariants({ variant, size }), className));
 </script>
 
 {#if href}
@@ -62,10 +74,10 @@
                 rel={external ? 'noreferrer' : restProps.rel}
                 class={classes}
         >
-                <slot />
+                {@render children?.()}
         </a>
 {:else}
         <button {...restProps} {type} class={classes}>
-                <slot />
+                {@render children?.()}
         </button>
 {/if}

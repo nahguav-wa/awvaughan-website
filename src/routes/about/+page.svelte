@@ -124,14 +124,15 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-3">
-			{#each values as value (value.title)}
-				<Card class="h-full">
-					<CardHeader class="space-y-4">
-						<span
-							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
-						>
-                                                <svelte:component this={value.icon} class="h-6 w-6" />
-						</span>
+                        {#each values as value (value.title)}
+                                {@const Icon = value.icon}
+                                <Card class="h-full">
+                                        <CardHeader class="space-y-4">
+                                                <span
+                                                        class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+                                                >
+                                                        <Icon class="h-6 w-6" />
+                                                </span>
 						<CardTitle>{value.title}</CardTitle>
 						<CardDescription>{value.description}</CardDescription>
 					</CardHeader>

@@ -132,10 +132,11 @@
 			</p>
 		</div>
 
-		<div class="grid gap-8 md:grid-cols-2">
-			{#each offerings as offering (offering.title)}
-				<Card class="group flex h-full flex-col overflow-hidden">
-					<div class="relative h-48 overflow-hidden">
+                <div class="grid gap-8 md:grid-cols-2">
+                        {#each offerings as offering (offering.title)}
+                                {@const Icon = offering.icon}
+                                <Card class="group flex h-full flex-col overflow-hidden">
+                                        <div class="relative h-48 overflow-hidden">
 						<img
 							src={offering.image}
 							alt={offering.alt}
@@ -146,11 +147,11 @@
 						></div>
 					</div>
 					<CardHeader class="flex flex-1 flex-col gap-4">
-						<span
-							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
-						>
-                                                <svelte:component this={offering.icon} class="h-6 w-6" />
-						</span>
+                                                <span
+                                                        class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+                                                >
+                                                        <Icon class="h-6 w-6" />
+                                                </span>
                                                 <CardTitle class="reveal text-2xl">
                                                         <span use:inView class="block">{offering.title}</span>
                                                 </CardTitle>
