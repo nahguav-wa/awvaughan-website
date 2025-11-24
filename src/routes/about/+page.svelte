@@ -92,17 +92,10 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="About"
-	align="center"
-	heading="A neighbor with the tools to tackle your to-do list"
-	description="I am Alex Vaughan—born and raised in Hampton Roads and committed to helping landowners keep their properties looking sharp without hiring a big crew."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Owner-operated tractor working across a grassy property.'
-	}}
+        eyebrow="About"
+        align="center"
+        heading="A neighbor with the tools to tackle your to-do list"
+        description="I am Alex Vaughan—born and raised in Hampton Roads and committed to helping landowners keep their properties looking sharp without hiring a big crew."
 />
 
 <section class="border-b border-border/60 bg-background py-16">

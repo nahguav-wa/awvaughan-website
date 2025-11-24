@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { inView } from '$lib/actions/in-view';
-	import { Badge } from '$lib/components/ui';
+        import { inView } from '$lib/actions/in-view';
+        import { Badge } from '$lib/components/ui';
+        import heroImage from '$lib/assets/hero-image-01.jpeg';
 
 	type BackgroundImage = {
 		src: string;
@@ -14,16 +15,16 @@
 		heading: string;
 		description?: string | string[];
 		align?: 'left' | 'center';
-		backgroundImage: BackgroundImage;
-	};
+                backgroundImage?: BackgroundImage;
+        };
 
-	let {
-		eyebrow = '',
-		heading,
-		description = [],
-		align = 'left',
-		backgroundImage
-	}: PageHeroProps = $props();
+        let {
+                eyebrow = '',
+                heading,
+                description = [],
+                align = 'left',
+                backgroundImage = { src: heroImage, alt: 'Compact tractor finishing a pass on a cleared property' }
+        }: PageHeroProps = $props();
 
 	const descriptionLines = $derived(
 		Array.isArray(description) ? description : description ? [description] : []
@@ -35,9 +36,9 @@
 </script>
 
 <section class="relative isolate overflow-hidden text-white">
-	<picture aria-hidden="true">
-		{#if backgroundImage.srcset}
-			<source srcset={backgroundImage.srcset} sizes={backgroundImage.sizes} />
+        <picture aria-hidden="true">
+                {#if backgroundImage.srcset}
+                        <source srcset={backgroundImage.srcset} sizes={backgroundImage.sizes} />
 		{/if}
 		<img
 			class="absolute inset-0 h-full w-full object-cover object-center"
@@ -51,9 +52,9 @@
 		class="via-[var(--brand-blue)]/35 to-[var(--text-dark)]/75 absolute inset-0 bg-gradient-to-b from-black/60"
 	></div>
 
-	<div
-		class={`relative z-10 mx-auto flex min-h-[24rem] w-full max-w-5xl flex-col justify-center px-6 py-24 ${alignmentClass}`}
-	>
+        <div
+                class={`relative z-10 mx-auto flex min-h-[65vh] w-full max-w-4xl flex-col justify-center px-6 py-28 ${alignmentClass}`}
+        >
 		{#if eyebrow}
 			<Badge
 				variant="accent"

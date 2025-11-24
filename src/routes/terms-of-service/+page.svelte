@@ -18,16 +18,9 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="Terms of service"
-	heading="How we work with clients and partners"
-	description="These guidelines outline how AW Vaughan Company communicates, scopes projects, and serves clients across Hampton Roads."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1528747045269-390fe33c19d4?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1528747045269-390fe33c19d4?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1528747045269-390fe33c19d4?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1528747045269-390fe33c19d4?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Paperwork and pen laid out for a contracting agreement.'
-	}}
+        eyebrow="Terms of service"
+        heading="How we work with clients and partners"
+        description="These guidelines outline how AW Vaughan Company communicates, scopes projects, and serves clients across Hampton Roads."
 />
 
 <section class="mx-auto max-w-4xl space-y-6 px-6 py-16">

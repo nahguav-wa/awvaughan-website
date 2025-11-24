@@ -80,20 +80,13 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="Contact"
-	align="center"
-	heading="Let’s get your property back in shape"
-	description={[
-		'Tell me about your acreage, the problem areas, and any deadlines. I will respond quickly with next steps and available dates.',
-		'Call or text (757) 402-1100 or email alex.vaughan@awvaughan.com for fast help.'
-	]}
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1596588801060-5d56586eca12?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Compact tractor parked on a rural driveway ready for work.'
-	}}
+        eyebrow="Contact"
+        align="center"
+        heading="Let’s get your property back in shape"
+        description={[
+                'Tell me about your acreage, the problem areas, and any deadlines. I will respond quickly with next steps and available dates.',
+                'Call or text (757) 402-1100 or email alex.vaughan@awvaughan.com for fast help.'
+        ]}
 />
 
 <section class="border-b border-border/60 bg-background py-16">

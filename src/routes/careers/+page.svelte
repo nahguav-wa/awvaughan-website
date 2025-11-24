@@ -18,16 +18,9 @@
 </svelte:head>
 
 <PageHero
-	eyebrow="Careers"
-	heading="Join a crew that leads with service"
-	description="Share your resume to be considered for upcoming roles supporting sitework and property maintenance projects across Hampton Roads."
-	backgroundImage={{
-		src: 'https://images.unsplash.com/photo-1570129476769-55f4a5add5a1?auto=format&fit=crop&w=1600&q=80',
-		srcset:
-			'https://images.unsplash.com/photo-1570129476769-55f4a5add5a1?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1570129476769-55f4a5add5a1?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1570129476769-55f4a5add5a1?auto=format&fit=crop&w=1600&q=80 1600w',
-		sizes: '(min-width: 1024px) 100vw, 100vw',
-		alt: 'Construction crew smiling together on a job site.'
-	}}
+        eyebrow="Careers"
+        heading="Join a crew that leads with service"
+        description="Share your resume to be considered for upcoming roles supporting sitework and property maintenance projects across Hampton Roads."
 />
 
 <section class="mx-auto max-w-4xl px-6 py-16">
