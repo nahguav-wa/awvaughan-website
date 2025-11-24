@@ -1,17 +1,20 @@
 <script lang="ts">
-	import { cn } from '$lib/utils/cn';
+        import { cn } from '$lib/utils/cn';
+        import type { HTMLAttributes } from 'svelte/elements';
+        import type { Snippet } from 'svelte';
 
-        type CardContentProps = {
+        type CardContentProps = HTMLAttributes<HTMLDivElement> & {
                 class?: string;
+                children?: Snippet;
         };
 
-        let { class: className = '' }: CardContentProps = $props();
-        const restProps = $restProps();
-        const classes = $derived(
-                cn('p-6 pt-0 text-sm text-[hsl(var(--muted-foreground))]', className, restProps.class)
-        );
+        type $$Props = CardContentProps;
+        type $$Slots = { default: Snippet };
+
+        let { class: className = '', children, ...restProps }: $$Props = $props();
+        const classes = $derived(cn('p-6 pt-0 text-sm text-[hsl(var(--muted-foreground))]', className));
 </script>
 
 <div {...restProps} class={classes}>
-        <slot />
+        {@render children?.()}
 </div>

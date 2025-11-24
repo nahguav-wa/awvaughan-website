@@ -177,14 +177,15 @@
 		<Separator class="hidden md:block" />
 
 		<div class="grid gap-6 md:grid-cols-3">
-			{#each valueHighlights as highlight (highlight.title)}
-				<Card class="h-full">
-					<CardHeader class="space-y-4">
-						<span
-							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
-						>
-                                                <svelte:component this={highlight.icon} class="h-6 w-6" />
-						</span>
+                        {#each valueHighlights as highlight (highlight.title)}
+                                {@const Icon = highlight.icon}
+                                <Card class="h-full">
+                                        <CardHeader class="space-y-4">
+                                                <span
+                                                        class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+                                                >
+                                                        <Icon class="h-6 w-6" />
+                                                </span>
 						<CardTitle>{highlight.title}</CardTitle>
 						<CardDescription>{highlight.description}</CardDescription>
 					</CardHeader>
@@ -223,9 +224,10 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-3">
-			{#each services as service (service.title)}
-				<Card class="group flex h-full flex-col overflow-hidden">
-					<div class="relative h-48 overflow-hidden">
+                        {#each services as service (service.title)}
+                                {@const Icon = service.icon}
+                                <Card class="group flex h-full flex-col overflow-hidden">
+                                        <div class="relative h-48 overflow-hidden">
 						<img
 							src={service.image}
 							alt={service.alt}
@@ -236,11 +238,11 @@
 						></div>
 					</div>
 					<CardHeader class="flex flex-1 flex-col gap-4">
-						<span
-							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
-						>
-                                                <svelte:component this={service.icon} class="h-6 w-6" />
-						</span>
+                                                <span
+                                                        class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+                                                >
+                                                        <Icon class="h-6 w-6" />
+                                                </span>
 						<CardTitle>{service.title}</CardTitle>
 						<CardDescription>{service.description}</CardDescription>
 					</CardHeader>
@@ -302,11 +304,11 @@
 			{#each featuredProjects as project (project.title)}
 				<Card class="flex h-full flex-col overflow-hidden">
 					<div class="relative h-48 overflow-hidden">
-						<img
-							src={project.image.src}
-							alt={project.image.alt}
-							class="h-full w-full object-cover transition duration-500 hover:scale-105"
-						/>
+                                                <img
+                                                        src={project.image}
+                                                        alt={project.alt}
+                                                        class="h-full w-full object-cover transition duration-500 hover:scale-105"
+                                                />
 						<div
 							class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40"
 						></div>
