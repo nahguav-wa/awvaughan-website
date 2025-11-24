@@ -67,7 +67,10 @@
 	const showVideo = $derived(Boolean(backgroundVideo?.src && !prefersReducedMotion));
 </script>
 
-<section id="hero" class="relative isolate overflow-hidden text-white">
+<section
+	id="hero"
+	class="relative isolate -mt-28 overflow-hidden pt-28 text-white lg:-mt-32 lg:pt-32"
+>
 	{#if showVideo}
 		<video
 			class="absolute inset-0 h-full w-full object-cover object-center"

@@ -111,6 +111,13 @@
 </script>
 
 <header class="fixed inset-x-0 top-0 z-50">
+	{#if menuOpen}
+		<div
+			class="fixed inset-0 z-40 bg-black/30 backdrop-blur-[1px] sm:hidden"
+			aria-hidden="true"
+			on:click={closeMenu}
+		></div>
+	{/if}
 	<div
 		class={`overflow-hidden border-b border-[hsl(var(--accent))] bg-[hsl(var(--accent))] transition-all duration-300 ease-out ${
 			isAtTop ? 'pointer-events-auto max-h-16 opacity-100' : 'pointer-events-none max-h-0 opacity-0'
@@ -160,7 +167,7 @@
 				: 'border-b border-transparent bg-transparent text-white'
 		}`}
 	>
-		<div class="content-container flex items-center gap-4 py-4">
+		<div class="content-container relative z-50 flex items-center gap-4 py-4">
 			<a
 				href={resolve('/')}
 				class={`text-lg font-semibold tracking-tight transition-colors ${
@@ -186,7 +193,7 @@
 				{:else}
 					<Menu class="h-4 w-4" aria-hidden="true" />
 				{/if}
-				<span class="text-[0.6rem] tracking-[0.3em]">Menu</span>
+				<span class="text-[0.65rem] tracking-[0.18em]">Menu</span>
 			</Button>
 
 			<div class="ml-auto hidden items-center gap-4 md:flex">
@@ -197,7 +204,7 @@
 							href={resolve(item.href)}
 							variant="ghost"
 							size="sm"
-							class={`rounded-full px-4 text-[0.65rem] tracking-[0.28em] ${
+							class={`rounded-full px-4 text-[0.7rem] tracking-[0.18em] md:text-[0.75rem] md:tracking-[0.24em] ${
 								showSolidBackground
 									? 'text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]'
 									: 'text-white/80 hover:text-white'
@@ -220,7 +227,7 @@
 					href={resolve(contactPath)}
 					variant="default"
 					size="sm"
-					class={`gap-2 rounded-full px-5 text-[0.7rem] tracking-[0.28em] text-[hsl(var(--primary-foreground))] md:text-sm ${
+					class={`gap-2 rounded-full px-5 text-[0.75rem] tracking-[0.18em] text-[hsl(var(--primary-foreground))] md:text-sm md:tracking-[0.24em] ${
 						isContactActive()
 							? 'ring-2 ring-[hsl(var(--ring))]/60 ring-offset-2 ring-offset-[hsl(var(--background))]'
 							: ''
@@ -238,7 +245,7 @@
 			<nav
 				id={navId}
 				aria-label="Primary navigation"
-				class="flex flex-col gap-3 text-sm font-semibold tracking-[0.25em] text-[hsl(var(--foreground))] uppercase"
+				class="flex flex-col gap-3 text-sm font-semibold tracking-[0.16em] text-[hsl(var(--foreground))] uppercase"
 			>
 				<!-- eslint-disable svelte/no-navigation-without-resolve -->
 				{#each navigation as item (item.href)}
