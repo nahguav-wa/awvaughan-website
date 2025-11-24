@@ -56,7 +56,7 @@
 	></div>
 
 	<div
-		class={`relative z-10 mx-auto flex min-h-[60vh] w-full max-w-4xl flex-col justify-center px-6 py-24 ${alignmentClass}`}
+		class={`relative z-10 mx-auto flex min-h-[60vh] w-full max-w-4xl flex-col justify-center px-4 py-20 sm:px-6 sm:py-24 ${alignmentClass}`}
 	>
 		{#if eyebrow}
 			<Badge

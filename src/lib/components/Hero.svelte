@@ -99,7 +99,7 @@
 	></div>
 
 	<div
-		class="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-4xl flex-col items-center justify-center px-6 py-24 text-center"
+		class="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-4xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 sm:py-24"
 	>
 		<h1 class="reveal text-4xl font-semibold tracking-tight text-white sm:text-5xl" use:inView>
 			{heading}
