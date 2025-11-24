@@ -16,7 +16,7 @@
 
 <div class="relative flex min-h-screen flex-col bg-[var(--surface-muted)] text-[var(--text-dark)]">
 	<Header />
-	<main id="main-content" tabindex="-1" class="flex-1 focus:outline-none">
+	<main id="main-content" tabindex="-1" class="flex-1 pt-28 focus:outline-none lg:pt-32">
 		{@render children?.()}
 	</main>
 	<Footer />
