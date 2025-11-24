@@ -41,31 +41,31 @@
 		external?: boolean;
 	};
 
-	let {
-		class: className = '',
-		variant = 'default',
-		size = 'default',
-		type = 'button',
-		href,
-		external = false
-	}: ButtonProps = $props();
+        let {
+                class: className = '',
+                variant = 'default',
+                size = 'default',
+                type = 'button',
+                href,
+                external = false
+        }: ButtonProps = $props();
 
-	const restProps = $restProps();
-	$: classes = cn(buttonVariants({ variant, size }), className, restProps.class);
+        const restProps = $restProps();
+        const classes = $derived(cn(buttonVariants({ variant, size }), className, restProps.class));
 </script>
 
 {#if href}
-	<a
-		{...restProps}
-		{href}
-		target={external ? '_blank' : restProps.target}
-		rel={external ? 'noreferrer' : restProps.rel}
-		class={classes}
-	>
-		<slot />
-	</a>
+        <a
+                {...restProps}
+                {href}
+                target={external ? '_blank' : restProps.target}
+                rel={external ? 'noreferrer' : restProps.rel}
+                class={classes}
+        >
+                <slot />
+        </a>
 {:else}
-	<button {...restProps} {type} class={classes}>
-		<slot />
-	</button>
+        <button {...restProps} {type} class={classes}>
+                <slot />
+        </button>
 {/if}

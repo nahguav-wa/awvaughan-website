@@ -26,11 +26,11 @@
 		variant?: VariantProps<typeof badgeVariants>['variant'];
 	};
 
-	let { class: className = '', variant = 'default' }: BadgeProps = $props();
-	const restProps = $restProps();
-	$: classes = cn(badgeVariants({ variant }), className, restProps.class);
+        let { class: className = '', variant = 'default' }: BadgeProps = $props();
+        const restProps = $restProps();
+        const classes = $derived(cn(badgeVariants({ variant }), className, restProps.class));
 </script>
 
 <span {...restProps} class={classes}>
-	<slot />
+        <slot />
 </span>

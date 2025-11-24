@@ -104,7 +104,9 @@
 						<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
 							{project.sector}
 						</Badge>
-						<CardTitle class="reveal text-xl" use:inView>{project.title}</CardTitle>
+                                                <CardTitle class="reveal text-xl">
+                                                        <span use:inView class="block">{project.title}</span>
+                                                </CardTitle>
 						<CardDescription>{project.summary}</CardDescription>
 					</CardHeader>
 					<CardFooter class="pt-0">
@@ -153,7 +155,9 @@
 				{#each approach as step (step.title)}
 					<Card>
 						<CardHeader class="space-y-2">
-							<CardTitle class="reveal text-lg" use:inView>{step.title}</CardTitle>
+                                                        <CardTitle class="reveal text-lg">
+                                                                <span use:inView class="block">{step.title}</span>
+                                                        </CardTitle>
 							<CardDescription>{step.description}</CardDescription>
 						</CardHeader>
 					</Card>
@@ -169,12 +173,11 @@
 			class="rounded-4xl bg-gradient-to-br from-background via-[hsl(var(--secondary))]/30 to-background text-center shadow-md"
 		>
 			<CardHeader class="space-y-4">
-				<CardTitle
-					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
-					use:inView
-				>
-					Ready to talk about your property?
-				</CardTitle>
+                                <CardTitle
+                                        class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
+                                >
+                                        <span use:inView class="block">Ready to talk about your property?</span>
+                                </CardTitle>
 				<CardDescription class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
 					Tell me what you are facing—overgrowth, brush piles, drainage issues, or driveway ruts. I
 					will share recommendations and schedule the passes needed to get you back on track.

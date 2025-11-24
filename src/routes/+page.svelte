@@ -183,7 +183,7 @@
 						<span
 							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
 						>
-							<svelte:component this={highlight.icon} class="h-6 w-6" />
+                                                <svelte:component this={highlight.icon} class="h-6 w-6" />
 						</span>
 						<CardTitle>{highlight.title}</CardTitle>
 						<CardDescription>{highlight.description}</CardDescription>
@@ -239,7 +239,7 @@
 						<span
 							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
 						>
-							<svelte:component this={service.icon} class="h-6 w-6" />
+                                                <svelte:component this={service.icon} class="h-6 w-6" />
 						</span>
 						<CardTitle>{service.title}</CardTitle>
 						<CardDescription>{service.description}</CardDescription>

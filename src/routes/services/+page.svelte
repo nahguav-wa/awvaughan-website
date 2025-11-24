@@ -149,9 +149,11 @@
 						<span
 							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
 						>
-							<svelte:component this={offering.icon} class="h-6 w-6" />
+                                                <svelte:component this={offering.icon} class="h-6 w-6" />
 						</span>
-						<CardTitle class="reveal text-2xl" use:inView>{offering.title}</CardTitle>
+                                                <CardTitle class="reveal text-2xl">
+                                                        <span use:inView class="block">{offering.title}</span>
+                                                </CardTitle>
 						<CardDescription>{offering.description}</CardDescription>
 					</CardHeader>
 					<CardContent class="pt-0">
