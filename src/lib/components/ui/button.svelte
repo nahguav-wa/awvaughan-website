@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { cva, type VariantProps } from 'class-variance-authority';
-	import type { HTMLAnchorAttributes, HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
-	import type { Snippet } from 'svelte';
+        import { createEventDispatcher } from 'svelte';
+        import { cva, type VariantProps } from 'class-variance-authority';
+        import type { HTMLAnchorAttributes, HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
+        import type { Snippet } from 'svelte';
 
 	import { cn } from '$lib/utils/cn';
 
@@ -55,32 +56,39 @@
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type $$Slots = { default: Snippet };
 
-	let {
-		class: className = '',
-		variant = 'default',
-		size = 'default',
-		type = 'button',
-		href,
-		external = false,
-		children,
-		...restProps
-	}: $$Props = $props();
+        let {
+                class: className = '',
+                variant = 'default',
+                size = 'default',
+                type = 'button',
+                href,
+                external = false,
+                children,
+                ...restProps
+        }: $$Props = $props();
 
-	const classes = $derived(cn(buttonVariants({ variant, size }), className));
+        const classes = $derived(cn(buttonVariants({ variant, size }), className));
+
+        const dispatch = createEventDispatcher<$$Events>();
+
+        const handleClick = (event: MouseEvent) => {
+                dispatch('click', event);
+        };
 </script>
 
 {#if href}
-	<a
-		{...restProps}
-		{href}
-		target={external ? '_blank' : restProps.target}
-		rel={external ? 'noreferrer' : restProps.rel}
-		class={classes}
-	>
-		{@render children?.()}
-	</a>
+        <a
+                {...restProps}
+                {href}
+                target={external ? '_blank' : restProps.target}
+                rel={external ? 'noreferrer' : restProps.rel}
+                class={classes}
+                onclick={handleClick}
+        >
+                {@render children?.()}
+        </a>
 {:else}
-	<button {...restProps} {type} class={classes}>
-		{@render children?.()}
-	</button>
+        <button {...restProps} {type} class={classes} onclick={handleClick}>
+                {@render children?.()}
+        </button>
 {/if}
