@@ -99,20 +99,27 @@
 	></div>
 
 	<div
-		class="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-4xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 sm:py-24"
+		class="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-5xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 sm:py-24"
 	>
-		<h1 class="reveal text-4xl font-semibold tracking-tight text-white sm:text-5xl" use:inView>
-			{heading}
-		</h1>
+		<div class="flex w-full max-w-3xl flex-col items-center gap-4 sm:gap-6">
+			<h1
+				class="reveal text-4xl font-semibold tracking-tight text-white sm:text-5xl sm:leading-[1.05]"
+				use:inView
+			>
+				{heading}
+			</h1>
 
-		<p class="reveal mt-3 text-lg font-medium text-white/85 sm:text-xl" use:inView>
-			{subheading}
-		</p>
+			<p class="reveal text-lg leading-relaxed font-medium text-white/90 sm:text-xl" use:inView>
+				{subheading}
+			</p>
 
-		<div class="mt-6 space-y-3 text-lg leading-relaxed text-slate-100/90 sm:text-xl">
-			{#each description as paragraph (paragraph)}
-				<p>{paragraph}</p>
-			{/each}
+			<div
+				class="space-y-4 text-base leading-relaxed text-slate-100/90 sm:text-lg sm:leading-[1.6]"
+			>
+				{#each description as paragraph (paragraph)}
+					<p class="mx-auto max-w-2xl">{paragraph}</p>
+				{/each}
+			</div>
 		</div>
 
 		<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
