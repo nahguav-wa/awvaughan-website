@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { inView } from '$lib/actions/in-view';
-	import { Badge, Button } from '$lib/components/ui';
-	import { onMount } from 'svelte';
+        import { resolve } from '$app/paths';
+        import { inView } from '$lib/actions/in-view';
+        import { Badge, Button } from '$lib/components/ui';
+        import heroImage from '$lib/assets/hero-image-01.jpeg';
+        import { onMount } from 'svelte';
 
 	type BackgroundImage = {
 		src: string;
@@ -25,13 +26,10 @@
 		backgroundVideo?: BackgroundVideo | null;
 	}
 
-	const defaultBackgroundImage: BackgroundImage = {
-		src: 'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1920&q=80',
-		alt: 'Compact tractor mowing tall grass along a rural property',
-		srcset:
-			'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=640&q=70 640w, https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1024&q=75 1024w, https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1920&q=80 1920w',
-		sizes: '(min-width: 1024px) 100vw, 100vw'
-	};
+        const defaultBackgroundImage: BackgroundImage = {
+                src: heroImage,
+                alt: 'Compact tractor finishing a pass on a cleared property'
+        };
 
 	const defaultBackgroundVideo: BackgroundVideo | null = null;
 
