@@ -20,7 +20,7 @@
 
 <article class="mx-auto max-w-3xl space-y-8 px-6 py-20">
 	<div class="space-y-3">
-		<p class="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
+		<p class="text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 			{sectionLabel}
 		</p>
 		<h1 class="text-3xl font-semibold text-[var(--text-dark)] sm:text-4xl">{entry.title}</h1>

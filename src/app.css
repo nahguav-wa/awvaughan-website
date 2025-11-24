@@ -24,15 +24,15 @@
 		--muted: 216 33% 92%;
 		--muted-foreground: 222 16% 40%;
 
-                --accent: 38.82 100% 50%;
-                --accent-foreground: 222 47% 11%;
+		--accent: 38.82 100% 50%;
+		--accent-foreground: 222 47% 11%;
 
 		--destructive: 0 84% 60%;
 		--destructive-foreground: 0 0% 98%;
 
 		--border: 214 31% 80%;
 		--input: 214 31% 80%;
-                --ring: 38.82 100% 50%;
+		--ring: 38.82 100% 50%;
 
 		--radius: 1.25rem;
 
@@ -66,15 +66,15 @@
 		--muted: 223 22% 17%;
 		--muted-foreground: 215 20% 75%;
 
-                --accent: 38.82 100% 50%;
-                --accent-foreground: 223 33% 12%;
+		--accent: 38.82 100% 50%;
+		--accent-foreground: 223 33% 12%;
 
 		--destructive: 0 80% 55%;
 		--destructive-foreground: 0 0% 98%;
 
 		--border: 223 23% 25%;
 		--input: 223 23% 25%;
-                --ring: 38.82 100% 50%;
+		--ring: 38.82 100% 50%;
 
 		--surface-base: hsl(var(--card));
 		--surface-muted: hsl(223 24% 15%);

@@ -18,9 +18,9 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="Terms of service"
-        heading="How we work with clients and partners"
-        description="These guidelines outline how AW Vaughan Company communicates, scopes projects, and serves clients across Hampton Roads."
+	eyebrow="Terms of service"
+	heading="How we work with clients and partners"
+	description="These guidelines outline how AW Vaughan Company communicates, scopes projects, and serves clients across Hampton Roads."
 />
 
 <section class="mx-auto max-w-4xl space-y-6 px-6 py-16">

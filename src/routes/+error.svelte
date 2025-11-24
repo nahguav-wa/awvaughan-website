@@ -41,7 +41,7 @@
 	<div class="mx-auto max-w-4xl space-y-12 px-6 text-[var(--text-dark)]">
 		<div class="space-y-6">
 			<span
-				class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]"
+				class="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase"
 			>
 				<span aria-hidden="true" class="inline-flex h-2 w-2 rounded-full bg-[var(--brand-orange)]"
 				></span>
@@ -53,13 +53,13 @@
 
 		<div class="grid gap-6 lg:grid-cols-2">
 			<div class="space-y-6 rounded-3xl bg-[var(--surface-soft)] p-8 shadow-sm shadow-slate-400/20">
-				<h2 class="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
+				<h2 class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 					Quick options
 				</h2>
 				<ul class="space-y-4 text-base">
 					<li>
 						<a
-							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-[var(--text-dark)] shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
 							href={resolve('/')}
 						>
 							Home
@@ -67,7 +67,7 @@
 					</li>
 					<li>
 						<a
-							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-[var(--text-dark)] shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
 							href={resolve('/services')}
 						>
 							Services
@@ -75,7 +75,7 @@
 					</li>
 					<li>
 						<a
-							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-[var(--text-dark)] shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
+							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
 							href={resolve('/contact')}
 						>
 							Contact
@@ -87,7 +87,7 @@
 			<div
 				class="space-y-6 rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-muted)] p-8"
 			>
-				<h2 class="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
+				<h2 class="text-sm font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 					Need immediate help?
 				</h2>
 				<p class="text-base text-[var(--text-muted)]">
@@ -122,11 +122,11 @@
 			<div
 				class="rounded-3xl border border-dashed border-[var(--border-soft)] bg-white/70 p-6 text-sm text-[var(--text-muted)]"
 			>
-				<h2 class="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--brand-blue)]">
+				<h2 class="mb-3 text-xs font-semibold tracking-[0.35em] text-[var(--brand-blue)] uppercase">
 					Debug details
 				</h2>
 				<pre
-					class="overflow-auto whitespace-pre-wrap break-words text-[var(--text-dark)]">{detailMessage}</pre>
+					class="overflow-auto break-words whitespace-pre-wrap text-[var(--text-dark)]">{detailMessage}</pre>
 			</div>
 		{/if}
 	</div>

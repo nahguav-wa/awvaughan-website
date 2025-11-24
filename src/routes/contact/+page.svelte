@@ -22,22 +22,19 @@
 	const commitments = [
 		{
 			title: 'Prompt replies',
-			description:
-				'Call, text, or email and I will get back to you quickly—usually the same day—to talk through what you need.'
+			description: 'Call, text, or email and I will reply quickly with next steps.'
 		},
 		{
 			title: 'Straightforward pricing',
-			description:
-				'You will know the cost before the tractor unloads. I outline the work, equipment, and any material charges up front.'
+			description: 'You see the scope, equipment, and material costs before the tractor unloads.'
 		},
 		{
 			title: 'Careful cleanup',
-			description:
-				'I leave the site tidy, safe, and ready for you to enjoy. Brush and debris leave with me unless you prefer otherwise.'
+			description: 'I leave the site tidy and remove debris unless you request otherwise.'
 		}
 	] as const;
 
-        let submissionMessage = $state('');
+	let submissionMessage = $state('');
 
 	const handleSubmit = (event: SubmitEvent) => {
 		event.preventDefault();
@@ -80,31 +77,29 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="Contact"
-        align="center"
-        heading="Let’s get your property back in shape"
-        description={[
-                'Tell me about your acreage, the problem areas, and any deadlines. I will respond quickly with next steps and available dates.',
-                'Call or text (757) 402-1100 or email alex.vaughan@awvaughan.com for fast help.'
-        ]}
+	eyebrow="Contact"
+	align="center"
+	heading="Tell me what you need and when you need it"
+	description={[
+		'Share the areas to address and your timeline. I will respond quickly with a simple plan.'
+	]}
 />
 
-<section class="border-b border-border/60 bg-background py-16">
+<section class="border-border/60 border-b bg-background py-16">
 	<div class="mx-auto max-w-6xl px-6">
 		<div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
 			<div class="space-y-10">
 				<Card>
 					<CardHeader class="space-y-3">
-                                                <CardTitle class="reveal text-2xl font-semibold text-[hsl(var(--foreground))]">
-                                                        <span use:inView class="block">Talk directly with Alex</span>
-                                                </CardTitle>
+						<CardTitle class="reveal text-2xl font-semibold text-[hsl(var(--foreground))]">
+							<span use:inView class="block">Talk directly with Alex</span>
+						</CardTitle>
 						<CardDescription>
-							Reach out using the details provided and let me know how I can help. Include the
-							location, timing, and any photos that show what you are dealing with.
+							Reach out with the location, timing, and a few photos. I will outline the next steps.
 						</CardDescription>
 					</CardHeader>
 					<CardContent class="space-y-6">
-						<address class="space-y-4 text-sm not-italic text-[hsl(var(--muted-foreground))]">
+						<address class="space-y-4 text-sm text-[hsl(var(--muted-foreground))] not-italic">
 							<div class="space-y-1">
 								<Label class="text-[0.65rem] text-[hsl(var(--accent))]">Phone</Label>
 								<a
@@ -157,28 +152,30 @@
 
 				<div class="space-y-6">
 					<div class="space-y-2">
-                                                <CardTitle class="reveal text-2xl font-semibold text-[hsl(var(--foreground))] sm:text-3xl">
-                                                        <span use:inView class="block">What you can expect</span>
-                                                </CardTitle>
-						<CardDescription>
-							Expect clear communication, tidy sites, and reliable follow-through from our crew.
-						</CardDescription>
+						<CardTitle
+							class="reveal text-2xl font-semibold text-[hsl(var(--foreground))] sm:text-3xl"
+						>
+							<span use:inView class="block">What you can expect</span>
+						</CardTitle>
+						<CardDescription
+							>Clear updates, tidy sites, and reliable follow-through.</CardDescription
+						>
 					</div>
 					{#each commitments as commitment (commitment.title)}
 						<Card>
 							<CardHeader>
-                                                                <CardTitle class="reveal text-xl font-semibold text-[hsl(var(--foreground))]">
-                                                                        <span use:inView class="block">{commitment.title}</span>
-                                                                </CardTitle>
+								<CardTitle class="reveal text-xl font-semibold text-[hsl(var(--foreground))]">
+									<span use:inView class="block">{commitment.title}</span>
+								</CardTitle>
 								<CardDescription>{commitment.description}</CardDescription>
 							</CardHeader>
 						</Card>
 					{/each}
 					<Card class="bg-[hsl(var(--secondary))]/50 text-center text-[hsl(var(--foreground))]">
 						<CardHeader class="space-y-3">
-							<Badge variant="secondary" class="w-fit self-center normal-case tracking-[0.3em]">
-								Need help soon?
-							</Badge>
+							<Badge variant="secondary" class="w-fit self-center text-xs font-semibold"
+								>Need help soon?</Badge
+							>
 							<CardDescription class="text-base text-[hsl(var(--muted-foreground))]">
 								Call or text
 								<a
@@ -200,12 +197,12 @@
 						Send a quick overview
 					</CardTitle>
 					<CardDescription>
-						Share your name, contact information, and a short note about the work. I will reply with
-						next steps.
+						Share your contact information and a short note about the work. I will reply with next
+						steps.
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
-                                        <form class="space-y-5" onsubmit={handleSubmit}>
+					<form class="space-y-5" onsubmit={handleSubmit}>
 						<div class="space-y-2">
 							<Label for="name">Name</Label>
 							<Input id="name" name="name" placeholder="Your name" />

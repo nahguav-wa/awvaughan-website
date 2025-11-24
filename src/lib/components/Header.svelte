@@ -4,17 +4,17 @@
 	import { browser } from '$app/environment';
 	import { onDestroy, onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
-        import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
-        import accentMark from '$lib/assets/Asset 1@1x.png';
-        import { Button, Separator } from '$lib/components/ui';
+	import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
+	import accentMark from '$lib/assets/Asset 1@1x.png';
+	import { Button, Separator } from '$lib/components/ui';
 
-        type RouteHref =
-                | '/about'
-                | '/services'
-                | '/contact'
-                | '/careers'
-                | '/privacy-policy'
-                | '/terms-of-service';
+	type RouteHref =
+		| '/about'
+		| '/services'
+		| '/contact'
+		| '/careers'
+		| '/privacy-policy'
+		| '/terms-of-service';
 
 	type NavItem = {
 		href: RouteHref;
@@ -25,12 +25,12 @@
 		icon: ComponentType;
 		label: string;
 		href?: string;
-        };
+	};
 
-        const navigation: readonly NavItem[] = [
-                { href: '/about', label: 'About' },
-                { href: '/services', label: 'Services' }
-        ];
+	const navigation: readonly NavItem[] = [
+		{ href: '/about', label: 'About' },
+		{ href: '/services', label: 'Services' }
+	];
 
 	const contactPath = '/contact' as const;
 
@@ -113,7 +113,7 @@
 
 <header class="fixed inset-x-0 top-0 z-50">
 	<div
-                class={`overflow-hidden border-b border-[#ffa500] bg-[#ffa500] transition-all duration-300 ease-out ${
+		class={`overflow-hidden border-b border-[#ffa500] bg-[#ffa500] transition-all duration-300 ease-out ${
 			isAtTop ? 'pointer-events-auto max-h-16 opacity-100' : 'pointer-events-none max-h-0 opacity-0'
 		}`}
 		aria-hidden={!isAtTop}
@@ -122,24 +122,26 @@
 			class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-3 px-6 py-2 text-xs font-medium"
 		>
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-                        {#each contactDetails as detail, index (detail.label)}
-                                {#if detail.href}
-                                        <a
-                                                class="inline-flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/90 transition hover:text-white"
-                                                href={detail.href}
-                                        >
-                                                <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
-                                                <span>{detail.label}</span>
-                                        </a>
-                                {:else}
-                                        <div class="inline-flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/90">
-                                                <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
-                                                <span>{detail.label}</span>
-                                        </div>
-                                {/if}
-                                {#if index < contactDetails.length - 1}
-                                        <Separator
-                                                orientation="vertical"
+			{#each contactDetails as detail, index (detail.label)}
+				{#if detail.href}
+					<a
+						class="inline-flex items-center gap-2 text-[0.65rem] font-semibold tracking-[0.14em] text-white/90 uppercase transition hover:text-white"
+						href={detail.href}
+					>
+						<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+						<span>{detail.label}</span>
+					</a>
+				{:else}
+					<div
+						class="inline-flex items-center gap-2 text-[0.65rem] font-semibold tracking-[0.14em] text-white/90 uppercase"
+					>
+						<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+						<span>{detail.label}</span>
+					</div>
+				{/if}
+				{#if index < contactDetails.length - 1}
+					<Separator
+						orientation="vertical"
 						class="hidden h-6 bg-white/30 sm:inline-flex"
 						decorative
 					/>
@@ -152,26 +154,26 @@
 	<div
 		class={`transition-[background-color,box-shadow,border-color] duration-300 ${
 			showSolidBackground
-				? 'border-b border-border/60 bg-background/95 text-[hsl(var(--foreground))] shadow-sm backdrop-blur'
+				? 'border-border/60 border-b bg-background/95 text-[hsl(var(--foreground))] shadow-sm backdrop-blur'
 				: 'border-b border-transparent bg-transparent text-white'
 		}`}
 	>
 		<div class="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
-                        <a
-                                href={resolve('/')}
-                                class={`group inline-flex items-center gap-3 transition-colors ${
-                                        showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
-                                }`}
-                        >
-                                <img
-                                        src={accentMark}
-                                        alt="A.W. Vaughan emblem"
-                                        class="h-10 w-auto drop-shadow-sm transition duration-200 group-hover:scale-[1.03] sm:h-12"
-                                />
-                                <div class="leading-tight">
-                                        <span class="text-sm font-semibold tracking-[0.2em] sm:text-base">A.W. Vaughan Co.</span>
-                                </div>
-                        </a>
+			<a
+				href={resolve('/')}
+				class={`group inline-flex items-center gap-3 transition-colors ${
+					showSolidBackground ? 'text-[hsl(var(--foreground))]' : 'text-white'
+				}`}
+			>
+				<img
+					src={accentMark}
+					alt="A.W. Vaughan emblem"
+					class="h-10 w-auto drop-shadow-sm transition duration-200 group-hover:scale-[1.03] sm:h-12"
+				/>
+				<div class="leading-tight">
+					<span class="text-sm font-semibold tracking-[0.2em] sm:text-base">A.W. Vaughan Co.</span>
+				</div>
+			</a>
 
 			<Button
 				type="button"
@@ -237,11 +239,11 @@
 	</div>
 
 	{#if menuOpen}
-		<div class="border-b border-border/60 bg-background/95 px-6 py-4 shadow-lg sm:hidden">
+		<div class="border-border/60 border-b bg-background/95 px-6 py-4 shadow-lg sm:hidden">
 			<nav
 				id={navId}
 				aria-label="Primary navigation"
-				class="flex flex-col gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-[hsl(var(--foreground))]"
+				class="flex flex-col gap-3 text-sm font-semibold tracking-[0.25em] text-[hsl(var(--foreground))] uppercase"
 			>
 				<!-- eslint-disable svelte/no-navigation-without-resolve -->
 				{#each navigation as item (item.href)}

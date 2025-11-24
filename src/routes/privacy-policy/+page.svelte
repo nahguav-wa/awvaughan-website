@@ -18,9 +18,9 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="Privacy policy"
-        heading="How we protect your information"
-        description="We respect your privacy and only use the details you share to respond to your inquiry. Review the commitments below while we finalize our formal policy."
+	eyebrow="Privacy policy"
+	heading="How we protect your information"
+	description="We respect your privacy and only use the details you share to respond to your inquiry. Review the commitments below while we finalize our formal policy."
 />
 
 <section class="mx-auto max-w-4xl space-y-6 px-6 py-16">

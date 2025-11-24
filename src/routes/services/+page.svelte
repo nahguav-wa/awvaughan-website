@@ -34,21 +34,21 @@
 		{
 			title: 'Field & pasture mowing',
 			description:
-				'Bush hogging for large yards, horse pastures, roadside frontage, and utility easements. I keep growth knocked down and sight lines clear.',
+				'Bush hogging for large yards, pastures, roadside frontage, and easements to keep growth down.',
 			icon: ExcavatorIcon,
 			image:
 				'https://images.unsplash.com/photo-1597106658448-9f62510953f8?auto=format&fit=crop&w=1600&q=80',
 			alt: 'Compact tractor mowing tall grass beside a fence line.',
 			items: [
-				'One-time knockdowns or seasonal maintenance for 1+ acre properties',
-				'Fence line trimming and edge pass cleanups',
-				'Pasture clipping to promote healthy regrowth'
+				'One-time knockdowns or seasonal passes for larger properties',
+				'Fence line trimming and clean edge passes',
+				'Pasture clipping for healthier regrowth'
 			]
 		},
 		{
 			title: 'Brush, limb & debris cleanup',
 			description:
-				'Storms and projects leave piles behind. I can cut, load, and haul brush, small trees, and yard debris so you can enjoy your land again.',
+				'Cutting, loading, and hauling brush, small trees, and debris after storms or projects.',
 			icon: MaintenanceIcon,
 			image:
 				'https://images.unsplash.com/photo-1520854221050-0f4caff449fb?auto=format&fit=crop&w=1600&q=80',
@@ -62,7 +62,7 @@
 		{
 			title: 'Driveway & light grading',
 			description:
-				'Refresh gravel drives, correct low spots, and restore drainage. My box blade, land plane, and rake attachments leave a smooth finish.',
+				'Refreshing gravel drives, smoothing low spots, and shaping drainage with compact equipment.',
 			icon: WaterIcon,
 			image:
 				'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=1600&q=80',
@@ -76,7 +76,7 @@
 		{
 			title: 'Hauling & odd jobs',
 			description:
-				'Need a load of gravel delivered with the work, or have an awkward project that requires a tractor and trailer? I can help.',
+				'Material delivery, small demolition, and custom tractor projects paired with the right trailer.',
 			icon: EmergencyIcon,
 			image:
 				'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80',
@@ -101,35 +101,32 @@
 </svelte:head>
 
 <PageHero
-        eyebrow="Services"
-        align="center"
-        heading="Small tractor work that keeps your property in shape"
-        description="From bush hogging to driveway touchups, each job is handled start to finish by owner-operator Alex Vaughan. Serving Virginia Beach, Chesapeake, Norfolk, Suffolk, and nearby communities."
+	eyebrow="Services"
+	align="center"
+	heading="Practical tractor work for homes and small farms"
+	description="Owner-operator service for mowing, cleanup, and light grading around Hampton Roads."
 />
 
-<section class="border-b border-border/60 bg-background py-16">
+<section class="border-border/60 border-b bg-background py-16">
 	<div class="mx-auto max-w-6xl space-y-12 px-6">
 		<div class="max-w-3xl space-y-4">
-			<Badge variant="secondary" class="w-fit normal-case tracking-[0.3em]">
-				What I can help with
-			</Badge>
+			<Badge variant="secondary" class="w-fit text-xs font-semibold">What I can help with</Badge>
 			<h2
 				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
 				use:inView
 			>
-				Practical services for acreage homes and small farms
+				Services built to keep land simple to maintain
 			</h2>
 			<p class="text-base text-[hsl(var(--muted-foreground))] sm:text-lg">
-				Mix and match the support you need. I am happy to walk the property, explain the plan, and
-				put together a clear quote before getting to work.
+				We will walk the property, agree on a plan, and keep the work list short and clear.
 			</p>
 		</div>
 
-                <div class="grid gap-8 md:grid-cols-2">
-                        {#each offerings as offering (offering.title)}
-                                {@const Icon = offering.icon}
-                                <Card class="group flex h-full flex-col overflow-hidden">
-                                        <div class="relative h-48 overflow-hidden">
+		<div class="grid gap-8 md:grid-cols-2">
+			{#each offerings as offering (offering.title)}
+				{@const Icon = offering.icon}
+				<Card class="group flex h-full flex-col overflow-hidden">
+					<div class="relative h-48 overflow-hidden">
 						<img
 							src={offering.image}
 							alt={offering.alt}
@@ -140,14 +137,14 @@
 						></div>
 					</div>
 					<CardHeader class="flex flex-1 flex-col gap-4">
-                                                <span
-                                                        class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
-                                                >
-                                                        <Icon class="h-6 w-6" />
-                                                </span>
-                                                <CardTitle class="reveal text-2xl">
-                                                        <span use:inView class="block">{offering.title}</span>
-                                                </CardTitle>
+						<span
+							class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[hsl(var(--secondary))] text-[hsl(var(--primary))]"
+						>
+							<Icon class="h-6 w-6" />
+						</span>
+						<CardTitle class="reveal text-2xl">
+							<span use:inView class="block">{offering.title}</span>
+						</CardTitle>
 						<CardDescription>{offering.description}</CardDescription>
 					</CardHeader>
 					<CardContent class="pt-0">
@@ -197,18 +194,18 @@
 					Not seeing what you need?
 				</CardTitle>
 				<CardDescription>
-					I am happy to quote custom tractor work, materials hauling, or seasonal maintenance. If it
-					involves a compact tractor and a careful operator, we can figure it out together.
+					I can quote custom tractor work, hauling, or seasonal maintenance. If it needs a compact
+					tractor, let’s talk.
 				</CardDescription>
 			</CardHeader>
-                        <CardFooter class="justify-center gap-4 pt-0">
-                                <Button href={resolve('/contact')} variant="default" size="sm" class="rounded-full">
-                                        Start a conversation
-                                </Button>
-                                <Button href={resolve('/about')} variant="ghost" size="sm" class="rounded-full">
-                                        Learn about the company
-                                </Button>
-                        </CardFooter>
-                </Card>
-        </div>
+			<CardFooter class="justify-center gap-4 pt-0">
+				<Button href={resolve('/contact')} variant="default" size="sm" class="rounded-full">
+					Start a conversation
+				</Button>
+				<Button href={resolve('/about')} variant="ghost" size="sm" class="rounded-full">
+					Learn about the company
+				</Button>
+			</CardFooter>
+		</Card>
+	</div>
 </section>
