@@ -10,8 +10,8 @@
 		{
 			variants: {
 				variant: {
-					default:
-						'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] shadow-sm hover:bg-[hsl(var(--primary))]/90',
+                                        default:
+                                                'bg-[#ffa500] text-slate-900 shadow-sm hover:bg-[#ffa500]/90',
 					destructive:
 						'bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))] shadow-sm hover:bg-[hsl(var(--destructive))]/90',
 					outline:
@@ -19,7 +19,7 @@
 					secondary:
 						'bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] shadow-sm hover:bg-[hsl(var(--secondary))]/80',
 					ghost: 'text-[hsl(var(--foreground))] hover:bg-[hsl(var(--secondary))]/70',
-					link: 'text-[hsl(var(--primary))] underline-offset-4 hover:underline'
+                                        link: 'text-[#ffa500] underline-offset-4 hover:underline'
 				},
 				size: {
 					default: 'h-11 px-6',

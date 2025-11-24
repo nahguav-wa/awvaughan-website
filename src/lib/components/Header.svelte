@@ -4,8 +4,8 @@
 	import { browser } from '$app/environment';
 	import { onDestroy, onMount } from 'svelte';
 	import type { ComponentType } from 'svelte';
-	import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
-        import { Badge, Button, Separator } from '$lib/components/ui';
+        import { Mail, MapPin, Menu, Phone, X } from 'lucide-svelte';
+        import { Button, Separator } from '$lib/components/ui';
 
         type RouteHref =
                 | '/about'
@@ -112,7 +112,7 @@
 
 <header class="fixed inset-x-0 top-0 z-50">
 	<div
-		class={`overflow-hidden border-b border-[hsl(var(--accent))] bg-[hsl(var(--accent))] transition-all duration-300 ease-out ${
+                class={`overflow-hidden border-b border-[#ffa500] bg-[#ffa500] transition-all duration-300 ease-out ${
 			isAtTop ? 'pointer-events-auto max-h-16 opacity-100' : 'pointer-events-none max-h-0 opacity-0'
 		}`}
 		aria-hidden={!isAtTop}
@@ -121,29 +121,24 @@
 			class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-3 px-6 py-2 text-xs font-medium"
 		>
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
-			{#each contactDetails as detail, index (detail.label)}
-				{#if detail.href}
-					<a class="transition hover:opacity-90" href={detail.href}>
-						<Badge
-							variant="accent"
-							class="gap-2 rounded-full bg-white/10 text-[0.6rem] normal-case text-white shadow-none"
-						>
-                                                    <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
-							<span>{detail.label}</span>
-						</Badge>
-					</a>
-				{:else}
-					<Badge
-						variant="accent"
-						class="gap-2 rounded-full bg-white/10 text-[0.6rem] normal-case text-white shadow-none"
-					>
-                                            <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
-						<span>{detail.label}</span>
-					</Badge>
-				{/if}
-				{#if index < contactDetails.length - 1}
-					<Separator
-						orientation="vertical"
+                        {#each contactDetails as detail, index (detail.label)}
+                                {#if detail.href}
+                                        <a
+                                                class="inline-flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/90 transition hover:text-white"
+                                                href={detail.href}
+                                        >
+                                                <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+                                                <span>{detail.label}</span>
+                                        </a>
+                                {:else}
+                                        <div class="inline-flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/90">
+                                                <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+                                                <span>{detail.label}</span>
+                                        </div>
+                                {/if}
+                                {#if index < contactDetails.length - 1}
+                                        <Separator
+                                                orientation="vertical"
 						class="hidden h-6 bg-white/30 sm:inline-flex"
 						decorative
 					/>
