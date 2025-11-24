@@ -37,7 +37,7 @@
 		}
 	] as const;
 
-	let submissionMessage = '';
+        let submissionMessage = $state('');
 
 	const handleSubmit = (event: SubmitEvent) => {
 		event.preventDefault();
@@ -102,12 +102,9 @@
 			<div class="space-y-10">
 				<Card>
 					<CardHeader class="space-y-3">
-						<CardTitle
-							class="reveal text-2xl font-semibold text-[hsl(var(--foreground))]"
-							use:inView
-						>
-							Talk directly with Alex
-						</CardTitle>
+                                                <CardTitle class="reveal text-2xl font-semibold text-[hsl(var(--foreground))]">
+                                                        <span use:inView class="block">Talk directly with Alex</span>
+                                                </CardTitle>
 						<CardDescription>
 							Reach out using the details provided and let me know how I can help. Include the
 							location, timing, and any photos that show what you are dealing with.
@@ -167,12 +164,9 @@
 
 				<div class="space-y-6">
 					<div class="space-y-2">
-						<CardTitle
-							class="reveal text-2xl font-semibold text-[hsl(var(--foreground))] sm:text-3xl"
-							use:inView
-						>
-							What you can expect
-						</CardTitle>
+                                                <CardTitle class="reveal text-2xl font-semibold text-[hsl(var(--foreground))] sm:text-3xl">
+                                                        <span use:inView class="block">What you can expect</span>
+                                                </CardTitle>
 						<CardDescription>
 							Expect clear communication, tidy sites, and reliable follow-through from our crew.
 						</CardDescription>
@@ -180,12 +174,9 @@
 					{#each commitments as commitment (commitment.title)}
 						<Card>
 							<CardHeader>
-								<CardTitle
-									class="reveal text-xl font-semibold text-[hsl(var(--foreground))]"
-									use:inView
-								>
-									{commitment.title}
-								</CardTitle>
+                                                                <CardTitle class="reveal text-xl font-semibold text-[hsl(var(--foreground))]">
+                                                                        <span use:inView class="block">{commitment.title}</span>
+                                                                </CardTitle>
 								<CardDescription>{commitment.description}</CardDescription>
 							</CardHeader>
 						</Card>
@@ -221,7 +212,7 @@
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<form class="space-y-5" on:submit={handleSubmit}>
+                                        <form class="space-y-5" onsubmit={handleSubmit}>
 						<div class="space-y-2">
 							<Label for="name">Name</Label>
 							<Input id="name" name="name" placeholder="Your name" />

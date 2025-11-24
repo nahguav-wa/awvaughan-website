@@ -130,7 +130,7 @@
 							variant="accent"
 							class="gap-2 rounded-full bg-white/10 text-[0.6rem] normal-case text-white shadow-none"
 						>
-							<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+                                                    <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
 							<span>{detail.label}</span>
 						</Badge>
 					</a>
@@ -139,7 +139,7 @@
 						variant="accent"
 						class="gap-2 rounded-full bg-white/10 text-[0.6rem] normal-case text-white shadow-none"
 					>
-						<svelte:component this={detail.icon} class="h-3.5 w-3.5" />
+                                            <svelte:component this={detail.icon} class="h-3.5 w-3.5" />
 						<span>{detail.label}</span>
 					</Badge>
 				{/if}
