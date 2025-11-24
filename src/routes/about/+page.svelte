@@ -93,9 +93,9 @@
 	description="I am Alex Vaughan. I grew up in Hampton Roads and keep the work personal, simple, and tidy."
 />
 
-<section class="border-border/60 border-b bg-background py-16">
-	<div class="mx-auto max-w-6xl space-y-12 px-6">
-		<div class="max-w-3xl space-y-4">
+<section class="border-border/60 section-spacing border-b bg-background">
+	<div class="content-container stack-spacing">
+		<div class="max-w-3xl space-y-5 sm:space-y-4">
 			<Badge variant="secondary" class="w-fit text-xs font-semibold">What matters</Badge>
 			<h2
 				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
@@ -108,7 +108,7 @@
 			</p>
 		</div>
 
-		<div class="grid gap-8 md:grid-cols-3">
+		<div class="grid gap-6 md:grid-cols-3 md:gap-8">
 			{#each values as value (value.title)}
 				{@const Icon = value.icon}
 				<Card class="h-full">
@@ -127,10 +127,10 @@
 	</div>
 </section>
 
-<section class="border-border/60 border-b bg-muted/40 py-20">
-	<div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_340px]">
-		<div class="space-y-6">
-			<div class="space-y-4">
+<section class="border-border/60 section-spacing border-b bg-muted/40">
+	<div class="content-container grid gap-10 lg:grid-cols-[1fr_340px]">
+		<div class="stack-spacing">
+			<div class="space-y-5 sm:space-y-4">
 				<Badge variant="secondary" class="w-fit text-xs font-semibold">How it works</Badge>
 				<h2
 					class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
@@ -143,7 +143,7 @@
 				</p>
 			</div>
 
-			<div class="grid gap-6 md:grid-cols-3">
+			<div class="grid gap-4 md:grid-cols-3 md:gap-6">
 				{#each steps as step, index (step.title)}
 					<Card class="h-full">
 						<CardHeader class="space-y-3">
@@ -177,9 +177,9 @@
 	</div>
 </section>
 
-<section class="border-border/60 border-b bg-background py-20">
-	<div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
-		<div class="flex-1 space-y-4">
+<section class="border-border/60 section-spacing border-b bg-background">
+	<div class="content-container flex flex-col gap-10 lg:flex-row">
+		<div class="flex-1 space-y-5 sm:space-y-4">
 			<Badge variant="secondary" class="w-fit text-xs font-semibold">Service area</Badge>
 			<h2
 				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"

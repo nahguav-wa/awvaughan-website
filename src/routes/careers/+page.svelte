@@ -23,7 +23,7 @@
 	description="Share your resume to be considered for upcoming roles supporting sitework and property maintenance projects across Hampton Roads."
 />
 
-<section class="mx-auto max-w-4xl px-6 py-16">
+<section class="content-container section-spacing max-w-4xl">
 	<h2 class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl" use:inView>
 		Grow with AW Vaughan Company
 	</h2>

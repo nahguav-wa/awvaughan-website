@@ -85,10 +85,10 @@
 	]}
 />
 
-<section class="border-border/60 border-b bg-background py-16">
-	<div class="mx-auto max-w-6xl px-6">
+<section class="border-border/60 section-spacing border-b bg-background">
+	<div class="content-container">
 		<div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-			<div class="space-y-10">
+			<div class="stack-spacing">
 				<Card>
 					<CardHeader class="space-y-3">
 						<CardTitle class="reveal text-2xl font-semibold text-[hsl(var(--foreground))]">

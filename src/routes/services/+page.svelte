@@ -107,9 +107,9 @@
 	description="Owner-operator service for mowing, cleanup, and light grading around Hampton Roads."
 />
 
-<section class="border-border/60 border-b bg-background py-16">
-	<div class="mx-auto max-w-6xl space-y-12 px-6">
-		<div class="max-w-3xl space-y-4">
+<section class="border-border/60 section-spacing border-b bg-background">
+	<div class="content-container stack-spacing">
+		<div class="max-w-3xl space-y-5 sm:space-y-4">
 			<Badge variant="secondary" class="w-fit text-xs font-semibold">What I can help with</Badge>
 			<h2
 				class="reveal text-3xl font-semibold text-[hsl(var(--foreground))] sm:text-4xl"
@@ -122,7 +122,7 @@
 			</p>
 		</div>
 
-		<div class="grid gap-8 md:grid-cols-2">
+		<div class="grid gap-6 md:grid-cols-2 md:gap-8">
 			{#each offerings as offering (offering.title)}
 				{@const Icon = offering.icon}
 				<Card class="group flex h-full flex-col overflow-hidden">

@@ -42,7 +42,7 @@
 </script>
 
 <footer class="border-border/60 border-t bg-background py-12">
-	<div class="mx-auto max-w-6xl px-6">
+	<div class="content-container">
 		<div class="grid gap-10 text-sm text-[hsl(var(--muted-foreground))] md:grid-cols-4">
 			<div class="space-y-4">
 				<img src={logoAsset} alt="A.W. Vaughan Company logo" class="h-14 w-auto" />

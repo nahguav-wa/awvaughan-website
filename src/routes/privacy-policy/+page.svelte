@@ -23,7 +23,7 @@
 	description="We respect your privacy and only use the details you share to respond to your inquiry. Review the commitments below while we finalize our formal policy."
 />
 
-<section class="mx-auto max-w-4xl space-y-6 px-6 py-16">
+<section class="content-container section-spacing max-w-4xl space-y-6">
 	<h2 class="reveal text-2xl font-semibold text-[var(--text-dark)] sm:text-3xl" use:inView>
 		Our current commitments
 	</h2>

@@ -119,7 +119,7 @@
 		aria-hidden={!isAtTop}
 	>
 		<div
-			class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-3 px-6 py-2 text-xs font-medium"
+			class="content-container flex flex-wrap items-center justify-center gap-x-4 gap-y-3 py-2 text-xs font-medium"
 		>
 			<!-- eslint-disable svelte/no-navigation-without-resolve -->
 			{#each contactDetails as detail, index (detail.label)}
@@ -158,7 +158,7 @@
 				: 'border-b border-transparent bg-transparent text-white'
 		}`}
 	>
-		<div class="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
+		<div class="content-container flex items-center gap-4 py-4">
 			<a
 				href={resolve('/')}
 				class={`group inline-flex items-center gap-3 transition-colors ${
@@ -171,7 +171,9 @@
 					class="h-10 w-auto drop-shadow-sm transition duration-200 group-hover:scale-[1.03] sm:h-12"
 				/>
 				<div class="leading-tight">
-					<span class="text-sm font-semibold tracking-[0.2em] sm:text-base">A.W. Vaughan Co.</span>
+					<span class="text-sm font-semibold tracking-[0.2em] uppercase sm:text-base"
+						>A.W. Vaughan Co.</span
+					>
 				</div>
 			</a>
 
@@ -185,13 +187,14 @@
 				aria-expanded={menuOpen}
 				aria-controls={navId}
 				on:click={toggleMenu}
+				aria-pressed={menuOpen}
 			>
 				{#if menuOpen}
 					<X class="h-4 w-4" aria-hidden="true" />
 				{:else}
 					<Menu class="h-4 w-4" aria-hidden="true" />
 				{/if}
-				<span class="text-[0.6rem] tracking-[0.3em]">Menu</span>
+				<span class="text-[0.6rem] tracking-[0.3em] uppercase">Menu</span>
 			</Button>
 
 			<div class="ml-auto hidden items-center gap-4 md:flex">
@@ -202,7 +205,7 @@
 							href={resolve(item.href)}
 							variant="ghost"
 							size="sm"
-							class={`rounded-full px-4 text-[0.65rem] tracking-[0.28em] ${
+							class={`rounded-full px-4 text-[0.65rem] tracking-[0.28em] uppercase ${
 								showSolidBackground
 									? 'text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]'
 									: 'text-white/80 hover:text-white'
@@ -232,7 +235,7 @@
 					}`}
 					aria-current={isContactActive() ? 'page' : undefined}
 				>
-					Contact Us
+					CONTACT US
 				</Button>
 			</div>
 		</div>
@@ -251,7 +254,7 @@
 						href={resolve(item.href)}
 						variant="secondary"
 						size="sm"
-						class={`w-full justify-start rounded-2xl normal-case ${
+						class={`w-full justify-start rounded-2xl uppercase ${
 							isActive(item) ? 'ring-1 ring-[hsl(var(--ring))]/30' : ''
 						}`}
 						on:click={handleLinkActivate}
@@ -270,7 +273,7 @@
 				on:click={handleLinkActivate}
 				aria-current={isContactActive() ? 'page' : undefined}
 			>
-				Contact Us
+				CONTACT US
 			</Button>
 		</div>
 	{/if}
