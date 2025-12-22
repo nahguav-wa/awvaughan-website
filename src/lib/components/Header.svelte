@@ -16,7 +16,9 @@
 
   onMount(() => {
     // Close on escape
-    const handleKey = (e: KeyboardEvent) => if (e.key === 'Escape') $navOpen = false;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') $navOpen = false;
+    };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   });
