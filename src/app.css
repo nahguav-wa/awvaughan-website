@@ -5,198 +5,199 @@
 @plugin 'tailwindcss-animate';
 
 @layer base {
-	:root {
-		--background: 216 33% 96%;
-		--foreground: 222 47% 11%;
+  :root {
+    --background: 216 33% 96%;
+    --foreground: 222 47% 11%;
 
-		--card: 0 0% 100%;
-		--card-foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-		--popover: 0 0% 100%;
-		--popover-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-		--primary: 213 64% 32%;
-		--primary-foreground: 0 0% 100%;
+    --primary: 213 64% 32%;
+    --primary-foreground: 0 0% 100%;
 
-		--secondary: 216 33% 92%;
-		--secondary-foreground: 222 47% 11%;
+    --secondary: 216 33% 92%;
+    --secondary-foreground: 222 47% 11%;
 
-		--muted: 216 33% 92%;
-		--muted-foreground: 222 16% 40%;
+    --muted: 216 33% 92%;
+    --muted-foreground: 222 16% 40%;
 
-		--accent: 38.82 100% 50%;
-		--accent-foreground: 222 47% 11%;
+    --accent: 38.82 100% 50%;
+    --accent-foreground: 222 47% 11%;
 
-		--destructive: 0 84% 60%;
-		--destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-		--border: 214 31% 80%;
-		--input: 214 31% 80%;
-		--ring: 38.82 100% 50%;
+    --border: 214 31% 80%;
+    --input: 214 31% 80%;
+    --ring: 38.82 100% 50%;
 
-		--radius: 1.25rem;
+    --radius: 1.25rem;
 
-		--brand-blue: #1b4d8a;
-		--brand-blue-soft: #e6eef8;
-		--brand-orange: #ffa500;
-		--text-dark: hsl(var(--foreground));
-		--text-muted: hsl(var(--muted-foreground));
-		--surface-base: hsl(var(--card));
-		--surface-muted: hsl(216 33% 94%);
-		--surface-soft: hsl(216 33% 91%);
-		--border-soft: hsl(var(--border));
-	}
+    --brand-blue: #1b4d8a;
+    --brand-blue-soft: #e6eef8;
+    --brand-orange: #ffa500;
+    --text-dark: hsl(var(--foreground));
+    --text-muted: hsl(var(--muted-foreground));
+    --surface-base: hsl(var(--card));
+    --surface-muted: hsl(216 33% 94%);
+    --surface-soft: hsl(216 33% 91%);
+    --border-soft: hsl(var(--border));
+  }
 
-	.dark {
-		--background: 223 33% 9%;
-		--foreground: 213 31% 91%;
+  .dark {
+    --background: 223 33% 9%;
+    --foreground: 213 31% 91%;
 
-		--card: 223 33% 12%;
-		--card-foreground: 213 31% 91%;
+    --card: 223 33% 12%;
+    --card-foreground: 213 31% 91%;
 
-		--popover: 223 33% 12%;
-		--popover-foreground: 213 31% 91%;
+    --popover: 223 33% 12%;
+    --popover-foreground: 213 31% 91%;
 
-		--primary: 213 64% 58%;
-		--primary-foreground: 223 33% 12%;
+    --primary: 213 64% 58%;
+    --primary-foreground: 223 33% 12%;
 
-		--secondary: 223 22% 17%;
-		--secondary-foreground: 213 31% 91%;
+    --secondary: 223 22% 17%;
+    --secondary-foreground: 213 31% 91%;
 
-		--muted: 223 22% 17%;
-		--muted-foreground: 215 20% 75%;
+    --muted: 223 22% 17%;
+    --muted-foreground: 215 20% 75%;
 
-		--accent: 38.82 100% 50%;
-		--accent-foreground: 223 33% 12%;
+    --accent: 38.82 100% 50%;
+    --accent-foreground: 223 33% 12%;
 
-		--destructive: 0 80% 55%;
-		--destructive-foreground: 0 0% 98%;
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-		--border: 223 23% 25%;
-		--input: 223 23% 25%;
-		--ring: 38.82 100% 50%;
+    --border: 223 23% 25%;
+    --input: 223 23% 25%;
+    --ring: 38.82 100% 50%;
 
-		--surface-base: hsl(var(--card));
-		--surface-muted: hsl(223 24% 15%);
-		--surface-soft: hsl(223 24% 18%);
-		--text-dark: hsl(var(--foreground));
-		--text-muted: hsl(var(--muted-foreground));
-		--border-soft: hsl(var(--border));
-	}
+    --surface-base: hsl(var(--card));
+    --surface-muted: hsl(223 24% 15%);
+    --surface-soft: hsl(223 24% 18%);
+    --text-dark: hsl(var(--foreground));
+    --text-muted: hsl(var(--muted-foreground));
+    --border-soft: hsl(var(--border));
+  }
 }
 
 @layer base {
-	* {
-		border-color: hsl(var(--border));
-	}
+  * {
+    border-color: hsl(var(--border));
+  }
 
-	body {
-		@apply bg-background text-foreground antialiased;
-		font-feature-settings:
-			'liga' 1,
-			'kern' 1;
-		text-rendering: optimizeLegibility;
-	}
+  body {
+    @apply bg-background text-foreground antialiased font-sans; // Added font-sans for consistency
+  }
 
-	::selection {
-		background: color-mix(in srgb, hsl(var(--primary)) 70%, white);
-		color: hsl(var(--foreground));
-	}
+  ::selection {
+    background: color-mix(in srgb, hsl(var(--primary)) 70%, white);
+    color: hsl(var(--foreground));
+  }
 
-	:focus-visible {
-		outline: 2px solid hsl(var(--primary));
-		outline-offset: 4px;
-	}
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 4px;
+  }
 
-	main:focus {
-		outline: none;
-	}
+  main:focus {
+    outline: none;
+  }
 }
 
 @layer components {
-	.skip-link {
-		position: fixed;
-		top: 0.5rem;
-		left: 50%;
-		transform: translate(-50%, -150%);
-		z-index: 60;
-		padding: 0.75rem 1.25rem;
-		border-radius: 9999px;
-		background-color: hsl(var(--primary));
-		color: white;
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.2em;
-		text-transform: uppercase;
-		box-shadow: 0 20px 45px rgb(15 35 65 / 25%);
-		transition:
-			transform 150ms ease,
-			opacity 150ms ease;
-		opacity: 0;
-		transform-origin: center;
-		pointer-events: none;
-	}
+  .skip-link {
+    position: fixed;
+    top: 0.5rem;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    z-index: 60;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    background-color: hsl(var(--primary));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    box-shadow: 0 20px 45px rgb(15 35 65 / 25%);
+    transition: transform 150ms ease, opacity 150ms ease;
+    opacity: 0;
+    transform-origin: center;
+    pointer-events: none;
+  }
 
-	.content-container {
-		@apply mx-auto w-full max-w-6xl px-4 sm:px-6;
-	}
+  .content-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
 
-	.section-spacing {
-		@apply py-14 sm:py-16 lg:py-20;
-	}
+  .section-spacing {
+    @apply py-14 sm:py-16 lg:py-20;
+  }
 
-	.stack-spacing {
-		@apply space-y-8 sm:space-y-10;
-	}
+  .stack-spacing {
+    @apply space-y-8 sm:space-y-10;
+  }
 
-	.skip-link:focus-visible {
-		opacity: 1;
-		transform: translate(-50%, 0);
-		pointer-events: auto;
-	}
+  .skip-link:focus-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
 
-	.reveal {
-		transform-origin: top;
-		transition:
-			opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
-			transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
-			filter 700ms ease;
-		will-change: opacity, transform, filter;
-	}
+  .reveal {
+    transform-origin: top;
+    transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1), transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms ease;
+    will-change: opacity, transform, filter;
+  }
 
-	.reveal[data-in-view='false'] {
-		opacity: 0;
-		transform: translate3d(0, 1.75rem, 0) scale(0.98);
-		filter: blur(12px);
-	}
+  .reveal[data-in-view='false'] {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0) scale(0.98);
+    filter: blur(12px);
+  }
 
-	.reveal[data-in-view='true'] {
-		opacity: 1;
-		transform: translate3d(0, 0, 0) scale(1);
-		filter: blur(0);
-	}
+  .reveal[data-in-view='true'] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+
+  // Added for contractor style: subtle shadow for cards
+  .card-shadow {
+    box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1); // Earth tone shadow
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
-	.reveal {
-		opacity: 1;
-		transform: none;
-		filter: none;
-		transition: none;
-	}
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 
-	.reveal[data-in-view='false'] {
-		opacity: 1;
-		transform: none;
-		filter: none;
-	}
+  .reveal[data-in-view='false'] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+// Added media query for mobile reactivity
+@media (max-width: 768px) {
+  .content-container {
+    px-2; // Tighter padding for mobile
+  }
 }

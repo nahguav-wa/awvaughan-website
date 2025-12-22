@@ -1,10 +1,12 @@
-import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
-	ssr: {
-		noExternal: ['lucide-svelte']
-	}
+  plugins: [sveltekit()],
+  optimizeDeps: {
+    exclude: ['fsevents'] // For consistency
+  },
+  ssr: {
+    noExternal: ['lucide-svelte'] // For reactivity in SSR
+  }
 });

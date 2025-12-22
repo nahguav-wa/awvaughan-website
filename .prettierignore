@@ -5,6 +5,37 @@ yarn.lock
 bun.lock
 bun.lockb
 
-# Miscellaneous
+# Output and Builds
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Env Files
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite Timestamps
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Dev Vars
+.dev.vars*
+!.dev.vars.example
+.env*
+
+# Static and Worker Files
 /static/
 src/worker-configuration.d.ts
+
+# Additional Generated
+/dist
+/node_modules
