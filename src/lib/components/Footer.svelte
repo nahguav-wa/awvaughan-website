@@ -1,60 +1,90 @@
 <script lang="ts">
-  import logoAsset from '../assets/Asset 1@1x.png';
+  import { appConfig } from '$lib/../app.config';
+  import logoAsset from '$lib/assets/Asset 1@1x.png';
 
   const currentYear = new Date().getFullYear();
-
-  const companyLinks = [
-    { label: 'About', href: '/about' },
-    { label: 'Services', href: '/services' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Contact', href: '/contact' }
-  ];
-
-  const legalLinks = [
-    { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Terms of Service', href: '/terms-of-service' }
-  ];
-
-  const socialLinks = [
-    { label: 'Facebook', href: 'https://facebook.com/awvaughan' },
-    { label: 'Instagram', href: 'https://instagram.com/awvaughan' }
-  ];
+  const { navigation, contact, siteName } = appConfig;
 </script>
 
-<footer class="bg-surface-muted py-12">
-  <div class="content-container">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-      <div class="sm:col-span-2 md:col-span-1">
-        <img src={logoAsset} alt="AW Vaughan Company Logo" class="w-32 mb-4" />
-        <p class="text-muted-foreground italic">Jeremiah 29:11</p>
+<footer class="border-t border-border bg-surface-muted">
+  <div class="content-container py-12 lg:py-16">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Brand Column -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="/" class="inline-block">
+          <img src={logoAsset} alt="{siteName} Logo" class="h-12 w-auto" />
+        </a>
+        <p class="mt-4 text-sm italic text-muted-foreground">Jeremiah 29:11</p>
+        <div class="mt-4 space-y-2 text-sm text-muted-foreground">
+          <a href={contact.phoneHref} class="block hover:text-foreground transition-colors">
+            {contact.phone}
+          </a>
+          <a href="mailto:{contact.email}" class="block hover:text-foreground transition-colors">
+            {contact.email}
+          </a>
+        </div>
       </div>
-      <nav>
-        <h4 class="font-semibold mb-3">Company</h4>
-        <ul class="space-y-2">
-          {#each companyLinks as link}
-            <li><a href={link.href} class="text-muted-foreground hover:text-foreground transition-colors">{link.label}</a></li>
+
+      <!-- Company Links -->
+      <nav aria-label="Company links">
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-foreground">Company</h4>
+        <ul class="mt-4 space-y-3">
+          {#each navigation.footer as link}
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            </li>
           {/each}
         </ul>
       </nav>
-      <nav>
-        <h4 class="font-semibold mb-3">Legal</h4>
-        <ul class="space-y-2">
-          {#each legalLinks as link}
-            <li><a href={link.href} class="text-muted-foreground hover:text-foreground transition-colors">{link.label}</a></li>
+
+      <!-- Legal Links -->
+      <nav aria-label="Legal links">
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-foreground">Legal</h4>
+        <ul class="mt-4 space-y-3">
+          {#each navigation.legal as link}
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            </li>
           {/each}
         </ul>
       </nav>
-      <nav>
-        <h4 class="font-semibold mb-3">Social</h4>
-        <ul class="space-y-2">
-          {#each socialLinks as link}
-            <li><a href={link.href} target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-foreground transition-colors">{link.label}</a></li>
+
+      <!-- Social Links -->
+      <nav aria-label="Social links">
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-foreground">Connect</h4>
+        <ul class="mt-4 space-y-3">
+          {#each navigation.social as link}
+            <li>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            </li>
           {/each}
         </ul>
       </nav>
     </div>
-    <div class="border-t border-border mt-8 pt-8">
-      <p class="text-sm text-muted-foreground text-center">© {currentYear} AW Vaughan Company, LLC. All rights reserved.</p>
+
+    <!-- Copyright -->
+    <div class="mt-12 border-t border-border pt-8">
+      <p class="text-center text-sm text-muted-foreground">
+        © {currentYear} {siteName}, LLC. All rights reserved.
+      </p>
     </div>
   </div>
 </footer>
