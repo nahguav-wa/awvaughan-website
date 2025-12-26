@@ -1,30 +1,28 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { resolve } from '$app/paths';
+	import { page } from '$app/stores';
 	import { createSeo, getLinkKey, getMetaKey } from '$lib/seo';
 
-	// eslint-disable-next-line svelte/valid-prop-names-in-kit-pages
-	export let error: (Error & { message?: string }) | null;
-	// eslint-disable-next-line svelte/valid-prop-names-in-kit-pages
-	export let status: number;
+	const error = $derived($page.error);
+	const status = $derived($page.status);
 
 	const phoneNumber = '(757) 402-1100';
 	const phoneHref = 'tel:+17574021100';
 	const email = 'alex.vaughan@awvaughan.com';
 
-	const isNotFound = status === 404;
-	const title = isNotFound ? "We can't find that page." : 'Something went off course.';
-	const description = isNotFound
+	const isNotFound = $derived(status === 404);
+	const title = $derived(isNotFound ? "We can't find that page." : 'Something went off course.');
+	const description = $derived(isNotFound
 		? "The link may be out of date or the page has been moved. Let's get you headed in the right direction."
-		: "An unexpected error kept this page from loading. Try the options below or reach out and we'll help right away.";
+		: "An unexpected error kept this page from loading. Try the options below or reach out and we'll help right away.");
 
-	const detailMessage = typeof error?.message === 'string' ? error.message : null;
+	const detailMessage = $derived(typeof error?.message === 'string' ? error.message : null);
 
-	const seo = createSeo({
+	const seo = $derived(createSeo({
 		title: `${status} — ${title}`,
 		description,
 		robots: 'noindex'
-	});
+	}));
 </script>
 
 <svelte:head>
@@ -60,7 +58,7 @@
 					<li>
 						<a
 							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
-							href={resolve('/')}
+							href="/"
 						>
 							Home
 						</a>
@@ -68,7 +66,7 @@
 					<li>
 						<a
 							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
-							href={resolve('/services')}
+							href="/services"
 						>
 							Services
 						</a>
@@ -76,7 +74,7 @@
 					<li>
 						<a
 							class="group inline-flex items-center gap-3 rounded-full bg-[var(--surface-base)] px-4 py-3 text-sm font-semibold tracking-[0.28em] text-[var(--text-dark)] uppercase shadow-md shadow-slate-400/20 transition hover:-translate-y-0.5 hover:text-[var(--brand-blue)] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-blue)]"
-							href={resolve('/contact')}
+							href="/contact"
 						>
 							Contact
 						</a>

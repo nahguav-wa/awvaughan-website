@@ -91,7 +91,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased font-sans; // Added font-sans for consistency
+    @apply bg-background text-foreground antialiased font-sans;
   }
 
   ::selection {
@@ -110,27 +110,6 @@
 }
 
 @layer components {
-  .skip-link {
-    position: fixed;
-    top: 0.5rem;
-    left: 50%;
-    transform: translate(-50%, -150%);
-    z-index: 60;
-    padding: 0.75rem 1.25rem;
-    border-radius: 9999px;
-    background-color: hsl(var(--primary));
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    box-shadow: 0 20px 45px rgb(15 35 65 / 25%);
-    transition: transform 150ms ease, opacity 150ms ease;
-    opacity: 0;
-    transform-origin: center;
-    pointer-events: none;
-  }
-
   .content-container {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
   }
@@ -141,12 +120,6 @@
 
   .stack-spacing {
     @apply space-y-8 sm:space-y-10;
-  }
-
-  .skip-link:focus-visible {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
   }
 
   .reveal {
@@ -165,11 +138,6 @@
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     filter: blur(0);
-  }
-
-  // Added for contractor style: subtle shadow for cards
-  .card-shadow {
-    box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1); // Earth tone shadow
   }
 }
 
@@ -192,12 +160,5 @@
     opacity: 1;
     transform: none;
     filter: none;
-  }
-}
-
-// Added media query for mobile reactivity
-@media (max-width: 768px) {
-  .content-container {
-    px-2; // Tighter padding for mobile
   }
 }
