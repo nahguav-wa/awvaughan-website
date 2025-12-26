@@ -7,7 +7,13 @@
   import logoAsset from '$lib/assets/Asset 1@1x.png';
 
   let navOpen = $state(false);
+  let scrolled = $state(false);
   const links = appConfig.navigation.main;
+
+  // Track scroll position for header background
+  function handleScroll() {
+    scrolled = window.scrollY > 50;
+  }
 
   // Close mobile menu on navigation
   afterNavigate(() => {
@@ -24,15 +30,42 @@
     if (href === '/') return currentPath === '/';
     return currentPath.startsWith(href);
   }
+
+  // Dynamic classes based on scroll state
+  const headerBg = $derived(
+    scrolled
+      ? 'bg-surface-base/95 backdrop-blur-sm shadow-md'
+      : 'bg-transparent'
+  );
+
+  const textColor = $derived(
+    scrolled ? 'text-foreground' : 'text-white'
+  );
+
+  const linkColor = $derived(
+    scrolled
+      ? 'text-muted-foreground hover:bg-muted hover:text-foreground'
+      : 'text-white/80 hover:bg-white/10 hover:text-white'
+  );
+
+  const activeLinkColor = $derived(
+    scrolled
+      ? 'bg-primary/10 text-primary'
+      : 'bg-white/20 text-white'
+  );
+
+  const mobileMenuBg = $derived(
+    scrolled ? 'bg-surface-base' : 'bg-surface-base/95 backdrop-blur-sm'
+  );
 </script>
 
-<svelte:window onkeydown={handleKeydown} />
+<svelte:window onscroll={handleScroll} onkeydown={handleKeydown} />
 
-<header class="sticky top-0 z-50 border-b border-border/50 bg-surface-base/95 backdrop-blur-sm">
+<header class="fixed left-0 right-0 z-40 transition-all duration-300 {scrolled ? 'top-0' : 'top-0 md:top-9'} {headerBg}">
   <div class="content-container flex items-center justify-between py-3">
     <a href="/" class="flex items-center gap-3">
       <img src={logoAsset} alt="AW Vaughan Company" class="h-10 w-auto" />
-      <span class="hidden font-semibold text-foreground sm:inline">AW Vaughan</span>
+      <span class="hidden font-semibold transition-colors sm:inline {textColor}">AW Vaughan</span>
     </a>
 
     <!-- Desktop Navigation -->
@@ -44,8 +77,8 @@
             <a
               href={link.href}
               class="rounded-lg px-4 py-2 text-sm font-medium transition-colors {active
-                ? 'bg-primary/10 text-primary'
-                : 'text-muted-foreground hover:bg-muted hover:text-foreground'}"
+                ? activeLinkColor
+                : linkColor}"
               aria-current={active ? 'page' : undefined}
             >
               {link.label}
@@ -57,7 +90,7 @@
 
     <!-- Mobile Menu Button -->
     <button
-      class="flex h-10 w-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-muted md:hidden"
+      class="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/10 md:hidden {textColor}"
       onclick={() => (navOpen = !navOpen)}
       aria-label={navOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={navOpen}
@@ -76,7 +109,7 @@
     <nav
       id="mobile-menu"
       transition:fly={{ y: -10, duration: 200 }}
-      class="border-t border-border/50 bg-surface-base md:hidden"
+      class="border-t border-border/50 md:hidden {mobileMenuBg}"
     >
       <ul class="content-container flex flex-col gap-1 py-4">
         {#each links as link}
