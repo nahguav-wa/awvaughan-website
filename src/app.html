@@ -1,13 +1,26 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Character Encoding -->
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
 
+		<!-- Responsive Viewport Configuration -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Theme Color for Mobile Browsers -->
+		<meta name="theme-color" content="#2563eb" />
+
+		<!-- Favicon (overridden by layout) -->
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+
+		<!-- Preconnect to External Resources (if any) -->
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+
+		<!-- SvelteKit Head Injection Point -->
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" class="bg-white dark:bg-stone-900">
+		<!-- SvelteKit Body Injection Point -->
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

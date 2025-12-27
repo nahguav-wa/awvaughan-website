@@ -1,13 +1,27 @@
+/**
+ * Global Styles
+ * Tailwind CSS v4 configuration with custom theme and component styles
+ */
+
+/* Import Tailwind CSS v4 */
 @import 'tailwindcss';
 
+/* Custom dark mode variant */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Flowbite component library sources */
 @source "../node_modules/flowbite-svelte/dist";
 @source "../node_modules/flowbite-svelte-icons/dist";
 
+/**
+ * Custom Theme Configuration
+ * Extended color palette and z-index scale
+ */
 @theme {
+	/* Z-index scale */
 	--z-index-100: 100;
 
+	/* Primary color palette (Purple/Fuchsia) */
 	--color-primary-50: #fdf4ff;
 	--color-primary-100: #fae8ff;
 	--color-primary-200: #f5d0fe;
@@ -18,10 +32,17 @@
 	--color-primary-700: #a21caf;
 	--color-primary-800: #86198f;
 	--color-primary-900: #701a75;
-  
 }
 
+/**
+ * Base Layer
+ * Foundational styles for typography and HTML elements
+ */
 @layer base {
+	/**
+	 * HTML root element configuration
+	 * Sets base font family, line height, and text rendering
+	 */
 	html {
 		-webkit-text-size-adjust: 100%;
 		font-family:
@@ -44,6 +65,10 @@
 		tab-size: 4;
 	}
 
+	/**
+	 * Typography base styles
+	 * Consistent styling for headings, paragraphs, and text elements
+	 */
 	h1,
 	h2,
 	h3,
@@ -54,33 +79,49 @@
 		@apply tracking-wide dark:text-white;
 	}
 
+	/* Heading 1 - Primary page titles */
 	h1 {
 		@apply text-primary-800 dark:text-primary-400 my-8 text-3xl;
 	}
 
+	/* Heading 2 - Section titles */
 	h2 {
 		@apply my-6 text-2xl;
 	}
 
+	/* Heading 3 - Subsection titles */
 	h3 {
 		@apply my-5 text-xl;
 	}
 
+	/* Paragraph - Body text */
 	p {
 		@apply my-3 text-lg;
 	}
 
+	/* Inline code elements */
 	code {
 		@apply text-primary-700 dark:text-primary-400;
 	}
 
+	/**
+	 * Code blocks - Syntax highlighted pre elements
+	 * Used within #mainContent container
+	 */
 	#mainContent > pre {
 		@apply mx-auto my-4 w-full overflow-auto rounded-xl border border-gray-200 bg-gray-50 bg-gradient-to-r p-2 text-sm text-gray-600 sm:p-6 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400;
 	}
 }
 
+/**
+ * Components Layer
+ * Reusable component utility classes
+ */
 @layer components {
-	/* overwrite runeswebkit.css using !important */
+	/**
+	 * Dark background theme override
+	 * Overwrites default Svelte Runes styling with !important
+	 */
 	.dark_bg_theme {
 		@apply dark:bg-stone-900;
 	}
