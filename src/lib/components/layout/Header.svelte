@@ -104,11 +104,13 @@
 	Main Navigation Header
 	Sticky header with logo and navigation menu
 	Adjusts position and styling based on scroll state
+	- Mobile: Always at top-0 (contact bar is hidden)
+	- Desktop: top-12 when contact bar visible, top-0 when scrolled
 -->
 <header
-	class="fixed left-0 right-0 z-40 transition-all duration-300"
-	class:top-0={!isTransparent}
-	class:top-12={isTransparent}
+	class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+	class:md:top-12={isTopBarVisible}
+	class:md:top-0={!isTopBarVisible}
 	class:bg-transparent={isTransparent}
 	class:bg-white={!isTransparent}
 	class:shadow-md={!isTransparent}
