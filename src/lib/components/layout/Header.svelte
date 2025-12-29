@@ -5,6 +5,7 @@
 -->
 <script lang="ts">
 	import { MapPin, Phone, Mail, Menu } from '@lucide/svelte';
+	import { page } from '$app/stores';
 	import { createScrollObserver } from '$lib/utils/scroll';
 	import { COMPANY_INFO, ROUTES } from '$lib/config/constants';
 
@@ -15,10 +16,20 @@
 	let mobileMenuOpen = $state(false);
 
 	/**
-	 * Computed states based on scroll position
+	 * Check if we're on the homepage (which has a hero image)
+	 */
+	const isHomepage = $derived($page.url.pathname === '/');
+
+	/**
+	 * Computed states based on scroll position and route
 	 */
 	const isTopBarVisible = $derived(scrollY === 0);
 	const isScrolled = $derived(scrollY > 10);
+
+	/**
+	 * Header should be transparent only on homepage when not scrolled
+	 */
+	const isTransparent = $derived(isHomepage && !isScrolled);
 
 	/**
 	 * Navigation links configuration
@@ -95,11 +106,11 @@
 -->
 <header
 	class="fixed left-0 right-0 z-40 transition-all duration-300"
-	class:top-0={isScrolled}
-	class:top-12={!isScrolled}
-	class:bg-transparent={!isScrolled}
-	class:bg-white={isScrolled}
-	class:shadow-md={isScrolled}
+	class:top-0={!isTransparent}
+	class:top-12={isTransparent}
+	class:bg-transparent={isTransparent}
+	class:bg-white={!isTransparent}
+	class:shadow-md={!isTransparent}
 >
 	<div class="container mx-auto px-4">
 		<div class="flex items-center justify-between py-4">
@@ -109,7 +120,7 @@
 					src="/logo.svg"
 					alt="{COMPANY_INFO.name} Logo"
 					class="h-12 w-auto transition-all duration-300"
-					class:h-10={isScrolled}
+					class:h-10={!isTransparent}
 				/>
 			</a>
 
@@ -121,8 +132,8 @@
 							<a
 								href={link.href}
 								class="text-base font-bold transition-colors duration-200 hover:text-blue-600"
-								class:text-white={!isScrolled}
-								class:text-gray-800={isScrolled}
+								class:text-white={isTransparent}
+								class:text-gray-800={!isTransparent}
 							>
 								{link.label}
 							</a>
@@ -139,7 +150,7 @@
 				aria-expanded={mobileMenuOpen}
 			>
 				<Menu
-					class="w-6 h-6 transition-colors {isScrolled ? 'text-gray-800' : 'text-white'}"
+					class="w-6 h-6 transition-colors {isTransparent ? 'text-white' : 'text-gray-800'}"
 				/>
 			</button>
 		</div>
