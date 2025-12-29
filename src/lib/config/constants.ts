@@ -9,8 +9,8 @@ export const COMPANY_INFO = {
 	locationFull: 'Virginia Beach, VA',
 	phone: '757-402-1100',
 	phoneHref: 'tel:+17574021100',
-	email: 'alex.vaughan@awvaughan.com',
-	emailHref: 'mailto:alex.vaughan@awvaughan.com',
+	email: 'contact@awvaughan.com',
+	emailHref: 'mailto:contact@awvaughan.com',
 
 	// Service area
 	serviceArea: {
