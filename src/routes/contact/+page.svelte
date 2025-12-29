@@ -9,7 +9,9 @@
 
 	// Form state
 	let formData = $state({
-		name: '',
+		firstName: '',
+		lastName: '',
+		company: '',
 		email: '',
 		phone: '',
 		subject: '',
@@ -44,7 +46,9 @@
 			formState = 'success';
 			// Reset form
 			formData = {
-				name: '',
+				firstName: '',
+				lastName: '',
+				company: '',
 				email: '',
 				phone: '',
 				subject: '',
@@ -223,18 +227,49 @@
 				{/if}
 
 				<form onsubmit={handleSubmit} class="space-y-6">
-					<!-- Name -->
+					<!-- First Name -->
 					<div>
-						<label for="name" class="block text-base font-bold text-gray-900 mb-2">
-							Name <span class="text-red-600">*</span>
+						<label for="firstName" class="block text-base font-bold text-gray-900 mb-2">
+							First Name <span class="text-red-600">*</span>
 						</label>
 						<input
 							type="text"
-							id="name"
-							bind:value={formData.name}
+							id="firstName"
+							bind:value={formData.firstName}
 							required
 							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-							placeholder="Your name"
+							placeholder="John"
+							disabled={formState === 'submitting'}
+						/>
+					</div>
+
+					<!-- Last Name -->
+					<div>
+						<label for="lastName" class="block text-base font-bold text-gray-900 mb-2">
+							Last Name <span class="text-red-600">*</span>
+						</label>
+						<input
+							type="text"
+							id="lastName"
+							bind:value={formData.lastName}
+							required
+							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+							placeholder="Doe"
+							disabled={formState === 'submitting'}
+						/>
+					</div>
+
+					<!-- Company Name -->
+					<div>
+						<label for="company" class="block text-base font-bold text-gray-900 mb-2">
+							Company Name
+						</label>
+						<input
+							type="text"
+							id="company"
+							bind:value={formData.company}
+							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+							placeholder="Your company (optional)"
 							disabled={formState === 'submitting'}
 						/>
 					</div>
@@ -273,13 +308,12 @@
 					<!-- Subject -->
 					<div>
 						<label for="subject" class="block text-base font-bold text-gray-900 mb-2">
-							Subject <span class="text-red-600">*</span>
+							Subject
 						</label>
 						<input
 							type="text"
 							id="subject"
 							bind:value={formData.subject}
-							required
 							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
 							placeholder="What can we help you with?"
 							disabled={formState === 'submitting'}

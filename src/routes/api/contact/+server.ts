@@ -10,10 +10,12 @@ import type { RequestHandler } from './$types';
  * Interface for contact form data
  */
 interface ContactFormData {
-	name: string;
+	firstName: string;
+	lastName: string;
+	company?: string;
 	email: string;
 	phone?: string;
-	subject: string;
+	subject?: string;
 	message: string;
 }
 
@@ -74,7 +76,7 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		const formData: ContactFormData = await request.json();
 
 		// Validate required fields
-		if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+		if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
 			throw error(400, 'Missing required fields');
 		}
 
@@ -85,10 +87,12 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 
 		// Sanitize inputs
 		const sanitizedData = {
-			name: sanitizeInput(formData.name),
+			firstName: sanitizeInput(formData.firstName),
+			lastName: sanitizeInput(formData.lastName),
+			company: formData.company ? sanitizeInput(formData.company) : '',
 			email: sanitizeInput(formData.email),
 			phone: formData.phone ? sanitizeInput(formData.phone) : '',
-			subject: sanitizeInput(formData.subject),
+			subject: formData.subject ? sanitizeInput(formData.subject) : '',
 			message: sanitizeInput(formData.message)
 		};
 
@@ -96,10 +100,11 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		const emailContent = `
 New Contact Form Submission
 
-Name: ${sanitizedData.name}
+Name: ${sanitizedData.firstName} ${sanitizedData.lastName}
+Company: ${sanitizedData.company || 'Not provided'}
 Email: ${sanitizedData.email}
 Phone: ${sanitizedData.phone || 'Not provided'}
-Subject: ${sanitizedData.subject}
+Subject: ${sanitizedData.subject || 'Not provided'}
 
 Message:
 ${sanitizedData.message}
@@ -131,7 +136,7 @@ Time: ${new Date().toISOString()}
 						},
 						body: JSON.stringify({
 							message: {
-								subject: `Contact Form: ${sanitizedData.subject}`,
+								subject: `Contact Form: ${sanitizedData.subject || 'New Inquiry'}`,
 								body: {
 									contentType: 'Text',
 									content: emailContent
@@ -147,7 +152,7 @@ Time: ${new Date().toISOString()}
 									{
 										emailAddress: {
 											address: sanitizedData.email,
-											name: sanitizedData.name
+											name: `${sanitizedData.firstName} ${sanitizedData.lastName}`
 										}
 									}
 								]
