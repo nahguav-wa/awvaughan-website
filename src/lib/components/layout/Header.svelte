@@ -118,7 +118,7 @@
 			<!-- Logo - Left Aligned -->
 			<a href={ROUTES.home} class="flex items-center" aria-label="The A.W. Vaughan Company Home">
 				<img
-					src="/logo.svg"
+					src={isTransparent ? '/Horizontal White Logo.svg' : '/Horizontal Color Logo.svg'}
 					alt="{COMPANY_INFO.name} Logo"
 					class="h-12 w-auto transition-all duration-300"
 					class:h-10={!isTransparent}

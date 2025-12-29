@@ -28,6 +28,11 @@
 		<div class="grid md:grid-cols-4 gap-8">
 			<!-- Company Information -->
 			<div>
+				<img
+					src="/American Logo.svg"
+					alt="{COMPANY_INFO.name} Logo"
+					class="h-16 w-auto mb-4"
+				/>
 				<h3 class="text-lg font-bold mb-4">{COMPANY_INFO.name}</h3>
 				<p class="text-base font-normal text-gray-400">
 					{COMPANY_INFO.tagline}
