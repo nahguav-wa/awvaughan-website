@@ -30,7 +30,7 @@
 		{service.description}
 	</p>
 	<!-- Learn more link - base size, bold weight -->
-	<a href={service.href} class="text-base font-bold text-blue-600 hover:text-blue-700">
+	<a href={service.href} class="text-base font-bold text-primary-500 hover:text-primary-600">
 		Learn More →
 	</a>
 </Card>
