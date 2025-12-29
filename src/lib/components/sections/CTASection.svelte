@@ -24,7 +24,7 @@
 		</p>
 
 		<!-- CTA Button -->
-		<Button variant="secondary" href="/contact" size="lg" class="bg-white text-primary-500 hover:bg-gray-100">
+		<Button variant="secondary" href="/contact" size="lg" class="bg-white !text-primary-500 hover:bg-gray-100">
 			Contact Us Now
 		</Button>
 	</div>
