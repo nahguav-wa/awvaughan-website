@@ -61,7 +61,7 @@
 <!--
 	Page Hero Section
 -->
-<Section variant="gray">
+<Section variant="gray" class="pt-32 md:pt-36">
 	<div class="max-w-4xl mx-auto text-center">
 		<h1 class="text-xl font-bold text-gray-900 mb-6">Contact Us</h1>
 		<p class="text-lg font-normal text-gray-600">
