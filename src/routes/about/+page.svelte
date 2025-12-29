@@ -90,7 +90,7 @@
 
 		<div class="grid md:grid-cols-2 gap-8">
 			<!-- Reason 1 -->
-			<div class="border-l-4 border-blue-600 pl-6">
+			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="text-xl font-bold text-gray-900 mb-2">Local Expertise</h3>
 				<p class="text-base font-normal text-gray-600">
 					We understand Virginia Beach soil, drainage challenges, and weather patterns. Our
@@ -100,7 +100,7 @@
 			</div>
 
 			<!-- Reason 2 -->
-			<div class="border-l-4 border-blue-600 pl-6">
+			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="text-xl font-bold text-gray-900 mb-2">Right-Sized Service</h3>
 				<p class="text-base font-normal text-gray-600">
 					We specialize in residential and small commercial projects. You won't be too small for
@@ -109,7 +109,7 @@
 			</div>
 
 			<!-- Reason 3 -->
-			<div class="border-l-4 border-blue-600 pl-6">
+			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="text-xl font-bold text-gray-900 mb-2">Quality Workmanship</h3>
 				<p class="text-base font-normal text-gray-600">
 					Every project is completed with attention to detail and professional standards. From
@@ -118,7 +118,7 @@
 			</div>
 
 			<!-- Reason 4 -->
-			<div class="border-l-4 border-blue-600 pl-6">
+			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="text-xl font-bold text-gray-900 mb-2">Fair & Transparent</h3>
 				<p class="text-base font-normal text-gray-600">
 					Clear communication, honest estimates, and fair pricing. No surprises, no hidden fees—just
@@ -141,7 +141,7 @@
 		</p>
 		<a
 			href="/contact"
-			class="inline-block bg-blue-600 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-blue-700 transition-colors"
+			class="inline-block bg-primary-500 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-primary-600 transition-colors"
 		>
 			Get a Free Quote
 		</a>

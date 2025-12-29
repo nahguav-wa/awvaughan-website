@@ -25,7 +25,7 @@
 	const variantStyles = {
 		white: 'bg-white',
 		gray: 'bg-gray-50',
-		blue: 'bg-blue-600 text-white',
+		blue: 'bg-primary-500 text-white',
 		dark: 'bg-gray-900 text-white'
 	};
 

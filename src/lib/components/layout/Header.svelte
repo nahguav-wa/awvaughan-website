@@ -60,7 +60,8 @@
 	Visible only when at the top of the page, hidden on desktop breakpoint
 -->
 <header
-	class="fixed top-0 left-0 right-0 z-50 bg-gray-900 text-white transition-transform duration-300 hidden md:block"
+	class="fixed top-0 left-0 right-0 z-50 text-white transition-transform duration-300 hidden md:block"
+	style="background-color: #27251f;"
 	class:translate-y-0={isTopBarVisible}
 	class:-translate-y-full={!isTopBarVisible}
 >
@@ -131,7 +132,7 @@
 						<li>
 							<a
 								href={link.href}
-								class="text-base font-bold transition-colors duration-200 hover:text-blue-600"
+								class="text-base font-bold transition-colors duration-200 hover:text-primary-500"
 								class:text-white={isTransparent}
 								class:text-gray-800={!isTransparent}
 							>
@@ -165,7 +166,7 @@
 						<li>
 							<a
 								href={link.href}
-								class="block text-base font-bold text-gray-800 hover:text-blue-600 transition-colors"
+								class="block text-base font-bold text-gray-800 hover:text-primary-500 transition-colors"
 								onclick={toggleMobileMenu}
 							>
 								{link.label}

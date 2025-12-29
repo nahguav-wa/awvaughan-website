@@ -59,8 +59,9 @@ export const DESIGN_TOKENS = {
 		cardGap: 'gap-8'
 	},
 	colors: {
-		primary: 'orange-600',
-		primaryHover: 'orange-700',
+		primary: 'primary-500', // #ff9e00
+		primaryHover: 'primary-600', // #ea8800
+		darkGray: '#27251f',
 		textDark: 'gray-900',
 		textLight: 'gray-600'
 	},

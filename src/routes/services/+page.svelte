@@ -45,7 +45,7 @@
 			<!-- Gravel Driveway Repair -->
 			<div>
 				<div class="flex items-start gap-6">
-					<div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl font-bold">
+					<div class="flex-shrink-0 w-12 h-12 bg-primary-500 text-white rounded-lg flex items-center justify-center text-xl font-bold">
 						1
 					</div>
 					<div class="flex-1">
@@ -71,7 +71,7 @@
 			<!-- Drainage Solutions -->
 			<div>
 				<div class="flex items-start gap-6">
-					<div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl font-bold">
+					<div class="flex-shrink-0 w-12 h-12 bg-primary-500 text-white rounded-lg flex items-center justify-center text-xl font-bold">
 						2
 					</div>
 					<div class="flex-1">
@@ -95,7 +95,7 @@
 			<!-- Shed Pad Preparation -->
 			<div>
 				<div class="flex items-start gap-6">
-					<div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl font-bold">
+					<div class="flex-shrink-0 w-12 h-12 bg-primary-500 text-white rounded-lg flex items-center justify-center text-xl font-bold">
 						3
 					</div>
 					<div class="flex-1">
@@ -118,7 +118,7 @@
 			<!-- Small Excavation -->
 			<div>
 				<div class="flex items-start gap-6">
-					<div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xl font-bold">
+					<div class="flex-shrink-0 w-12 h-12 bg-primary-500 text-white rounded-lg flex items-center justify-center text-xl font-bold">
 						4
 					</div>
 					<div class="flex-1">
@@ -155,7 +155,7 @@
 		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 			<a
 				href="/contact"
-				class="inline-block bg-blue-600 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-blue-700 transition-colors"
+				class="inline-block bg-primary-500 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-primary-600 transition-colors"
 			>
 				Get a Free Quote
 			</a>

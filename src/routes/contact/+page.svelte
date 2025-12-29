@@ -91,14 +91,14 @@
 				<div class="space-y-4">
 					<!-- Phone -->
 					<div class="flex items-start gap-4">
-						<div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center">
+						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Phone class="w-5 h-5" />
 						</div>
 						<div>
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Phone</h3>
 							<a
 								href={COMPANY_INFO.phoneHref}
-								class="text-base font-normal text-blue-600 hover:text-blue-700"
+								class="text-base font-normal text-primary-500 hover:text-primary-600"
 							>
 								{COMPANY_INFO.phone}
 							</a>
@@ -107,14 +107,14 @@
 
 					<!-- Email -->
 					<div class="flex items-start gap-4">
-						<div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center">
+						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Mail class="w-5 h-5" />
 						</div>
 						<div>
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Email</h3>
 							<a
 								href={COMPANY_INFO.emailHref}
-								class="text-base font-normal text-blue-600 hover:text-blue-700"
+								class="text-base font-normal text-primary-500 hover:text-primary-600"
 							>
 								{COMPANY_INFO.email}
 							</a>
@@ -123,7 +123,7 @@
 
 					<!-- Location -->
 					<div class="flex items-start gap-4">
-						<div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center">
+						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<MapPin class="w-5 h-5" />
 						</div>
 						<div>
@@ -142,7 +142,7 @@
 						<!-- Instagram -->
 						<a
 							href={SOCIAL_LINKS.instagram}
-							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors"
 							aria-label="Follow us on Instagram"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -157,7 +157,7 @@
 						<!-- Facebook -->
 						<a
 							href={SOCIAL_LINKS.facebook}
-							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors"
 							aria-label="Follow us on Facebook"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -172,7 +172,7 @@
 						<!-- YouTube -->
 						<a
 							href={SOCIAL_LINKS.youtube}
-							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors"
 							aria-label="Follow us on YouTube"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -187,7 +187,7 @@
 						<!-- Nextdoor -->
 						<a
 							href={SOCIAL_LINKS.nextdoor}
-							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+							class="w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors"
 							aria-label="Follow us on Nextdoor"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -233,7 +233,7 @@
 							id="name"
 							bind:value={formData.name}
 							required
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
 							placeholder="Your name"
 							disabled={formState === 'submitting'}
 						/>
@@ -249,7 +249,7 @@
 							id="email"
 							bind:value={formData.email}
 							required
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
 							placeholder="your.email@example.com"
 							disabled={formState === 'submitting'}
 						/>
@@ -264,7 +264,7 @@
 							type="tel"
 							id="phone"
 							bind:value={formData.phone}
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
 							placeholder="(757) 555-1234"
 							disabled={formState === 'submitting'}
 						/>
@@ -280,7 +280,7 @@
 							id="subject"
 							bind:value={formData.subject}
 							required
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
 							placeholder="What can we help you with?"
 							disabled={formState === 'submitting'}
 						/>
@@ -307,7 +307,7 @@
 						<button
 							type="submit"
 							disabled={formState === 'submitting'}
-							class="w-full bg-blue-600 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+							class="w-full bg-primary-500 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-primary-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
 						>
 							{formState === 'submitting' ? 'Sending...' : 'Send Message'}
 						</button>

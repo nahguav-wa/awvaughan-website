@@ -51,7 +51,7 @@
 	 * Variant-specific styles
 	 */
 	const variantStyles = {
-		primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl',
+		primary: 'bg-primary-500 hover:bg-primary-600 text-white shadow-lg hover:shadow-xl',
 		secondary: 'bg-gray-600 hover:bg-gray-700 text-white shadow-lg hover:shadow-xl',
 		outline:
 			'bg-transparent hover:bg-white hover:text-gray-900 text-white border-2 border-white transition-all'

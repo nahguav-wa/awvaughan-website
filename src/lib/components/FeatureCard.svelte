@@ -27,7 +27,7 @@
 -->
 <div class="p-6">
 	<!-- Icon wrapper -->
-	<div class="text-blue-600 mb-4">
+	<div class="text-primary-500 mb-4">
 		<IconComponent class="w-12 h-12 mx-auto" />
 	</div>
 
