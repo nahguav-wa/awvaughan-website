@@ -152,7 +152,7 @@
 		</div>
 
 		<!-- Copyright Notice -->
-		<div class="border-t border-gray-800 mt-8 pt-8 text-center">
+		<div class="border-t border-primary-500 mt-8 pt-8 text-center">
 			<p class="text-base font-normal text-gray-400">&copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.</p>
 		</div>
 	</div>
