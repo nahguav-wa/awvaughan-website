@@ -41,9 +41,11 @@ export const ROUTES = {
  * Company social media profile URLs
  */
 export const SOCIAL_LINKS = {
-	facebook: 'https://facebook.com/awvaughan',
-	twitter: 'https://twitter.com/awvaughan',
-	linkedin: 'https://linkedin.com/company/awvaughan'
+	instagram: 'https://www.instagram.com/awvaughanco',
+	facebook: 'https://www.facebook.com/awvaughanco',
+	nextdoor: 'https://nextdoor.com/page/aw-vaughan-company-virginia-beach-va/',
+	youtube: 'https://www.youtube.com/@AWVaughanCo',
+	website: 'https://www.awvaughan.com'
 } as const;
 
 /**
