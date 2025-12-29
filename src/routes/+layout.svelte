@@ -17,7 +17,7 @@
 	/**
 	 * Imports - Assets
 	 */
-	import favicon from '$lib/assets/favicon.svg';
+	const favicon = '/Favicon.svg';
 
 	/**
 	 * Component Props

@@ -69,13 +69,13 @@
 		<div class="flex items-center justify-center gap-8 py-3 text-sm font-normal">
 			<!-- Location -->
 			<div class="flex items-center gap-2">
-				<MapPin class="w-4 h-4" aria-hidden="true" />
+				<MapPin class="w-4 h-4 text-orange-500" aria-hidden="true" />
 				<span>{COMPANY_INFO.location}</span>
 			</div>
 
 			<!-- Phone -->
 			<div class="flex items-center gap-2">
-				<Phone class="w-4 h-4" aria-hidden="true" />
+				<Phone class="w-4 h-4 text-orange-500" aria-hidden="true" />
 				<a
 					href={COMPANY_INFO.phoneHref}
 					class="hover:text-gray-300 transition-colors"
@@ -87,7 +87,7 @@
 
 			<!-- Email -->
 			<div class="flex items-center gap-2">
-				<Mail class="w-4 h-4" aria-hidden="true" />
+				<Mail class="w-4 h-4 text-orange-500" aria-hidden="true" />
 				<a
 					href={COMPANY_INFO.emailHref}
 					class="hover:text-gray-300 transition-colors"

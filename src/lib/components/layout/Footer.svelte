@@ -3,6 +3,7 @@
 	Site footer with company information, navigation, and social links
 -->
 <script lang="ts">
+	import { MapPin, Phone, Mail } from '@lucide/svelte';
 	import { COMPANY_INFO, ROUTES, SOCIAL_LINKS } from '$lib/config/constants';
 
 	/**
@@ -62,8 +63,12 @@
 			<div>
 				<h4 class="text-lg font-bold mb-4">Contact Info</h4>
 				<address class="space-y-2 text-base font-normal text-gray-400 not-italic">
-					<p>{COMPANY_INFO.location}</p>
-					<p>
+					<p class="flex items-center gap-2">
+						<MapPin class="w-4 h-4" aria-hidden="true" />
+						<span>{COMPANY_INFO.location}</span>
+					</p>
+					<p class="flex items-center gap-2">
+						<Phone class="w-4 h-4" aria-hidden="true" />
 						<a
 							href={COMPANY_INFO.phoneHref}
 							class="hover:text-white transition-colors"
@@ -72,7 +77,8 @@
 							{COMPANY_INFO.phone}
 						</a>
 					</p>
-					<p>
+					<p class="flex items-center gap-2">
+						<Mail class="w-4 h-4" aria-hidden="true" />
 						<a
 							href={COMPANY_INFO.emailHref}
 							class="hover:text-white transition-colors"
@@ -141,9 +147,9 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 30 30" aria-hidden="true">
 							<path
-								d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm1-16h-2v7h2V6zm-1 9c-.828 0-1.5.672-1.5 1.5S11.172 18 12 18s1.5-.672 1.5-1.5S12.828 15 12 15z"
+								d="M 4.492188 5.109375 C 3.882812 5.109375 3.386719 5.605469 3.386719 6.21875 L 3.386719 9.550781 C 3.386719 12.308594 5.617188 14.546875 8.363281 14.546875 L 8.917969 14.546875 L 8.917969 22.871094 C 8.917969 23.484375 9.414062 23.980469 10.023438 23.980469 L 14.445312 23.980469 C 15.058594 23.980469 15.554688 23.484375 15.554688 22.871094 L 15.554688 13.988281 C 15.554688 12.765625 16.542969 11.769531 17.765625 11.769531 C 18.988281 11.769531 19.976562 12.765625 19.976562 13.988281 L 19.976562 22.871094 C 19.976562 23.484375 20.472656 23.980469 21.082031 23.980469 L 25.507812 23.980469 C 26.117188 23.980469 26.613281 23.484375 26.613281 22.871094 L 26.613281 13.988281 C 26.613281 9.085938 22.652344 5.109375 17.765625 5.109375 C 14.726562 5.109375 12.050781 6.644531 10.457031 8.980469 C 10.210938 8.929688 10.023438 8.707031 10.023438 8.441406 L 10.023438 6.21875 C 10.023438 5.605469 9.527344 5.109375 8.917969 5.109375 Z M 4.492188 5.109375"
 							/>
 						</svg>
 					</a>
