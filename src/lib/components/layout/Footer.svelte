@@ -28,12 +28,12 @@
 		<div class="grid md:grid-cols-4 gap-8">
 			<!-- Company Information -->
 			<div>
+				<h3 class="text-lg font-bold mb-4">{COMPANY_INFO.name}</h3>
 				<img
 					src="/American Logo.svg"
 					alt="{COMPANY_INFO.name} Logo"
 					class="h-16 w-auto mb-4"
 				/>
-				<h3 class="text-lg font-bold mb-4">{COMPANY_INFO.name}</h3>
 				<p class="text-base font-normal text-gray-400">
 					{COMPANY_INFO.tagline}
 				</p>
@@ -152,7 +152,7 @@
 		</div>
 
 		<!-- Copyright Notice -->
-		<div class="border-t border-gray-800 mt-8 pt-8 text-center">
+		<div class="border-t border-primary-500 mt-8 pt-8 text-center">
 			<p class="text-base font-normal text-gray-400">&copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.</p>
 		</div>
 	</div>
