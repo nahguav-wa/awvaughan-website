@@ -3,6 +3,7 @@
 	Site footer with company information, navigation, and social links
 -->
 <script lang="ts">
+	import { MapPin, Phone, Mail } from '@lucide/svelte';
 	import { COMPANY_INFO, ROUTES, SOCIAL_LINKS } from '$lib/config/constants';
 
 	/**
@@ -62,8 +63,12 @@
 			<div>
 				<h4 class="text-lg font-bold mb-4">Contact Info</h4>
 				<address class="space-y-2 text-base font-normal text-gray-400 not-italic">
-					<p>{COMPANY_INFO.location}</p>
-					<p>
+					<p class="flex items-center gap-2">
+						<MapPin class="w-4 h-4" aria-hidden="true" />
+						<span>{COMPANY_INFO.location}</span>
+					</p>
+					<p class="flex items-center gap-2">
+						<Phone class="w-4 h-4" aria-hidden="true" />
 						<a
 							href={COMPANY_INFO.phoneHref}
 							class="hover:text-white transition-colors"
@@ -72,7 +77,8 @@
 							{COMPANY_INFO.phone}
 						</a>
 					</p>
-					<p>
+					<p class="flex items-center gap-2">
+						<Mail class="w-4 h-4" aria-hidden="true" />
 						<a
 							href={COMPANY_INFO.emailHref}
 							class="hover:text-white transition-colors"
@@ -141,9 +147,9 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 64 64" aria-hidden="true">
 							<path
-								d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm1-16h-2v7h2V6zm-1 9c-.828 0-1.5.672-1.5 1.5S11.172 18 12 18s1.5-.672 1.5-1.5S12.828 15 12 15z"
+								d="M0 25.993c.285-.085.56-.2.82-.343l9.538-5.894c.166-.125.325-.26.477-.4V6.708h10.168v6.524L32 6.574l32 19.6-5.265 8.622-5.475-3.338h-.172a.21.21 0 0 0 0 .114v25.58c-1.068.267-38.343.362-41.967.134V56.8q0-12.533 0-25.104l-.114-.23-5.76 3.32L3.1 31.373c-.916-1.488-1.908-2.976-2.766-4.464A1.91 1.91 0 0 0 0 26.508z"
 							/>
 						</svg>
 					</a>
