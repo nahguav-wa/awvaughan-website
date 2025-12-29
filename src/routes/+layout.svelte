@@ -1,21 +1,73 @@
-<!-- Import shit here -->
+<!--
+	Root Layout Component
+	Main application layout wrapper with header, footer, and SEO
+-->
 <script lang="ts">
+	/**
+	 * Imports - External Dependencies
+	 */
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
-	import { Header1, Header2, Footer } from '$lib';
 
-	let { children, data } = $props();
+	/**
+	 * Imports - Internal Components
+	 */
+	import { Header, Footer, SEOHead } from '$lib';
+	import { getLocalBusinessSchema } from '$lib/utils/seo';
+
+	/**
+	 * Imports - Assets
+	 */
+	import favicon from '$lib/assets/favicon.svg';
+
+	/**
+	 * Component Props
+	 * Type-safe props using Svelte 5 runes syntax
+	 */
+	interface Props {
+		/** Child pages/routes content */
+		children: any;
+		/** Route data from load function */
+		data: any;
+	}
+
+	let { children, data }: Props = $props();
+
+	/**
+	 * Structured data for LocalBusiness schema
+	 */
+	const structuredData = getLocalBusinessSchema();
 </script>
 
-<!-- Set the favicon in the tab -->
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<!--
+	Document Head - Favicon and SEO
+-->
+<svelte:head>
+	<!-- Favicon -->
+	<link rel="icon" href={favicon} />
+</svelte:head>
 
-<!-- Stupid double header thingy here -->
-<Header1 />
-<Header2 />
+<!--
+	SEO Component - Meta tags and structured data
+	Uses data from +layout.ts and page-specific overrides
+-->
+{#if data?.seo}
+	<SEOHead metadata={data.seo} {structuredData} />
+{/if}
 
-<!-- This inserts +page.svelte -->
-{@render children()}
+<!--
+	Page Header - Main navigation
+-->
+<Header />
 
-<!-- This is the footer -->
+<!--
+	Main Content Area - Page-specific content
+	Rendered from individual +page.svelte files
+-->
+<main>
+	{@render children()}
+</main>
+
+<!--
+	Page Footer - Site-wide footer
+-->
 <Footer />
