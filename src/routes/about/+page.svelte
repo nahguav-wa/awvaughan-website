@@ -12,7 +12,7 @@
 <!--
 	Page Hero Section
 -->
-<Section variant="gray" class="pt-20 md:pt-28 pb-20">
+<Section variant="gray" class="mt-16 md:mt-28">
 	<div class="max-w-4xl mx-auto text-center">
 		<h1 class="text-xl font-bold text-gray-900 mb-6">About The A.W. Vaughan Company</h1>
 		<p class="text-lg font-normal text-gray-600">
