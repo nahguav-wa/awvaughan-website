@@ -31,13 +31,13 @@
 		<IconComponent class="w-12 h-12 mx-auto" />
 	</div>
 
-	<!-- Feature title -->
-	<h3 class="text-xl font-semibold text-gray-900 mb-2">
+	<!-- Feature title - xl size, bold weight -->
+	<h3 class="text-xl font-bold text-gray-900 mb-2">
 		{feature.title}
 	</h3>
 
-	<!-- Feature description -->
-	<p class="text-gray-600">
+	<!-- Feature description - base size, regular weight -->
+	<p class="text-base font-normal text-gray-600">
 		{feature.description}
 	</p>
 </div>

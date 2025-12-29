@@ -41,7 +41,7 @@
 @layer base {
 	/**
 	 * HTML root element configuration
-	 * Sets base font family, line height, and text rendering
+	 * Single font family: Inter with system fallbacks
 	 */
 	html {
 		-webkit-text-size-adjust: 100%;
@@ -55,61 +55,50 @@
 			Helvetica Neue,
 			Arial,
 			Noto Sans,
-			sans-serif,
-			Apple Color Emoji,
-			Segoe UI Emoji,
-			Segoe UI Symbol,
-			Noto Color Emoji;
+			sans-serif;
 		line-height: 1.5;
 		-moz-tab-size: 4;
 		tab-size: 4;
 	}
 
 	/**
-	 * Typography base styles
-	 * Consistent styling for headings, paragraphs, and text elements
+	 * Typography System
+	 * Standardized to 4 sizes and 2 weights:
+	 * - Sizes: sm (14px), base (16px), lg (18px), xl (20px)
+	 * - Weights: regular (400), bold (700)
 	 */
-	h1,
-	h2,
-	h3,
+
+	/* Base text elements - Regular weight, base size */
 	p,
 	ul,
-	li,
-	table {
-		@apply tracking-wide dark:text-white;
+	li {
+		@apply text-base font-normal tracking-wide dark:text-white;
 	}
 
-	/* Heading 1 - Primary page titles */
-	h1 {
-		@apply text-primary-800 dark:text-primary-400 my-8 text-3xl;
-	}
-
-	/* Heading 2 - Section titles */
-	h2 {
-		@apply my-6 text-2xl;
-	}
-
-	/* Heading 3 - Subsection titles */
+	/* Headings - Bold weight, xl size */
+	h1,
+	h2,
 	h3 {
-		@apply my-5 text-xl;
+		@apply text-xl font-bold tracking-wide dark:text-white;
 	}
 
-	/* Paragraph - Body text */
-	p {
-		@apply my-3 text-lg;
+	/* Tables - Base size, regular weight */
+	table {
+		@apply text-base font-normal tracking-wide dark:text-white;
 	}
 
-	/* Inline code elements */
+	/* Inline code elements - Base size */
 	code {
-		@apply text-primary-700 dark:text-primary-400;
+		@apply text-base text-primary-700 dark:text-primary-400;
 	}
 
 	/**
 	 * Code blocks - Syntax highlighted pre elements
 	 * Used within #mainContent container
+	 * Uses sm size from typography system
 	 */
 	#mainContent > pre {
-		@apply mx-auto my-4 w-full overflow-auto rounded-xl border border-gray-200 bg-gray-50 bg-gradient-to-r p-2 text-sm text-gray-600 sm:p-6 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400;
+		@apply mx-auto my-4 w-full overflow-auto rounded-xl border border-gray-200 bg-gray-50 bg-gradient-to-r p-2 text-sm font-normal text-gray-600 sm:p-6 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400;
 	}
 }
 

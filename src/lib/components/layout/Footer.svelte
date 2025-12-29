@@ -28,22 +28,22 @@
 		<div class="grid md:grid-cols-4 gap-8">
 			<!-- Company Information -->
 			<div>
-				<h3 class="text-lg font-semibold mb-4">{COMPANY_INFO.name}</h3>
-				<p class="text-gray-400">
+				<h3 class="text-lg font-bold mb-4">{COMPANY_INFO.name}</h3>
+				<p class="text-base font-normal text-gray-400">
 					{COMPANY_INFO.tagline}
 				</p>
 			</div>
 
 			<!-- Quick Links -->
 			<div>
-				<h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+				<h4 class="text-lg font-bold mb-4">Quick Links</h4>
 				<nav aria-label="Footer navigation">
 					<ul class="space-y-2">
 						{#each quickLinks as link}
 							<li>
 								<a
 									href={link.href}
-									class="text-gray-400 hover:text-white transition-colors"
+									class="text-base font-normal text-gray-400 hover:text-white transition-colors"
 								>
 									{link.label}
 								</a>
@@ -55,8 +55,8 @@
 
 			<!-- Contact Information -->
 			<div>
-				<h4 class="text-lg font-semibold mb-4">Contact Info</h4>
-				<address class="space-y-2 text-gray-400 not-italic">
+				<h4 class="text-lg font-bold mb-4">Contact Info</h4>
+				<address class="space-y-2 text-base font-normal text-gray-400 not-italic">
 					<p>{COMPANY_INFO.location}</p>
 					<p>
 						<a
@@ -81,7 +81,7 @@
 
 			<!-- Social Media Links -->
 			<div>
-				<h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+				<h4 class="text-lg font-bold mb-4">Follow Us</h4>
 				<div class="flex gap-4">
 					<!-- Facebook -->
 					<a
@@ -132,8 +132,8 @@
 		</div>
 
 		<!-- Copyright Notice -->
-		<div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-			<p>&copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.</p>
+		<div class="border-t border-gray-800 mt-8 pt-8 text-center">
+			<p class="text-base font-normal text-gray-400">&copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.</p>
 		</div>
 	</div>
 </footer>

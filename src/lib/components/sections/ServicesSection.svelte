@@ -13,8 +13,8 @@
 -->
 <Section variant="gray">
 	<div class="max-w-4xl mx-auto">
-		<!-- Section Heading -->
-		<h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">Our Services</h2>
+		<!-- Section Heading - xl size, bold weight -->
+		<h2 class="text-xl font-bold text-gray-900 mb-12 text-center">Our Services</h2>
 
 		<!-- Services Grid -->
 		<div class="grid md:grid-cols-2 gap-8">

@@ -48,7 +48,7 @@ export const SOCIAL_LINKS = {
 
 /**
  * Design Tokens
- * Consistent spacing and styling values
+ * Consistent spacing, styling, and typography values
  */
 export const DESIGN_TOKENS = {
 	spacing: {
@@ -61,5 +61,22 @@ export const DESIGN_TOKENS = {
 		primaryHover: 'blue-700',
 		textDark: 'gray-900',
 		textLight: 'gray-600'
+	},
+	/**
+	 * Typography Scale
+	 * 4 font sizes: sm (14px), base (16px), lg (18px), xl (20px)
+	 * 2 font weights: regular (400), bold (700)
+	 */
+	typography: {
+		sizes: {
+			sm: 'text-sm',
+			base: 'text-base',
+			lg: 'text-lg',
+			xl: 'text-xl'
+		},
+		weights: {
+			regular: 'font-normal',
+			bold: 'font-bold'
+		}
 	}
 } as const;

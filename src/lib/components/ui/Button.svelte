@@ -34,8 +34,9 @@
 
 	/**
 	 * Base button styles (shared across all variants)
+	 * Uses bold weight from typography system
 	 */
-	const baseStyles = 'font-semibold rounded-lg transition-all duration-200 inline-block text-center';
+	const baseStyles = 'font-bold rounded-lg transition-all duration-200 inline-block text-center';
 
 	/**
 	 * Size-specific styles

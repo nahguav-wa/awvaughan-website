@@ -13,11 +13,11 @@
 -->
 <Section variant="white">
 	<div class="max-w-4xl mx-auto text-center">
-		<!-- Section Heading -->
-		<h2 class="text-4xl font-bold text-gray-900 mb-6">About Us</h2>
+		<!-- Section Heading - xl size, bold weight -->
+		<h2 class="text-xl font-bold text-gray-900 mb-6">About Us</h2>
 
-		<!-- Company Description -->
-		<p class="text-lg text-gray-600 mb-8">
+		<!-- Company Description - lg size, regular weight -->
+		<p class="text-lg font-normal text-gray-600 mb-8">
 			We are The A.W. Vaughan Company, a leading gravel driveway repair and drainage solutions
 			provider in Virginia Beach and the 757 area. With specialized expertise in excavation,
 			driveway grading, and rural property maintenance, we deliver results that exceed

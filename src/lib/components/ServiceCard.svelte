@@ -21,13 +21,16 @@
 	Service card with hover effect
 -->
 <Card>
-	<h3 class="text-2xl font-semibold text-gray-900 mb-4">
+	<!-- Service title - xl size, bold weight -->
+	<h3 class="text-xl font-bold text-gray-900 mb-4">
 		{service.title}
 	</h3>
-	<p class="text-gray-600 mb-4">
+	<!-- Service description - base size, regular weight -->
+	<p class="text-base font-normal text-gray-600 mb-4">
 		{service.description}
 	</p>
-	<a href={service.href} class="text-blue-600 hover:text-blue-700 font-medium">
+	<!-- Learn more link - base size, bold weight -->
+	<a href={service.href} class="text-base font-bold text-blue-600 hover:text-blue-700">
 		Learn More →
 	</a>
 </Card>

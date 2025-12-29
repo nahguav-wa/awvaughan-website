@@ -54,7 +54,7 @@
 	class:-translate-y-full={!isTopBarVisible}
 >
 	<div class="container mx-auto px-4">
-		<div class="flex items-center justify-center gap-8 py-3 text-sm">
+		<div class="flex items-center justify-center gap-8 py-3 text-sm font-normal">
 			<!-- Location -->
 			<div class="flex items-center gap-2">
 				<MapPin class="w-4 h-4" aria-hidden="true" />
@@ -120,7 +120,7 @@
 						<li>
 							<a
 								href={link.href}
-								class="font-medium transition-colors duration-200 hover:text-blue-600"
+								class="text-base font-bold transition-colors duration-200 hover:text-blue-600"
 								class:text-white={!isScrolled}
 								class:text-gray-800={isScrolled}
 							>
@@ -154,7 +154,7 @@
 						<li>
 							<a
 								href={link.href}
-								class="block font-medium text-gray-800 hover:text-blue-600 transition-colors"
+								class="block text-base font-bold text-gray-800 hover:text-blue-600 transition-colors"
 								onclick={toggleMobileMenu}
 							>
 								{link.label}
