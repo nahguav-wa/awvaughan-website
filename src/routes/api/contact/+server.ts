@@ -1,6 +1,6 @@
 /**
  * Contact Form API Endpoint
- * Handles form submissions and sends emails via Cloudflare Email Workers
+ * Handles form submissions and sends emails via MS365 Graph API
  */
 
 import { json, error } from '@sveltejs/kit';
@@ -33,8 +33,40 @@ function sanitizeInput(input: string): string {
 }
 
 /**
+ * Get MS365 Graph API access token
+ */
+async function getAccessToken(
+	tenantId: string,
+	clientId: string,
+	clientSecret: string
+): Promise<string> {
+	const tokenUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
+
+	const params = new URLSearchParams({
+		client_id: clientId,
+		scope: 'https://graph.microsoft.com/.default',
+		client_secret: clientSecret,
+		grant_type: 'client_credentials'
+	});
+
+	const response = await fetch(tokenUrl, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: params
+	});
+
+	if (!response.ok) {
+		const errorData = await response.text();
+		throw new Error(`Failed to get access token: ${response.status} ${errorData}`);
+	}
+
+	const data = await response.json();
+	return data.access_token;
+}
+
+/**
  * POST handler for contact form submissions
- * This endpoint will send emails using Cloudflare's Email Workers
+ * This endpoint will send emails using MS365 Graph API
  */
 export const POST: RequestHandler = async ({ request, platform }) => {
 	try {
@@ -77,26 +109,68 @@ Submitted from: awvaughan.com
 Time: ${new Date().toISOString()}
 		`.trim();
 
-		// Send email using Cloudflare Email Workers
-		// Note: This requires the CONTACT_EMAIL_BINDING to be configured in wrangler.toml
-		// and Cloudflare Email Routing to be set up for your domain
+		// Send email using MS365 Graph API
 		try {
-			if (platform?.env?.CONTACT_EMAIL) {
-				// Use Cloudflare Email Workers API
-				await platform.env.CONTACT_EMAIL.send({
-					from: 'noreply@awvaughan.com', // Must be verified sending address
-					to: 'alex.vaughan@awvaughan.com',
-					subject: `Contact Form: ${sanitizedData.subject}`,
-					text: emailContent,
-					headers: {
-						'Reply-To': sanitizedData.email
+			const tenantId = platform?.env?.MS365_TENANT_ID;
+			const clientId = platform?.env?.MS365_CLIENT_ID;
+			const clientSecret = platform?.env?.MS365_CLIENT_SECRET;
+			const fromEmail = platform?.env?.MS365_EMAIL;
+
+			if (tenantId && clientId && clientSecret && fromEmail) {
+				// Get access token
+				const accessToken = await getAccessToken(tenantId, clientId, clientSecret);
+
+				// Send email via Graph API
+				const graphResponse = await fetch(
+					`https://graph.microsoft.com/v1.0/users/${fromEmail}/sendMail`,
+					{
+						method: 'POST',
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							message: {
+								subject: `Contact Form: ${sanitizedData.subject}`,
+								body: {
+									contentType: 'Text',
+									content: emailContent
+								},
+								toRecipients: [
+									{
+										emailAddress: {
+											address: 'alex.vaughan@awvaughan.com'
+										}
+									}
+								],
+								replyTo: [
+									{
+										emailAddress: {
+											address: sanitizedData.email,
+											name: sanitizedData.name
+										}
+									}
+								]
+							},
+							saveToSentItems: 'false'
+						})
 					}
-				});
+				);
+
+				if (!graphResponse.ok) {
+					const errorData = await graphResponse.text();
+					throw new Error(`Failed to send email via Graph API: ${graphResponse.status} ${errorData}`);
+				}
 			} else {
-				// Fallback: Log to console if email service not configured
-				// In production, you should configure Cloudflare Email Workers
-				console.log('Email service not configured. Form data:', sanitizedData);
+				// Fallback: Log to console if MS365 not configured
+				console.log('MS365 Graph API not configured. Form data:', sanitizedData);
 				console.log('Email content:', emailContent);
+				console.log('Missing env vars:', {
+					tenantId: !!tenantId,
+					clientId: !!clientId,
+					clientSecret: !!clientSecret,
+					fromEmail: !!fromEmail
+				});
 
 				// For development/testing, return success anyway
 				// In production, you might want to throw an error instead
