@@ -94,11 +94,11 @@
 				<!-- Contact Details -->
 				<div class="space-y-4">
 					<!-- Phone -->
-					<div class="flex flex-col items-center text-center gap-2">
+					<div class="flex items-center gap-4">
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Phone class="w-5 h-5" />
 						</div>
-						<div>
+						<div class="text-center">
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Phone</h3>
 							<a
 								href={COMPANY_INFO.phoneHref}
@@ -110,11 +110,11 @@
 					</div>
 
 					<!-- Email -->
-					<div class="flex flex-col items-center text-center gap-2">
+					<div class="flex items-center gap-4">
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Mail class="w-5 h-5" />
 						</div>
-						<div>
+						<div class="text-center">
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Email</h3>
 							<a
 								href={COMPANY_INFO.emailHref}
@@ -126,11 +126,11 @@
 					</div>
 
 					<!-- Location -->
-					<div class="flex flex-col items-center text-center gap-2">
+					<div class="flex items-center gap-4">
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<MapPin class="w-5 h-5" />
 						</div>
-						<div>
+						<div class="text-center">
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Service Area</h3>
 							<p class="text-base font-normal text-gray-600">
 								{COMPANY_INFO.location} and the 757 area
@@ -198,7 +198,7 @@
 						>
 							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 								<path
-									d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm1-16h-2v7h2V6zm-1 9c-.828 0-1.5.672-1.5 1.5S11.172 18 12 18s1.5-.672 1.5-1.5S12.828 15 12 15z"
+									d="M12.198 23.997c-6.617 0-12-5.382-12-12 0-6.617 5.383-12 12-12s12 5.383 12 12c0 6.618-5.383 12-12 12zm6.777-18.285c-1.668 0-3.07.83-4.369 2.456-1.3-1.626-2.701-2.456-4.368-2.456-2.257 0-4.223 1.83-4.223 4.16 0 3.21 3.242 5.633 7.018 8.997.473.42.946.84 1.573 1.439.626-.598 1.1-1.018 1.572-1.439 3.777-3.364 7.019-5.787 7.019-8.998 0-2.33-1.967-4.159-4.222-4.159z"
 								/>
 							</svg>
 						</a>
