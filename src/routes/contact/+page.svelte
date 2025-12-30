@@ -94,7 +94,7 @@
 				<!-- Contact Details -->
 				<div class="space-y-4">
 					<!-- Phone -->
-					<div class="flex items-start gap-4">
+					<div class="flex flex-col items-center text-center gap-2">
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Phone class="w-5 h-5" />
 						</div>
@@ -110,7 +110,7 @@
 					</div>
 
 					<!-- Email -->
-					<div class="flex items-start gap-4">
+					<div class="flex flex-col items-center text-center gap-2">
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Mail class="w-5 h-5" />
 						</div>
@@ -126,7 +126,7 @@
 					</div>
 
 					<!-- Location -->
-					<div class="flex items-start gap-4">
+					<div class="flex flex-col items-center text-center gap-2">
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<MapPin class="w-5 h-5" />
 						</div>
@@ -227,36 +227,39 @@
 				{/if}
 
 				<form onsubmit={handleSubmit} class="space-y-6">
-					<!-- First Name -->
-					<div>
-						<label for="firstName" class="block text-base font-bold text-gray-900 mb-2">
-							First Name <span class="text-red-600">*</span>
-						</label>
-						<input
-							type="text"
-							id="firstName"
-							bind:value={formData.firstName}
-							required
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-							placeholder="John"
-							disabled={formState === 'submitting'}
-						/>
-					</div>
+					<!-- First Name and Last Name -->
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<!-- First Name -->
+						<div>
+							<label for="firstName" class="block text-base font-bold text-gray-900 mb-2">
+								First Name <span class="text-red-600">*</span>
+							</label>
+							<input
+								type="text"
+								id="firstName"
+								bind:value={formData.firstName}
+								required
+								class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+								placeholder="John"
+								disabled={formState === 'submitting'}
+							/>
+						</div>
 
-					<!-- Last Name -->
-					<div>
-						<label for="lastName" class="block text-base font-bold text-gray-900 mb-2">
-							Last Name <span class="text-red-600">*</span>
-						</label>
-						<input
-							type="text"
-							id="lastName"
-							bind:value={formData.lastName}
-							required
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-							placeholder="Doe"
-							disabled={formState === 'submitting'}
-						/>
+						<!-- Last Name -->
+						<div>
+							<label for="lastName" class="block text-base font-bold text-gray-900 mb-2">
+								Last Name <span class="text-red-600">*</span>
+							</label>
+							<input
+								type="text"
+								id="lastName"
+								bind:value={formData.lastName}
+								required
+								class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+								placeholder="Doe"
+								disabled={formState === 'submitting'}
+							/>
+						</div>
 					</div>
 
 					<!-- Company Name -->

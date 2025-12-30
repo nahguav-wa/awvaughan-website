@@ -25,7 +25,7 @@
 <!--
 	Feature card with icon
 -->
-<div class="p-6">
+<div class="p-6 text-center">
 	<!-- Icon wrapper -->
 	<div class="text-primary-500 mb-4">
 		<IconComponent class="w-12 h-12 mx-auto" />
