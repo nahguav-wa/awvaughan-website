@@ -98,7 +98,7 @@
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Phone class="w-5 h-5" />
 						</div>
-						<div class="text-center">
+						<div>
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Phone</h3>
 							<a
 								href={COMPANY_INFO.phoneHref}
@@ -114,7 +114,7 @@
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<Mail class="w-5 h-5" />
 						</div>
-						<div class="text-center">
+						<div>
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Email</h3>
 							<a
 								href={COMPANY_INFO.emailHref}
@@ -130,7 +130,7 @@
 						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
 							<MapPin class="w-5 h-5" />
 						</div>
-						<div class="text-center">
+						<div>
 							<h3 class="text-xl font-bold text-gray-900 mb-1">Service Area</h3>
 							<p class="text-base font-normal text-gray-600">
 								{COMPANY_INFO.location} and the 757 area
