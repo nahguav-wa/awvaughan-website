@@ -8,6 +8,7 @@
 	import { page } from '$app/stores';
 	import { createScrollObserver } from '$lib/utils/scroll';
 	import { COMPANY_INFO, ROUTES } from '$lib/config/constants';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	/**
 	 * Reactive scroll state
@@ -36,8 +37,7 @@
 	 */
 	const navLinks = [
 		{ label: 'About', href: ROUTES.about },
-		{ label: 'Services', href: ROUTES.services },
-		{ label: 'Contact', href: ROUTES.contact }
+		{ label: 'Services', href: ROUTES.services }
 	];
 
 	/**
@@ -142,6 +142,15 @@
 							</a>
 						</li>
 					{/each}
+					<li>
+						<Button
+							variant={isTransparent ? 'outline' : 'primary'}
+							href={ROUTES.contact}
+							size="md"
+						>
+							Contact Us
+						</Button>
+					</li>
 				</ul>
 			</nav>
 
@@ -175,6 +184,16 @@
 							</a>
 						</li>
 					{/each}
+					<li>
+						<Button
+							variant="primary"
+							href={ROUTES.contact}
+							size="md"
+							class="w-full"
+						>
+							Contact Us
+						</Button>
+					</li>
 				</ul>
 			</nav>
 		</div>

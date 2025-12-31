@@ -54,8 +54,8 @@
 	<!-- Hero Content - Centered -->
 	<div class="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
 		<div class="text-center text-white max-w-4xl">
-			<!-- Main Heading - xl size, bold weight -->
-			<h1 class="text-xl font-bold mb-6 drop-shadow-lg">
+			<!-- Main Heading - 4xl to 6xl size, bold weight -->
+			<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
 				{title}
 			</h1>
 
