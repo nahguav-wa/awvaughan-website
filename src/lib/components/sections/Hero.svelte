@@ -45,7 +45,12 @@
 <section class="relative w-full h-screen pt-16 md:pt-24">
 	<!-- Background Image Container -->
 	<div class="absolute inset-0 overflow-hidden">
-		<img src={imageSrc} alt={imageAlt} class="w-full h-full object-cover" loading="eager" />
+		<img
+			src={imageSrc}
+			alt={imageAlt}
+			class="w-full h-full object-cover object-center"
+			loading="eager"
+		/>
 
 		<!-- Dark overlay for better text readability -->
 		<div class="absolute inset-0 bg-black bg-opacity-40"></div>
