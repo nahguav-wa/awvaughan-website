@@ -157,7 +157,7 @@
 				href="/contact"
 				class="inline-block bg-primary-500 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-primary-600 transition-colors"
 			>
-				Get a Free Quote
+				Contact Us
 			</a>
 			<a
 				href="tel:+17574021100"
