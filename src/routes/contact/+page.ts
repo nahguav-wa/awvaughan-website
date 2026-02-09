@@ -22,16 +22,16 @@ export const load: PageLoad = () => {
 			'drainage solutions contact',
 			'excavation contractor Virginia Beach'
 		],
-		canonical: 'https://www.awvaughan.com/contact',
+		canonical: 'https://awvaughan.com/contact',
 		openGraph: {
 			type: 'website',
 			title: 'Contact The A.W. Vaughan Company | Free Quotes',
 			description:
 				'Get a free quote for professional gravel driveway repair, drainage solutions, and excavation services in Virginia Beach. Call (757) 402-1100 or fill out our contact form.',
-			url: 'https://www.awvaughan.com/contact',
+			url: 'https://awvaughan.com/contact',
 			siteName: 'The A.W. Vaughan Company',
 			image: {
-				url: 'https://www.awvaughan.com/og-image.jpg',
+				url: 'https://awvaughan.com/og-image.jpg',
 				width: 1200,
 				height: 630,
 				alt: 'Contact The A.W. Vaughan Company'
@@ -41,3 +41,6 @@ export const load: PageLoad = () => {
 
 	return { seo };
 };
+
+/** Contact page has a form that submits to the API, so it cannot be prerendered */
+export const prerender = false;

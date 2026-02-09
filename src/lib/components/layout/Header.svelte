@@ -130,7 +130,7 @@
 			<!-- Desktop Navigation - Right Aligned -->
 			<nav class="hidden md:block" aria-label="Main navigation">
 				<ul class="flex items-center gap-8">
-					{#each navLinks as link}
+					{#each navLinks as link (link.href)}
 						<li>
 							<a
 								href={link.href}
@@ -173,7 +173,7 @@
 		<div class="md:hidden bg-white border-t border-gray-200 shadow-lg">
 			<nav aria-label="Mobile navigation">
 				<ul class="container mx-auto px-4 py-4 space-y-4">
-					{#each navLinks as link}
+					{#each navLinks as link (link.href)}
 						<li>
 							<a
 								href={link.href}

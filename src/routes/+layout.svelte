@@ -19,15 +19,18 @@
 	 */
 	const favicon = '/Favicon.svg';
 
+	import type { Snippet } from 'svelte';
+	import type { LayoutData } from './$types';
+
 	/**
 	 * Component Props
 	 * Type-safe props using Svelte 5 runes syntax
 	 */
 	interface Props {
 		/** Child pages/routes content */
-		children: any;
+		children: Snippet;
 		/** Route data from load function */
-		data: any;
+		data: LayoutData;
 	}
 
 	let { children, data }: Props = $props();

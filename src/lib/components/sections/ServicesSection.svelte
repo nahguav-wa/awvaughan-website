@@ -18,7 +18,7 @@
 
 		<!-- Services Grid -->
 		<div class="grid md:grid-cols-2 gap-8">
-			{#each services as service}
+			{#each services as service (service.title)}
 				<ServiceCard {service} />
 			{/each}
 		</div>

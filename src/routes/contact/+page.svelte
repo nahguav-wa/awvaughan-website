@@ -3,6 +3,7 @@
 	Contact information, form, and social media links
 -->
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import Section from '$lib/components/ui/Section.svelte';
 	import SocialMediaIcons from '$lib/components/SocialMediaIcons.svelte';
 	import { COMPANY_INFO } from '$lib/config/constants';
@@ -21,6 +22,45 @@
 
 	let formState = $state<'idle' | 'submitting' | 'success' | 'error'>('idle');
 	let errorMessage = $state('');
+	let turnstileToken = $state('');
+	let turnstileWidgetId = $state<string | null>(null);
+
+	/**
+	 * Cloudflare Turnstile site key
+	 * Set to '1x00000000000000000000AA' for testing (always passes)
+	 * Replace with your real site key from the Cloudflare dashboard
+	 */
+	const TURNSTILE_SITE_KEY = '0x4AAAAAAA_placeholder_replace_me';
+
+	onMount(() => {
+		// Render Turnstile widget after the script loads
+		const interval = setInterval(() => {
+			if (
+				typeof window !== 'undefined' &&
+				'turnstile' in window &&
+				document.getElementById('turnstile-container')
+			) {
+				clearInterval(interval);
+				const w = window as unknown as {
+					turnstile: {
+						render: (
+							el: string,
+							opts: { sitekey: string; callback: (token: string) => void }
+						) => string;
+						reset: (id: string) => void;
+					};
+				};
+				turnstileWidgetId = w.turnstile.render('#turnstile-container', {
+					sitekey: TURNSTILE_SITE_KEY,
+					callback: (token: string) => {
+						turnstileToken = token;
+					}
+				});
+			}
+		}, 100);
+
+		return () => clearInterval(interval);
+	});
 
 	/**
 	 * Handle form submission
@@ -31,13 +71,15 @@
 		errorMessage = '';
 
 		try {
-			// Submit to Cloudflare Worker endpoint
 			const response = await fetch('/api/contact', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(formData)
+				body: JSON.stringify({
+					...formData,
+					'cf-turnstile-response': turnstileToken
+				})
 			});
 
 			if (!response.ok) {
@@ -45,7 +87,6 @@
 			}
 
 			formState = 'success';
-			// Reset form
 			formData = {
 				firstName: '',
 				lastName: '',
@@ -55,13 +96,25 @@
 				subject: '',
 				message: ''
 			};
-		} catch (error) {
+			turnstileToken = '';
+			// Reset the Turnstile widget
+			if (turnstileWidgetId !== null && 'turnstile' in window) {
+				const w = window as unknown as {
+					turnstile: { reset: (id: string) => void };
+				};
+				w.turnstile.reset(turnstileWidgetId);
+			}
+		} catch (err) {
 			formState = 'error';
 			errorMessage = 'Failed to send message. Please try again or call us directly.';
-			console.error('Form submission error:', error);
+			console.error('Form submission error:', err);
 		}
 	}
 </script>
+
+<svelte:head>
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</svelte:head>
 
 <!--
 	Page Hero Section
@@ -279,6 +332,9 @@
 							disabled={formState === 'submitting'}
 						></textarea>
 					</div>
+
+					<!-- Cloudflare Turnstile CAPTCHA -->
+					<div id="turnstile-container"></div>
 
 					<!-- Submit Button -->
 					<div>

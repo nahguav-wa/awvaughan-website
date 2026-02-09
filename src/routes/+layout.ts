@@ -19,7 +19,6 @@ export const load: LayoutLoad = () => {
 
 /**
  * Prerender Configuration
- * Disabled for now until all routes are implemented
- * Enable this after creating all route pages
+ * Static pages are prerendered for faster load times
  */
-export const prerender = false;
+export const prerender = true;

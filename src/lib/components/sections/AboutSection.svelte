@@ -27,7 +27,7 @@
 
 		<!-- Value Propositions Grid -->
 		<div class="grid md:grid-cols-3 gap-8 mt-12">
-			{#each features as feature}
+			{#each features as feature (feature.title)}
 				<FeatureCard {feature} />
 			{/each}
 		</div>

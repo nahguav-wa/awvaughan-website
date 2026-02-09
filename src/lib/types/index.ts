@@ -26,17 +26,40 @@ export interface Feature {
 }
 
 /**
+ * Open Graph image metadata
+ */
+export interface OGImage {
+	url: string;
+	width?: number;
+	height?: number;
+	alt?: string;
+}
+
+/**
+ * Open Graph metadata for social sharing
+ */
+export interface OpenGraphMetadata {
+	type?: string;
+	title?: string;
+	description?: string;
+	url?: string;
+	siteName?: string;
+	image?: OGImage;
+}
+
+/**
  * SEO Metadata Configuration
  */
 export interface SEOMetadata {
 	title: string;
 	description: string;
-	keywords?: string;
+	keywords?: string | string[];
 	ogImage?: string;
 	canonical?: string;
 	type?: 'website' | 'article' | 'business.business';
 	noindex?: boolean;
 	nofollow?: boolean;
+	openGraph?: OpenGraphMetadata;
 }
 
 /**

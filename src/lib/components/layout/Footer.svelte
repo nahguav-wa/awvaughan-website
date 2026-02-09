@@ -46,7 +46,7 @@
 				<h4 class="text-lg font-bold mb-4">Quick Links</h4>
 				<nav aria-label="Footer navigation">
 					<ul class="space-y-2">
-						{#each quickLinks as link}
+						{#each quickLinks as link (link.href)}
 							<li>
 								<a
 									href={link.href}

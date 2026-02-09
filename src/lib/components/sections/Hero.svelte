@@ -49,6 +49,8 @@
 			src={imageSrc}
 			alt={imageAlt}
 			class="w-full h-full object-cover object-top"
+			width="710"
+			height="1125"
 			loading="eager"
 		/>
 

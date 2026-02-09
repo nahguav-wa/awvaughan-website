@@ -37,12 +37,12 @@ export function createScrollObserver(callback: (scrollY: number) => void) {
  * @param delay - Minimum time between executions in milliseconds
  * @returns Throttled function
  */
-export function throttle<T extends (...args: any[]) => any>(
-	func: T,
+export function throttle<Args extends unknown[], R>(
+	func: (...args: Args) => R,
 	delay: number
-): (...args: Parameters<T>) => void {
+): (...args: Args) => void {
 	let lastCall = 0;
-	return (...args: Parameters<T>) => {
+	return (...args: Args) => {
 		const now = Date.now();
 		if (now - lastCall >= delay) {
 			lastCall = now;
