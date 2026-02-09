@@ -6,7 +6,15 @@ declare global {
 		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}
-		// interface Platform {}
+		interface Platform {
+			env?: {
+				MS365_TENANT_ID?: string;
+				MS365_CLIENT_ID?: string;
+				MS365_CLIENT_SECRET?: string;
+				MS365_EMAIL?: string;
+				TURNSTILE_SECRET_KEY?: string;
+			};
+		}
 	}
 }
 

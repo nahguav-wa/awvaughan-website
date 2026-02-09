@@ -12,21 +12,38 @@
 		/** SEO metadata configuration */
 		metadata: SEOMetadata;
 		/** Optional JSON-LD structured data */
-		structuredData?: object | object[];
+		structuredData?: Record<string, unknown> | Record<string, unknown>[];
 	}
 
 	let { metadata, structuredData }: Props = $props();
 
 	/**
-	 * Process structured data into JSON-LD format
+	 * Resolve keywords to a string (handles both string and string[])
 	 */
-	const getStructuredDataScript = () => {
+	const resolvedKeywords = $derived(
+		Array.isArray(metadata.keywords) ? metadata.keywords.join(', ') : metadata.keywords
+	);
+
+	/** Use openGraph overrides when available, fall back to top-level metadata */
+	const ogType = $derived(metadata.openGraph?.type || metadata.type || 'website');
+	const ogTitle = $derived(metadata.openGraph?.title || metadata.title);
+	const ogDescription = $derived(metadata.openGraph?.description || metadata.description);
+	const ogUrl = $derived(
+		metadata.openGraph?.url || metadata.canonical || 'https://awvaughan.com'
+	);
+	const ogImage = $derived(
+		metadata.openGraph?.image?.url || metadata.ogImage
+	);
+
+	/**
+	 * Build the full JSON-LD script tag HTML for structured data
+	 */
+	const structuredDataHtml = $derived.by(() => {
 		if (!structuredData) return '';
-
 		const data = Array.isArray(structuredData) ? structuredData : [structuredData];
-
-		return data.map((item) => JSON.stringify(item)).join('\n');
-	};
+		const json = data.map((item) => JSON.stringify(item)).join('\n');
+		return '<script type="application/ld+json">' + json + '</' + 'script>';
+	});
 </script>
 
 <!--
@@ -39,8 +56,8 @@
 	<meta name="title" content={metadata.title} />
 	<meta name="description" content={metadata.description} />
 
-	{#if metadata.keywords}
-		<meta name="keywords" content={metadata.keywords} />
+	{#if resolvedKeywords}
+		<meta name="keywords" content={resolvedKeywords} />
 	{/if}
 
 	<!-- Canonical URL -->
@@ -59,25 +76,38 @@
 	{/if}
 
 	<!-- Open Graph / Facebook Meta Tags -->
-	<meta property="og:type" content={metadata.type || 'website'} />
-	<meta property="og:url" content={metadata.canonical || 'https://awvaughan.com'} />
-	<meta property="og:title" content={metadata.title} />
-	<meta property="og:description" content={metadata.description} />
-	{#if metadata.ogImage}
-		<meta property="og:image" content={metadata.ogImage} />
+	<meta property="og:type" content={ogType} />
+	<meta property="og:url" content={ogUrl} />
+	<meta property="og:title" content={ogTitle} />
+	<meta property="og:description" content={ogDescription} />
+	{#if metadata.openGraph?.siteName}
+		<meta property="og:site_name" content={metadata.openGraph.siteName} />
+	{/if}
+	{#if ogImage}
+		<meta property="og:image" content={ogImage} />
+	{/if}
+	{#if metadata.openGraph?.image?.width}
+		<meta property="og:image:width" content={String(metadata.openGraph.image.width)} />
+	{/if}
+	{#if metadata.openGraph?.image?.height}
+		<meta property="og:image:height" content={String(metadata.openGraph.image.height)} />
+	{/if}
+	{#if metadata.openGraph?.image?.alt}
+		<meta property="og:image:alt" content={metadata.openGraph.image.alt} />
 	{/if}
 
 	<!-- Twitter Card Meta Tags -->
 	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={metadata.canonical || 'https://awvaughan.com'} />
-	<meta property="twitter:title" content={metadata.title} />
-	<meta property="twitter:description" content={metadata.description} />
-	{#if metadata.ogImage}
-		<meta property="twitter:image" content={metadata.ogImage} />
+	<meta property="twitter:url" content={ogUrl} />
+	<meta property="twitter:title" content={ogTitle} />
+	<meta property="twitter:description" content={ogDescription} />
+	{#if ogImage}
+		<meta property="twitter:image" content={ogImage} />
 	{/if}
 
 	<!-- Structured Data (JSON-LD) -->
 	{#if structuredData}
-		{@html `<script type="application/ld+json">${getStructuredDataScript()}</script>`}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html structuredDataHtml}
 	{/if}
 </svelte:head>

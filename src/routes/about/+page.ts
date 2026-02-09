@@ -22,16 +22,16 @@ export const load: PageLoad = () => {
 			'drainage solutions experts',
 			'local excavation contractor'
 		],
-		canonical: 'https://www.awvaughan.com/about',
+		canonical: 'https://awvaughan.com/about',
 		openGraph: {
 			type: 'website',
 			title: 'About The A.W. Vaughan Company | Virginia Beach Excavation',
 			description:
 				'Professional gravel driveway repair and drainage solutions serving Virginia Beach and the 757 area. Expert excavation services for residential and rural properties.',
-			url: 'https://www.awvaughan.com/about',
+			url: 'https://awvaughan.com/about',
 			siteName: 'The A.W. Vaughan Company',
 			image: {
-				url: 'https://www.awvaughan.com/og-image.jpg',
+				url: 'https://awvaughan.com/og-image.jpg',
 				width: 1200,
 				height: 630,
 				alt: 'The A.W. Vaughan Company - Virginia Beach Excavation Experts'

@@ -34,6 +34,9 @@
 					src="/about-image.jpg"
 					alt="The A.W. Vaughan Company team working on excavation project in Virginia Beach"
 					class="w-full h-auto object-cover"
+					width="844"
+					height="1125"
+					loading="lazy"
 				/>
 			</div>
 
@@ -74,7 +77,7 @@
 
 		<!-- Value Propositions Grid -->
 		<div class="grid md:grid-cols-3 gap-8">
-			{#each features as feature}
+			{#each features as feature (feature.title)}
 				<FeatureCard {feature} />
 			{/each}
 		</div>

@@ -24,8 +24,3 @@ export { default as CTASection } from './components/sections/CTASection.svelte';
 
 // SEO Components
 export { default as SEOHead } from './components/seo/SEOHead.svelte';
-
-// Legacy components (for backward compatibility - can be removed after migration)
-export { default as Header1 } from './components/Header1.svelte';
-export { default as Header2 } from './components/Header2.svelte';
-export { default as HeroImage } from './components/HeroImage.svelte';

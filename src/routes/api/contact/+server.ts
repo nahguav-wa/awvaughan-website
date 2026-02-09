@@ -17,6 +17,20 @@ interface ContactFormData {
 	phone?: string;
 	subject?: string;
 	message: string;
+	'cf-turnstile-response'?: string;
+}
+
+/**
+ * Verify Cloudflare Turnstile token
+ */
+async function verifyTurnstile(token: string, secretKey: string): Promise<boolean> {
+	const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: new URLSearchParams({ secret: secretKey, response: token })
+	});
+	const data = await response.json();
+	return data.success === true;
 }
 
 /**
@@ -83,6 +97,19 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		// Validate email format
 		if (!isValidEmail(formData.email)) {
 			throw error(400, 'Invalid email address');
+		}
+
+		// Verify Turnstile token (if secret key is configured)
+		const turnstileSecret = platform?.env?.TURNSTILE_SECRET_KEY;
+		if (turnstileSecret) {
+			const turnstileToken = formData['cf-turnstile-response'];
+			if (!turnstileToken) {
+				throw error(400, 'Please complete the CAPTCHA verification');
+			}
+			const isValid = await verifyTurnstile(turnstileToken, turnstileSecret);
+			if (!isValid) {
+				throw error(400, 'CAPTCHA verification failed. Please try again.');
+			}
 		}
 
 		// Sanitize inputs
