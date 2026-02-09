@@ -53,7 +53,7 @@
 		/>
 
 		<!-- Dark overlay for better text readability -->
-		<div class="absolute inset-0 bg-black bg-opacity-40"></div>
+		<div class="absolute inset-0 bg-black/40"></div>
 	</div>
 
 	<!-- Hero Content - Centered -->
