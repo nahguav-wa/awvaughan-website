@@ -3,8 +3,7 @@
 	Prominent CTA section encouraging user engagement
 -->
 <script lang="ts">
-	import Section from '../ui/Section.svelte';
-	import Button from '../ui/Button.svelte';
+	import { Section, Button } from '$lib';
 	import { COMPANY_INFO } from '$lib/config/constants';
 </script>
 

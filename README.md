@@ -15,16 +15,16 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm run preview` | Preview production build |
-| `npm run check` | TypeScript and Svelte type checking |
-| `npm run lint` | ESLint + Prettier checks |
-| `npm run format` | Auto-format all files |
-| `npm run test` | Run tests |
-| `npm run coverage` | Run tests with coverage report |
+| Command            | Description                         |
+| ------------------ | ----------------------------------- |
+| `npm run dev`      | Start development server            |
+| `npm run build`    | Production build                    |
+| `npm run preview`  | Preview production build            |
+| `npm run check`    | TypeScript and Svelte type checking |
+| `npm run lint`     | ESLint + Prettier checks            |
+| `npm run format`   | Auto-format all files               |
+| `npm run test`     | Run tests                           |
+| `npm run coverage` | Run tests with coverage report      |
 
 ## Environment Variables
 

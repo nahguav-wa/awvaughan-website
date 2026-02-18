@@ -32,6 +32,7 @@ This document provides comprehensive guidance for AI assistants working on this 
 This is a professional business website for The A.W. Vaughan Company, a gravel driveway repair and drainage solutions contractor serving the Virginia Beach 757 area. The site is built with modern web technologies and optimized for SEO and conversions.
 
 **Primary Goals**:
+
 - Generate leads through contact form submissions
 - Rank highly for local service keywords
 - Provide clear information about services
@@ -45,26 +46,31 @@ This is a professional business website for The A.W. Vaughan Company, a gravel d
 ## Technology Stack
 
 ### Core Framework
+
 - **SvelteKit 2.x** - Full-stack framework (file-based routing, SSR/SSG)
 - **Svelte 5** - Component framework with Runes syntax (`$props()`, `$state()`, etc.)
 - **TypeScript** - Type-safe development with strict mode enabled
 - **Vite 7** - Build tool and dev server
 
 ### Styling
+
 - **Tailwind CSS v4** - Utility-first CSS framework
 - **Flowbite Svelte** - Component library (limited usage)
 - **Custom Design System** - 4 font sizes, 2 weights, standardized spacing
 
 ### Libraries
+
 - **@lucide/svelte** - Icon library for UI elements
 - **MS365 Graph API** - Email sending for contact form
 
 ### Development Tools
+
 - **ESLint** - Code linting with TypeScript and Svelte plugins
 - **Prettier** - Code formatting (tabs, single quotes, 100 char width)
 - **TypeScript** - Strict type checking enabled
 
 ### Deployment
+
 - **Cloudflare Pages** - Hosting and serverless functions
 - **@sveltejs/adapter-auto** - Auto-detects deployment environment
 
@@ -97,6 +103,7 @@ src/routes/
 ```
 
 **Key Patterns**:
+
 - `+page.svelte` = Page component (UI)
 - `+page.ts` = Load function (data fetching, SEO metadata)
 - `+layout.svelte` = Layout wrapper (shared UI like header/footer)
@@ -122,6 +129,7 @@ src/routes/
 ```
 
 **Component Export Pattern**:
+
 - All components exported from `src/lib/index.ts`
 - Import using `$lib` alias: `import { Button } from '$lib'`
 - Never import directly from component files in pages
@@ -205,6 +213,7 @@ awvaughan-website/
 ### TypeScript
 
 **Type Safety**:
+
 ```typescript
 // ✅ Good - Use interface from types/index.ts
 import type { Service } from '$lib/types';
@@ -215,6 +224,7 @@ const service: any = { ... };
 ```
 
 **Strict Mode**: All code must pass TypeScript strict mode checks
+
 - No implicit `any`
 - Strict null checks enabled
 - Unused locals/parameters caught
@@ -222,6 +232,7 @@ const service: any = { ... };
 ### Svelte 5 Runes Syntax
 
 **Component Props** (use `$props()`):
+
 ```svelte
 <script lang="ts">
 	interface Props {
@@ -234,6 +245,7 @@ const service: any = { ... };
 ```
 
 **Reactive State** (use `$state()` and `$derived()`):
+
 ```svelte
 <script lang="ts">
 	let count = $state(0);
@@ -242,6 +254,7 @@ const service: any = { ... };
 ```
 
 **Children Rendering** (use `@render`):
+
 ```svelte
 <script lang="ts">
 	interface Props {
@@ -259,6 +272,7 @@ const service: any = { ... };
 ### File Naming
 
 **SvelteKit Conventions**:
+
 - Components: `PascalCase.svelte` (e.g., `Button.svelte`, `ServiceCard.svelte`)
 - Route files: Use `+` prefix (e.g., `+page.svelte`, `+layout.ts`, `+server.ts`)
 - Type files: `kebab-case.ts` or `index.ts`
@@ -283,17 +297,20 @@ import './styles.css';
 ### Comments
 
 **When to Comment**:
+
 - Complex business logic that isn't self-evident
 - SEO-critical sections (structured data, meta tags)
 - Security-sensitive code (sanitization, validation)
 - API integrations with external services
 
 **When NOT to Comment**:
+
 - Self-explanatory code (e.g., `// Set the title`)
 - Type definitions (types are self-documenting)
 - Obvious UI components
 
 **Comment Style**:
+
 ```typescript
 /**
  * Multi-line JSDoc for functions/interfaces
@@ -317,11 +334,13 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
 #### 1. Layout Components (`src/lib/components/layout/`)
 
 **Header.svelte** - Main navigation
+
 - Sticky header with logo and navigation links
 - Mobile-responsive hamburger menu
 - Links to: Home, About, Services, Contact
 
 **Footer.svelte** - Site footer
+
 - Company info, social media links
 - Copyright notice
 - Contact information
@@ -329,48 +348,58 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
 #### 2. Section Components (`src/lib/components/sections/`)
 
 **Hero.svelte** - Hero section with background image
+
 - Props: `imageSrc`, `imageAlt`, `title`, `subtitle`, `primaryCTA`, `secondaryCTA`
 - Full-screen background with overlay
 - Dual CTAs (primary + secondary)
 
 **AboutSection.svelte** - Company introduction
+
 - Features grid with icons
 - Value propositions
 - Trust indicators
 
 **ServicesSection.svelte** - Service offerings grid
+
 - Displays services from `src/lib/data/services.ts`
 - ServiceCard components in grid layout
 
 **CTASection.svelte** - Call-to-action section
+
 - Conversion-focused messaging
 - Primary CTA button to contact page
 
 #### 3. Feature Components (`src/lib/components/`)
 
 **ServiceCard.svelte** - Individual service card
+
 - Props: `title`, `description`, `href`, `icon`
 - Used in services grid
 
 **FeatureCard.svelte** - Feature/value proposition card
+
 - Props: `title`, `description`, `icon`
 - Used in about section
 
 **SEOHead.svelte** - SEO meta tags and structured data
+
 - Props: `metadata`, `structuredData`
 - Generates Open Graph, Twitter Cards, Schema.org JSON-LD
 
 #### 4. UI Components (`src/lib/components/ui/`)
 
 **Button.svelte** - Reusable button component
+
 - Variants: `primary`, `secondary`, `outline`
 - Sizes: `sm`, `md`, `lg`
 - Can be link (`href`) or button (`type`)
 
 **Card.svelte** - Generic card container
+
 - Consistent padding, borders, shadows
 
 **Section.svelte** - Page section wrapper
+
 - Consistent vertical spacing
 - Container with max-width
 
@@ -381,22 +410,19 @@ Always use TypeScript interfaces for props:
 ```svelte
 <script lang="ts">
 	interface Props {
-		title: string;              // Required
-		description?: string;       // Optional
-		variant?: 'primary' | 'secondary';  // Union type with default
+		title: string; // Required
+		description?: string; // Optional
+		variant?: 'primary' | 'secondary'; // Union type with default
 	}
 
-	let {
-		title,
-		description = '',
-		variant = 'primary'
-	}: Props = $props();
+	let { title, description = '', variant = 'primary' }: Props = $props();
 </script>
 ```
 
 ### Legacy Components
 
 **DO NOT USE** - These are deprecated and will be removed:
+
 - `Header1.svelte`, `Header2.svelte` - Use `layout/Header.svelte`
 - `HeroImage.svelte` - Use `sections/Hero.svelte`
 
@@ -411,20 +437,20 @@ If you see these imported, replace with modern equivalents.
 **Configuration**: All styling is in `src/app.css`
 
 **Custom Theme** (`@theme` block):
+
 ```css
 /* Primary color palette (Orange) */
---color-primary-500: #ff9e00;  /* Main brand color */
---color-primary-600: #ea8800;  /* Hover state */
+--color-primary-500: #ff9e00; /* Main brand color */
+--color-primary-600: #ea8800; /* Hover state */
 
 /* Custom dark gray (company color) */
 --color-dark-gray: #27251f;
 ```
 
 **Usage in Components**:
+
 ```svelte
-<button class="bg-primary-500 hover:bg-primary-600 text-white">
-	Click me
-</button>
+<button class="bg-primary-500 text-white hover:bg-primary-600"> Click me </button>
 ```
 
 ### Typography System
@@ -432,16 +458,19 @@ If you see these imported, replace with modern equivalents.
 **Standardized to 4 sizes and 2 weights**:
 
 **Sizes**:
+
 - `text-sm` - 14px (small text, captions)
 - `text-base` - 16px (body text, default)
 - `text-lg` - 18px (large body text)
 - `text-xl` - 20px (headings)
 
 **Weights**:
+
 - `font-normal` - 400 (regular text)
 - `font-bold` - 700 (headings, emphasis)
 
 **DO NOT USE**:
+
 - `text-2xl`, `text-3xl`, `text-4xl`, etc.
 - `font-light`, `font-medium`, `font-semibold`, etc.
 
@@ -450,24 +479,26 @@ If you see these imported, replace with modern equivalents.
 ### Design Tokens
 
 **Import from constants**:
+
 ```typescript
 import { DESIGN_TOKENS } from '$lib/config/constants';
 
 // Spacing
-DESIGN_TOKENS.spacing.section;      // 'py-20'
-DESIGN_TOKENS.spacing.container;    // 'container mx-auto px-4'
-DESIGN_TOKENS.spacing.cardGap;      // 'gap-8'
+DESIGN_TOKENS.spacing.section; // 'py-20'
+DESIGN_TOKENS.spacing.container; // 'container mx-auto px-4'
+DESIGN_TOKENS.spacing.cardGap; // 'gap-8'
 
 // Colors
-DESIGN_TOKENS.colors.primary;       // 'primary-500'
-DESIGN_TOKENS.colors.darkGray;      // '#27251f'
+DESIGN_TOKENS.colors.primary; // 'primary-500'
+DESIGN_TOKENS.colors.darkGray; // '#27251f'
 ```
 
 ### Component Styling Patterns
 
 **Section Layout**:
+
 ```svelte
-<section class="py-20 bg-white dark:bg-stone-900">
+<section class="bg-white py-20 dark:bg-stone-900">
 	<div class="container mx-auto px-4">
 		<!-- Content -->
 	</div>
@@ -475,6 +506,7 @@ DESIGN_TOKENS.colors.darkGray;      // '#27251f'
 ```
 
 **Grid Pattern** (services, features):
+
 ```svelte
 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 	<!-- Cards -->
@@ -482,6 +514,7 @@ DESIGN_TOKENS.colors.darkGray;      // '#27251f'
 ```
 
 **Button Styling**:
+
 ```svelte
 <!-- Primary -->
 <button class="rounded-lg bg-primary-500 px-6 py-3 text-base font-bold text-white transition hover:bg-primary-600">
@@ -493,13 +526,15 @@ DESIGN_TOKENS.colors.darkGray;      // '#27251f'
 ### Dark Mode
 
 Uses custom variant (not automatic):
+
 ```css
 @custom-variant dark (&:where(.dark, .dark *));
 ```
 
 Applied at `<body>` level in `app.html`:
+
 ```html
-<body class="bg-white dark:bg-stone-900">
+<body class="bg-white dark:bg-stone-900"></body>
 ```
 
 ---
@@ -509,6 +544,7 @@ Applied at `<body>` level in `app.html`:
 ### Primary Keywords (Target Rankings)
 
 **Geographic + Core Services**:
+
 - gravel driveway repair Virginia Beach
 - gravel driveway repair 757
 - drainage solutions Norfolk VA
@@ -517,6 +553,7 @@ Applied at `<body>` level in `app.html`:
 - ditch and swale repair Virginia Beach
 
 **Service-Specific**:
+
 - gravel driveway crown restoration
 - driveway drainage repair near me
 - small excavation contractor 757
@@ -527,6 +564,7 @@ Applied at `<body>` level in `app.html`:
 ### SEO Implementation Pattern
 
 **Page-Level SEO** (in `+page.ts`):
+
 ```typescript
 import { formatPageTitle } from '$lib/utils/seo';
 import type { PageLoad } from './$types';
@@ -544,6 +582,7 @@ export const load: PageLoad = () => {
 ```
 
 **Structured Data**:
+
 ```typescript
 import { getLocalBusinessSchema } from '$lib/utils/seo';
 
@@ -554,6 +593,7 @@ const structuredData = getLocalBusinessSchema();
 ### Meta Tags (SEOHead Component)
 
 Automatically generates:
+
 - Standard meta tags (title, description, keywords)
 - Open Graph tags (Facebook, LinkedIn)
 - Twitter Cards
@@ -564,6 +604,7 @@ Automatically generates:
 ### Image SEO
 
 **Always include descriptive alt text**:
+
 ```svelte
 <Hero
 	imageSrc="/hero-image.jpg"
@@ -572,12 +613,14 @@ Automatically generates:
 ```
 
 **Open Graph Images**:
+
 - Use `/og-image.jpg` (1200x630px recommended)
 - Specified in SEO metadata: `ogImage: '/og-image.jpg'`
 
 ### Sitemap & Robots
 
 **Static files**:
+
 - `static/sitemap.xml` - List of all pages
 - `static/robots.txt` - Crawler directives
 
@@ -594,19 +637,21 @@ Automatically generates:
 **Method**: POST
 
 **Request Body**:
+
 ```typescript
 interface ContactFormData {
-	firstName: string;      // Required
-	lastName: string;       // Required
-	company?: string;       // Optional
-	email: string;          // Required, validated
-	phone?: string;         // Optional
-	subject?: string;       // Optional
-	message: string;        // Required
+	firstName: string; // Required
+	lastName: string; // Required
+	company?: string; // Optional
+	email: string; // Required, validated
+	phone?: string; // Optional
+	subject?: string; // Optional
+	message: string; // Required
 }
 ```
 
 **Response** (Success):
+
 ```json
 {
 	"success": true,
@@ -615,6 +660,7 @@ interface ContactFormData {
 ```
 
 **Response** (Error):
+
 ```json
 HTTP 400 Bad Request
 {
@@ -630,12 +676,14 @@ HTTP 500 Internal Server Error
 ### Email Sending (MS365 Graph API)
 
 **Environment Variables** (Cloudflare Pages):
+
 - `MS365_TENANT_ID` - Azure AD tenant ID
 - `MS365_CLIENT_ID` - App registration client ID
 - `MS365_CLIENT_SECRET` - App registration client secret
 - `MS365_EMAIL` - Email address to send from (e.g., contact@awvaughan.com)
 
 **Flow**:
+
 1. Client submits form → `/api/contact`
 2. Server validates and sanitizes input
 3. Server gets OAuth token from Azure AD
@@ -644,6 +692,7 @@ HTTP 500 Internal Server Error
 6. Reply-To set to customer's email
 
 **Development Mode**:
+
 - If env vars not set, logs to console instead of sending email
 - Still returns success to prevent exposing internal errors
 
@@ -705,6 +754,7 @@ npm run format
 ```
 
 **Prettier Config** (`.prettierrc`):
+
 - Tabs (not spaces)
 - Single quotes
 - No trailing commas
@@ -720,6 +770,7 @@ npm run build
 **Output**: `.svelte-kit/cloudflare/` (Cloudflare Pages compatible)
 
 **Preview Production Build**:
+
 ```bash
 npm run preview
 ```
@@ -731,11 +782,13 @@ npm run preview
 ### Adding a New Page
 
 1. **Create route directory**:
+
    ```bash
    mkdir src/routes/new-page
    ```
 
 2. **Create page component** (`src/routes/new-page/+page.svelte`):
+
    ```svelte
    <script lang="ts">
    	import { Section } from '$lib';
@@ -748,6 +801,7 @@ npm run preview
    ```
 
 3. **Create load function** (`src/routes/new-page/+page.ts`):
+
    ```typescript
    import { formatPageTitle } from '$lib/utils/seo';
    import type { PageLoad } from './$types';
@@ -765,6 +819,7 @@ npm run preview
    ```
 
 4. **Add to navigation** (edit `src/lib/components/layout/Header.svelte`):
+
    ```svelte
    <a href="/new-page">New Page</a>
    ```
@@ -781,6 +836,7 @@ npm run preview
 ### Adding a New Component
 
 1. **Create component file** (`src/lib/components/MyComponent.svelte`):
+
    ```svelte
    <script lang="ts">
    	interface Props {
@@ -800,11 +856,13 @@ npm run preview
    ```
 
 2. **Export from index** (`src/lib/index.ts`):
+
    ```typescript
    export { default as MyComponent } from './components/MyComponent.svelte';
    ```
 
 3. **Use in pages**:
+
    ```svelte
    <script>
    	import { MyComponent } from '$lib';
@@ -821,12 +879,13 @@ npm run preview
 export const COMPANY_INFO = {
 	name: 'The A.W. Vaughan Company',
 	phone: '757-402-1100',
-	email: 'contact@awvaughan.com',
+	email: 'contact@awvaughan.com'
 	// ... etc
 };
 ```
 
 **Automatically updates**:
+
 - Header contact info
 - Footer contact info
 - SEO metadata
@@ -854,11 +913,13 @@ export const services: Service[] = [
 ### Updating Images
 
 **Replace files** in `static/` directory:
+
 - `hero-image.jpg` - Hero background (1920x1080+ recommended)
 - `about-image.jpg` - About section image
 - `og-image.jpg` - Social share image (1200x630px)
 
 **Images are referenced** in components by path:
+
 ```svelte
 <Hero imageSrc="/hero-image.jpg" imageAlt="Description" />
 ```
@@ -901,11 +962,13 @@ export const services: Service[] = [
 ### Target Customers
 
 **Primary**:
+
 - Homeowners with gravel driveways experiencing drainage issues
 - Property owners needing driveway grading/repair
 - Customers preparing sites for sheds or small structures
 
 **Pain Points Addressed**:
+
 - Standing water in driveways
 - Potholes and washouts
 - Muddy/uneven driveways
@@ -926,6 +989,7 @@ export const services: Service[] = [
 **Website**: https://awvaughan.com
 
 **Social Media**:
+
 - Instagram: @awvaughanco
 - Facebook: /awvaughanco
 - Nextdoor: /awvaughanco
@@ -944,10 +1008,12 @@ export const services: Service[] = [
 ### Deployment Process
 
 **Automatic Deployment** (Git Push):
+
 1. Push to `main` branch → Triggers production deployment
 2. Push to other branches → Triggers preview deployment
 
 **Manual Deployment**:
+
 ```bash
 # Build locally
 npm run build
@@ -961,17 +1027,20 @@ npm run build
 **Set in Cloudflare Pages Dashboard** (Settings → Environment Variables):
 
 **Production**:
+
 - `MS365_TENANT_ID` - Azure AD tenant ID
 - `MS365_CLIENT_ID` - App registration client ID
 - `MS365_CLIENT_SECRET` - App registration client secret
 - `MS365_EMAIL` - contact@awvaughan.com
 
 **Preview/Development**:
+
 - Can be left unset (will log instead of sending email)
 
 ### Build Settings
 
 **Cloudflare Pages Configuration**:
+
 - **Build command**: `npm run build`
 - **Build output directory**: `.svelte-kit/cloudflare`
 - **Node version**: 18+
@@ -982,6 +1051,7 @@ npm run build
 **Provider**: Cloudflare
 
 **Records**:
+
 - `A` / `AAAA` records → Cloudflare Pages
 - `MX` records → MS365 mail servers
 - `TXT` records → SPF, DMARC, domain verification
@@ -1017,23 +1087,27 @@ npm run build
 ### Security Considerations
 
 **Contact Form**:
+
 - Input sanitization (remove `<>` characters)
 - Email validation (regex check)
 - No sensitive data in error messages
 - Rate limiting (consider adding Cloudflare Turnstile)
 
 **Environment Variables**:
+
 - Never commit secrets to repository
 - Use Cloudflare Pages environment variables
 - Keep `MS365_CLIENT_SECRET` secure
 
 **Dependencies**:
+
 - Regular updates for security patches
 - Review dependency changes before updating
 
 ### Performance Optimization
 
 **Current Optimizations**:
+
 - Server-side rendering (SSR) for SEO
 - Image optimization (use WebP where supported)
 - Tailwind CSS purging (automatic)
@@ -1041,6 +1115,7 @@ npm run build
 - Edge deployment (Cloudflare's global network)
 
 **Future Considerations**:
+
 - Prerendering static pages (`export const prerender = true`)
 - Image lazy loading for below-fold images
 - Font subsetting for Inter font
@@ -1048,12 +1123,14 @@ npm run build
 ### Accessibility
 
 **Current Practices**:
+
 - Semantic HTML (`<nav>`, `<main>`, `<section>`, etc.)
 - Alt text on all images
 - Proper heading hierarchy
 - Focus states on interactive elements
 
 **Improvements to Consider**:
+
 - ARIA labels where needed
 - Keyboard navigation testing
 - Screen reader testing
@@ -1062,11 +1139,13 @@ npm run build
 ### Browser Support
 
 **Target Browsers**:
+
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 - Last 2 versions of each
 
 **Not Supported**:
+
 - Internet Explorer (EOL)
 - Legacy browsers without ES6 support
 
@@ -1075,6 +1154,7 @@ npm run build
 ## Changelog
 
 **2026-01-05** - Initial CLAUDE.md creation
+
 - Comprehensive documentation of codebase structure
 - Development workflows and conventions
 - SEO strategy and business context
@@ -1085,11 +1165,13 @@ npm run build
 ## Questions or Issues?
 
 **For AI Assistants**:
+
 - Consult this document first before making changes
 - Ask clarifying questions if business requirements are unclear
 - Propose changes that align with documented conventions
 
 **For Humans**:
+
 - Update this document when architecture changes
 - Keep business context section current
 - Document new patterns and conventions as they emerge

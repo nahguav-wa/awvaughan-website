@@ -103,10 +103,9 @@
 				};
 				w.turnstile.reset(turnstileWidgetId);
 			}
-		} catch (err) {
+		} catch {
 			formState = 'error';
 			errorMessage = 'Failed to send message. Please try again or call us directly.';
-			console.error('Form submission error:', err);
 		}
 	}
 </script>
@@ -330,7 +329,7 @@
 							bind:value={formData.message}
 							required
 							rows="6"
-							class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-blue-600"
+							class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 							placeholder="Tell us about your project..."
 							disabled={formState === 'submitting'}
 						></textarea>
