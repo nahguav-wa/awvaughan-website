@@ -28,12 +28,8 @@
 	const ogType = $derived(metadata.openGraph?.type || metadata.type || 'website');
 	const ogTitle = $derived(metadata.openGraph?.title || metadata.title);
 	const ogDescription = $derived(metadata.openGraph?.description || metadata.description);
-	const ogUrl = $derived(
-		metadata.openGraph?.url || metadata.canonical || 'https://awvaughan.com'
-	);
-	const ogImage = $derived(
-		metadata.openGraph?.image?.url || metadata.ogImage
-	);
+	const ogUrl = $derived(metadata.openGraph?.url || metadata.canonical || 'https://awvaughan.com');
+	const ogImage = $derived(metadata.openGraph?.image?.url || metadata.ogImage);
 
 	/**
 	 * Build the full JSON-LD script tag HTML for structured data
@@ -69,9 +65,7 @@
 	{#if metadata.noindex || metadata.nofollow}
 		<meta
 			name="robots"
-			content="{metadata.noindex ? 'noindex' : 'index'},{metadata.nofollow
-				? 'nofollow'
-				: 'follow'}"
+			content="{metadata.noindex ? 'noindex' : 'index'},{metadata.nofollow ? 'nofollow' : 'follow'}"
 		/>
 	{/if}
 

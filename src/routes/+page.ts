@@ -18,7 +18,7 @@ export const load: PageLoad = () => {
 			description: `Professional gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area. Expert driveway grading, shed pad preparation, and rural property maintenance. Call ${COMPANY_INFO.phone} for quality service.`,
 			keywords: PRIMARY_KEYWORDS.join(', '),
 			canonical: 'https://awvaughan.com/',
-			ogImage: 'https://awvaughan.com/og-home.jpg'
+			ogImage: 'https://awvaughan.com/og-image.jpg'
 		})
 	};
 };

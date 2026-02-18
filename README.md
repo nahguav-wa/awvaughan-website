@@ -1,38 +1,35 @@
-# sv
+# The A.W. Vaughan Company Website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Professional business website for The A.W. Vaughan Company — a gravel driveway repair and drainage solutions contractor serving Virginia Beach and the 757 area.
 
-## Creating a project
+Built with SvelteKit 2, Svelte 5, TypeScript, and Tailwind CSS v4. Deployed on Cloudflare Pages.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Getting Started
 
-```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-To create a production version of your app:
+## Scripts
 
-```sh
-npm run build
-```
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+| `npm run check` | TypeScript and Svelte type checking |
+| `npm run lint` | ESLint + Prettier checks |
+| `npm run format` | Auto-format all files |
+| `npm run test` | Run tests |
+| `npm run coverage` | Run tests with coverage report |
 
-You can preview the production build with `npm run preview`.
+## Environment Variables
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Copy `.env.example` and fill in values for email sending and CAPTCHA. See `CLOUDFLARE_EMAIL_SETUP.md` for full details.
+
+## Architecture
+
+See `CLAUDE.md` for comprehensive documentation on architecture, conventions, and workflows.

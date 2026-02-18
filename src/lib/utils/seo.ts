@@ -64,7 +64,7 @@ export function getLocalBusinessSchema() {
 		geo: {
 			'@type': 'GeoCoordinates',
 			latitude: 36.8529,
-			longitude: -75.9780
+			longitude: -75.978
 		},
 		areaServed: COMPANY_INFO.serviceArea.regions.map((region) => ({
 			'@type': 'City',

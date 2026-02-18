@@ -36,7 +36,8 @@
 	 * Base button styles (shared across all variants)
 	 * Uses bold weight from typography system
 	 */
-	const baseStyles = 'font-bold rounded-lg transition-all duration-200 inline-block text-center';
+	const baseStyles =
+		'font-bold rounded-lg transition-all duration-200 inline-block text-center focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2';
 
 	/**
 	 * Size-specific styles
@@ -61,7 +62,9 @@
 	 * Computed CSS classes
 	 * Uses $derived for reactivity in Svelte 5
 	 */
-	const computedClasses = $derived(`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`);
+	const computedClasses = $derived(
+		`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`
+	);
 </script>
 
 <!-- Render as anchor tag if href is provided, otherwise as button -->

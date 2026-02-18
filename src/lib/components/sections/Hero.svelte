@@ -3,7 +3,7 @@
 	Full-screen hero section with background image, title, subtitle, and CTA buttons
 -->
 <script lang="ts">
-	import Button from '../ui/Button.svelte';
+	import { Button } from '$lib';
 
 	/**
 	 * Component Props
@@ -42,13 +42,13 @@
 <!--
 	Hero Section - Full viewport height with background image
 -->
-<section class="relative w-full h-screen pt-16 md:pt-24">
+<section class="relative h-screen w-full pt-16 md:pt-24">
 	<!-- Background Image Container -->
 	<div class="absolute inset-0 overflow-hidden">
 		<img
 			src={imageSrc}
 			alt={imageAlt}
-			class="w-full h-full object-cover object-top"
+			class="h-full w-full object-cover object-top"
 			width="710"
 			height="1125"
 			loading="eager"
@@ -59,20 +59,20 @@
 	</div>
 
 	<!-- Hero Content - Centered -->
-	<div class="relative z-10 container mx-auto px-4 h-full flex items-center justify-center">
-		<div class="text-center text-white max-w-4xl">
-			<!-- Main Heading - 4xl to 6xl size, bold weight -->
-			<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
+	<div class="relative z-10 container mx-auto flex h-full items-center justify-center px-4">
+		<div class="max-w-4xl text-center text-white">
+			<!-- Main Heading - Responsive hero sizing via clamp -->
+			<h1 class="hero-heading mb-6 font-bold drop-shadow-lg">
 				{title}
 			</h1>
 
 			<!-- Subtitle - lg size, regular weight -->
-			<p class="text-lg font-normal mb-8 drop-shadow-md">
+			<p class="mb-8 text-lg font-normal drop-shadow-md">
 				{subtitle}
 			</p>
 
 			<!-- Call-to-Action Buttons -->
-			<div class="flex gap-4 justify-center flex-wrap">
+			<div class="flex flex-wrap justify-center gap-4">
 				<Button variant="primary" href={primaryHref} size="lg">
 					{primaryCTA}
 				</Button>
@@ -84,9 +84,9 @@
 	</div>
 
 	<!-- Scroll Indicator (animated) -->
-	<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce">
 		<svg
-			class="w-6 h-6 text-white"
+			class="h-6 w-6 text-white"
 			fill="none"
 			stroke="currentColor"
 			viewBox="0 0 24 24"

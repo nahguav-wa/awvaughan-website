@@ -58,6 +58,16 @@
 {/if}
 
 <!--
+	Skip to Content Link - Accessibility
+-->
+<a
+	href="#main-content"
+	class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-md focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white"
+>
+	Skip to main content
+</a>
+
+<!--
 	Page Header - Main navigation
 -->
 <Header />
@@ -66,7 +76,7 @@
 	Main Content Area - Page-specific content
 	Rendered from individual +page.svelte files
 -->
-<main>
+<main id="main-content">
 	{@render children()}
 </main>
 

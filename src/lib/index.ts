@@ -15,6 +15,7 @@ export { default as Section } from './components/ui/Section.svelte';
 // Feature Components
 export { default as ServiceCard } from './components/ServiceCard.svelte';
 export { default as FeatureCard } from './components/FeatureCard.svelte';
+export { default as SocialMediaIcons } from './components/SocialMediaIcons.svelte';
 
 // Section Components (page sections)
 export { default as Hero } from './components/sections/Hero.svelte';

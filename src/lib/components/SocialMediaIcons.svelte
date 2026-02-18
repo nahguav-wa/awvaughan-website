@@ -17,7 +17,11 @@
 		iconClass?: string;
 	}
 
-	let { iconSize = 'w-5 h-5', containerClass = 'flex gap-4', iconClass = 'w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors' }: Props = $props();
+	let {
+		iconSize = 'w-5 h-5',
+		containerClass = 'flex gap-4',
+		iconClass = 'w-10 h-10 bg-gray-200 text-gray-700 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-colors'
+	}: Props = $props();
 </script>
 
 <div class={containerClass}>

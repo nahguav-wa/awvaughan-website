@@ -4,8 +4,7 @@ import { getServiceSchema } from '$lib/utils/seo';
 
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title:
-			'Gravel Driveway Repair & Restoration | Virginia Beach 757 | The A.W. Vaughan Company',
+		title: 'Gravel Driveway Repair & Restoration | Virginia Beach 757 | The A.W. Vaughan Company',
 		description:
 			'Expert gravel driveway repair in Virginia Beach and the 757 area. Crown restoration, pothole filling, washout repair, and professional driveway grading. Call (757) 402-1100 for a free quote.',
 		keywords: [
