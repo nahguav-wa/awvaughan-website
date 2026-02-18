@@ -4,8 +4,7 @@
 -->
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Section from '$lib/components/ui/Section.svelte';
-	import SocialMediaIcons from '$lib/components/SocialMediaIcons.svelte';
+	import { Section, SocialMediaIcons } from '$lib';
 	import { COMPANY_INFO } from '$lib/config/constants';
 	import { MapPin, Phone, Mail } from '@lucide/svelte';
 
@@ -120,8 +119,8 @@
 	Page Hero Section
 -->
 <Section variant="gray" class="mt-16 md:mt-28">
-	<div class="max-w-4xl mx-auto text-center">
-		<h1 class="text-xl font-bold text-gray-900 mb-6">Contact Us</h1>
+	<div class="mx-auto max-w-4xl text-center">
+		<h1 class="mb-6 text-xl font-bold text-gray-900">Contact Us</h1>
 		<p class="text-lg font-normal text-gray-600">
 			Get in touch for a free consultation and quote. We're here to help with all your excavation
 			and drainage needs.
@@ -133,13 +132,13 @@
 	Contact Information & Form Section
 -->
 <Section variant="white">
-	<div class="max-w-6xl mx-auto">
-		<div class="grid md:grid-cols-2 gap-12">
+	<div class="mx-auto max-w-6xl">
+		<div class="grid gap-12 md:grid-cols-2">
 			<!-- Contact Information -->
 			<div class="space-y-8">
 				<div>
-					<h2 class="text-xl font-bold text-gray-900 mb-6">Get In Touch</h2>
-					<p class="text-base font-normal text-gray-600 mb-6">
+					<h2 class="mb-6 text-xl font-bold text-gray-900">Get In Touch</h2>
+					<p class="mb-6 text-base font-normal text-gray-600">
 						Have a question about our services? Need a quote for your project? We'd love to hear
 						from you. Reach out using the form or contact us directly.
 					</p>
@@ -149,11 +148,13 @@
 				<div class="space-y-4">
 					<!-- Phone -->
 					<div class="flex items-center gap-4">
-						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
-							<Phone class="w-5 h-5" />
+						<div
+							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500 text-white"
+						>
+							<Phone class="h-5 w-5" />
 						</div>
 						<div>
-							<h3 class="text-xl font-bold text-gray-900 mb-1">Phone</h3>
+							<h3 class="mb-1 text-xl font-bold text-gray-900">Phone</h3>
 							<a
 								href={COMPANY_INFO.phoneHref}
 								class="text-base font-normal text-primary-500 hover:text-primary-600"
@@ -165,11 +166,13 @@
 
 					<!-- Email -->
 					<div class="flex items-center gap-4">
-						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
-							<Mail class="w-5 h-5" />
+						<div
+							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500 text-white"
+						>
+							<Mail class="h-5 w-5" />
 						</div>
 						<div>
-							<h3 class="text-xl font-bold text-gray-900 mb-1">Email</h3>
+							<h3 class="mb-1 text-xl font-bold text-gray-900">Email</h3>
 							<a
 								href={COMPANY_INFO.emailHref}
 								class="text-base font-normal text-primary-500 hover:text-primary-600"
@@ -181,11 +184,13 @@
 
 					<!-- Location -->
 					<div class="flex items-center gap-4">
-						<div class="flex-shrink-0 w-10 h-10 bg-primary-500 text-white rounded-lg flex items-center justify-center">
-							<MapPin class="w-5 h-5" />
+						<div
+							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500 text-white"
+						>
+							<MapPin class="h-5 w-5" />
 						</div>
 						<div>
-							<h3 class="text-xl font-bold text-gray-900 mb-1">Service Area</h3>
+							<h3 class="mb-1 text-xl font-bold text-gray-900">Service Area</h3>
 							<p class="text-base font-normal text-gray-600">
 								{COMPANY_INFO.location} and the 757 area
 							</p>
@@ -195,18 +200,18 @@
 
 				<!-- Social Media Links -->
 				<div>
-					<h3 class="text-xl font-bold text-gray-900 mb-4">Follow Us</h3>
+					<h3 class="mb-4 text-xl font-bold text-gray-900">Follow Us</h3>
 					<SocialMediaIcons />
 				</div>
 			</div>
 
 			<!-- Contact Form -->
 			<div>
-				<h2 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+				<h2 class="mb-6 text-xl font-bold text-gray-900">Send Us a Message</h2>
 
 				{#if formState === 'success'}
-					<div class="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg mb-6">
-						<h3 class="text-xl font-bold mb-2">Message Sent!</h3>
+					<div class="mb-6 rounded-lg border border-green-200 bg-green-50 px-6 py-4 text-green-800">
+						<h3 class="mb-2 text-xl font-bold">Message Sent!</h3>
 						<p class="text-base font-normal">
 							Thank you for contacting us. We'll get back to you as soon as possible.
 						</p>
@@ -214,18 +219,18 @@
 				{/if}
 
 				{#if formState === 'error'}
-					<div class="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg mb-6">
-						<h3 class="text-xl font-bold mb-2">Error</h3>
+					<div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-6 py-4 text-red-800">
+						<h3 class="mb-2 text-xl font-bold">Error</h3>
 						<p class="text-base font-normal">{errorMessage}</p>
 					</div>
 				{/if}
 
 				<form onsubmit={handleSubmit} class="space-y-6">
 					<!-- First Name and Last Name -->
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 						<!-- First Name -->
 						<div>
-							<label for="firstName" class="block text-base font-bold text-gray-900 mb-2">
+							<label for="firstName" class="mb-2 block text-base font-bold text-gray-900">
 								First Name <span class="text-red-600">*</span>
 							</label>
 							<input
@@ -233,7 +238,7 @@
 								id="firstName"
 								bind:value={formData.firstName}
 								required
-								class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+								class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 								placeholder="John"
 								disabled={formState === 'submitting'}
 							/>
@@ -241,7 +246,7 @@
 
 						<!-- Last Name -->
 						<div>
-							<label for="lastName" class="block text-base font-bold text-gray-900 mb-2">
+							<label for="lastName" class="mb-2 block text-base font-bold text-gray-900">
 								Last Name <span class="text-red-600">*</span>
 							</label>
 							<input
@@ -249,7 +254,7 @@
 								id="lastName"
 								bind:value={formData.lastName}
 								required
-								class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+								class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 								placeholder="Doe"
 								disabled={formState === 'submitting'}
 							/>
@@ -258,14 +263,14 @@
 
 					<!-- Company Name -->
 					<div>
-						<label for="company" class="block text-base font-bold text-gray-900 mb-2">
+						<label for="company" class="mb-2 block text-base font-bold text-gray-900">
 							Company Name
 						</label>
 						<input
 							type="text"
 							id="company"
 							bind:value={formData.company}
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+							class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 							placeholder="Your company (optional)"
 							disabled={formState === 'submitting'}
 						/>
@@ -273,7 +278,7 @@
 
 					<!-- Email -->
 					<div>
-						<label for="email" class="block text-base font-bold text-gray-900 mb-2">
+						<label for="email" class="mb-2 block text-base font-bold text-gray-900">
 							Email <span class="text-red-600">*</span>
 						</label>
 						<input
@@ -281,7 +286,7 @@
 							id="email"
 							bind:value={formData.email}
 							required
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+							class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 							placeholder="your.email@example.com"
 							disabled={formState === 'submitting'}
 						/>
@@ -289,14 +294,12 @@
 
 					<!-- Phone -->
 					<div>
-						<label for="phone" class="block text-base font-bold text-gray-900 mb-2">
-							Phone
-						</label>
+						<label for="phone" class="mb-2 block text-base font-bold text-gray-900"> Phone </label>
 						<input
 							type="tel"
 							id="phone"
 							bind:value={formData.phone}
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+							class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 							placeholder="(757) 555-1234"
 							disabled={formState === 'submitting'}
 						/>
@@ -304,14 +307,14 @@
 
 					<!-- Subject -->
 					<div>
-						<label for="subject" class="block text-base font-bold text-gray-900 mb-2">
+						<label for="subject" class="mb-2 block text-base font-bold text-gray-900">
 							Subject
 						</label>
 						<input
 							type="text"
 							id="subject"
 							bind:value={formData.subject}
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+							class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 							placeholder="What can we help you with?"
 							disabled={formState === 'submitting'}
 						/>
@@ -319,7 +322,7 @@
 
 					<!-- Message -->
 					<div>
-						<label for="message" class="block text-base font-bold text-gray-900 mb-2">
+						<label for="message" class="mb-2 block text-base font-bold text-gray-900">
 							Message <span class="text-red-600">*</span>
 						</label>
 						<textarea
@@ -327,7 +330,7 @@
 							bind:value={formData.message}
 							required
 							rows="6"
-							class="w-full px-4 py-3 text-base font-normal border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-y"
+							class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-blue-600"
 							placeholder="Tell us about your project..."
 							disabled={formState === 'submitting'}
 						></textarea>
@@ -341,7 +344,7 @@
 						<button
 							type="submit"
 							disabled={formState === 'submitting'}
-							class="w-full bg-primary-500 text-white px-8 py-3 text-base font-bold rounded-lg hover:bg-primary-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+							class="w-full rounded-lg bg-primary-500 px-8 py-3 text-base font-bold text-white transition-colors hover:bg-primary-600 disabled:cursor-not-allowed disabled:bg-gray-400"
 						>
 							{formState === 'submitting' ? 'Sending...' : 'Send Message'}
 						</button>

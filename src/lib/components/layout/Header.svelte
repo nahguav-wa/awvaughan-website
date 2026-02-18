@@ -8,7 +8,7 @@
 	import { page } from '$app/stores';
 	import { createScrollObserver } from '$lib/utils/scroll';
 	import { COMPANY_INFO, ROUTES } from '$lib/config/constants';
-	import Button from '$lib/components/ui/Button.svelte';
+	import { Button } from '$lib';
 
 	/**
 	 * Reactive scroll state
@@ -60,8 +60,7 @@
 	Visible only when at the top of the page, hidden on desktop breakpoint
 -->
 <header
-	class="fixed top-0 left-0 right-0 z-50 text-white transition-transform duration-300 hidden md:block"
-	style="background-color: #27251f;"
+	class="fixed top-0 right-0 left-0 z-50 hidden bg-dark-gray text-white transition-transform duration-300 md:block"
 	class:translate-y-0={isTopBarVisible}
 	class:-translate-y-full={!isTopBarVisible}
 >
@@ -69,16 +68,16 @@
 		<div class="flex items-center justify-center gap-8 py-3 text-sm font-normal">
 			<!-- Location -->
 			<div class="flex items-center gap-2">
-				<MapPin class="w-4 h-4 text-primary-500" aria-hidden="true" />
+				<MapPin class="h-4 w-4 text-primary-500" aria-hidden="true" />
 				<span>{COMPANY_INFO.location}</span>
 			</div>
 
 			<!-- Phone -->
 			<div class="flex items-center gap-2">
-				<Phone class="w-4 h-4 text-primary-500" aria-hidden="true" />
+				<Phone class="h-4 w-4 text-primary-500" aria-hidden="true" />
 				<a
 					href={COMPANY_INFO.phoneHref}
-					class="hover:text-gray-300 transition-colors"
+					class="transition-colors hover:text-gray-300"
 					aria-label="Call us at {COMPANY_INFO.phone}"
 				>
 					{COMPANY_INFO.phone}
@@ -87,10 +86,10 @@
 
 			<!-- Email -->
 			<div class="flex items-center gap-2">
-				<Mail class="w-4 h-4 text-primary-500" aria-hidden="true" />
+				<Mail class="h-4 w-4 text-primary-500" aria-hidden="true" />
 				<a
 					href={COMPANY_INFO.emailHref}
-					class="hover:text-gray-300 transition-colors"
+					class="transition-colors hover:text-gray-300"
 					aria-label="Email us at {COMPANY_INFO.email}"
 				>
 					{COMPANY_INFO.email}
@@ -108,7 +107,7 @@
 	- Desktop: top-12 when contact bar visible, top-0 when scrolled
 -->
 <header
-	class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+	class="fixed top-0 right-0 left-0 z-40 transition-all duration-300"
 	class:md:top-12={isTopBarVisible}
 	class:md:top-0={!isTopBarVisible}
 	class:bg-transparent={isTransparent}
@@ -134,7 +133,7 @@
 						<li>
 							<a
 								href={link.href}
-								class="text-base font-bold transition-colors duration-200 hover:text-primary-500"
+								class="rounded-sm text-base font-bold transition-colors duration-200 hover:text-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:outline-none"
 								class:text-white={isTransparent}
 								class:text-gray-800={!isTransparent}
 							>
@@ -143,11 +142,7 @@
 						</li>
 					{/each}
 					<li>
-						<Button
-							variant={isTransparent ? 'outline' : 'primary'}
-							href={ROUTES.contact}
-							size="md"
-						>
+						<Button variant={isTransparent ? 'outline' : 'primary'} href={ROUTES.contact} size="md">
 							Contact Us
 						</Button>
 					</li>
@@ -156,28 +151,26 @@
 
 			<!-- Mobile Menu Button -->
 			<button
-				class="md:hidden p-2"
+				class="p-2 md:hidden"
 				onclick={toggleMobileMenu}
 				aria-label="Toggle navigation menu"
 				aria-expanded={mobileMenuOpen}
 			>
-				<Menu
-					class="w-6 h-6 transition-colors {isTransparent ? 'text-white' : 'text-gray-800'}"
-				/>
+				<Menu class="h-6 w-6 transition-colors {isTransparent ? 'text-white' : 'text-gray-800'}" />
 			</button>
 		</div>
 	</div>
 
 	<!-- Mobile Navigation Menu -->
 	{#if mobileMenuOpen}
-		<div class="md:hidden bg-white border-t border-gray-200 shadow-lg">
+		<div class="border-t border-gray-200 bg-white shadow-lg md:hidden">
 			<nav aria-label="Mobile navigation">
-				<ul class="container mx-auto px-4 py-4 space-y-4">
+				<ul class="container mx-auto space-y-4 px-4 py-4">
 					{#each navLinks as link (link.href)}
 						<li>
 							<a
 								href={link.href}
-								class="block text-base font-bold text-gray-800 hover:text-primary-500 transition-colors"
+								class="block text-base font-bold text-gray-800 transition-colors hover:text-primary-500"
 								onclick={toggleMobileMenu}
 							>
 								{link.label}
@@ -185,12 +178,7 @@
 						</li>
 					{/each}
 					<li>
-						<Button
-							variant="primary"
-							href={ROUTES.contact}
-							size="md"
-							class="w-full"
-						>
+						<Button variant="primary" href={ROUTES.contact} size="md" class="w-full">
 							Contact Us
 						</Button>
 					</li>

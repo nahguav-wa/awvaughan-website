@@ -27,12 +27,12 @@
 -->
 <div class="p-6 text-center">
 	<!-- Icon wrapper -->
-	<div class="text-primary-500 mb-4">
-		<IconComponent class="w-12 h-12 mx-auto" />
+	<div class="mb-4 text-primary-500">
+		<IconComponent class="mx-auto h-12 w-12" />
 	</div>
 
 	<!-- Feature title - xl size, bold weight -->
-	<h3 class="text-xl font-bold text-gray-900 mb-2">
+	<h3 class="mb-2 text-xl font-bold text-gray-900">
 		{feature.title}
 	</h3>
 

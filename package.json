@@ -13,7 +13,8 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"lint": "eslint . && prettier --check .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",

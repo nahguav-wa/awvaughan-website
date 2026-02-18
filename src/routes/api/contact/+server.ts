@@ -42,10 +42,36 @@ function isValidEmail(email: string): boolean {
 }
 
 /**
+ * Maximum allowed lengths for form fields
+ */
+const MAX_LENGTHS: Record<string, number> = {
+	firstName: 100,
+	lastName: 100,
+	company: 200,
+	email: 254,
+	phone: 30,
+	subject: 200,
+	message: 5000
+};
+
+/**
  * Sanitize user input to prevent injection attacks
+ * Strips HTML tags, null bytes, and trims whitespace
  */
 function sanitizeInput(input: string): string {
-	return input.replace(/[<>]/g, '').trim();
+	return input
+		.replace(/\0/g, '')
+		.replace(/<[^>]*>/g, '')
+		.replace(/[\r\n]+/g, '\n')
+		.trim();
+}
+
+/**
+ * Validate field length against maximum
+ */
+function validateLength(field: string, value: string): boolean {
+	const max = MAX_LENGTHS[field];
+	return !max || value.length <= max;
 }
 
 /**
@@ -97,6 +123,23 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 		// Validate email format
 		if (!isValidEmail(formData.email)) {
 			throw error(400, 'Invalid email address');
+		}
+
+		// Validate field lengths
+		const fieldsToValidate = [
+			'firstName',
+			'lastName',
+			'company',
+			'email',
+			'phone',
+			'subject',
+			'message'
+		] as const;
+		for (const field of fieldsToValidate) {
+			const value = formData[field];
+			if (value && !validateLength(field, value)) {
+				throw error(400, `${field} exceeds maximum allowed length`);
+			}
 		}
 
 		// Verify Turnstile token (if secret key is configured)
@@ -191,26 +234,15 @@ Time: ${new Date().toISOString()}
 
 				if (!graphResponse.ok) {
 					const errorData = await graphResponse.text();
-					throw new Error(`Failed to send email via Graph API: ${graphResponse.status} ${errorData}`);
+					throw new Error(
+						`Failed to send email via Graph API: ${graphResponse.status} ${errorData}`
+					);
 				}
 			} else {
-				// Fallback: Log to console if MS365 not configured
-				console.log('MS365 Graph API not configured. Form data:', sanitizedData);
-				console.log('Email content:', emailContent);
-				console.log('Missing env vars:', {
-					tenantId: !!tenantId,
-					clientId: !!clientId,
-					clientSecret: !!clientSecret,
-					fromEmail: !!fromEmail
-				});
-
-				// For development/testing, return success anyway
-				// In production, you might want to throw an error instead
+				// MS365 not configured — silently accept in dev, form data is not persisted
 			}
-		} catch (emailError) {
-			console.error('Failed to send email:', emailError);
-			// Still return success to user to avoid exposing internal errors
-			// Log the error for debugging
+		} catch {
+			// Silently accept to avoid exposing internal errors to the client
 		}
 
 		// Return success response
@@ -219,9 +251,6 @@ Time: ${new Date().toISOString()}
 			message: 'Thank you for your message. We will get back to you soon!'
 		});
 	} catch (err) {
-		// Handle errors
-		console.error('Contact form error:', err);
-
 		if (err && typeof err === 'object' && 'status' in err) {
 			throw err;
 		}

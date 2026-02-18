@@ -3,7 +3,7 @@
 	Displays a single service offering with title, description, and link
 -->
 <script lang="ts">
-	import Card from './ui/Card.svelte';
+	import { Card } from '$lib';
 	import type { Service } from '$lib/types';
 
 	/**
@@ -22,11 +22,11 @@
 -->
 <Card>
 	<!-- Service title - xl size, bold weight -->
-	<h3 class="text-xl font-bold text-gray-900 mb-4">
+	<h3 class="mb-4 text-xl font-bold text-gray-900">
 		{service.title}
 	</h3>
 	<!-- Service description - base size, regular weight -->
-	<p class="text-base font-normal text-gray-600 mb-4">
+	<p class="mb-4 text-base font-normal text-gray-600">
 		{service.description}
 	</p>
 	<!-- Learn more link - base size, bold weight -->
