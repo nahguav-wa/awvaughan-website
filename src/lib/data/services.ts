@@ -25,7 +25,7 @@ export const services: Service[] = [
 	{
 		title: 'Bush Hogging',
 		description:
-			'When you own open land, maintaining it is essential — mother nature will take it over if you don't. We have multiple setups to handle large fields, small parcels, and steep slopes throughout the 757 area.',
+			"When you own open land, maintaining it is essential — mother nature will take it over if you don't. We have multiple setups to handle large fields, small parcels, and steep slopes throughout the 757 area.",
 		href: '/services#bush-hogging',
 		keywords: [
 			'bush hogging Virginia Beach',
@@ -49,7 +49,7 @@ export const services: Service[] = [
 	{
 		title: 'Lawn Care & Landscaping',
 		description:
-			'We maintain your property to the standards we'd want for our own. From seasonal care to strategic landscape planning, we work with you to develop a vision and bring it to life.',
+			"We maintain your property to the standards we'd want for our own. From seasonal care to strategic landscape planning, we work with you to develop a vision and bring it to life.",
 		href: '/services#lawn-care',
 		keywords: [
 			'lawn care Virginia Beach',
@@ -73,7 +73,7 @@ export const services: Service[] = [
 	{
 		title: 'Project Management',
 		description:
-			'Whether you're planning a full property buildout or simply re-routing your driveway, we oversee the whole process. We bring in vetted partners when needed and see your project through from start to finish.',
+			"Whether you're planning a full property buildout or simply re-routing your driveway, we oversee the whole process. We bring in vetted partners when needed and see your project through from start to finish.",
 		href: '/services#project-management',
 		keywords: [
 			'property project management Virginia Beach',
