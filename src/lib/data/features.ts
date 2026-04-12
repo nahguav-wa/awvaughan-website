@@ -4,7 +4,7 @@
  */
 
 import type { Feature } from '$lib/types';
-import { Zap, CheckCircle, Users } from '@lucide/svelte';
+import { Leaf, MessageCircle, Star } from '@lucide/svelte';
 
 /**
  * Company value propositions and features
@@ -12,21 +12,21 @@ import { Zap, CheckCircle, Users } from '@lucide/svelte';
  */
 export const features: Feature[] = [
 	{
-		title: 'Fast & Efficient',
+		title: 'A Passion for Land',
 		description:
-			'Quick turnaround times without compromising quality. We understand your driveway and drainage issues need prompt attention.',
-		icon: Zap
+			'We believe that managing land sustainably is a true craft. Every project reflects our genuine care for the property and the people who own it.',
+		icon: Leaf
 	},
 	{
-		title: 'Quality Assured',
+		title: 'Communication & Transparency',
 		description:
-			'Rigorous standards ensuring the best outcomes. Every gravel driveway repair and drainage solution is built to last.',
-		icon: CheckCircle
+			'We pride ourselves on clear, honest communication throughout every project. No surprises — just professional service you can count on.',
+		icon: MessageCircle
 	},
 	{
-		title: 'Local Expert Team',
+		title: 'Local Expertise',
 		description:
-			'Experienced professionals who know Virginia Beach soil, drainage patterns, and climate. Dedicated to your success.',
-		icon: Users
+			'We know Virginia Beach and the 757 area — the soil, the seasons, and what it takes to make land look its best and function properly for the long haul.',
+		icon: Star
 	}
 ];

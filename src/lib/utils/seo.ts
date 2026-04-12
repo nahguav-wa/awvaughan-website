@@ -12,20 +12,22 @@ import type { SEOMetadata } from '$lib/types';
  */
 export const PRIMARY_KEYWORDS = [
 	// Geographic + Core Services
+	'land clearing Virginia Beach',
+	'land clearing 757',
+	'bush hogging Virginia Beach',
+	'bush hogging 757',
 	'gravel driveway repair Virginia Beach',
 	'gravel driveway repair 757',
-	'drainage solutions Norfolk VA',
-	'shed pad preparation Virginia Beach',
-	'driveway grading 757',
-	'ditch and swale repair Virginia Beach',
+	'land management Hampton Roads',
+	'lawn care Virginia Beach',
 
 	// Service-Specific
-	'gravel driveway crown restoration',
-	'driveway drainage repair near me',
-	'small excavation contractor 757',
-	'shed foundation prep Virginia Beach',
-	'culvert repair Virginia Beach',
-	'rural property drainage solutions'
+	'lot clearing contractor 757',
+	'field mowing Virginia Beach',
+	'trail systems Virginia Beach',
+	'property project management 757',
+	'excavation contractor Virginia Beach',
+	'driveway crown restoration 757'
 ];
 
 /**
@@ -33,12 +35,12 @@ export const PRIMARY_KEYWORDS = [
  * Problem-focused search terms
  */
 export const SECONDARY_KEYWORDS = [
-	'how to fix standing water in driveway',
-	'gravel driveway potholes repair cost',
-	'why does my driveway wash out',
-	'small site prep contractor',
-	'fixing muddy driveway',
-	'driveway crown repair'
+	'how to clear overgrown land Virginia',
+	'bush hogging cost 757',
+	'land management company near me',
+	'gravel driveway repair cost Virginia Beach',
+	'who does bush hogging near me',
+	'trail building contractor Hampton Roads'
 ];
 
 /**
@@ -71,11 +73,12 @@ export function getLocalBusinessSchema() {
 			name: region
 		})),
 		serviceType: [
+			'Land Clearing',
+			'Bush Hogging',
 			'Gravel Driveway Repair',
-			'Drainage Solutions',
-			'Excavation Services',
-			'Driveway Grading',
-			'Shed Pad Preparation'
+			'Lawn Care and Landscaping',
+			'Trail Systems',
+			'Project Management'
 		]
 	};
 }

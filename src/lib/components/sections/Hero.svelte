@@ -29,9 +29,9 @@
 
 	let {
 		imageSrc = '/hero-image.jpg',
-		imageAlt = 'The A.W. Vaughan Company - Professional Gravel Driveway Repair and Drainage Solutions',
-		title = 'Professional Gravel Driveway Repair & Drainage Solutions',
-		subtitle = 'Serving Virginia Beach and the 757 area with expert excavation and site work',
+		imageAlt = 'The A.W. Vaughan Company - Land Management, Land Clearing and Bush Hogging in Virginia Beach',
+		title = 'We Make Land Beautiful',
+		subtitle = 'Serving Virginia Beach and the 757 area with land clearing, bush hogging, gravel driveways, and more',
 		primaryCTA = 'Get Started',
 		primaryHref = '/contact',
 		secondaryCTA = 'Our Services',
