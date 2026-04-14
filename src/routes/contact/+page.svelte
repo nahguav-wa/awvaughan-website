@@ -86,6 +86,9 @@
 			}
 
 			formState = 'success';
+			if (typeof window !== 'undefined' && 'fbq' in window) {
+				(window as unknown as { fbq: (...args: unknown[]) => void }).fbq('track', 'Lead');
+			}
 			formData = {
 				firstName: '',
 				lastName: '',
