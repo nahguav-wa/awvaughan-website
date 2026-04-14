@@ -69,6 +69,9 @@
 		formState = 'submitting';
 		errorMessage = '';
 
+		// Generate a unique event ID shared with the server for Meta CAPI deduplication
+		const eventId = crypto.randomUUID();
+
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'POST',
@@ -77,7 +80,8 @@
 				},
 				body: JSON.stringify({
 					...formData,
-					'cf-turnstile-response': turnstileToken
+					'cf-turnstile-response': turnstileToken,
+					event_id: eventId
 				})
 			});
 
@@ -86,6 +90,14 @@
 			}
 
 			formState = 'success';
+			if (typeof window !== 'undefined' && 'fbq' in window) {
+				(window as unknown as { fbq: (...args: unknown[]) => void }).fbq(
+					'track',
+					'Lead',
+					{},
+					{ eventID: eventId }
+				);
+			}
 			formData = {
 				firstName: '',
 				lastName: '',

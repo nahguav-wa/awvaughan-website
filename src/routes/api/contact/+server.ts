@@ -18,6 +18,7 @@ interface ContactFormData {
 	subject?: string;
 	message: string;
 	'cf-turnstile-response'?: string;
+	event_id?: string;
 }
 
 /**
@@ -64,6 +65,57 @@ function sanitizeInput(input: string): string {
 		.replace(/<[^>]*>/g, '')
 		.replace(/[\r\n]+/g, '\n')
 		.trim();
+}
+
+/**
+ * SHA-256 hash a string — required by Meta for all PII fields
+ */
+async function sha256(value: string): Promise<string> {
+	const data = new TextEncoder().encode(value.toLowerCase().trim());
+	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+	return Array.from(new Uint8Array(hashBuffer))
+		.map((b) => b.toString(16).padStart(2, '0'))
+		.join('');
+}
+
+/**
+ * Send a Lead event to Meta Conversions API
+ */
+async function sendMetaConversionEvent(
+	accessToken: string,
+	eventId: string,
+	userData: { email: string; phone?: string; firstName: string; lastName: string },
+	sourceUrl: string
+): Promise<void> {
+	const hashedUserData: Record<string, string> = {
+		em: await sha256(userData.email),
+		fn: await sha256(userData.firstName),
+		ln: await sha256(userData.lastName)
+	};
+	if (userData.phone) {
+		// Strip non-digits before hashing
+		hashedUserData.ph = await sha256(userData.phone.replace(/\D/g, ''));
+	}
+
+	await fetch(
+		`https://graph.facebook.com/v18.0/2682287902136321/events?access_token=${accessToken}`,
+		{
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				data: [
+					{
+						event_name: 'Lead',
+						event_time: Math.floor(Date.now() / 1000),
+						event_id: eventId,
+						action_source: 'website',
+						event_source_url: sourceUrl,
+						user_data: hashedUserData
+					}
+				]
+			})
+		}
+	);
 }
 
 /**
@@ -243,6 +295,29 @@ Time: ${new Date().toISOString()}
 			}
 		} catch {
 			// Silently accept to avoid exposing internal errors to the client
+		}
+
+		// Send Lead event to Meta Conversions API for server-side tracking
+		// Event ID is shared with the browser pixel for deduplication
+		try {
+			const metaToken =
+				platform?.env?.META_PIXEL_TOKEN ??
+				'EAAXZBBdOiykIBRNwMRdQtRJuZCTsYwFSVc8dtZBmevyGXebPykA9GZAqYzfiRyg1Mj2F30Lu0cmgvvDV5nZCmIJMNRsDe4YkmvbqusOMGVIR8hPyKcfBbrJnW0EaEmYKTGZCAAg2NpJ7t15yJMV4u5ZCDe7OhMXACq3WXR9kZAoXZAVZASmgd6kypgf2ThS5iykgZDZD';
+			const eventId = formData.event_id ?? crypto.randomUUID();
+			const sourceUrl = request.headers.get('referer') ?? 'https://awvaughan.com/contact';
+			await sendMetaConversionEvent(
+				metaToken,
+				eventId,
+				{
+					email: sanitizedData.email,
+					phone: sanitizedData.phone || undefined,
+					firstName: sanitizedData.firstName,
+					lastName: sanitizedData.lastName
+				},
+				sourceUrl
+			);
+		} catch {
+			// CAPI failure must not break form submission
 		}
 
 		// Return success response

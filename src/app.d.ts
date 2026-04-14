@@ -13,6 +13,7 @@ declare global {
 				MS365_CLIENT_SECRET?: string;
 				MS365_EMAIL?: string;
 				TURNSTILE_SECRET_KEY?: string;
+				META_PIXEL_TOKEN?: string;
 			};
 		}
 	}
