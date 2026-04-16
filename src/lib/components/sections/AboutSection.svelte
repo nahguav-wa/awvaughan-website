@@ -17,11 +17,11 @@
 
 		<!-- Company Description - lg size, regular weight -->
 		<p class="mb-8 text-lg font-normal text-gray-600">
-			We are The A.W. Vaughan Company, a leading gravel driveway repair and drainage solutions
-			provider in Virginia Beach and the 757 area. With specialized expertise in excavation,
-			driveway grading, and rural property maintenance, we deliver results that exceed expectations.
-			From fixing standing water issues to professional shed pad preparation, we're the small
-			excavation contractor dedicated to your success.
+			We have a passion for land and homes that is reflected in our work. The A.W. Vaughan Company
+			serves Virginia Beach and the 757 area with land clearing, bush hogging, gravel driveway
+			repair, lawn care, trail systems, and full property project management. We believe managing
+			land sustainably is a true craft — and we look forward to making your property dreams a
+			reality.
 		</p>
 
 		<!-- Value Propositions Grid -->

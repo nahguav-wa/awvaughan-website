@@ -14,20 +14,20 @@ export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
 		title: 'Contact Us - Get a Free Quote | The A.W. Vaughan Company Virginia Beach',
 		description:
-			'Contact The A.W. Vaughan Company for a free quote on gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area. Call (757) 402-1100.',
+			'Contact The A.W. Vaughan Company for a free quote on land clearing, bush hogging, gravel driveway repair, and land management services in Virginia Beach and the 757 area. Call (757) 402-1100.',
 		keywords: [
 			'contact A.W. Vaughan',
-			'free excavation quote Virginia Beach',
-			'gravel driveway quote 757',
-			'drainage solutions contact',
-			'excavation contractor Virginia Beach'
+			'free land clearing quote Virginia Beach',
+			'bush hogging quote 757',
+			'land management contact Hampton Roads',
+			'gravel driveway quote Virginia Beach'
 		],
 		canonical: 'https://awvaughan.com/contact',
 		openGraph: {
 			type: 'website',
 			title: 'Contact The A.W. Vaughan Company | Free Quotes',
 			description:
-				'Get a free quote for professional gravel driveway repair, drainage solutions, and excavation services in Virginia Beach. Call (757) 402-1100 or fill out our contact form.',
+				'Get a free quote for land clearing, bush hogging, gravel driveway repair, and land management in Virginia Beach. Call (757) 402-1100 or fill out our contact form.',
 			url: 'https://awvaughan.com/contact',
 			siteName: 'The A.W. Vaughan Company',
 			image: {

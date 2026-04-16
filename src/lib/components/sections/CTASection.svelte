@@ -18,9 +18,9 @@
 
 		<!-- CTA Description - lg size, regular weight -->
 		<p class="mx-auto mb-8 max-w-2xl text-lg font-normal">
-			Need gravel driveway repair, drainage solutions, or excavation services in Virginia Beach?
-			Let's work together to solve your property maintenance challenges. Contact us today at
-			{COMPANY_INFO.phone} for a consultation.
+			We make land beautiful and look forward to making your dreams for your property become
+			reality. Serving Virginia Beach and the 757 area — contact us today at {COMPANY_INFO.phone}
+			to get started.
 		</p>
 
 		<!-- CTA Button -->

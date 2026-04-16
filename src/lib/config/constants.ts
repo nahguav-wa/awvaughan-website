@@ -20,10 +20,10 @@ export const COMPANY_INFO = {
 	},
 
 	// Business details for SEO
-	businessType: 'Excavation and Grading Contractor',
+	businessType: 'Land Management & Excavation Contractor',
 	yearEstablished: 2025,
 	description:
-		'Professional gravel driveway repair, drainage solutions, and excavation services in the Virginia Beach 757 area. Specializing in driveway grading, shed pad preparation, and rural property maintenance.'
+		'Professional land management services in the Virginia Beach 757 area. Land clearing, bush hogging, gravel driveway repair, lawn care, trail systems, and full property project management.'
 } as const;
 
 /**

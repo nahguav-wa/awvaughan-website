@@ -14,8 +14,8 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = () => {
 	return {
 		seo: getDefaultSEO({
-			title: `${COMPANY_INFO.name} | Gravel Driveway Repair & Drainage Solutions Virginia Beach 757`,
-			description: `Professional gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area. Expert driveway grading, shed pad preparation, and rural property maintenance. Call ${COMPANY_INFO.phone} for quality service.`,
+			title: `${COMPANY_INFO.name} | Land Clearing, Bush Hogging & Land Management Virginia Beach 757`,
+			description: `Professional land management services in Virginia Beach and the 757 area. Land clearing, bush hogging, gravel driveway repair, lawn care, trail systems, and project management. Call ${COMPANY_INFO.phone} for a free quote.`,
 			keywords: PRIMARY_KEYWORDS.join(', '),
 			canonical: 'https://awvaughan.com/',
 			ogImage: 'https://awvaughan.com/og-image.jpg'

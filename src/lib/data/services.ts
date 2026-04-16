@@ -11,51 +11,75 @@ import type { Service } from '$lib/types';
  */
 export const services: Service[] = [
 	{
+		title: 'Land Clearing',
+		description:
+			'From house sites to pasture creation and viewshed development, we have the equipment and experience to make your vision a reality. Excavators, track loaders, and dozers — we get it done right.',
+		href: '/services#land-clearing',
+		keywords: [
+			'land clearing Virginia Beach',
+			'land clearing 757',
+			'lot clearing Hampton Roads',
+			'site clearing contractor Virginia Beach'
+		]
+	},
+	{
+		title: 'Bush Hogging',
+		description:
+			"When you own open land, maintaining it is essential — mother nature will take it over if you don't. We have multiple setups to handle large fields, small parcels, and steep slopes throughout the 757 area.",
+		href: '/services#bush-hogging',
+		keywords: [
+			'bush hogging Virginia Beach',
+			'bush hogging 757',
+			'field mowing Hampton Roads',
+			'brush cutting contractor Virginia Beach'
+		]
+	},
+	{
 		title: 'Gravel Driveway Repair & Restoration',
 		description:
-			'Expert gravel driveway repair services in the Virginia Beach 757 area. We restore proper crown, fix potholes, eliminate washout problems, and ensure proper drainage for long-lasting results.',
-		href: '/services/gravel-driveway-repair',
+			'Expert gravel driveway repair throughout the Virginia Beach 757 area. We restore proper crown, fill potholes, eliminate washouts, and ensure lasting drainage — so your driveway holds up season after season.',
+		href: '/services#gravel-driveway',
 		keywords: [
 			'gravel driveway repair Virginia Beach',
 			'gravel driveway repair 757',
 			'driveway crown restoration',
-			'gravel driveway potholes repair'
+			'gravel driveway grading Hampton Roads'
 		]
 	},
 	{
-		title: 'Drainage Solutions & Grading',
+		title: 'Lawn Care & Landscaping',
 		description:
-			'Professional drainage solutions for Norfolk VA and Hampton Roads. We fix standing water issues, install swales and ditches, repair culverts, and provide expert driveway grading to prevent water damage.',
-		href: '/services/drainage-solutions',
+			"We maintain your property to the standards we'd want for our own. From seasonal care to strategic landscape planning, we work with you to develop a vision and bring it to life.",
+		href: '/services#lawn-care',
 		keywords: [
-			'drainage solutions Norfolk VA',
-			'driveway grading 757',
-			'ditch and swale repair Virginia Beach',
-			'standing water driveway fix'
+			'lawn care Virginia Beach',
+			'landscaping 757',
+			'lawn maintenance Hampton Roads',
+			'landscape design Virginia Beach'
 		]
 	},
 	{
-		title: 'Shed Pad & Foundation Preparation',
+		title: 'Trail Systems',
 		description:
-			'Quality shed pad preparation and foundation work in Virginia Beach. We provide precise site preparation, proper grading, and solid base construction for sheds, small buildings, and structures.',
-		href: '/services/shed-pad-preparation',
+			'If you have a large tract of land, what better way to enjoy it than with a trail system? We design and build paths for walking, ATVs, horses, and more — including signage and mapping options.',
+		href: '/services#trail-systems',
 		keywords: [
-			'shed pad preparation Virginia Beach',
-			'shed foundation prep',
-			'small site prep contractor',
-			'shed base preparation 757'
+			'trail systems Virginia Beach',
+			'property trails 757',
+			'ATV trail building Hampton Roads',
+			'walking trail contractor Virginia Beach'
 		]
 	},
 	{
-		title: 'Small Excavation & Site Work',
+		title: 'Project Management',
 		description:
-			'Specialized small excavation contractor serving the 757 area. From culvert repair to rural property maintenance, we handle projects too small for large contractors but requiring professional expertise.',
-		href: '/services/excavation',
+			"Whether you're planning a full property buildout or simply re-routing your driveway, we oversee the whole process. We bring in vetted partners when needed and see your project through from start to finish.",
+		href: '/services#project-management',
 		keywords: [
-			'small excavation contractor 757',
-			'culvert repair Virginia Beach',
-			'rural property drainage',
-			'small site work contractor'
+			'property project management Virginia Beach',
+			'land development 757',
+			'property buildout Hampton Roads',
+			'excavation project management Virginia Beach'
 		]
 	}
 ];
