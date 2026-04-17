@@ -1,109 +1,108 @@
 <!--
 	Footer Component
-	Site footer with company information, navigation, and social links
+	Site footer with company wordmark, contact info, navigation,
+	CTA, and Sandbridge topographic overlay
 -->
 <script lang="ts">
-	import { MapPin, Phone, Mail } from '@lucide/svelte';
-	import { SocialMediaIcons } from '$lib';
+	import { SocialMediaIcons, Button } from '$lib';
 	import { COMPANY_INFO, ROUTES } from '$lib/config/constants';
 
-	/**
-	 * Quick links navigation
-	 */
-	const quickLinks = [
+	const navLinks = [
 		{ label: 'About', href: ROUTES.about },
 		{ label: 'Services', href: ROUTES.services },
 		{ label: 'Contact', href: ROUTES.contact }
 	];
 
-	/**
-	 * Current year for copyright notice
-	 */
 	const currentYear = new Date().getFullYear();
 </script>
 
-<!--
-	Footer Section
--->
-<footer class="bg-dark-gray py-12 text-white">
-	<div class="container mx-auto px-4">
-		<div class="grid gap-8 md:grid-cols-4">
-			<!-- Company Information -->
+<footer class="bg-dark-gray relative overflow-hidden text-white">
+	<!-- Sandbridge topographic overlay -->
+	<div
+		class="pointer-events-none absolute inset-0 bg-[url('/topo-sandbridge.svg')] bg-cover bg-center opacity-10"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative container mx-auto px-4">
+		<!-- Company Wordmark -->
+		<div class="border-b border-white/10 py-12 text-center">
+			<h2 class="text-xl font-bold tracking-widest uppercase">
+				{COMPANY_INFO.name}
+			</h2>
+		</div>
+
+		<!-- Main Footer Content -->
+		<div class="grid gap-12 py-12 md:grid-cols-3">
+			<!-- Contact -->
 			<div>
-				<h3 class="mb-4 text-lg font-bold">{COMPANY_INFO.name}</h3>
-				<img src="/American Logo.svg" alt="{COMPANY_INFO.name} Logo" class="mb-4 h-16 w-auto" />
-				<p class="text-base font-normal text-gray-400">
-					{COMPANY_INFO.tagline}
-				</p>
+				<h3 class="mb-6 text-sm font-bold tracking-widest text-primary-500 uppercase">
+					Contact
+				</h3>
+				<div class="space-y-4 text-base font-normal">
+					<div>
+						<p class="text-sm tracking-wider text-gray-400 uppercase">Phone</p>
+						<a href={COMPANY_INFO.phoneHref} class="transition-colors hover:text-primary-500">
+							{COMPANY_INFO.phone}
+						</a>
+					</div>
+					<div>
+						<p class="text-sm tracking-wider text-gray-400 uppercase">Email</p>
+						<a href={COMPANY_INFO.emailHref} class="transition-colors hover:text-primary-500">
+							{COMPANY_INFO.email}
+						</a>
+					</div>
+					<div>
+						<p class="text-sm tracking-wider text-gray-400 uppercase">Location</p>
+						<p>{COMPANY_INFO.location}</p>
+					</div>
+				</div>
 			</div>
 
-			<!-- Quick Links -->
+			<!-- Navigate -->
 			<div>
-				<h4 class="mb-4 text-lg font-bold">Quick Links</h4>
+				<h3 class="mb-6 text-sm font-bold tracking-widest text-primary-500 uppercase">
+					Navigate
+				</h3>
 				<nav aria-label="Footer navigation">
-					<ul class="space-y-2">
-						{#each quickLinks as link (link.href)}
+					<ul class="mb-8 space-y-3 text-base font-normal">
+						{#each navLinks as link (link.href)}
 							<li>
-								<a
-									href={link.href}
-									class="text-base font-normal text-gray-400 transition-colors hover:text-white"
-								>
+								<a href={link.href} class="transition-colors hover:text-primary-500">
 									{link.label}
 								</a>
 							</li>
 						{/each}
 					</ul>
 				</nav>
-			</div>
-
-			<!-- Contact Information -->
-			<div>
-				<h4 class="mb-4 text-lg font-bold">Contact Info</h4>
-				<address class="space-y-2 text-base font-normal text-gray-400 not-italic">
-					<p class="flex items-center gap-2">
-						<MapPin class="h-4 w-4" aria-hidden="true" />
-						<span>{COMPANY_INFO.location}</span>
-					</p>
-					<p class="flex items-center gap-2">
-						<Phone class="h-4 w-4" aria-hidden="true" />
-						<a
-							href={COMPANY_INFO.phoneHref}
-							class="transition-colors hover:text-white"
-							aria-label="Call us at {COMPANY_INFO.phone}"
-						>
-							{COMPANY_INFO.phone}
-						</a>
-					</p>
-					<p class="flex items-center gap-2">
-						<Mail class="h-4 w-4" aria-hidden="true" />
-						<a
-							href={COMPANY_INFO.emailHref}
-							class="transition-colors hover:text-white"
-							aria-label="Email us at {COMPANY_INFO.email}"
-						>
-							{COMPANY_INFO.email}
-						</a>
-					</p>
-				</address>
-			</div>
-
-			<!-- Social Media Links -->
-			<div>
-				<h4 class="mb-4 text-lg font-bold">Follow Us</h4>
 				<SocialMediaIcons
-					iconSize="w-6 h-6"
-					containerClass="flex gap-4 flex-wrap"
-					iconClass="text-gray-400 hover:text-white transition-colors"
+					iconSize="w-5 h-5"
+					containerClass="flex gap-3"
+					iconClass="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary-500 transition-colors"
 				/>
+			</div>
+
+			<!-- Let's Get Started CTA -->
+			<div>
+				<h3 class="mb-6 text-sm font-bold tracking-widest text-primary-500 uppercase">
+					Let's Get Started
+				</h3>
+				<p class="mb-6 text-base font-normal text-gray-300">
+					Whether you have a question about our services, pricing, or scheduling, our team is ready
+					to answer all of your questions.
+				</p>
+				<Button href={ROUTES.contact} variant="primary" size="md">Contact Us</Button>
 			</div>
 		</div>
 
-		<!-- Copyright Notice -->
-		<div class="mt-8 border-t border-primary-500 pt-8 text-center">
-			<p class="text-base font-normal text-gray-400">
+		<!-- Bottom Bar -->
+		<div
+			class="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 text-sm font-normal text-gray-400 md:flex-row"
+		>
+			<p>
 				&copy; {currentYear}
 				{COMPANY_INFO.name}. All rights reserved.
 			</p>
+			<p class="italic">{COMPANY_INFO.tagline}</p>
 		</div>
 	</div>
 </footer>
