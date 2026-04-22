@@ -16,6 +16,7 @@ interface ContactFormData {
 	company?: string;
 	email: string;
 	phone?: string;
+	zipCode: string;
 	subject?: string;
 	message: string;
 	'cf-turnstile-response'?: string;
@@ -53,9 +54,17 @@ const MAX_LENGTHS: Record<string, number> = {
 	company: 200,
 	email: 254,
 	phone: 30,
+	zipCode: 10,
 	subject: 200,
 	message: 5000
 };
+
+/**
+ * Validate US ZIP code format (5 digits or ZIP+4)
+ */
+function isValidZipCode(zip: string): boolean {
+	return /^\d{5}(-\d{4})?$/.test(zip.trim());
+}
 
 /**
  * Sanitize user input to prevent injection attacks
@@ -103,6 +112,7 @@ async function sendMetaConversionEvent(
 		phone?: string;
 		firstName: string;
 		lastName: string;
+		zipCode: string;
 		fbp?: string;
 		fbc?: string;
 		clientIp?: string;
@@ -114,7 +124,8 @@ async function sendMetaConversionEvent(
 	const hashedUserData: Record<string, string> = {
 		em: await sha256(userData.email),
 		fn: await sha256(userData.firstName),
-		ln: await sha256(userData.lastName)
+		ln: await sha256(userData.lastName),
+		zp: await sha256(userData.zipCode.trim().split('-')[0])
 	};
 	if (userData.phone) {
 		hashedUserData.ph = await sha256(normalizePhone(userData.phone));
@@ -202,13 +213,24 @@ export const POST: RequestHandler = async ({ request, platform, cookies }) => {
 		const formData: ContactFormData = await request.json();
 
 		// Validate required fields
-		if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+		if (
+			!formData.firstName ||
+			!formData.lastName ||
+			!formData.email ||
+			!formData.zipCode ||
+			!formData.message
+		) {
 			throw error(400, 'Missing required fields');
 		}
 
 		// Validate email format
 		if (!isValidEmail(formData.email)) {
 			throw error(400, 'Invalid email address');
+		}
+
+		// Validate ZIP code format
+		if (!isValidZipCode(formData.zipCode)) {
+			throw error(400, 'Invalid ZIP code');
 		}
 
 		// Validate field lengths
@@ -218,6 +240,7 @@ export const POST: RequestHandler = async ({ request, platform, cookies }) => {
 			'company',
 			'email',
 			'phone',
+			'zipCode',
 			'subject',
 			'message'
 		] as const;
@@ -248,6 +271,7 @@ export const POST: RequestHandler = async ({ request, platform, cookies }) => {
 			company: formData.company ? sanitizeInput(formData.company) : '',
 			email: sanitizeInput(formData.email),
 			phone: formData.phone ? sanitizeInput(formData.phone) : '',
+			zipCode: sanitizeInput(formData.zipCode),
 			subject: formData.subject ? sanitizeInput(formData.subject) : '',
 			message: sanitizeInput(formData.message)
 		};
@@ -260,6 +284,7 @@ Name: ${sanitizedData.firstName} ${sanitizedData.lastName}
 Company: ${sanitizedData.company || 'Not provided'}
 Email: ${sanitizedData.email}
 Phone: ${sanitizedData.phone || 'Not provided'}
+ZIP Code: ${sanitizedData.zipCode}
 Subject: ${sanitizedData.subject || 'Not provided'}
 
 Message:
@@ -357,6 +382,7 @@ Time: ${new Date().toISOString()}
 						phone: sanitizedData.phone || undefined,
 						firstName: sanitizedData.firstName,
 						lastName: sanitizedData.lastName,
+						zipCode: sanitizedData.zipCode,
 						fbp: cookies.get('_fbp'),
 						fbc: cookies.get('_fbc'),
 						clientIp,
