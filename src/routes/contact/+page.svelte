@@ -71,6 +71,7 @@
 
 		// Generate a unique event ID shared with the server for Meta CAPI deduplication
 		const eventId = crypto.randomUUID();
+		const eventSourceUrl = typeof window !== 'undefined' ? window.location.href : undefined;
 
 		try {
 			const response = await fetch('/api/contact', {
@@ -81,7 +82,8 @@
 				body: JSON.stringify({
 					...formData,
 					'cf-turnstile-response': turnstileToken,
-					event_id: eventId
+					event_id: eventId,
+					event_source_url: eventSourceUrl
 				})
 			});
 
@@ -94,7 +96,7 @@
 				(window as unknown as { fbq: (...args: unknown[]) => void }).fbq(
 					'track',
 					'Lead',
-					{},
+					{ value: 0.0, currency: 'USD' },
 					{ eventID: eventId }
 				);
 			}

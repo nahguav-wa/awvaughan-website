@@ -38,6 +38,15 @@ export const ROUTES = {
 } as const;
 
 /**
+ * Meta (Facebook) Pixel configuration
+ * Pixel ID is public (embedded in the browser pixel script) and safe to commit.
+ * The CAPI access token is sensitive and must come from platform env vars only.
+ */
+export const META_PIXEL_ID = '2682287902136321';
+export const META_GRAPH_API_VERSION = 'v21.0';
+export const META_DATASET_QUALITY_API_VERSION = 'v25.0';
+
+/**
  * Social Media Links
  * Company social media profile URLs
  */

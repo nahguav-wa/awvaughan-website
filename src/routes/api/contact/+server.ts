@@ -5,6 +5,7 @@
 
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { META_GRAPH_API_VERSION, META_PIXEL_ID } from '$lib/config/constants';
 
 /**
  * Interface for contact form data
@@ -19,6 +20,7 @@ interface ContactFormData {
 	message: string;
 	'cf-turnstile-response'?: string;
 	event_id?: string;
+	event_source_url?: string;
 }
 
 /**
@@ -79,13 +81,35 @@ async function sha256(value: string): Promise<string> {
 }
 
 /**
+ * Normalize a US phone number to digits-only with country code.
+ * Meta expects phones as digits with the country code prefix, e.g., 17574021100.
+ */
+function normalizePhone(phone: string): string {
+	const digits = phone.replace(/\D/g, '');
+	if (digits.length === 10) return `1${digits}`;
+	return digits;
+}
+
+/**
  * Send a Lead event to Meta Conversions API
+ * Matches on email, phone, name + fbp/fbc cookies + IP + UA for high EMQ.
  */
 async function sendMetaConversionEvent(
 	accessToken: string,
+	pixelId: string,
 	eventId: string,
-	userData: { email: string; phone?: string; firstName: string; lastName: string },
-	sourceUrl: string
+	userData: {
+		email: string;
+		phone?: string;
+		firstName: string;
+		lastName: string;
+		fbp?: string;
+		fbc?: string;
+		clientIp?: string;
+		userAgent?: string;
+	},
+	sourceUrl: string,
+	testEventCode?: string
 ): Promise<void> {
 	const hashedUserData: Record<string, string> = {
 		em: await sha256(userData.email),
@@ -93,27 +117,37 @@ async function sendMetaConversionEvent(
 		ln: await sha256(userData.lastName)
 	};
 	if (userData.phone) {
-		// Strip non-digits before hashing
-		hashedUserData.ph = await sha256(userData.phone.replace(/\D/g, ''));
+		hashedUserData.ph = await sha256(normalizePhone(userData.phone));
 	}
+	if (userData.fbp) hashedUserData.fbp = userData.fbp;
+	if (userData.fbc) hashedUserData.fbc = userData.fbc;
+	if (userData.clientIp) hashedUserData.client_ip_address = userData.clientIp;
+	if (userData.userAgent) hashedUserData.client_user_agent = userData.userAgent;
+
+	const body: Record<string, unknown> = {
+		data: [
+			{
+				event_name: 'Lead',
+				event_time: Math.floor(Date.now() / 1000),
+				event_id: eventId,
+				action_source: 'website',
+				event_source_url: sourceUrl,
+				user_data: hashedUserData,
+				custom_data: {
+					value: 0.0,
+					currency: 'USD'
+				}
+			}
+		]
+	};
+	if (testEventCode) body.test_event_code = testEventCode;
 
 	await fetch(
-		`https://graph.facebook.com/v18.0/2682287902136321/events?access_token=${accessToken}`,
+		`https://graph.facebook.com/${META_GRAPH_API_VERSION}/${pixelId}/events?access_token=${accessToken}`,
 		{
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				data: [
-					{
-						event_name: 'Lead',
-						event_time: Math.floor(Date.now() / 1000),
-						event_id: eventId,
-						action_source: 'website',
-						event_source_url: sourceUrl,
-						user_data: hashedUserData
-					}
-				]
-			})
+			body: JSON.stringify(body)
 		}
 	);
 }
@@ -162,7 +196,7 @@ async function getAccessToken(
  * POST handler for contact form submissions
  * This endpoint will send emails using MS365 Graph API
  */
-export const POST: RequestHandler = async ({ request, platform }) => {
+export const POST: RequestHandler = async ({ request, platform, cookies }) => {
 	try {
 		// Parse request body
 		const formData: ContactFormData = await request.json();
@@ -297,25 +331,41 @@ Time: ${new Date().toISOString()}
 			// Silently accept to avoid exposing internal errors to the client
 		}
 
-		// Send Lead event to Meta Conversions API for server-side tracking
-		// Event ID is shared with the browser pixel for deduplication
+		// Send Lead event to Meta Conversions API for server-side tracking.
+		// Event ID is shared with the browser pixel for deduplication.
+		// fbp/fbc come from cookies set by the browser pixel — these are among the
+		// highest-weighted match keys Meta uses for Event Match Quality.
 		try {
-			const metaToken =
-				platform?.env?.META_PIXEL_TOKEN ??
-				'EAAXZBBdOiykIBRNwMRdQtRJuZCTsYwFSVc8dtZBmevyGXebPykA9GZAqYzfiRyg1Mj2F30Lu0cmgvvDV5nZCmIJMNRsDe4YkmvbqusOMGVIR8hPyKcfBbrJnW0EaEmYKTGZCAAg2NpJ7t15yJMV4u5ZCDe7OhMXACq3WXR9kZAoXZAVZASmgd6kypgf2ThS5iykgZDZD';
-			const eventId = formData.event_id ?? crypto.randomUUID();
-			const sourceUrl = request.headers.get('referer') ?? 'https://awvaughan.com/contact';
-			await sendMetaConversionEvent(
-				metaToken,
-				eventId,
-				{
-					email: sanitizedData.email,
-					phone: sanitizedData.phone || undefined,
-					firstName: sanitizedData.firstName,
-					lastName: sanitizedData.lastName
-				},
-				sourceUrl
-			);
+			const metaToken = platform?.env?.META_PIXEL_TOKEN;
+			if (metaToken) {
+				const eventId = formData.event_id ?? crypto.randomUUID();
+				const sourceUrl =
+					formData.event_source_url ??
+					request.headers.get('referer') ??
+					'https://awvaughan.com/contact';
+				const clientIp =
+					request.headers.get('cf-connecting-ip') ??
+					request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+					undefined;
+				const userAgent = request.headers.get('user-agent') ?? undefined;
+				await sendMetaConversionEvent(
+					metaToken,
+					META_PIXEL_ID,
+					eventId,
+					{
+						email: sanitizedData.email,
+						phone: sanitizedData.phone || undefined,
+						firstName: sanitizedData.firstName,
+						lastName: sanitizedData.lastName,
+						fbp: cookies.get('_fbp'),
+						fbc: cookies.get('_fbc'),
+						clientIp,
+						userAgent
+					},
+					sourceUrl,
+					platform?.env?.META_TEST_EVENT_CODE
+				);
+			}
 		} catch {
 			// CAPI failure must not break form submission
 		}
