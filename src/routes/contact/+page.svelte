@@ -15,6 +15,7 @@
 		company: '',
 		email: '',
 		phone: '',
+		zipCode: '',
 		subject: '',
 		message: ''
 	});
@@ -106,6 +107,7 @@
 				company: '',
 				email: '',
 				phone: '',
+				zipCode: '',
 				subject: '',
 				message: ''
 			};
@@ -315,6 +317,26 @@
 							bind:value={formData.phone}
 							class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
 							placeholder="(757) 555-1234"
+							disabled={formState === 'submitting'}
+						/>
+					</div>
+
+					<!-- ZIP Code -->
+					<div>
+						<label for="zipCode" class="mb-2 block text-base font-bold text-gray-900">
+							ZIP Code <span class="text-red-600">*</span>
+						</label>
+						<input
+							type="text"
+							id="zipCode"
+							bind:value={formData.zipCode}
+							required
+							inputmode="numeric"
+							pattern={'\\d{5}(-\\d{4})?'}
+							maxlength="10"
+							autocomplete="postal-code"
+							class="w-full rounded-lg border border-gray-300 px-4 py-3 text-base font-normal focus:border-transparent focus:ring-2 focus:ring-primary-500"
+							placeholder="23451"
 							disabled={formState === 'submitting'}
 						/>
 					</div>
