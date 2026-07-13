@@ -1,131 +1,107 @@
 /**
  * SEO Utilities
- * Helper functions for generating SEO metadata and structured data
+ * Helpers for generating SEO metadata and structured data.
  */
 
-import { COMPANY_INFO } from '$lib/config/constants';
-import type { SEOMetadata } from '$lib/types';
+import { SITE } from '$lib/config/site';
+import type { ArticleMeta, SEOMetadata } from '$lib/types';
 
 /**
- * Primary SEO Keywords
- * Target keywords for search engine optimization
+ * Resolve a path or URL to an absolute URL against the site origin.
  */
-export const PRIMARY_KEYWORDS = [
-	// Geographic + Core Services
-	'gravel driveway repair Virginia Beach',
-	'gravel driveway repair 757',
-	'drainage solutions Norfolk VA',
-	'shed pad preparation Virginia Beach',
-	'driveway grading 757',
-	'ditch and swale repair Virginia Beach',
-
-	// Service-Specific
-	'gravel driveway crown restoration',
-	'driveway drainage repair near me',
-	'small excavation contractor 757',
-	'shed foundation prep Virginia Beach',
-	'culvert repair Virginia Beach',
-	'rural property drainage solutions'
-];
-
-/**
- * Secondary SEO Keywords
- * Problem-focused search terms
- */
-export const SECONDARY_KEYWORDS = [
-	'how to fix standing water in driveway',
-	'gravel driveway potholes repair cost',
-	'why does my driveway wash out',
-	'small site prep contractor',
-	'fixing muddy driveway',
-	'driveway crown repair'
-];
-
-/**
- * Generates Schema.org LocalBusiness structured data
- * @returns JSON-LD structured data object
- */
-export function getLocalBusinessSchema() {
-	return {
-		'@context': 'https://schema.org',
-		'@type': 'LocalBusiness',
-		name: COMPANY_INFO.name,
-		description: COMPANY_INFO.description,
-		url: 'https://awvaughan.com',
-		telephone: COMPANY_INFO.phone,
-		email: COMPANY_INFO.email,
-		priceRange: '$$',
-		address: {
-			'@type': 'PostalAddress',
-			addressLocality: 'Virginia Beach',
-			addressRegion: 'VA',
-			addressCountry: 'US'
-		},
-		geo: {
-			'@type': 'GeoCoordinates',
-			latitude: 36.8529,
-			longitude: -75.978
-		},
-		areaServed: COMPANY_INFO.serviceArea.regions.map((region) => ({
-			'@type': 'City',
-			name: region
-		})),
-		serviceType: [
-			'Gravel Driveway Repair',
-			'Drainage Solutions',
-			'Excavation Services',
-			'Driveway Grading',
-			'Shed Pad Preparation'
-		]
-	};
+export function absoluteUrl(pathOrUrl: string): string {
+	if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+	return `${SITE.url}${pathOrUrl.startsWith('/') ? '' : '/'}${pathOrUrl}`;
 }
 
 /**
- * Generates Schema.org Service structured data
- * @param serviceName - Name of the service
- * @param description - Service description
- * @returns JSON-LD structured data object
+ * Format a page title with the site owner's name.
  */
-export function getServiceSchema(serviceName: string, description: string) {
-	return {
-		'@context': 'https://schema.org',
-		'@type': 'Service',
-		serviceType: serviceName,
-		provider: {
-			'@type': 'LocalBusiness',
-			name: COMPANY_INFO.name,
-			telephone: COMPANY_INFO.phone
-		},
-		areaServed: {
-			'@type': 'State',
-			name: 'Virginia'
-		},
-		description
-	};
+export function formatPageTitle(pageTitle: string): string {
+	return `${pageTitle} | ${SITE.name}`;
 }
 
 /**
- * Generates default SEO metadata for pages
- * @param overrides - Partial SEO metadata to merge with defaults
- * @returns Complete SEO metadata object
+ * Default SEO metadata, merged with optional per-page overrides.
  */
 export function getDefaultSEO(overrides?: Partial<SEOMetadata>): SEOMetadata {
 	return {
-		title: `${COMPANY_INFO.name} | ${COMPANY_INFO.businessType} | ${COMPANY_INFO.serviceArea.primary}`,
-		description: COMPANY_INFO.description,
-		keywords: PRIMARY_KEYWORDS.join(', '),
-		type: 'business.business',
-		ogImage: '/og-image.jpg',
-		canonical: 'https://awvaughan.com',
+		title: `${SITE.name} — ${SITE.title}`,
+		description: SITE.description,
+		type: 'website',
+		canonical: SITE.url,
+		ogImage: SITE.ogImage || undefined,
 		...overrides
 	};
 }
 
 /**
- * Formats page title with company name
- * @param pageTitle - Title specific to the page
- * @returns Formatted title string
+ * Schema.org Person structured data for the site owner.
  */
-export function formatPageTitle(pageTitle: string): string {
-	return `${pageTitle} | ${COMPANY_INFO.name}`;
+export function getPersonSchema() {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: SITE.name,
+		description: SITE.description,
+		url: SITE.url,
+		email: SITE.email
+	};
+}
+
+/**
+ * Schema.org WebSite structured data.
+ */
+export function getWebsiteSchema() {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: SITE.name,
+		description: SITE.description,
+		url: SITE.url,
+		author: { '@type': 'Person', name: SITE.name }
+	};
+}
+
+/**
+ * Schema.org Article (BlogPosting) structured data for a single article.
+ */
+export function getArticleSchema(article: ArticleMeta) {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: article.title,
+		description: article.description,
+		datePublished: article.date,
+		url: absoluteUrl(`/writing/${article.slug}`),
+		...(article.ogImage ? { image: absoluteUrl(article.ogImage) } : {}),
+		author: { '@type': 'Person', name: SITE.name },
+		keywords: article.tags?.join(', ')
+	};
+}
+
+/**
+ * Build SEO metadata for an article page.
+ */
+export function getArticleSEO(article: ArticleMeta): SEOMetadata {
+	const url = absoluteUrl(`/writing/${article.slug}`);
+	const ogImage = article.ogImage ? absoluteUrl(article.ogImage) : SITE.ogImage || undefined;
+	return {
+		title: formatPageTitle(article.title),
+		description: article.description,
+		keywords: article.tags,
+		type: 'article',
+		canonical: url,
+		ogImage,
+		noindex: article.draft,
+		openGraph: {
+			type: 'article',
+			title: article.title,
+			description: article.description,
+			url,
+			siteName: SITE.name,
+			publishedTime: article.date,
+			...(ogImage ? { image: { url: ogImage, alt: article.title } } : {})
+		}
+	};
 }

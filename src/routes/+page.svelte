@@ -1,43 +1,49 @@
 <!--
-	Homepage Component
-	Main landing page with hero, about, services, and CTA sections
+	Homepage
+	A brief personal introduction followed by the most recent writing.
 -->
 <script lang="ts">
-	/**
-	 * Imports - Page Section Components
-	 */
-	import { Hero, AboutSection, ServicesSection, CTASection } from '$lib';
+	import { ArticleCard } from '$lib';
+	import { SITE } from '$lib/config/site';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 </script>
 
-<!--
-	Hero Section
-	Full-screen hero with background image and CTAs
--->
-<Hero
-	imageSrc="/hero-image.jpg"
-	imageAlt="Professional gravel driveway repair and drainage solutions in Virginia Beach - The A.W. Vaughan Company"
-	title="Professional Gravel Driveway Repair & Drainage Solutions"
-	subtitle="Serving Virginia Beach and the 757 area with expert excavation, driveway grading, and site work"
-	primaryCTA="Get a Free Quote"
-	primaryHref="/contact"
-	secondaryCTA="View Our Services"
-	secondaryHref="/services"
-/>
+<section class="py-8">
+	<h1 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-white">{SITE.name}</h1>
+	<p class="mt-1 text-lg font-normal text-primary-600">{SITE.title}</p>
+	<p class="mt-6 max-w-2xl text-lg font-normal text-stone-600 dark:text-stone-300">
+		{SITE.intro}
+	</p>
+	<div class="mt-6 flex gap-4">
+		<a
+			href="/writing"
+			class="rounded-lg bg-primary-500 px-5 py-2.5 text-base font-bold text-white transition hover:bg-primary-600"
+		>
+			Read the writing
+		</a>
+		<a
+			href="/contact"
+			class="rounded-lg border border-stone-300 px-5 py-2.5 text-base font-bold text-stone-700 transition hover:border-stone-400 dark:border-stone-700 dark:text-stone-200"
+		>
+			Get in touch
+		</a>
+	</div>
+</section>
 
-<!--
-	About Section
-	Company introduction and value propositions
--->
-<AboutSection />
-
-<!--
-	Services Section
-	Grid of service offerings
--->
-<ServicesSection />
-
-<!--
-	Call-to-Action Section
-	Conversion-focused CTA
--->
-<CTASection />
+{#if data.articles.length > 0}
+	<section class="mt-12">
+		<div class="flex items-baseline justify-between">
+			<h2 class="text-lg font-bold text-stone-900 dark:text-white">Latest writing</h2>
+			<a href="/writing" class="text-sm font-normal text-primary-600 hover:underline">
+				All articles →
+			</a>
+		</div>
+		<div class="mt-2">
+			{#each data.articles as article (article.slug)}
+				<ArticleCard {article} />
+			{/each}
+		</div>
+	</section>
+{/if}

@@ -89,6 +89,9 @@
 	{#if metadata.openGraph?.image?.alt}
 		<meta property="og:image:alt" content={metadata.openGraph.image.alt} />
 	{/if}
+	{#if metadata.openGraph?.publishedTime}
+		<meta property="article:published_time" content={metadata.openGraph.publishedTime} />
+	{/if}
 
 	<!-- Twitter Card Meta Tags -->
 	<meta property="twitter:card" content="summary_large_image" />
