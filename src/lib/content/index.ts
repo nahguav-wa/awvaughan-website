@@ -58,6 +58,17 @@ export function getPublishedArticles(): ArticleMeta[] {
 }
 
 /**
+ * All article metadata including drafts, newest first.
+ * Used to prerender every article page (drafts stay noindex and unlisted, but
+ * remain reachable by direct link for preview).
+ */
+export function getAllArticles(): ArticleMeta[] {
+	return Object.values(articlesBySlug)
+		.map((article) => article.meta)
+		.sort(byDateDesc);
+}
+
+/**
  * Look up a single article by slug (drafts included, for direct-link preview).
  */
 export function getArticle(slug: string): Article | undefined {

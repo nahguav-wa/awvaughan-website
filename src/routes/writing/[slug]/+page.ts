@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { getArticle, getPublishedArticles } from '$lib/content';
+import { getAllArticles, getArticle } from '$lib/content';
 import { getArticleSEO, getArticleSchema } from '$lib/utils/seo';
 import type { EntryGenerator, PageLoad } from './$types';
 
@@ -18,7 +18,7 @@ export const load: PageLoad = ({ params }) => {
 	};
 };
 
-/** Prerender an entry for every published article. */
+/** Prerender an entry for every article, including drafts (drafts stay noindex). */
 export const entries: EntryGenerator = () => {
-	return getPublishedArticles().map((article) => ({ slug: article.slug }));
+	return getAllArticles().map((article) => ({ slug: article.slug }));
 };
