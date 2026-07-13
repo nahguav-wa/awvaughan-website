@@ -1,65 +1,42 @@
 <!--
 	Root Layout Component
-	Main application layout wrapper with header, footer, and SEO
+	Wraps every page with the header, footer, and SEO/structured-data head.
 -->
 <script lang="ts">
-	/**
-	 * Imports - External Dependencies
-	 */
 	import '../app.css';
 
-	/**
-	 * Imports - Internal Components
-	 */
+	import { page } from '$app/stores';
 	import { Header, Footer, SEOHead } from '$lib';
-	import { getLocalBusinessSchema } from '$lib/utils/seo';
-
-	/**
-	 * Imports - Assets
-	 */
-	const favicon = '/Favicon.svg';
+	import { getDefaultSEO, getPersonSchema, getWebsiteSchema } from '$lib/utils/seo';
 
 	import type { Snippet } from 'svelte';
-	import type { LayoutData } from './$types';
+	import type { SEOMetadata } from '$lib/types';
 
-	/**
-	 * Component Props
-	 * Type-safe props using Svelte 5 runes syntax
-	 */
 	interface Props {
 		/** Child pages/routes content */
 		children: Snippet;
-		/** Route data from load function */
-		data: LayoutData;
 	}
 
-	let { children, data }: Props = $props();
+	let { children }: Props = $props();
 
-	/**
-	 * Structured data for LocalBusiness schema
-	 */
-	const structuredData = getLocalBusinessSchema();
+	const favicon = '/Favicon.svg';
+
+	/** Site-wide default structured data (Person + WebSite) */
+	const defaultStructuredData = [getPersonSchema(), getWebsiteSchema()];
+
+	/** Merged page data provides per-page SEO + optional structured data overrides */
+	const seo = $derived(($page.data.seo as SEOMetadata | undefined) ?? getDefaultSEO());
+	const structuredData = $derived(
+		($page.data.structuredData as Record<string, unknown>[] | undefined) ?? defaultStructuredData
+	);
 </script>
 
-<!--
-	Document Head - Favicon and SEO
--->
 <svelte:head>
-	<!-- Favicon -->
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<!--
-	SEO Component - Meta tags and structured data
-	Uses data from +layout.ts and page-specific overrides
--->
-{#if data?.seo}
-	<SEOHead metadata={data.seo} {structuredData} />
-{/if}
+<SEOHead metadata={seo} {structuredData} />
 
-<!--
-	Skip to Content Link - Accessibility
--->
 <a
 	href="#main-content"
 	class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-md focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white"
@@ -67,20 +44,10 @@
 	Skip to main content
 </a>
 
-<!--
-	Page Header - Main navigation
--->
 <Header />
 
-<!--
-	Main Content Area - Page-specific content
-	Rendered from individual +page.svelte files
--->
-<main id="main-content">
+<main id="main-content" class="mx-auto min-h-[60vh] max-w-3xl px-4 py-12">
 	{@render children()}
 </main>
 
-<!--
-	Page Footer - Site-wide footer
--->
 <Footer />

@@ -1,44 +1,44 @@
 <!--
-	Error Page Component
-	Custom error page for 404 and other errors
+	Error Page
+	Simple, friendly error page for 404s and unexpected errors.
 -->
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Section, Button } from '$lib';
-	import { COMPANY_INFO } from '$lib/config/constants';
+	import { SITE } from '$lib/config/site';
 </script>
 
 <svelte:head>
-	<title>Page Not Found | {COMPANY_INFO.name}</title>
+	<title>{$page.status === 404 ? 'Page Not Found' : 'Something Went Wrong'} | {SITE.name}</title>
 </svelte:head>
 
-<Section variant="gray" class="mt-16 md:mt-28">
-	<div class="mx-auto max-w-2xl text-center">
-		<p class="mb-4 text-xl font-bold text-primary-500">{$page.status}</p>
-		<h1 class="mb-6 text-xl font-bold text-gray-900">
-			{#if $page.status === 404}
-				Page Not Found
-			{:else}
-				Something Went Wrong
-			{/if}
-		</h1>
-		<p class="mb-8 text-lg font-normal text-gray-600">
-			{#if $page.status === 404}
-				The page you're looking for doesn't exist or has been moved. Let us help you find what you
-				need.
-			{:else}
-				We encountered an unexpected error. Please try again or contact us directly.
-			{/if}
-		</p>
-		<div class="flex flex-col justify-center gap-4 sm:flex-row">
-			<Button variant="primary" href="/" size="md">Back to Home</Button>
-			<Button variant="secondary" href="/contact" size="md">Contact Us</Button>
-		</div>
-		<p class="mt-8 text-base font-normal text-gray-500">
-			Or call us directly at
-			<a href={COMPANY_INFO.phoneHref} class="font-bold text-primary-500 hover:text-primary-600">
-				{COMPANY_INFO.phone}
-			</a>
-		</p>
+<section class="py-16 text-center">
+	<p class="text-lg font-bold text-primary-600">{$page.status}</p>
+	<h1 class="mt-2 text-2xl font-bold text-stone-900 dark:text-white">
+		{#if $page.status === 404}
+			Page not found
+		{:else}
+			Something went wrong
+		{/if}
+	</h1>
+	<p class="mx-auto mt-4 max-w-md text-base font-normal text-stone-600 dark:text-stone-300">
+		{#if $page.status === 404}
+			The page you're looking for doesn't exist or has moved.
+		{:else}
+			An unexpected error occurred. Please try again.
+		{/if}
+	</p>
+	<div class="mt-8 flex justify-center gap-4">
+		<a
+			href="/"
+			class="rounded-lg bg-primary-500 px-5 py-2.5 text-base font-bold text-white transition hover:bg-primary-600"
+		>
+			Back home
+		</a>
+		<a
+			href="/writing"
+			class="rounded-lg border border-stone-300 px-5 py-2.5 text-base font-bold text-stone-700 transition hover:border-stone-400 dark:border-stone-700 dark:text-stone-200"
+		>
+			Read the writing
+		</a>
 	</div>
-</Section>
+</section>

@@ -7,3 +7,6 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# Archived original business site (kept for reference, not maintained)
+/archive/

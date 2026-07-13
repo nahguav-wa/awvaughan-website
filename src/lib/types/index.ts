@@ -6,23 +6,37 @@
 import type { Component } from 'svelte';
 
 /**
- * Service Card Data
+ * Article frontmatter as authored in each Markdown file.
+ * `slug` is optional in the file (defaults to the filename).
  */
-export interface Service {
+export interface ArticleFrontmatter {
 	title: string;
 	description: string;
-	href: string;
-	icon?: string;
-	keywords?: string[];
+	/** ISO date string, e.g. "2026-02-14" */
+	date: string;
+	/** Optional explicit slug; defaults to the file name */
+	slug?: string;
+	/** Hide from listings/feed and mark noindex when true */
+	draft?: boolean;
+	/** Path or URL to a per-article Open Graph image */
+	ogImage?: string;
+	/** Optional topic tags */
+	tags?: string[];
 }
 
 /**
- * Feature/Value Proposition Card Data
+ * Fully-resolved article metadata used throughout the app.
  */
-export interface Feature {
-	title: string;
-	description: string;
-	icon: Component;
+export interface ArticleMeta extends ArticleFrontmatter {
+	slug: string;
+}
+
+/**
+ * An article's resolved metadata paired with its rendered component.
+ */
+export interface Article {
+	meta: ArticleMeta;
+	component: Component;
 }
 
 /**
@@ -45,6 +59,8 @@ export interface OpenGraphMetadata {
 	url?: string;
 	siteName?: string;
 	image?: OGImage;
+	/** ISO published time for article-type pages */
+	publishedTime?: string;
 }
 
 /**
@@ -56,7 +72,7 @@ export interface SEOMetadata {
 	keywords?: string | string[];
 	ogImage?: string;
 	canonical?: string;
-	type?: 'website' | 'article' | 'business.business';
+	type?: 'website' | 'article' | 'profile';
 	noindex?: boolean;
 	nofollow?: boolean;
 	openGraph?: OpenGraphMetadata;
@@ -69,17 +85,6 @@ export interface NavLink {
 	label: string;
 	href: string;
 	external?: boolean;
-}
-
-/**
- * Contact Information
- */
-export interface ContactInfo {
-	location: string;
-	phone: string;
-	phoneHref: string;
-	email: string;
-	emailHref: string;
 }
 
 /**
