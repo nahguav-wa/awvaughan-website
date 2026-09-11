@@ -20,20 +20,20 @@ export const serviceDetails: ServiceDetail[] = [
 		slug: 'gravel-driveway-repair',
 		title: 'Gravel Driveway Repair & Restoration',
 		description:
-			'Expert gravel driveway repair services in the Virginia Beach 757 area. We restore proper crown, fix potholes, eliminate washout problems, and ensure proper drainage for long-lasting results.',
-		heading: 'Gravel Driveway Repair & Restoration',
+			'Gravel driveway repair in Williamsburg, VA and across the Historic Triangle. We restore proper crown, fill potholes, stop washout, and get water running off the driveway instead of standing in it.',
+		heading: 'Gravel Driveway Repair in Williamsburg, VA',
 		intro:
-			'Professional gravel driveway repair services in Virginia Beach and the 757 area. We restore your driveway to proper grade and crown for long-lasting results.',
+			'Crown restoration, pothole repair, and regrading for gravel driveways in Williamsburg, Toano, Yorktown, and out through New Kent, West Point, Gloucester and Saluda.',
 		problem: {
-			heading: 'Is Your Gravel Driveway Showing Its Age?',
+			heading: 'Is Your Gravel Driveway Holding Water?',
 			paragraphs: [
-				"Over time, gravel driveways develop potholes, lose their crown, and suffer from washout. These problems don't just look bad—they cause poor drainage, vehicle damage, and can worsen rapidly if left unaddressed.",
-				'At The A.W. Vaughan Company, we specialize in restoring gravel driveways to their proper condition. Our approach focuses on correct grading and crown restoration, ensuring water flows off your driveway instead of pooling and causing damage.'
+				'Gravel driveways fail in a predictable order. The crown flattens, water stops running to the edges and starts standing in the wheel tracks, the base softens, and then every vehicle that drives over it pushes a rut deeper. Once the ruts are established a hard rain will wash the stone straight down the slope.',
+				'Adding a load of gravel on top does not fix it — it just gives the next storm more to move. We regrade the driveway to a proper center-high crown first, so the surface sheds water, and then place stone where it will actually stay. On long rural drives around New Kent and West Point that usually means addressing the ditch line at the same time, because a driveway can only drain as well as the ground beside it.'
 			]
 		},
 		image: {
 			name: 'work-example-2',
-			alt: 'Gravel driveway repair project in Virginia Beach showing restored crown and proper drainage',
+			alt: 'Gravel driveway regraded to a proper crown on a Williamsburg-area property',
 			width: 900,
 			height: 1125
 		},
@@ -42,58 +42,58 @@ export const serviceDetails: ServiceDetail[] = [
 			{
 				title: 'Crown Restoration',
 				description:
-					'We restore the proper crown (center-high profile) to your driveway, ensuring water naturally flows to the edges rather than pooling in the middle.'
+					'We rebuild the center-high profile that makes a gravel driveway work, so rain runs to the shoulders within minutes instead of sitting in the middle for days.'
 			},
 			{
 				title: 'Pothole Filling & Grading',
 				description:
-					'We fill potholes with properly graded gravel and regrade your driveway surface for a smooth, even driving surface that resists future damage.'
+					'Potholes get cut out and filled with properly graded stone, then the whole surface is regraded — patching alone leaves the low spot that made the hole in the first place.'
 			},
 			{
 				title: 'Washout Repair & Prevention',
 				description:
-					'We repair washout damage and address the underlying drainage issues that caused it, preventing recurring problems and protecting your investment.'
+					'We repair washed-out sections and fix the drainage that caused them, which on sloped drives around Toano and Norge usually means restoring the shoulder and the ditch alongside it.'
 			},
 			{
 				title: 'New Gravel & Edge Definition',
 				description:
-					'We add fresh gravel where needed and define clean driveway edges, giving your property a well-maintained, professional appearance.'
+					'Fresh stone where the base needs it and clean, defined edges that keep gravel on the driveway and out of the lawn.'
 			}
 		],
 		cta: {
 			heading: 'Get Your Driveway Fixed Right',
-			body: 'Contact us today for a free assessment of your gravel driveway.'
+			body: 'Free assessment of your gravel driveway, anywhere from Williamsburg to the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Expert gravel driveway repair services including crown restoration, pothole filling, washout repair, and professional grading in Virginia Beach and the 757 area.',
+			'Gravel driveway repair including crown restoration, pothole filling, washout repair, and regrading in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Gravel Driveway Repair & Restoration | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Gravel Driveway Repair Williamsburg VA | The A.W. Vaughan Company',
 			description:
-				'Expert gravel driveway repair in Virginia Beach and the 757 area. Crown restoration, pothole filling, washout repair, and professional driveway grading. Call 757-402-1100 for a free quote.',
-			ogTitle: 'Gravel Driveway Repair & Restoration | The A.W. Vaughan Company',
+				'Gravel driveway repair in Williamsburg, VA. Crown restoration, pothole filling, washout repair, and driveway grading in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Gravel Driveway Repair in Williamsburg, VA | The A.W. Vaughan Company',
 			ogDescription:
-				'Professional gravel driveway repair services in Virginia Beach. Crown restoration, pothole filling, and washout repair.',
-			ogImageAlt: 'Gravel Driveway Repair Services - The A.W. Vaughan Company'
+				'Crown restoration, pothole repair, and regrading for gravel driveways across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Gravel driveway repair in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
 		slug: 'drainage-solutions',
 		title: 'Drainage Solutions & Grading',
 		description:
-			'Professional drainage solutions for Norfolk VA and Hampton Roads. We fix standing water issues, install swales and ditches, repair culverts, and provide expert driveway grading to prevent water damage.',
-		heading: 'Drainage Solutions & Grading',
+			'Drainage solutions for Williamsburg, Yorktown, Gloucester and the Middle Peninsula. We fix standing water, cut swales and ditches, install French drains and culverts, and grade sites so water leaves.',
+		heading: 'Drainage Solutions in Williamsburg & the Middle Peninsula',
 		intro:
-			'Eliminate standing water and protect your property with professional drainage solutions designed for Virginia Beach soil and weather conditions.',
+			'Standing water, soggy yards, and washed-out driveways solved with drainage built for the ground it sits in — clay, sand, or flat low-lying lot.',
 		problem: {
 			heading: 'Standing Water Damaging Your Property?',
 			paragraphs: [
-				'Poor drainage is one of the most common and destructive problems for properties in the Virginia Beach area. Standing water erodes driveways, damages foundations, creates breeding grounds for mosquitoes, and turns yards into muddy messes.',
-				"We design and implement drainage solutions customized for your property's specific needs. Our understanding of local soil conditions and coastal weather patterns means we build systems that work effectively year-round."
+				'Drainage problems in this part of Virginia are mostly a soil problem. Williamsburg, Yorktown and much of James City County sit on heavy clay that holds water for days after a storm. The Toano and Norge corridor runs to sand, which drains fast but washes badly. Gloucester, West Point and Saluda are flat and low, so there is often nowhere obvious for the water to go. Each of those needs a different answer.',
+				'We walk the property, find where the water is actually coming from and where it can legally and practically be sent, and then build the system that fits — a graded swale, a French drain, a culvert under the drive, or simply regrading so the ground falls away from the house instead of toward it.'
 			]
 		},
 		image: {
 			name: 'work-example-3',
-			alt: 'Professional drainage solution installation in Virginia Beach property',
+			alt: 'Drainage swale cut to carry water away from a driveway on a Middle Peninsula property',
 			width: 710,
 			height: 1125
 		},
@@ -102,58 +102,58 @@ export const serviceDetails: ServiceDetail[] = [
 			{
 				title: 'Swale & Ditch Repair',
 				description:
-					'We install and repair swales and ditches to channel water away from your driveway, buildings, and sensitive areas of your property.'
+					'We cut and restore swales and roadside ditches to carry water away from your driveway and buildings — the single most effective fix on most rural properties here.'
 			},
 			{
 				title: 'French Drain Systems',
 				description:
-					"Subsurface French drains collect and redirect groundwater, solving persistent wet spots and protecting your property's foundation."
+					'Subsurface French drains collect groundwater and move it out, which is what persistent wet spots in Williamsburg-area clay usually need.'
 			},
 			{
 				title: 'Culvert Installation & Repair',
 				description:
-					'We install new culverts and repair existing ones to ensure proper water flow under driveways and access roads.'
+					'New culverts and repairs to crushed or silted-in existing ones, so water keeps moving under driveways and farm access roads instead of backing up behind them.'
 			},
 			{
 				title: 'Site Grading & Erosion Control',
 				description:
-					"Professional grading directs water flow away from structures and prevents erosion, protecting your property's long-term value."
+					'Regrading that pushes water away from foundations, outbuildings, and driveways, and stabilizes the slopes that keep eroding after every storm.'
 			}
 		],
 		cta: {
 			heading: 'Solve Your Drainage Problems',
-			body: 'Contact us today for a free drainage assessment.'
+			body: 'Free drainage assessment across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Professional drainage solutions including French drains, swale repair, culvert installation, and site grading in Virginia Beach and the 757 area.',
+			'Drainage solutions including French drains, swale and ditch repair, culvert installation, and site grading in Williamsburg, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Drainage Solutions & Grading | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Drainage Solutions Williamsburg VA | Yard & Driveway Drainage',
 			description:
-				'Professional drainage solutions in Virginia Beach and the 757 area. French drains, swale repair, culvert installation, and site grading to eliminate standing water. Call 757-402-1100.',
+				'Drainage contractor in Williamsburg, VA. French drains, swale and ditch repair, culvert installation, and grading to stop standing water in Yorktown, Gloucester, West Point and Saluda. Call 757-402-1100.',
 			ogTitle: 'Drainage Solutions & Grading | The A.W. Vaughan Company',
 			ogDescription:
-				'Professional drainage solutions and grading services in Virginia Beach. Eliminate standing water and protect your property.',
-			ogImageAlt: 'Drainage Solutions - The A.W. Vaughan Company'
+				'Stop standing water. Drainage built for Williamsburg clay, Toano sand, and low-lying Middle Peninsula ground.',
+			ogImageAlt: 'Drainage solutions in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
 		slug: 'shed-pad-preparation',
 		title: 'Shed Pad & Foundation Preparation',
 		description:
-			'Quality shed pad preparation and foundation work in Virginia Beach. We provide precise site preparation, proper grading, and solid base construction for sheds, small buildings, and structures.',
-		heading: 'Shed Pad & Foundation Preparation',
+			'Shed pad preparation in Williamsburg, VA and the surrounding Historic Triangle. Level, compacted, well-draining gravel pads ready for delivery day, for sheds, garages, and small outbuildings.',
+		heading: 'Shed Pad Preparation in Williamsburg, VA',
 		intro:
-			'Professional site preparation for sheds and small structures in Virginia Beach. We build level, stable foundations that drain properly and last for years.',
+			'Level, compacted gravel pads built and ready before your shed arrives — in Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
 		problem: {
-			heading: 'Getting a New Shed or Structure?',
+			heading: 'Getting a Shed Delivered?',
 			paragraphs: [
-				"A proper foundation is the most important factor in your shed's longevity. Without correct site preparation, sheds settle unevenly, doors stop closing, and moisture damage sets in quickly.",
-				'We prepare shed pads with precise leveling, proper drainage grading, and compacted gravel bases that provide a stable, long-lasting foundation. Our preparation ensures your shed stays level and dry for years to come.'
+				'Most shed problems are pad problems. A shed set on ground that is not level will rack within a season — doors bind, windows stop closing square, and the floor frame twists. A shed set on ground that holds water rots from the bottom up, which happens fast on Williamsburg clay where water sits against the skids after every rain.',
+				'We build the pad before delivery day: cleared, cut to level, graded so water runs away from the structure, and topped with compacted stone that will not settle under the load. Tell us the footprint and the delivery date and we will have it ready.'
 			]
 		},
 		image: {
 			name: 'work-example-4',
-			alt: 'Prepared shed pad with level gravel base in Virginia Beach',
+			alt: 'Level compacted gravel shed pad prepared on a Williamsburg-area property',
 			width: 675,
 			height: 844
 		},
@@ -162,58 +162,58 @@ export const serviceDetails: ServiceDetail[] = [
 			{
 				title: 'Site Clearing & Leveling',
 				description:
-					'We clear vegetation, remove debris, and level the site to create a clean, even surface for your foundation.'
+					'Vegetation, stumps, and debris cleared, then the site cut to level — including the sloped back-lot corners where sheds usually end up.'
 			},
 			{
 				title: 'Drainage Grading',
 				description:
-					'Proper grading ensures water flows away from your shed, preventing moisture damage and extending the life of your structure.'
+					'The pad is graded so water sheds away from the structure rather than pooling against the skids, which is what rots a shed floor from below.'
 			},
 			{
 				title: 'Gravel Base Installation',
 				description:
-					'We install and spread the right type and depth of gravel to create a solid, well-draining base for your structure.'
+					'The right stone at the right depth for the load, with a defined edge so the pad holds its shape instead of spreading out over time.'
 			},
 			{
 				title: 'Compaction & Final Prep',
 				description:
-					'Professional compaction ensures your base is solid and stable, preventing settling and providing a level surface for years to come.'
+					'Mechanically compacted in lifts so the pad is solid on delivery day and stays level once the building is loaded.'
 			}
 		],
 		cta: {
 			heading: 'Ready to Prepare Your Site?',
-			body: 'Contact us for a free site assessment and quote.'
+			body: 'Free site assessment and quote. Give us your delivery date and we will work to it.'
 		},
 		schemaDescription:
-			'Professional shed pad preparation including site clearing, leveling, gravel base installation, and compaction in Virginia Beach and the 757 area.',
+			'Shed pad preparation including site clearing, leveling, gravel base installation, and compaction in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Shed Pad & Foundation Preparation | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Shed Pad Preparation Williamsburg VA | The A.W. Vaughan Company',
 			description:
-				'Professional shed pad preparation and foundation work in Virginia Beach. Precise site leveling, gravel base installation, and proper drainage for sheds and small structures. Call 757-402-1100.',
+				'Shed pad and foundation preparation in Williamsburg, VA. Level, compacted, well-draining gravel pads for sheds and outbuildings in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
 			ogTitle: 'Shed Pad & Foundation Preparation | The A.W. Vaughan Company',
 			ogDescription:
-				'Professional shed pad preparation in Virginia Beach. Site leveling, gravel base installation, and proper drainage.',
-			ogImageAlt: 'Shed Pad Preparation - The A.W. Vaughan Company'
+				'Level, compacted, well-draining shed pads built before delivery day across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Shed pad preparation in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
 		slug: 'excavation',
 		title: 'Small Excavation & Site Work',
 		description:
-			'Specialized small excavation contractor serving the 757 area. From culvert repair to rural property maintenance, we handle projects too small for large contractors but requiring professional expertise.',
-		heading: 'Small Excavation & Site Work',
+			'Small excavation contractor serving Williamsburg, New Kent, West Point, Gloucester and Saluda. Culverts, trenching, lot clearing, and rural access road work — the jobs big contractors turn down.',
+		heading: 'Small Excavation & Site Work in Williamsburg, VA',
 		intro:
-			"Specialized small excavation services for residential and rural properties in Virginia Beach and the 757 area. We handle the projects larger contractors won't.",
+			'Culverts, trenching, lot clearing, and rural property maintenance across the Historic Triangle and the Middle Peninsula. No job too small.',
 		problem: {
 			heading: 'The Right-Sized Excavation Contractor',
 			paragraphs: [
-				"Many excavation contractors focus on large commercial projects and won't take on smaller residential or rural jobs. That's where we come in. The A.W. Vaughan Company specializes in exactly these projects.",
-				'From clearing a small lot to trenching for utilities, repairing culverts, or maintaining rural property access roads, we bring professional expertise and the right equipment to every job, no matter the size.'
+				'Most excavation outfits are set up for subdivisions and commercial pads. A half-day culvert replacement or a few hundred feet of trench does not fit their schedule, so rural property owners around New Kent, West Point and Gloucester often cannot get anyone to return the call.',
+				'That is the work we are built for. We bring equipment sized for residential lots and wooded rural parcels — the kind that can get down a narrow farm lane without tearing up what is already there — and we show up for the small jobs.'
 			]
 		},
 		image: {
 			name: 'work-example-2',
-			alt: 'Small excavation and site work project in Virginia Beach',
+			alt: 'Small excavation and site work on a rural property near West Point, Virginia',
 			width: 900,
 			height: 1125
 		},
@@ -222,38 +222,38 @@ export const serviceDetails: ServiceDetail[] = [
 			{
 				title: 'Small Lot Clearing & Grading',
 				description:
-					'We clear and grade small lots for construction, landscaping, or property improvement projects with precision equipment.'
+					'Clearing and grading residential lots and wooded parcels for building, fencing, pasture, or simply getting a property usable again.'
 			},
 			{
 				title: 'Trenching for Utilities',
 				description:
-					'Professional trenching services for water lines, electrical conduit, drainage pipes, and other utility installations.'
+					'Trenching for water lines, electrical conduit, drainage pipe, and irrigation, backfilled and restored properly.'
 			},
 			{
 				title: 'Culvert Repair & Installation',
 				description:
-					'We repair damaged culverts and install new ones to maintain proper water flow under driveways and access roads.'
+					'Crushed, silted, or undersized culverts replaced so the driveway entrance stops flooding — common on the older rural drives out toward Saluda and Urbanna.'
 			},
 			{
 				title: 'Rural Property Maintenance',
 				description:
-					'Access road grading, drainage maintenance, and general site work to keep rural properties functional and well-maintained.'
+					'Access road grading, ditch clearing, and general site work that keeps a rural property passable year round, including through mud season.'
 			}
 		],
 		cta: {
 			heading: 'Need Excavation Work Done?',
-			body: 'Contact us for a free consultation and quote.'
+			body: 'Free consultation and quote. If it is small and nobody else will take it, call us.'
 		},
 		schemaDescription:
-			'Specialized small excavation services including lot clearing, trenching, culvert repair, and rural property maintenance in Virginia Beach and the 757 area.',
+			'Small excavation services including lot clearing, trenching, culvert repair, and rural property maintenance in Williamsburg, New Kent, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Small Excavation & Site Work | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Small Excavation Contractor Williamsburg VA | Site Work & Culverts',
 			description:
-				'Specialized small excavation contractor in Virginia Beach and the 757 area. Lot clearing, trenching, culvert repair, and rural property maintenance. Call 757-402-1100 for a free quote.',
+				'Small excavation contractor in Williamsburg, VA. Lot clearing, trenching, culvert repair, and rural property maintenance in New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
 			ogTitle: 'Small Excavation & Site Work | The A.W. Vaughan Company',
 			ogDescription:
-				'Specialized small excavation services in Virginia Beach. Lot clearing, trenching, and rural property maintenance.',
-			ogImageAlt: 'Small Excavation Services - The A.W. Vaughan Company'
+				'Lot clearing, trenching, culverts, and rural access road work across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Small excavation and site work in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	}
 ];

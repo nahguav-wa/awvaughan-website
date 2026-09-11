@@ -11,9 +11,23 @@ describe('COMPANY_INFO', () => {
 	});
 
 	it('has service area information', () => {
-		expect(COMPANY_INFO.serviceArea.primary).toBe('Virginia Beach');
+		expect(COMPANY_INFO.serviceArea.primary).toBe('Williamsburg');
 		expect(COMPANY_INFO.serviceArea.areaCode).toBe('757');
+		expect(COMPANY_INFO.serviceArea.region).toBeTruthy();
 		expect(COMPANY_INFO.serviceArea.regions.length).toBeGreaterThan(0);
+	});
+
+	it('lists the primary service area first, since /about renders the rest as "and surrounding"', () => {
+		expect(COMPANY_INFO.serviceArea.regions[0]).toBe(COMPANY_INFO.serviceArea.primary);
+	});
+
+	it('operates from Williamsburg and records Virginia Beach only as where it was founded', () => {
+		// The company relocated. `location` is where it works from now; the
+		// founding city is kept because the About page still tells that story.
+		expect(COMPANY_INFO.location).toBe('Williamsburg, Virginia');
+		expect(COMPANY_INFO.locationFull).toBe('Williamsburg, VA');
+		expect(COMPANY_INFO.foundedIn).toBe('Virginia Beach, Virginia');
+		expect(COMPANY_INFO.serviceArea.regions).not.toContain('Virginia Beach');
 	});
 });
 

@@ -25,8 +25,8 @@ export function absoluteUrl(path: string): string {
 export const COMPANY_INFO = {
 	name: 'The A.W. Vaughan Company',
 	tagline: 'Jeremiah 29:11',
-	location: 'Virginia Beach, Virginia',
-	locationFull: 'Virginia Beach, VA',
+	location: 'Williamsburg, Virginia',
+	locationFull: 'Williamsburg, VA',
 	phone: '757-402-1100',
 	/** E.164 form, required by Schema.org and preferred by Google. */
 	phoneE164: '+1-757-402-1100',
@@ -36,16 +36,45 @@ export const COMPANY_INFO = {
 
 	// Service area
 	serviceArea: {
-		primary: 'Virginia Beach',
+		primary: 'Williamsburg',
 		areaCode: '757',
-		regions: ['Virginia Beach', 'Norfolk', 'Chesapeake', 'Hampton Roads']
+		/**
+		 * Umbrella phrase for the whole footprint, used wherever copy needs to
+		 * name the region rather than list towns.
+		 *
+		 * Prefer this over "the 757 area" in copy. The footprint straddles two
+		 * area codes — Williamsburg, Toano and Yorktown are 757, while West
+		 * Point, Gloucester and Saluda are 804 — so "the 757" no longer
+		 * describes where the company works.
+		 */
+		region: 'the Historic Triangle and Middle Peninsula',
+		/**
+		 * Towns served, primary first. Rendered as the service-area list on
+		 * /about and as the Schema.org `areaServed` entries.
+		 */
+		regions: [
+			'Williamsburg',
+			'Toano',
+			'Norge',
+			'Lightfoot',
+			'Yorktown',
+			'New Kent',
+			'Providence Forge',
+			'West Point',
+			'Gloucester',
+			'Gloucester Point',
+			'Saluda',
+			'Urbanna'
+		]
 	},
 
 	// Business details for SEO
 	businessType: 'Excavation and Grading Contractor',
 	yearEstablished: 2025,
+	/** Where the company started. It is now based in Williamsburg. */
+	foundedIn: 'Virginia Beach, Virginia',
 	description:
-		'Professional gravel driveway repair, drainage solutions, and excavation services in the Virginia Beach 757 area. Specializing in driveway grading, shed pad preparation, and rural property maintenance.'
+		'Gravel driveway repair, drainage solutions, and small excavation in Williamsburg, VA. Serving Toano, Yorktown, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula with driveway grading, shed pad preparation, and rural property maintenance.'
 } as const;
 
 /**

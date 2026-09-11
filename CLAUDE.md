@@ -29,7 +29,7 @@ This document provides comprehensive guidance for AI assistants working on this 
 
 ## Project Overview
 
-This is a professional business website for The A.W. Vaughan Company, a gravel driveway repair and drainage solutions contractor serving the Virginia Beach 757 area. The site is built with modern web technologies and optimized for SEO and conversions.
+This is a professional business website for The A.W. Vaughan Company, a gravel driveway repair and drainage solutions contractor based in Williamsburg, Virginia and serving the Historic Triangle and the Middle Peninsula. The site is built with modern web technologies and optimized for SEO and conversions.
 
 **Primary Goals**:
 
@@ -39,7 +39,7 @@ This is a professional business website for The A.W. Vaughan Company, a gravel d
 - Build trust and credibility
 - Mobile-first responsive design
 
-**Target Audience**: Homeowners and property managers in Virginia Beach, Norfolk, Chesapeake, and the Hampton Roads area needing gravel driveway repair, drainage solutions, and excavation services.
+**Target Audience**: Homeowners, rural property owners, and property managers in Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic Triangle and Middle Peninsula needing gravel driveway repair, drainage solutions, and excavation services.
 
 ---
 
@@ -574,23 +574,61 @@ Applied at `<body>` level in `app.html`:
 
 ## SEO Strategy
 
+### Geography — the company moved
+
+The company was founded in Virginia Beach and is now **based in Williamsburg**.
+All copy and SEO target the new footprint; Virginia Beach, Norfolk, Chesapeake
+and "Hampton Roads" are no longer target terms.
+
+Virginia Beach survives in exactly two places, both deliberate: the founding
+sentence in the Our Story section of `/about` (rendered from
+`COMPANY_INFO.foundedIn`), and Schema.org `foundingLocation` in
+`getLocalBusinessSchema()`. That schema node is separate from `address`, which
+must stay on Williamsburg — a LocalBusiness whose `address` names the wrong city
+is optimized into the wrong local pack. A test asserts the two differ.
+
+The footprint has three layers, all driven from `COMPANY_INFO.serviceArea`:
+
+| Layer        | Source                | Value                                                                                                                                  |
+| ------------ | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Primary city | `serviceArea.primary` | Williamsburg                                                                                                                           |
+| Named towns  | `serviceArea.regions` | Williamsburg, Toano, Norge, Lightfoot, Yorktown, New Kent, Providence Forge, West Point, Gloucester, Gloucester Point, Saluda, Urbanna |
+| Region       | `serviceArea.region`  | the Historic Triangle and Middle Peninsula                                                                                             |
+
+`serviceArea.regions` also generates Schema.org `areaServed` and the
+service-area paragraph on `/about`, which renders `regions.slice(1)` as
+"and surrounding" — so **the primary city must stay first in that array**. A
+test asserts it.
+
+**Do not write "the 757 area" in new copy.** The footprint straddles two area
+codes — Williamsburg, Toano and Yorktown are 757, while West Point, Gloucester
+and Saluda are 804 — and "757" is a Hampton Roads identifier, which is the
+market the company left. `serviceArea.areaCode` remains only because the phone
+number is a 757 number.
+
+Off-site geography is not in this repository and has to be moved by hand: the
+Google Business Profile (which is what actually drives a local pack ranking),
+the Nextdoor page — whose URL still spells `virginia-beach`, so
+`SOCIAL_LINKS.nextdoor` needs updating once that page is moved — and the
+location fields on Facebook, Instagram and YouTube.
+
 ### Primary Keywords (Target Rankings)
 
 **Geographic + Core Services**:
 
-- gravel driveway repair Virginia Beach
-- gravel driveway repair 757
-- drainage solutions Norfolk VA
-- shed pad preparation Virginia Beach
-- driveway grading 757
-- ditch and swale repair Virginia Beach
+- gravel driveway repair Williamsburg VA
+- gravel driveway repair Toano VA
+- drainage solutions Williamsburg VA
+- shed pad preparation Williamsburg VA
+- driveway grading Yorktown VA
+- ditch and swale repair Williamsburg
 
 **Service-Specific**:
 
 - gravel driveway crown restoration
 - driveway drainage repair near me
-- small excavation contractor 757
-- culvert repair Virginia Beach
+- small excavation contractor Williamsburg
+- culvert repair Williamsburg VA
 
 **Full list**: See `docs/keyword-strategy.md`. Keywords are a content planning
 document, not markup: the `<meta name="keywords">` tag is not emitted, because
@@ -652,7 +690,7 @@ Automatically generates:
 ```svelte
 <Hero
 	imageSrc="/hero-image.jpg"
-	imageAlt="Professional gravel driveway repair and drainage solutions in Virginia Beach - The A.W. Vaughan Company"
+	imageAlt="Gravel driveway repair and drainage solutions in Williamsburg, VA - The A.W. Vaughan Company"
 />
 ```
 
@@ -1133,8 +1171,9 @@ references them. They can be removed once you are happy with the derivatives.
 ### Company Information
 
 **Name**: The A.W. Vaughan Company
-**Location**: Virginia Beach, Virginia
-**Service Area**: Virginia Beach, Norfolk, Chesapeake, Hampton Roads (757 area)
+**Location**: Williamsburg, Virginia
+**Service Area**: Williamsburg, Toano, Norge, Lightfoot, Yorktown, New Kent, Providence Forge, West Point, Gloucester, Gloucester Point, Saluda, Urbanna — the Historic Triangle and the Middle Peninsula
+**Founded In**: Virginia Beach, Virginia (relocated to Williamsburg)
 **Business Type**: Excavation and Grading Contractor
 **Established**: 2025
 
@@ -1179,7 +1218,7 @@ references them. They can be removed once you are happy with the derivatives.
 - Small, owner-operated (personalized service)
 - Quick response times
 - Specialized in small-to-medium projects
-- Local expertise in 757 area
+- Local expertise across the Historic Triangle and Middle Peninsula
 - Faith-based values (Jeremiah 29:11)
 
 ### Contact Information
@@ -1507,6 +1546,21 @@ rather than passing unnoticed.
 ---
 
 ## Changelog
+
+**2026-09-11** - Relocation to Williamsburg: copy and SEO rewrite
+
+- The company moved from Virginia Beach to Williamsburg. Every page's copy,
+  title, description, Open Graph metadata, and image alt text was rewritten to
+  target Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and
+  Saluda, and the Historic Triangle and Middle Peninsula regions
+- `COMPANY_INFO.serviceArea` gained a `region` phrase and the full town list;
+  `foundedIn` records Virginia Beach so the About page can still tell that story
+- Schema.org: `address` and `geo` moved to Williamsburg, `areaServed` now lists
+  the new towns, and a `foundingLocation` node keeps Virginia Beach without
+  competing with `address`
+- `docs/keyword-strategy.md` rewritten around the new geography, including the
+  off-site moves (Google Business Profile, Nextdoor URL, social locations) that
+  cannot be made from this repository
 
 **2026-09-11** - Code review remediation
 

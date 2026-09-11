@@ -14,8 +14,8 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = () => {
 	return {
 		seo: getDefaultSEO({
-			title: `${COMPANY_INFO.name} | Gravel Driveway Repair & Drainage Solutions Virginia Beach 757`,
-			description: `Professional gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area. Expert driveway grading, shed pad preparation, and rural property maintenance. Call ${COMPANY_INFO.phone} for quality service.`,
+			title: `Gravel Driveway Repair & Drainage in Williamsburg VA | ${COMPANY_INFO.name}`,
+			description: `Gravel driveway repair, drainage solutions, and small excavation in Williamsburg, VA. Serving Toano, Yorktown, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula. Call ${COMPANY_INFO.phone} for a free quote.`,
 			canonical: absoluteUrl('/'),
 			ogImage: absoluteUrl('/og-image.jpg')
 		})

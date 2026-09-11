@@ -13,22 +13,22 @@ import { absoluteUrl, COMPANY_INFO } from '$lib/config/constants';
  */
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title: 'About Us - The A.W. Vaughan Company | Virginia Beach Excavation Experts',
+		title: 'About Us | Williamsburg VA Excavation & Driveway Contractor',
 		description:
-			'Learn about The A.W. Vaughan Company, your trusted partner for gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area since 2025.',
+			'The A.W. Vaughan Company is a Williamsburg, VA gravel driveway repair and drainage contractor. Founded in Virginia Beach in 2025, now serving Toano, Yorktown, West Point, Gloucester and Saluda.',
 		canonical: absoluteUrl('/about'),
 		openGraph: {
 			type: 'website',
-			title: 'About The A.W. Vaughan Company | Virginia Beach Excavation',
+			title: 'About The A.W. Vaughan Company | Williamsburg VA Excavation',
 			description:
-				'Professional gravel driveway repair and drainage solutions serving Virginia Beach and the 757 area. Expert excavation services for residential and rural properties.',
+				'Gravel driveway repair and drainage solutions across the Historic Triangle and Middle Peninsula. Small excavation for residential and rural properties.',
 			url: absoluteUrl('/about'),
 			siteName: COMPANY_INFO.name,
 			image: {
 				url: absoluteUrl('/og-image.jpg'),
 				width: 1200,
 				height: 630,
-				alt: 'The A.W. Vaughan Company - Virginia Beach Excavation Experts'
+				alt: 'The A.W. Vaughan Company - Williamsburg VA Excavation and Grading'
 			}
 		}
 	};

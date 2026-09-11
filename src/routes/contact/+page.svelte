@@ -220,8 +220,8 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 text-gray-900">Contact Us</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Get in touch for a free consultation and quote. We're here to help with all your excavation
-			and drainage needs.
+			Free quotes on gravel driveway repair, drainage, shed pads, and small excavation in
+			Williamsburg and across the Historic Triangle and Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -237,8 +237,9 @@
 				<div>
 					<h2 class="mb-6 text-gray-900">Get In Touch</h2>
 					<p class="mb-6 text-base font-normal text-gray-600">
-						Have a question about our services? Need a quote for your project? We'd love to hear
-						from you. Reach out using the form or contact us directly.
+						Tell us what the property is doing — where the water stands, where the driveway is
+						rutting, what you need the site to hold. The more detail you give us, the more useful
+						the first answer will be. Use the form, or call and talk it through.
 					</p>
 				</div>
 
@@ -290,7 +291,7 @@
 						<div>
 							<h3 class="mb-1 text-gray-900">Service Area</h3>
 							<p class="text-base font-normal text-gray-600">
-								{COMPANY_INFO.location} and the {COMPANY_INFO.serviceArea.areaCode} area
+								Based in {COMPANY_INFO.location}, serving {COMPANY_INFO.serviceArea.region}
 							</p>
 						</div>
 					</div>

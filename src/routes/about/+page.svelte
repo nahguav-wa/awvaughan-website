@@ -15,8 +15,8 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">About The A.W. Vaughan Company</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Your trusted partner for professional gravel driveway repair, drainage solutions, and
-			excavation services in Virginia Beach and the 757 area.
+			A Williamsburg-based gravel driveway repair, drainage, and small excavation contractor serving
+			the Historic Triangle and the Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -31,7 +31,7 @@
 			<div class="overflow-hidden rounded-lg shadow-lg">
 				<Picture
 					name="about-image"
-					alt="The A.W. Vaughan Company team working on excavation project in Virginia Beach"
+					alt="The A.W. Vaughan Company grading a gravel driveway on a Williamsburg-area property"
 					width={844}
 					height={1125}
 					sizes="(min-width: 768px) 28rem, 100vw"
@@ -44,21 +44,24 @@
 				<h2 class="mb-4 font-bold text-gray-900">Our Story</h2>
 				<div class="space-y-4 text-base font-normal text-gray-600">
 					<p>
-						Founded in {COMPANY_INFO.yearEstablished}, The A.W. Vaughan Company has been serving
-						Virginia Beach and the 757 area with professional excavation, gravel driveway repair,
-						and drainage solutions. We specialize in the projects that are too small for large
-						contractors but require professional expertise and quality workmanship.
+						The A.W. Vaughan Company was founded in {COMPANY_INFO.yearEstablished} in {COMPANY_INFO.foundedIn},
+						repairing gravel driveways and fixing drainage on coastal properties. We are now based
+						in Williamsburg, and we work across the Historic Triangle and the Middle Peninsula —
+						from Toano and Yorktown out through New Kent, West Point, Gloucester and Saluda.
 					</p>
 					<p>
-						What sets us apart is our deep understanding of local soil conditions, drainage
-						patterns, and climate challenges unique to the Virginia Beach area. Whether you're
-						dealing with a washed-out gravel driveway, standing water issues, or need a properly
-						prepared shed pad, we bring the right expertise and equipment to get the job done right.
+						The move brought us to a different kind of ground, and we build for it. Williamsburg and
+						James City County sit on heavy clay that holds water long after a storm; the Toano and
+						Norge corridor runs to sand that washes; and the Middle Peninsula is flat, low, and slow
+						to drain. A driveway crown that works in one of those places fails in another. We read
+						the site before we move any material.
 					</p>
 					<p>
-						Our commitment is simple: deliver professional results on time, with clear
-						communication, and fair pricing. We're not just about moving dirt—we're about solving
-						problems and creating lasting solutions for your property.
+						We specialize in the work that is too small for large contractors and too specialized
+						for a landscaper — gravel driveway grading and crown restoration, washouts, standing
+						water, culverts, swales, and shed pads. Clear communication, honest estimates, and fair
+						pricing. We are not just about moving dirt; we are about making water go where it
+						should.
 					</p>
 				</div>
 			</div>
@@ -94,9 +97,9 @@
 			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="mb-2 font-bold text-gray-900">Local Expertise</h3>
 				<p class="text-base font-normal text-gray-600">
-					We understand Virginia Beach soil, drainage challenges, and weather patterns. Our
-					solutions are designed specifically for our local environment and built to last through
-					our coastal weather conditions.
+					Williamsburg clay, the sandy stretches around Toano and Norge, and the low flat ground of
+					Gloucester and Saluda each shed water differently. We grade for the ground you actually
+					have, so the fix holds through a wet Tidewater winter.
 				</p>
 			</div>
 
@@ -104,8 +107,8 @@
 			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="mb-2 font-bold text-gray-900">Right-Sized Service</h3>
 				<p class="text-base font-normal text-gray-600">
-					We specialize in residential and small commercial projects. You won't be too small for
-					us—these are exactly the projects we excel at and enjoy doing.
+					Residential driveways, rural access roads, and small commercial sites. A one-day driveway
+					regrade is not too small for us — it is exactly the work we are built for.
 				</p>
 			</div>
 
@@ -135,10 +138,12 @@
 -->
 <Section variant="gray">
 	<div class="mx-auto max-w-4xl text-center">
-		<h2 class="mb-6 font-bold text-gray-900">Serving the 757 Area</h2>
+		<h2 class="mb-6 font-bold text-gray-900">Where We Work</h2>
 		<p class="mb-8 text-lg font-normal text-gray-600">
-			Proudly serving {COMPANY_INFO.serviceArea.primary} and surrounding communities including
-			{COMPANY_INFO.serviceArea.regions.slice(1).join(', ')}, and all of Hampton Roads.
+			Based in {COMPANY_INFO.serviceArea.primary} and serving
+			{COMPANY_INFO.serviceArea.regions.slice(1).join(', ')}, and the surrounding Historic Triangle
+			and Middle Peninsula. Not sure whether you are in range? Call and ask — if we can get there,
+			we will.
 		</p>
 		<a
 			href="/contact"

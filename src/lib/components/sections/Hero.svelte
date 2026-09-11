@@ -34,7 +34,7 @@
 		imageWidth = 710,
 		imageHeight = 1125,
 		title = 'Professional Gravel Driveway Repair & Drainage Solutions',
-		subtitle = 'Serving Virginia Beach and the 757 area with expert excavation and site work',
+		subtitle = 'Serving Williamsburg, the Historic Triangle, and the Middle Peninsula with expert excavation and site work',
 		primaryCTA = 'Get Started',
 		primaryHref = '/contact',
 		secondaryCTA = 'Our Services',

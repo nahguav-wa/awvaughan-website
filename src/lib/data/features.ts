@@ -24,9 +24,9 @@ export const features: Feature[] = [
 		icon: CheckCircle
 	},
 	{
-		title: 'Local Expert Team',
+		title: 'Local Expertise',
 		description:
-			'Experienced professionals who know Virginia Beach soil, drainage patterns, and climate. Dedicated to your success.',
+			'We know how water moves across Williamsburg clay, Toano sand, and low-lying Middle Peninsula ground — and we build for it.',
 		icon: Users
 	}
 ];

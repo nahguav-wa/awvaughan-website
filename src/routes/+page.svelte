@@ -17,8 +17,8 @@
 	imageName="hero-image"
 	imageWidth={710}
 	imageHeight={1125}
-	title="Professional Gravel Driveway Repair & Drainage Solutions"
-	subtitle="Serving Virginia Beach and the 757 area with expert excavation, driveway grading, and site work"
+	title="Gravel Driveway Repair & Drainage Solutions in Williamsburg, VA"
+	subtitle="Gravel driveway grading, drainage and small excavation for Williamsburg, Toano, Yorktown, West Point, Saluda and Gloucester"
 	primaryCTA="Get a Free Quote"
 	primaryHref="/contact"
 	secondaryCTA="View Our Services"

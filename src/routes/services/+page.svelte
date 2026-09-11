@@ -12,10 +12,11 @@
 -->
 <Section variant="gray">
 	<div class="mx-auto max-w-4xl text-center">
-		<h1 class="mb-6 font-bold text-gray-900">Our Services</h1>
+		<h1 class="mb-6 font-bold text-gray-900">Excavation & Driveway Services in Williamsburg, VA</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Professional excavation, gravel driveway repair, and drainage solutions serving Virginia Beach
-			and the 757 area. We specialize in residential and small commercial projects.
+			Gravel driveway repair, drainage solutions, shed pads, and small excavation for Williamsburg,
+			Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic
+			Triangle and Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -52,9 +53,9 @@
 					<div class="flex-1">
 						<h3 class="mb-3 font-bold text-gray-900">Gravel Driveway Repair & Restoration</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							Is your gravel driveway showing potholes, washout, or loss of crown? We specialize in
-							restoring gravel driveways to proper grade and crown, ensuring water drains correctly
-							and your driveway lasts for years to come.
+							Potholes, ruts, washout, or a driveway that has gone flat and holds water? We regrade
+							gravel driveways across Williamsburg and James City County back to a proper crown, so
+							water runs to the edges instead of standing in the wheel tracks.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
 							<li>Crown restoration for proper water runoff</li>
@@ -78,8 +79,9 @@
 					<div class="flex-1">
 						<h3 class="mb-3 font-bold text-gray-900">Drainage Solutions & Grading</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							Standing water damaging your driveway or yard? We design and implement effective
-							drainage solutions customized for Virginia Beach soil and weather conditions.
+							Standing water in the driveway or yard? We design drainage that suits the ground it is
+							built in — heavy clay around Williamsburg and Yorktown, sand near Toano, and the flat,
+							low-lying lots common in Gloucester and Saluda.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
 							<li>Swale and ditch installation/repair</li>
@@ -104,8 +106,9 @@
 					<div class="flex-1">
 						<h3 class="mb-3 font-bold text-gray-900">Shed Pad & Foundation Preparation</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							Getting a new shed or outdoor structure? Proper site preparation is critical for a
-							stable, level foundation. We prepare shed pads that stay level and drain properly.
+							Having a shed or outbuilding delivered? The pad has to be level, compacted, and
+							draining before it arrives. We prepare shed pads across the Historic Triangle and
+							Middle Peninsula that stay level and stay dry.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
 							<li>Site clearing and leveling</li>
@@ -129,8 +132,9 @@
 					<div class="flex-1">
 						<h3 class="mb-3 font-bold text-gray-900">Small Excavation & Site Work</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							We handle the small excavation projects that larger contractors won't take on. From
-							rural property maintenance to specialized site work, we're your local solution.
+							We take the small excavation jobs larger contractors turn down. Culverts, trenching,
+							lot clearing, and keeping rural access roads passable on properties out toward New
+							Kent, West Point, Gloucester, and Saluda.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
 							<li>Small lot clearing and grading</li>
@@ -154,8 +158,8 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h2 class="mb-6 font-bold text-gray-900">Ready to Get Started?</h2>
 		<p class="mb-8 text-lg font-normal text-gray-600">
-			Contact us today for a free consultation and quote. We serve Virginia Beach and all of the 757
-			area.
+			Free quotes, no pressure. Based in Williamsburg and working throughout the Historic Triangle
+			and the Middle Peninsula.
 		</p>
 		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<a

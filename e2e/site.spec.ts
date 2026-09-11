@@ -226,11 +226,13 @@ test.describe('contact form', () => {
 test.describe('service pages', () => {
 	test('all four render from the shared template', async ({ page }) => {
 		test.slow();
+		// The `heading` field of each record in src/lib/data/services.ts — which is
+		// not the same string as its `title`, the card label used on the listing.
 		const expected = [
-			['/services/gravel-driveway-repair', 'Gravel Driveway Repair & Restoration'],
-			['/services/drainage-solutions', 'Drainage Solutions & Grading'],
-			['/services/shed-pad-preparation', 'Shed Pad & Foundation Preparation'],
-			['/services/excavation', 'Small Excavation & Site Work']
+			['/services/gravel-driveway-repair', 'Gravel Driveway Repair in Williamsburg, VA'],
+			['/services/drainage-solutions', 'Drainage Solutions in Williamsburg & the Middle Peninsula'],
+			['/services/shed-pad-preparation', 'Shed Pad Preparation in Williamsburg, VA'],
+			['/services/excavation', 'Small Excavation & Site Work in Williamsburg, VA']
 		];
 
 		for (const [path, heading] of expected) {
