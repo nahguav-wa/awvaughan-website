@@ -1,0 +1,25 @@
+# Security headers for statically served routes.
+#
+# Prerendered pages and static assets are served by Cloudflare's asset handler
+# and never enter the Worker, so src/hooks.server.ts cannot reach them. This
+# file mirrors src/lib/config/security-headers.ts — a test asserts the two agree.
+#
+# It lives in the project root because @sveltejs/adapter-cloudflare requires it
+# there; the adapter copies it into the build output.
+#
+# Content-Security-Policy is intentionally not set here. It is generated per
+# page by `kit.csp` (svelte.config.js) and delivered in a <meta> tag; a second
+# policy in this file would intersect with it and block SvelteKit's own
+# hydration script.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Generated derivatives are content-addressed by width and never edited in
+# place, so they can be cached hard.
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
