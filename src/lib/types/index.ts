@@ -7,13 +7,69 @@ import type { Component } from 'svelte';
 
 /**
  * Service Card Data
+ * Shape consumed by listing pages and ServiceCard.
  */
 export interface Service {
 	title: string;
 	description: string;
 	href: string;
 	icon?: string;
-	keywords?: string[];
+}
+
+/**
+ * One bullet on a service page: what we do under that heading.
+ */
+export interface ServiceOffering {
+	title: string;
+	description: string;
+}
+
+/**
+ * A photograph and its intrinsic dimensions.
+ *
+ * `name` is the basename produced by scripts/optimize-images.mjs, and width and
+ * height are the real pixel dimensions of the source — they set the aspect
+ * ratio the browser reserves, so a wrong value causes layout shift.
+ */
+export interface ServiceImage {
+	name: string;
+	alt: string;
+	width: number;
+	height: number;
+}
+
+/**
+ * Everything a service page renders.
+ *
+ * The four service pages were previously four near-identical .svelte files that
+ * differed only in their strings, so any layout change meant four edits and the
+ * copies drifted. They are now one `[slug]` route driven by this data.
+ */
+export interface ServiceDetail {
+	slug: string;
+	/** Card title on listing pages. */
+	title: string;
+	/** Card body and meta description source. */
+	description: string;
+	/** Page h1. */
+	heading: string;
+	/** Lede paragraph under the h1. */
+	intro: string;
+	/** Opening narrative block. */
+	problem: { heading: string; paragraphs: string[] };
+	image: ServiceImage;
+	offeringsHeading: string;
+	offerings: ServiceOffering[];
+	cta: { heading: string; body: string };
+	/** Description used for the Schema.org Service entity. */
+	schemaDescription: string;
+	seo: {
+		title: string;
+		description: string;
+		ogTitle: string;
+		ogDescription: string;
+		ogImageAlt: string;
+	};
 }
 
 /**
@@ -53,7 +109,6 @@ export interface OpenGraphMetadata {
 export interface SEOMetadata {
 	title: string;
 	description: string;
-	keywords?: string | string[];
 	ogImage?: string;
 	canonical?: string;
 	type?: 'website' | 'article' | 'business.business';
