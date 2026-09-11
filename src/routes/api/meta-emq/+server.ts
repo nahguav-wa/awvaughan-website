@@ -13,6 +13,7 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { META_DATASET_QUALITY_API_VERSION, META_PIXEL_ID } from '$lib/config/constants';
+import { timingSafeEqual } from '$lib/utils/meta';
 
 export const GET: RequestHandler = async ({ request, platform }) => {
 	const adminSecret = platform?.env?.META_EMQ_ADMIN_SECRET;
@@ -23,7 +24,8 @@ export const GET: RequestHandler = async ({ request, platform }) => {
 		throw error(503, 'EMQ endpoint is not configured');
 	}
 
-	if (request.headers.get('x-admin-secret') !== adminSecret) {
+	const providedSecret = request.headers.get('x-admin-secret');
+	if (!providedSecret || !timingSafeEqual(providedSecret, adminSecret)) {
 		throw error(401, 'Unauthorized');
 	}
 
@@ -32,10 +34,13 @@ export const GET: RequestHandler = async ({ request, platform }) => {
 	);
 	url.searchParams.set('dataset_id', META_PIXEL_ID);
 	url.searchParams.set('agent_name', agentName);
-	url.searchParams.set('access_token', accessToken);
 	url.searchParams.set('fields', 'web{event_match_quality,event_name}');
 
-	const response = await fetch(url.toString());
+	// The token goes in a Bearer header rather than a query parameter so it does
+	// not land in proxy, CDN, or error logs.
+	const response = await fetch(url.toString(), {
+		headers: { Authorization: `Bearer ${accessToken}` }
+	});
 	const data = await response.json();
 
 	if (!response.ok) {

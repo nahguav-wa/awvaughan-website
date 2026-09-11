@@ -5,7 +5,8 @@
 
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { META_GRAPH_API_VERSION, META_PIXEL_ID } from '$lib/config/constants';
+import { META_PIXEL_ID } from '$lib/config/constants';
+import { resolveEventSourceUrl, sendMetaConversionEvent } from '$lib/utils/meta';
 
 /**
  * Interface for contact form data
@@ -67,89 +68,6 @@ function sanitizeInput(input: string): string {
 		.replace(/<[^>]*>/g, '')
 		.replace(/[\r\n]+/g, '\n')
 		.trim();
-}
-
-/**
- * SHA-256 hash a string — required by Meta for all PII fields
- */
-async function sha256(value: string): Promise<string> {
-	const data = new TextEncoder().encode(value.toLowerCase().trim());
-	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-	return Array.from(new Uint8Array(hashBuffer))
-		.map((b) => b.toString(16).padStart(2, '0'))
-		.join('');
-}
-
-/**
- * Normalize a US phone number to digits-only with country code.
- * Meta expects phones as digits with the country code prefix, e.g., 17574021100.
- */
-function normalizePhone(phone: string): string {
-	const digits = phone.replace(/\D/g, '');
-	if (digits.length === 10) return `1${digits}`;
-	return digits;
-}
-
-/**
- * Send a Lead event to Meta Conversions API
- * Matches on email, phone, name + fbp/fbc cookies + IP + UA for high EMQ.
- */
-async function sendMetaConversionEvent(
-	accessToken: string,
-	pixelId: string,
-	eventId: string,
-	userData: {
-		email: string;
-		phone?: string;
-		firstName: string;
-		lastName: string;
-		fbp?: string;
-		fbc?: string;
-		clientIp?: string;
-		userAgent?: string;
-	},
-	sourceUrl: string,
-	testEventCode?: string
-): Promise<void> {
-	const hashedUserData: Record<string, string> = {
-		em: await sha256(userData.email),
-		fn: await sha256(userData.firstName),
-		ln: await sha256(userData.lastName)
-	};
-	if (userData.phone) {
-		hashedUserData.ph = await sha256(normalizePhone(userData.phone));
-	}
-	if (userData.fbp) hashedUserData.fbp = userData.fbp;
-	if (userData.fbc) hashedUserData.fbc = userData.fbc;
-	if (userData.clientIp) hashedUserData.client_ip_address = userData.clientIp;
-	if (userData.userAgent) hashedUserData.client_user_agent = userData.userAgent;
-
-	const body: Record<string, unknown> = {
-		data: [
-			{
-				event_name: 'Lead',
-				event_time: Math.floor(Date.now() / 1000),
-				event_id: eventId,
-				action_source: 'website',
-				event_source_url: sourceUrl,
-				user_data: hashedUserData,
-				custom_data: {
-					value: 0.0,
-					currency: 'USD'
-				}
-			}
-		]
-	};
-	if (testEventCode) body.test_event_code = testEventCode;
-
-	await fetch(
-		`https://graph.facebook.com/${META_GRAPH_API_VERSION}/${pixelId}/events?access_token=${accessToken}`,
-		{
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(body)
-		}
-	);
 }
 
 /**
@@ -327,8 +245,10 @@ Time: ${new Date().toISOString()}
 			} else {
 				// MS365 not configured — silently accept in dev, form data is not persisted
 			}
-		} catch {
-			// Silently accept to avoid exposing internal errors to the client
+		} catch (emailError) {
+			// Accept the submission so internal errors are not exposed to the client,
+			// but log it — a silent failure here means a lead is lost with no trace.
+			console.error('Contact form email delivery failed:', emailError);
 		}
 
 		// Send Lead event to Meta Conversions API for server-side tracking.
@@ -338,36 +258,37 @@ Time: ${new Date().toISOString()}
 		try {
 			const metaToken = platform?.env?.META_PIXEL_TOKEN;
 			if (metaToken) {
-				const eventId = formData.event_id ?? crypto.randomUUID();
-				const sourceUrl =
-					formData.event_source_url ??
-					request.headers.get('referer') ??
-					'https://awvaughan.com/contact';
-				const clientIp =
-					request.headers.get('cf-connecting-ip') ??
-					request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-					undefined;
-				const userAgent = request.headers.get('user-agent') ?? undefined;
-				await sendMetaConversionEvent(
-					metaToken,
-					META_PIXEL_ID,
-					eventId,
-					{
-						email: sanitizedData.email,
-						phone: sanitizedData.phone || undefined,
-						firstName: sanitizedData.firstName,
-						lastName: sanitizedData.lastName,
+				// cf-connecting-ip is set by Cloudflare and cannot be spoofed by the client.
+				// x-forwarded-for is deliberately not used as a fallback: off Cloudflare it is
+				// pure client input, and a forged IP corrupts attribution.
+				const clientIp = request.headers.get('cf-connecting-ip') ?? undefined;
+
+				await sendMetaConversionEvent({
+					accessToken: metaToken,
+					pixelId: META_PIXEL_ID,
+					eventId: formData.event_id ?? crypto.randomUUID(),
+					user: {
+						// Hash the submitted values, not the sanitized ones: sanitizing rewrites
+						// characters and a rewritten value no longer matches Meta's records.
+						email: formData.email,
+						phone: formData.phone,
+						firstName: formData.firstName,
+						lastName: formData.lastName,
 						fbp: cookies.get('_fbp'),
 						fbc: cookies.get('_fbc'),
 						clientIp,
-						userAgent
+						userAgent: request.headers.get('user-agent') ?? undefined
 					},
-					sourceUrl,
-					platform?.env?.META_TEST_EVENT_CODE
-				);
+					sourceUrl: resolveEventSourceUrl(
+						formData.event_source_url ?? request.headers.get('referer')
+					),
+					testEventCode: platform?.env?.META_TEST_EVENT_CODE
+				});
 			}
-		} catch {
-			// CAPI failure must not break form submission
+		} catch (metaError) {
+			// A CAPI failure must not break form submission, but it must be visible:
+			// an unlogged failure means Lead tracking can stop entirely without warning.
+			console.error('Meta CAPI Lead event failed:', metaError);
 		}
 
 		// Return success response

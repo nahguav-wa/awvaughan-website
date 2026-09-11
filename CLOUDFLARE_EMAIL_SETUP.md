@@ -21,6 +21,7 @@ Since you're using Cloudflare for DNS and MS365 for email hosting, the following
 ### Required MS365 DNS Records
 
 1. **MX Records** (Mail Exchange)
+
    ```
    Type: MX
    Name: @
@@ -29,6 +30,7 @@ Since you're using Cloudflare for DNS and MS365 for email hosting, the following
    ```
 
 2. **SPF Record** (Sender Policy Framework)
+
    ```
    Type: TXT
    Name: @
@@ -37,6 +39,7 @@ Since you're using Cloudflare for DNS and MS365 for email hosting, the following
 
 3. **DKIM Records** (DomainKeys Identified Mail)
    - Two CNAME records provided by MS365
+
    ```
    Type: CNAME
    Name: selector1._domainkey
@@ -48,6 +51,7 @@ Since you're using Cloudflare for DNS and MS365 for email hosting, the following
    ```
 
 4. **DMARC Record** (Domain-based Message Authentication)
+
    ```
    Type: TXT
    Name: _dmarc
@@ -112,14 +116,14 @@ Update `/src/routes/api/contact/+server.ts`:
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, platform }) => {
-  try {
-    const data = await request.json();
+	try {
+		const data = await request.json();
 
-    // Validate and sanitize input
-    const { name, email, subject, message } = data;
+		// Validate and sanitize input
+		const { name, email, subject, message } = data;
 
-    // Construct email
-    const emailContent = `
+		// Construct email
+		const emailContent = `
 Name: ${name}
 Email: ${email}
 Subject: ${subject}
@@ -128,48 +132,44 @@ Message:
 ${message}
     `.trim();
 
-    // Send via MS365 SMTP
-    // Note: In production, you'll need to use environment variables
-    const response = await fetch('https://smtp.office365.com:587', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        host: 'smtp.office365.com',
-        port: 587,
-        secure: false, // Use TLS
-        auth: {
-          user: platform?.env?.MS365_EMAIL || '',
-          pass: platform?.env?.MS365_APP_PASSWORD || ''
-        },
-        from: platform?.env?.MS365_EMAIL || 'noreply@awvaughan.com',
-        to: 'alex.vaughan@awvaughan.com',
-        subject: `Contact Form: ${subject}`,
-        text: emailContent,
-        replyTo: email
-      })
-    });
+		// Send via MS365 SMTP
+		// Note: In production, you'll need to use environment variables
+		const response = await fetch('https://smtp.office365.com:587', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				host: 'smtp.office365.com',
+				port: 587,
+				secure: false, // Use TLS
+				auth: {
+					user: platform?.env?.MS365_EMAIL || '',
+					pass: platform?.env?.MS365_APP_PASSWORD || ''
+				},
+				from: platform?.env?.MS365_EMAIL || 'noreply@awvaughan.com',
+				to: 'alex.vaughan@awvaughan.com',
+				subject: `Contact Form: ${subject}`,
+				text: emailContent,
+				replyTo: email
+			})
+		});
 
-    if (!response.ok) {
-      throw new Error('Failed to send email');
-    }
+		if (!response.ok) {
+			throw new Error('Failed to send email');
+		}
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-  } catch (error) {
-    console.error('Contact form error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to send message' }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
-  }
+		return new Response(JSON.stringify({ success: true }), {
+			status: 200,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	} catch (error) {
+		console.error('Contact form error:', error);
+		return new Response(JSON.stringify({ error: 'Failed to send message' }), {
+			status: 500,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	}
 };
 ```
 
@@ -190,96 +190,92 @@ This approach uses Microsoft Graph API, which is better suited for Cloudflare Wo
 import type { RequestHandler } from './$types';
 
 async function getAccessToken(
-  tenantId: string,
-  clientId: string,
-  clientSecret: string
+	tenantId: string,
+	clientId: string,
+	clientSecret: string
 ): Promise<string> {
-  const tokenUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
+	const tokenUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
 
-  const params = new URLSearchParams({
-    client_id: clientId,
-    scope: 'https://graph.microsoft.com/.default',
-    client_secret: clientSecret,
-    grant_type: 'client_credentials'
-  });
+	const params = new URLSearchParams({
+		client_id: clientId,
+		scope: 'https://graph.microsoft.com/.default',
+		client_secret: clientSecret,
+		grant_type: 'client_credentials'
+	});
 
-  const response = await fetch(tokenUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params
-  });
+	const response = await fetch(tokenUrl, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: params
+	});
 
-  const data = await response.json();
-  return data.access_token;
+	const data = await response.json();
+	return data.access_token;
 }
 
 export const POST: RequestHandler = async ({ request, platform }) => {
-  try {
-    const data = await request.json();
-    const { name, email, subject, message } = data;
+	try {
+		const data = await request.json();
+		const { name, email, subject, message } = data;
 
-    // Get access token
-    const accessToken = await getAccessToken(
-      platform?.env?.MS365_TENANT_ID || '',
-      platform?.env?.MS365_CLIENT_ID || '',
-      platform?.env?.MS365_CLIENT_SECRET || ''
-    );
+		// Get access token
+		const accessToken = await getAccessToken(
+			platform?.env?.MS365_TENANT_ID || '',
+			platform?.env?.MS365_CLIENT_ID || '',
+			platform?.env?.MS365_CLIENT_SECRET || ''
+		);
 
-    // Send email via Graph API
-    const graphResponse = await fetch(
-      `https://graph.microsoft.com/v1.0/users/${platform?.env?.MS365_EMAIL}/sendMail`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: {
-            subject: `Contact Form: ${subject}`,
-            body: {
-              contentType: 'Text',
-              content: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-            },
-            toRecipients: [
-              {
-                emailAddress: {
-                  address: 'alex.vaughan@awvaughan.com'
-                }
-              }
-            ],
-            replyTo: [
-              {
-                emailAddress: {
-                  address: email
-                }
-              }
-            ]
-          },
-          saveToSentItems: 'false'
-        })
-      }
-    );
+		// Send email via Graph API
+		const graphResponse = await fetch(
+			`https://graph.microsoft.com/v1.0/users/${platform?.env?.MS365_EMAIL}/sendMail`,
+			{
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					message: {
+						subject: `Contact Form: ${subject}`,
+						body: {
+							contentType: 'Text',
+							content: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+						},
+						toRecipients: [
+							{
+								emailAddress: {
+									address: 'alex.vaughan@awvaughan.com'
+								}
+							}
+						],
+						replyTo: [
+							{
+								emailAddress: {
+									address: email
+								}
+							}
+						]
+					},
+					saveToSentItems: 'false'
+				})
+			}
+		);
 
-    if (!graphResponse.ok) {
-      throw new Error('Failed to send email via Graph API');
-    }
+		if (!graphResponse.ok) {
+			throw new Error('Failed to send email via Graph API');
+		}
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-  } catch (error) {
-    console.error('Contact form error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to send message' }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
-  }
+		return new Response(JSON.stringify({ success: true }), {
+			status: 200,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	} catch (error) {
+		console.error('Contact form error:', error);
+		return new Response(JSON.stringify({ error: 'Failed to send message' }), {
+			status: 500,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	}
 };
 ```
 
@@ -290,10 +286,12 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 3. Add the following variables:
 
 **For SMTP Approach:**
+
 - `MS365_EMAIL`: Your MS365 email address (e.g., noreply@awvaughan.com)
 - `MS365_APP_PASSWORD`: The app password you created
 
 **For Graph API Approach (Recommended):**
+
 - `MS365_TENANT_ID`: Your Azure AD tenant ID
 - `MS365_CLIENT_ID`: Your app registration client ID
 - `MS365_CLIENT_SECRET`: Your app registration client secret
@@ -304,6 +302,7 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 During development, the form will still work but emails won't be sent. The form data will be logged to the console instead. The user will still see a success message.
 
 To test email functionality locally:
+
 1. Set up a test email service account
 2. Add environment variables
 3. Update the API endpoint to use your test service
@@ -313,10 +312,12 @@ To test email functionality locally:
 Add these to your Cloudflare Pages environment variables based on your chosen approach:
 
 **SMTP Approach:**
+
 - `MS365_EMAIL`: Your MS365 email address
 - `MS365_APP_PASSWORD`: App password from MS365
 
 **Graph API Approach (Recommended):**
+
 - `MS365_TENANT_ID`: Your Azure AD tenant ID
 - `MS365_CLIENT_ID`: App registration client ID
 - `MS365_CLIENT_SECRET`: App registration client secret
@@ -332,6 +333,7 @@ Add these to your Cloudflare Pages environment variables based on your chosen ap
 ## Troubleshooting
 
 ### MS365 Email Not Receiving (Regular Email Issues)
+
 - Verify MX records in Cloudflare point to MS365: `<your-domain>.mail.protection.outlook.com`
 - Check SPF record includes `include:spf.protection.outlook.com`
 - Ensure DKIM records are properly configured in Cloudflare (values from MS365 admin center)
@@ -342,11 +344,13 @@ Add these to your Cloudflare Pages environment variables based on your chosen ap
 ### Contact Form Emails Not Being Sent
 
 **General Checks:**
+
 - Review server logs in Cloudflare Pages dashboard (Functions logs)
 - Check browser console for client-side errors
 - Verify environment variables are set correctly
 
 **MS365 SMTP Specific:**
+
 - Confirm SMTP settings (host: smtp.office365.com, port: 587)
 - Verify SMTP AUTH is enabled in MS365 admin center
 - If using MFA, ensure you're using an app password (not regular password)
@@ -355,6 +359,7 @@ Add these to your Cloudflare Pages environment variables based on your chosen ap
 - Check MS365 message trace to see if emails are being blocked
 
 **MS365 Graph API Specific:**
+
 - Verify the Azure app registration has **Mail.Send** permission
 - Ensure admin consent has been granted for the permission
 - Check that client ID and client secret are correct
@@ -363,12 +368,14 @@ Add these to your Cloudflare Pages environment variables based on your chosen ap
 - Review Azure AD sign-in logs for authentication failures
 
 ### Form Submissions Failing
+
 - Check browser console for errors
 - Review server logs in Cloudflare Pages dashboard
 - Verify the API endpoint is accessible at `/api/contact`
 - Ensure CORS is properly configured if testing locally
 
 ### DNS Propagation Issues
+
 - DNS changes can take up to 48 hours to propagate
 - Use online DNS checkers to verify records: https://dnschecker.org
 - Clear your local DNS cache if testing immediately after changes
@@ -382,6 +389,7 @@ Add these to your Cloudflare Pages environment variables based on your chosen ap
 ## Additional Resources
 
 ### Microsoft 365
+
 - [MS365 Admin Center](https://admin.microsoft.com)
 - [Azure Portal](https://portal.azure.com)
 - [MS365 DNS Records Documentation](https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider)
@@ -391,11 +399,13 @@ Add these to your Cloudflare Pages environment variables based on your chosen ap
 - [Microsoft Remote Connectivity Analyzer](https://testconnectivity.microsoft.com)
 
 ### Cloudflare
+
 - [Cloudflare DNS Documentation](https://developers.cloudflare.com/dns/)
 - [Managing DNS Records in Cloudflare](https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/)
 - [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/platform/functions/)
 - [Cloudflare Pages Environment Variables](https://developers.cloudflare.com/pages/platform/build-configuration/#environment-variables)
 
 ### Development
+
 - [SvelteKit API Routes Documentation](https://kit.svelte.dev/docs/routing#server)
 - [SvelteKit Adapter Cloudflare](https://kit.svelte.dev/docs/adapter-cloudflare)
