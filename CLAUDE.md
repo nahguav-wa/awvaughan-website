@@ -1115,6 +1115,14 @@ ones — the hero photograph is decorative because the headline beside it carrie
 the meaning, and a keyword-stuffed alt there just makes screen readers read
 marketing copy before the content.
 
+**Caching**: derivatives are named by width, not by content hash, and the
+script rewrites them in place — so `/images/*` is **not** served as `immutable`.
+`_headers` gives it a day of hard caching plus a week of
+`stale-while-revalidate`, so repeat visitors get an instant image and a replaced
+photograph still propagates within about a day. If instant propagation is ever
+needed, fingerprint the output filenames and restore `immutable`; a test fails
+if `immutable` reappears without that.
+
 **Note**: the source JPEGs in `static/` are still deployed but nothing
 references them. They can be removed once you are happy with the derivatives.
 

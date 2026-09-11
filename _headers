@@ -19,7 +19,17 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-# Generated derivatives are content-addressed by width and never edited in
-# place, so they can be cached hard.
+# Generated derivatives are named by width, not by content hash, and
+# `npm run images` rewrites them in place — so these URLs are NOT immutable.
+# Marking them so would pin a replaced photograph in returning visitors'
+# browsers for a year with no revalidation.
+#
+# Instead: a day of hard caching, then a week during which the stale copy is
+# served instantly while the browser revalidates in the background. Repeat
+# visitors still get an instant image, and a replaced photograph propagates
+# within about a day.
+#
+# If instant propagation is ever needed, fingerprint the filenames in
+# scripts/optimize-images.mjs and restore `immutable`.
 /images/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

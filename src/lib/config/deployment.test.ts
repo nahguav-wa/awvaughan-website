@@ -24,6 +24,16 @@ describe('security headers', () => {
 		}
 	});
 
+	it('does not mark the regenerable images immutable', () => {
+		// scripts/optimize-images.mjs names derivatives by width and rewrites them
+		// in place, so an immutable year-long cache would pin a replaced
+		// photograph in returning visitors' browsers indefinitely. Fingerprint the
+		// filenames before reinstating `immutable`.
+		const imagesRule = headersFile.slice(headersFile.indexOf('/images/*'));
+		expect(imagesRule).not.toContain('immutable');
+		expect(imagesRule).toContain('stale-while-revalidate');
+	});
+
 	it('does not set a Content-Security-Policy', () => {
 		// CSP is generated per page by kit.csp and delivered in a <meta> tag. A
 		// second policy here would intersect with it and block SvelteKit's own
