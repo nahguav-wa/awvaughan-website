@@ -1231,7 +1231,10 @@ npm run build
   the Lead event carries no value at all, which is deliberate: a hardcoded 0.0
   gives value-based bidding nothing to optimize toward while looking like a real
   measurement. Set it to enable value-based bidding.
-- `META_AGENT_NAME` - Meta partner agent name (EMQ endpoint)
+- `META_AGENT_NAME` - Meta partner agent name (EMQ endpoint). This filters the
+  Dataset Quality API to one partner agent's events; if it still names the
+  retired Stape agent, the EMQ numbers are not about this site's own
+  integration. See "The retired Stape gateway".
 - `META_EMQ_ADMIN_SECRET` - shared secret for `/api/meta-emq`
 - `META_TEST_EVENT_CODE` - optional, Meta Test Events only
 - `HEALTH_CHECK_SECRET` - shared secret for `/api/health`
@@ -1357,38 +1360,41 @@ The split is therefore:
 6. **The pixel bootstrap is a file** (`static/meta-pixel.js`), not an inline
    script, so `script-src` does not need `'unsafe-inline'`.
 
-#### Open question: the Conversions API Gateway endpoints
+#### The retired Stape gateway
 
-With a real network available, `fbevents.js` also posts events to two hosts
-that are **not** referenced anywhere in this repository:
+This site uses the **pure Meta implementation**: the browser pixel posts to
+Facebook, and Conversions API events are sent server-side straight to
+`graph.facebook.com` from `/api/contact`. Stape is no longer used.
 
-- `https://capig.stape.st/events` — Stape, a third-party Conversions API
-  Gateway provider
-- `https://g3a3d23a843935-hgy3ps6pca-uc.a.run.app/events` — a Google Cloud Run
-  service, which is how Stape hosts a per-customer gateway
+A Stape **Conversions API Gateway** is nevertheless still configured in Meta
+Events Manager, so with a real network `fbevents.js` reads it at runtime and
+tries to post visitor events to:
 
-These come from the pixel's own **Conversions API Gateway** configuration in
-Meta Events Manager, read by `fbevents.js` at runtime. The current `connect-src`
-does not allow them, so they are blocked.
+- `https://capig.stape.st/events` — Stape
+- `https://g3a3d23a843935-hgy3ps6pca-uc.a.run.app/events` — the Cloud Run
+  service Stape hosts a per-customer gateway on
 
-Before this policy existed, prerendered pages had no CSP at all and these calls
-succeeded; on `/contact` the old policy blocked them along with everything else
-Facebook. **Whether to allow them is a data-flow decision for the site owner,
-not a code change to make quietly**, so they are deliberately left blocked and
-recorded in `KNOWN_BLOCKED_THIRD_PARTY` in `e2e/site.spec.ts`.
+`connect-src` does not allow either, so the attempts are blocked. That is the
+intended outcome and no change should be made to allow them. Nothing in this
+repository references Stape.
 
-- To **allow** them: add `https://capig.stape.st` to `connect-src`. The Cloud
-  Run hostname is auto-generated and may rotate, and `*.a.run.app` would
-  authorize every Cloud Run service in existence — prefer a stable custom
-  domain for the gateway instead.
-- To **keep them blocked**: remove the Conversions API Gateway from Events
-  Manager so the pixel stops attempting it. Server-side Lead events already go
-  directly to Meta from `/api/contact`, so the gateway is redundant for the
-  conversion that matters.
+**Remaining cleanup, in Meta Events Manager** (not in this repository):
 
-The e2e test fails if a host appears that is not on that list, so a new
-third-party endpoint in the pixel configuration surfaces as a decision rather
-than passing unnoticed.
+1. Remove the Conversions API Gateway: Events Manager → the dataset for
+   `META_PIXEL_ID` → Settings → Conversions API Gateway. Until this is done the
+   pixel keeps making two blocked requests on every page view — harmless, but
+   wasted, and the data would flow again if the CSP were ever relaxed.
+2. Check `META_AGENT_NAME`. `/api/meta-emq` passes it to Meta's Dataset Quality
+   API as `agent_name`, which filters Event Match Quality to events delivered by
+   that partner agent. If it still names the Stape agent, the EMQ figures
+   describe the retired gateway's traffic rather than this site's direct
+   integration, and will read as empty or stale once the gateway is gone.
+3. Then empty `RETIRED_GATEWAY_HOSTS` in `e2e/site.spec.ts`, so that any
+   reappearance of a third-party endpoint fails the test.
+
+The e2e test already fails on any blocked host that is not on that list, so a
+new third-party endpoint added to the pixel configuration surfaces as a decision
+rather than passing unnoticed.
 
 ### Security Considerations
 

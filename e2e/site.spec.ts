@@ -1,19 +1,20 @@
 import { expect, test, type ConsoleMessage, type Page } from '@playwright/test';
 
 /**
- * Third-party endpoints that page scripts contact and the CSP deliberately does
- * not allow.
+ * Hosts belonging to the retired Stape Conversions API Gateway.
  *
- * These come from the Meta pixel's own Conversions API Gateway configuration in
- * Events Manager, not from anything in this repository: fbevents.js reads them
- * at runtime and posts events to them. They are listed rather than ignored, so
- * that a *new* third-party endpoint appearing in the pixel configuration fails
- * this test and gets a decision, instead of passing unnoticed.
+ * Stape is no longer used — this site sends Conversions API events directly to
+ * Meta from /api/contact — but a Conversions API Gateway is still configured in
+ * Meta Events Manager, so fbevents.js reads it at runtime and still attempts to
+ * post events there. The CSP blocks those attempts, which is the intended
+ * outcome; they are listed here only so this test does not fail on a
+ * decommissioning that is still in progress.
  *
- * Whether to allow these in connect-src is a data-flow decision for the site
- * owner; see CLAUDE.md.
+ * Once the gateway is removed in Events Manager these hosts stop appearing:
+ * empty this list at that point, so any reappearance fails the test. See
+ * CLAUDE.md.
  */
-const KNOWN_BLOCKED_THIRD_PARTY = ['capig.stape.st', '.a.run.app'];
+const RETIRED_GATEWAY_HOSTS = ['capig.stape.st', '.a.run.app'];
 
 /**
  * The host of the resource a violation is about.
@@ -28,8 +29,8 @@ function blockedHost(message: string): string | null {
 	return match ? match[1] : null;
 }
 
-function isKnownThirdParty(host: string): boolean {
-	return KNOWN_BLOCKED_THIRD_PARTY.some((known) => host === known || host.endsWith(known));
+function isRetiredGatewayHost(host: string): boolean {
+	return RETIRED_GATEWAY_HOSTS.some((known) => host === known || host.endsWith(known));
 }
 
 /**
@@ -53,24 +54,25 @@ function collectCspViolations(page: Page): string[] {
 
 /**
  * Split violations into the ones that matter — the app's own resources being
- * blocked, which breaks hydration silently — and known third-party endpoints.
- * An unrecognized host counts as unexpected and fails the test.
+ * blocked, which breaks hydration silently — and the retired gateway's hosts.
+ * Any other host counts as unexpected and fails the test, so a third-party
+ * endpoint nobody decided on cannot appear unnoticed.
  */
 function partitionViolations(violations: string[], pageOrigin: string) {
 	const ownHost = new URL(pageOrigin).host;
 	const unexpected: string[] = [];
-	const knownThirdParty: string[] = [];
+	const retiredGateway: string[] = [];
 
 	for (const violation of violations) {
 		const host = blockedHost(violation);
-		if (host && host !== ownHost && isKnownThirdParty(host)) {
-			knownThirdParty.push(violation);
+		if (host && host !== ownHost && isRetiredGatewayHost(host)) {
+			retiredGateway.push(violation);
 		} else {
 			unexpected.push(violation);
 		}
 	}
 
-	return { unexpected, knownThirdParty };
+	return { unexpected, retiredGateway };
 }
 
 test.describe('content security policy', () => {
