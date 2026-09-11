@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { SECURITY_HEADERS } from './security-headers';
 import { META_PIXEL_ID, SITE_URL } from './constants';
 
@@ -11,6 +11,28 @@ import { META_PIXEL_ID, SITE_URL } from './constants';
 function read(path: string): string {
 	return readFileSync(new URL(`../../../${path}`, import.meta.url), 'utf8');
 }
+
+function exists(path: string): boolean {
+	return existsSync(new URL(`../../../${path}`, import.meta.url));
+}
+
+describe('package manager', () => {
+	it('has exactly one lockfile', () => {
+		// Cloudflare Pages picks its package manager from whichever lockfile it
+		// finds, so a second one silently splits the toolchain: CI installed from
+		// package-lock.json with npm while the deploy installed from
+		// pnpm-lock.yaml with pnpm. The two drifted, and a dependency change that
+		// passed CI failed every deploy with ERR_PNPM_OUTDATED_LOCKFILE.
+		expect(exists('package-lock.json')).toBe(true);
+		expect(exists('pnpm-lock.yaml')).toBe(false);
+		expect(exists('yarn.lock')).toBe(false);
+		expect(exists('bun.lockb')).toBe(false);
+	});
+
+	it('installs with npm in CI, matching the lockfile that is committed', () => {
+		expect(read('.github/workflows/ci.yml')).toContain('npm ci');
+	});
+});
 
 describe('security headers', () => {
 	const headersFile = read('_headers');

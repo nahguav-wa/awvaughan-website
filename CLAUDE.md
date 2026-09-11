@@ -1279,10 +1279,33 @@ of leads.
   Node version in the workflow or the Pages dashboard.
 - **Root directory**: `/`
 
-If a Pages build fails with "specifiers in the lockfile don't match specs in
-package.json" while the committed lockfile is correct, the build cache is
-holding a stale lockfile: use **Retry deployment** or clear the build cache in
-the Pages dashboard.
+### Package manager: npm, and only one lockfile
+
+**This project uses npm.** `package-lock.json` is the only lockfile, and
+`npm ci` is what CI runs.
+
+This matters more than it looks. Cloudflare Pages chooses its package manager by
+**detecting whichever lockfile is in the repository** — it does not read a
+`packageManager` field or any dashboard setting. The repository previously
+carried `pnpm-lock.yaml` as well, so:
+
+- CI installed from `package-lock.json` with npm
+- the production deploy installed from `pnpm-lock.yaml` with pnpm
+
+Two lockfiles, two dependency trees, and nothing keeping them in step. Any
+dependency change updated one and not the other, so a branch could pass CI
+while every Pages build failed with `ERR_PNPM_OUTDATED_LOCKFILE`, reporting the
+_old_ dependency specifiers and looking for all the world like a stale cache.
+
+`pnpm-lock.yaml` has been removed, and a test asserts exactly one lockfile
+exists. **Never add a second one.** If you deliberately switch to pnpm, delete
+`package-lock.json`, change `npm ci` in `.github/workflows/ci.yml`, and update
+that test — all three together.
+
+Note also that `.npmrc` sets `engine-strict=true`, so a Node version outside
+`engines` is a hard `npm ci` failure rather than a warning. That is why the Node
+20 mismatch stopped the install dead instead of printing a warning and
+continuing.
 
 ### DNS Configuration
 
@@ -1487,6 +1510,10 @@ rather than passing unnoticed.
 
 **2026-09-11** - Code review remediation
 
+- Removed `pnpm-lock.yaml`. Cloudflare Pages detects its package manager from
+  whichever lockfile is present, so the deploy had been installing with pnpm
+  from a lockfile that CI never updated, while CI installed with npm from
+  `package-lock.json`. A test now asserts exactly one lockfile exists.
 - Node 22 is now required and declared once in `.node-version`; the pinned
   Cloudflare adapter's dependency tree does not install on Node 20
 
