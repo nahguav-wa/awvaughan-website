@@ -835,6 +835,8 @@ instead.
 
 ### Getting Started
 
+Requires Node 22+ (see `.node-version`).
+
 ```bash
 # Install dependencies
 npm install
@@ -1258,8 +1260,18 @@ of leads.
 
 - **Build command**: `npm run build`
 - **Build output directory**: `.svelte-kit/cloudflare`
-- **Node version**: 18+
+- **Node version**: 22+, taken from `.node-version` in the repository root.
+  `@sveltejs/adapter-cloudflare` depends on `@cloudflare/kv-asset-handler`,
+  which requires Node >= 22; on Node 20 `npm ci` fails with EBADENGINE before
+  the build starts. Cloudflare Pages and `actions/setup-node` both read
+  `.node-version`, so that file is the single source of truth — do not pin a
+  Node version in the workflow or the Pages dashboard.
 - **Root directory**: `/`
+
+If a Pages build fails with "specifiers in the lockfile don't match specs in
+package.json" while the committed lockfile is correct, the build cache is
+holding a stale lockfile: use **Retry deployment** or clear the build cache in
+the Pages dashboard.
 
 ### DNS Configuration
 
@@ -1427,6 +1439,9 @@ The split is therefore:
 ## Changelog
 
 **2026-09-11** - Code review remediation
+
+- Node 22 is now required and declared once in `.node-version`; the pinned
+  Cloudflare adapter's dependency tree does not install on Node 20
 
 - Contact form: Turnstile site key moved to env (was a hardcoded placeholder that
   made the form unsubmittable); expired/duplicate tokens now recoverable; server

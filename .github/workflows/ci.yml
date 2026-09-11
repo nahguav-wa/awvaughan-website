@@ -14,7 +14,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Read from .node-version so CI, Cloudflare Pages and local installs
+          # cannot drift onto different majors. @sveltejs/adapter-cloudflare
+          # depends on @cloudflare/kv-asset-handler, which requires Node >= 22;
+          # on Node 20 `npm ci` fails outright with EBADENGINE.
+          node-version-file: .node-version
           cache: npm
 
       - name: Install dependencies
