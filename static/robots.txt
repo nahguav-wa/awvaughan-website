@@ -4,5 +4,8 @@
 User-agent: *
 Disallow:
 
+# API endpoints are not content
+Disallow: /api/
+
 # Sitemap location
 Sitemap: https://awvaughan.com/sitemap.xml
