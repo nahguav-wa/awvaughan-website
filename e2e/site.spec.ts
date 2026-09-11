@@ -1,12 +1,44 @@
 import { expect, test, type ConsoleMessage, type Page } from '@playwright/test';
 
 /**
+ * Third-party endpoints that page scripts contact and the CSP deliberately does
+ * not allow.
+ *
+ * These come from the Meta pixel's own Conversions API Gateway configuration in
+ * Events Manager, not from anything in this repository: fbevents.js reads them
+ * at runtime and posts events to them. They are listed rather than ignored, so
+ * that a *new* third-party endpoint appearing in the pixel configuration fails
+ * this test and gets a decision, instead of passing unnoticed.
+ *
+ * Whether to allow these in connect-src is a data-flow decision for the site
+ * owner; see CLAUDE.md.
+ */
+const KNOWN_BLOCKED_THIRD_PARTY = ['capig.stape.st', '.a.run.app'];
+
+/**
+ * The host of the resource a violation is about.
+ *
+ * Every Chromium CSP message names the blocked resource before it quotes the
+ * policy ("Connecting to 'X' violates...", "Fetch API cannot load X.",
+ * "Refused to load the script 'X'..."), so the first URL in the text is the
+ * subject and any later ones belong to the policy.
+ */
+function blockedHost(message: string): string | null {
+	const match = message.match(/https?:\/\/([^/'"\s,]+)/);
+	return match ? match[1] : null;
+}
+
+function isKnownThirdParty(host: string): boolean {
+	return KNOWN_BLOCKED_THIRD_PARTY.some((known) => host === known || host.endsWith(known));
+}
+
+/**
  * Collect Content-Security-Policy violations reported by the browser.
  *
  * Network failures are ignored: outbound calls to Facebook and Cloudflare are
  * not available in every environment, and a blocked request is not the same as
- * a policy that forbids it. A CSP violation, by contrast, means the app's own
- * policy is rejecting the app's own resources.
+ * a policy that forbids it. A CSP violation, by contrast, means a policy is
+ * rejecting a resource.
  */
 function collectCspViolations(page: Page): string[] {
 	const violations: string[] = [];
@@ -19,16 +51,40 @@ function collectCspViolations(page: Page): string[] {
 	return violations;
 }
 
+/**
+ * Split violations into the ones that matter — the app's own resources being
+ * blocked, which breaks hydration silently — and known third-party endpoints.
+ * An unrecognized host counts as unexpected and fails the test.
+ */
+function partitionViolations(violations: string[], pageOrigin: string) {
+	const ownHost = new URL(pageOrigin).host;
+	const unexpected: string[] = [];
+	const knownThirdParty: string[] = [];
+
+	for (const violation of violations) {
+		const host = blockedHost(violation);
+		if (host && host !== ownHost && isKnownThirdParty(host)) {
+			knownThirdParty.push(violation);
+		} else {
+			unexpected.push(violation);
+		}
+	}
+
+	return { unexpected, knownThirdParty };
+}
+
 test.describe('content security policy', () => {
 	// The policy is delivered as a <meta> tag on prerendered pages and as a
 	// response header on server-rendered ones. A policy that blocks the app's own
 	// scripts breaks hydration with no visible error at all.
 	for (const path of ['/', '/about', '/services', '/services/excavation', '/contact']) {
-		test(`does not block the app's own resources on ${path}`, async ({ page }) => {
+		test(`does not block the app's own resources on ${path}`, async ({ page, baseURL }) => {
 			const violations = collectCspViolations(page);
 			await page.goto(path);
 			await expect(page.locator('h1')).toBeVisible();
-			expect(violations).toEqual([]);
+
+			const { unexpected } = partitionViolations(violations, baseURL!);
+			expect(unexpected).toEqual([]);
 		});
 	}
 

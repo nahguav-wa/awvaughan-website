@@ -1357,6 +1357,39 @@ The split is therefore:
 6. **The pixel bootstrap is a file** (`static/meta-pixel.js`), not an inline
    script, so `script-src` does not need `'unsafe-inline'`.
 
+#### Open question: the Conversions API Gateway endpoints
+
+With a real network available, `fbevents.js` also posts events to two hosts
+that are **not** referenced anywhere in this repository:
+
+- `https://capig.stape.st/events` — Stape, a third-party Conversions API
+  Gateway provider
+- `https://g3a3d23a843935-hgy3ps6pca-uc.a.run.app/events` — a Google Cloud Run
+  service, which is how Stape hosts a per-customer gateway
+
+These come from the pixel's own **Conversions API Gateway** configuration in
+Meta Events Manager, read by `fbevents.js` at runtime. The current `connect-src`
+does not allow them, so they are blocked.
+
+Before this policy existed, prerendered pages had no CSP at all and these calls
+succeeded; on `/contact` the old policy blocked them along with everything else
+Facebook. **Whether to allow them is a data-flow decision for the site owner,
+not a code change to make quietly**, so they are deliberately left blocked and
+recorded in `KNOWN_BLOCKED_THIRD_PARTY` in `e2e/site.spec.ts`.
+
+- To **allow** them: add `https://capig.stape.st` to `connect-src`. The Cloud
+  Run hostname is auto-generated and may rotate, and `*.a.run.app` would
+  authorize every Cloud Run service in existence — prefer a stable custom
+  domain for the gateway instead.
+- To **keep them blocked**: remove the Conversions API Gateway from Events
+  Manager so the pixel stops attempting it. Server-side Lead events already go
+  directly to Meta from `/api/contact`, so the gateway is redundant for the
+  conversion that matters.
+
+The e2e test fails if a host appears that is not on that list, so a new
+third-party endpoint in the pixel configuration surfaces as a decision rather
+than passing unnoticed.
+
 ### Security Considerations
 
 **Contact Form**:
