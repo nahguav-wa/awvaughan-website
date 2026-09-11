@@ -14,8 +14,9 @@
 	Full-screen hero with background image and CTAs
 -->
 <Hero
-	imageSrc="/hero-image.jpg"
-	imageAlt="Professional gravel driveway repair and drainage solutions in Virginia Beach - The A.W. Vaughan Company"
+	imageName="hero-image"
+	imageWidth={710}
+	imageHeight={1125}
 	title="Professional Gravel Driveway Repair & Drainage Solutions"
 	subtitle="Serving Virginia Beach and the 757 area with expert excavation, driveway grading, and site work"
 	primaryCTA="Get a Free Quote"
