@@ -1,11 +1,7 @@
 # Robots.txt for The A.W. Vaughan Company
-# Allow all search engines to crawl the site
 
 User-agent: *
-Disallow:
-
-# API endpoints are not content
+# API endpoints are not content.
 Disallow: /api/
 
-# Sitemap location
 Sitemap: https://awvaughan.com/sitemap.xml

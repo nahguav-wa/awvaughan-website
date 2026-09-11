@@ -15,6 +15,9 @@ import type { RequestHandler } from './$types';
 import { META_DATASET_QUALITY_API_VERSION, META_PIXEL_ID } from '$lib/config/constants';
 import { timingSafeEqual } from '$lib/utils/meta';
 
+/** Bound the upstream call so a hung request cannot hold the Worker open. */
+const REQUEST_TIMEOUT_MS = 8000;
+
 export const GET: RequestHandler = async ({ request, platform }) => {
 	const adminSecret = platform?.env?.META_EMQ_ADMIN_SECRET;
 	const accessToken = platform?.env?.META_PIXEL_TOKEN;
@@ -39,12 +42,21 @@ export const GET: RequestHandler = async ({ request, platform }) => {
 	// The token goes in a Bearer header rather than a query parameter so it does
 	// not land in proxy, CDN, or error logs.
 	const response = await fetch(url.toString(), {
-		headers: { Authorization: `Bearer ${accessToken}` }
+		headers: { Authorization: `Bearer ${accessToken}` },
+		signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
 	});
-	const data = await response.json();
+	const data = await response.json().catch(() => null);
 
 	if (!response.ok) {
-		throw error(response.status, data?.error?.message ?? 'Dataset Quality API request failed');
+		// Meta's status and message are logged but not reflected to the caller: a
+		// relayed 401 is indistinguishable from this endpoint's own auth failure,
+		// and the upstream message can name app and token details.
+		console.error(
+			'Dataset Quality API request failed:',
+			response.status,
+			data?.error?.message ?? '(no message)'
+		);
+		throw error(502, 'Dataset Quality API request failed');
 	}
 
 	return json(data);

@@ -5,7 +5,7 @@
 -->
 <script lang="ts">
 	import { MapPin, Phone, Mail, Menu } from '@lucide/svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { createScrollObserver } from '$lib/utils/scroll';
 	import { COMPANY_INFO, ROUTES } from '$lib/config/constants';
 	import { Button } from '$lib';
@@ -19,7 +19,7 @@
 	/**
 	 * Check if we're on the homepage (which has a hero image)
 	 */
-	const isHomepage = $derived($page.url.pathname === '/');
+	const isHomepage = $derived(page.url.pathname === '/');
 
 	/**
 	 * Computed states based on scroll position and route
@@ -53,7 +53,29 @@
 	function toggleMobileMenu() {
 		mobileMenuOpen = !mobileMenuOpen;
 	}
+
+	/**
+	 * Close the menu on Escape, which is the expected way out of an expanded
+	 * disclosure and the only one available from the keyboard.
+	 */
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && mobileMenuOpen) {
+			mobileMenuOpen = false;
+		}
+	}
+
+	/**
+	 * Collapse the menu whenever the route changes. Tapping a link closes it via
+	 * its own handler, but a browser back or forward navigation does not, which
+	 * left the panel open on top of the new page.
+	 */
+	$effect(() => {
+		void page.url.pathname;
+		mobileMenuOpen = false;
+	});
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <!--
 	Top Contact Bar
@@ -121,8 +143,7 @@
 				<img
 					src={isTransparent ? '/Horizontal White Logo.svg' : '/Horizontal Color Logo.svg'}
 					alt="{COMPANY_INFO.name} Logo"
-					class="h-12 w-auto transition-all duration-300"
-					class:h-10={!isTransparent}
+					class="w-auto transition-all duration-300 {isTransparent ? 'h-12' : 'h-10'}"
 				/>
 			</a>
 
@@ -136,6 +157,7 @@
 								class="rounded-sm text-base font-bold transition-colors duration-200 hover:text-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:outline-none"
 								class:text-white={isTransparent}
 								class:text-gray-800={!isTransparent}
+								aria-current={page.url.pathname === link.href ? 'page' : undefined}
 							>
 								{link.label}
 							</a>
@@ -155,6 +177,7 @@
 				onclick={toggleMobileMenu}
 				aria-label="Toggle navigation menu"
 				aria-expanded={mobileMenuOpen}
+				aria-controls="mobile-navigation"
 			>
 				<Menu class="h-6 w-6 transition-colors {isTransparent ? 'text-white' : 'text-gray-800'}" />
 			</button>
@@ -163,7 +186,7 @@
 
 	<!-- Mobile Navigation Menu -->
 	{#if mobileMenuOpen}
-		<div class="border-t border-gray-200 bg-white shadow-lg md:hidden">
+		<div id="mobile-navigation" class="border-t border-gray-200 bg-white shadow-lg md:hidden">
 			<nav aria-label="Mobile navigation">
 				<ul class="container mx-auto space-y-4 px-4 py-4">
 					{#each navLinks as link (link.href)}
@@ -172,6 +195,7 @@
 								href={link.href}
 								class="block text-base font-bold text-gray-800 transition-colors hover:text-primary-500"
 								onclick={toggleMobileMenu}
+								aria-current={page.url.pathname === link.href ? 'page' : undefined}
 							>
 								{link.label}
 							</a>

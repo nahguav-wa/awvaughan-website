@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import {
 	buildUserData,
+	isValidEventId,
 	normalizeEmail,
 	normalizeName,
 	normalizePhone,
@@ -70,6 +71,64 @@ describe('normalizePhone', () => {
 
 	it('rejects an 11-digit number that does not start with the US country code', () => {
 		expect(normalizePhone('44757402110')).toBeNull();
+	});
+});
+
+describe('normalizeName — scripts and accents', () => {
+	it('folds accents so accented and unaccented spellings match', () => {
+		expect(normalizeName('José')).toBe('jose');
+		expect(normalizeName('Zoë')).toBe('zoe');
+	});
+
+	it('keeps letters from other scripts instead of deleting them', () => {
+		// Stripping everything outside a-z produced hashes that could never match:
+		// "Łukasz" became "ukasz" and "王小明" became an empty string.
+		expect(normalizeName('Łukasz')).toBe('łukasz');
+		expect(normalizeName('王小明')).toBe('王小明');
+		expect(normalizeName('Ørsted')).toBe('ørsted');
+	});
+
+	it('still removes punctuation and whitespace', () => {
+		expect(normalizeName("O'Brien-Smith")).toBe('obriensmith');
+		expect(normalizeName('  Mary Jane  ')).toBe('maryjane');
+	});
+
+	it('returns empty for input with no letters or digits', () => {
+		expect(normalizeName('---')).toBe('');
+		expect(normalizeName('  ')).toBe('');
+	});
+});
+
+describe('normalizePhone — NANP validation', () => {
+	it('rejects placeholder digits that are not dialable', () => {
+		// NANP forbids 0 and 1 as the first digit of an area code or exchange, so
+		// these would hash to a confident-looking wrong answer.
+		expect(normalizePhone('0000000000')).toBeNull();
+		expect(normalizePhone('1111111111')).toBeNull();
+		expect(normalizePhone('0123456789')).toBeNull();
+	});
+
+	it('accepts a real local number in any punctuation', () => {
+		expect(normalizePhone('(757) 402-1100')).toBe('17574021100');
+		expect(normalizePhone('757.402.1100')).toBe('17574021100');
+		expect(normalizePhone('+1 757 402 1100')).toBe('17574021100');
+	});
+});
+
+describe('isValidEventId', () => {
+	it('accepts a UUID', () => {
+		expect(isValidEventId('123e4567-e89b-42d3-a456-426614174000')).toBe(true);
+		expect(isValidEventId(crypto.randomUUID())).toBe(true);
+	});
+
+	it('rejects anything else', () => {
+		// The value is client input and is written into the Meta dataset; a
+		// repeated one can suppress real Lead events via Meta's deduplication.
+		expect(isValidEventId('not-a-uuid')).toBe(false);
+		expect(isValidEventId('')).toBe(false);
+		expect(isValidEventId(undefined)).toBe(false);
+		expect(isValidEventId(null)).toBe(false);
+		expect(isValidEventId('123e4567e89b42d3a456426614174000')).toBe(false);
 	});
 });
 
@@ -231,5 +290,77 @@ describe('sendMetaConversionEvent', () => {
 		stubFetch(new Response('upstream failure', { status: 502 }));
 
 		await expect(sendMetaConversionEvent(options)).rejects.toThrow('HTTP 502');
+	});
+});
+
+describe('buildUserData — omissions', () => {
+	it('omits a field whose normalized value is empty', async () => {
+		// sha256('') is a valid-looking digest that can never match a person, and
+		// is identical for everyone affected, so Meta would read many customers as
+		// one shared identity.
+		const emptyHash = await sha256Hex('');
+		const userData = await buildUserData({
+			email: 'a@b.com',
+			firstName: '---',
+			lastName: '!!!'
+		});
+
+		expect(userData.fn).toBeUndefined();
+		expect(userData.ln).toBeUndefined();
+		expect(Object.values(userData)).not.toContain(emptyHash);
+		expect(userData.em).toBe(await sha256Hex('a@b.com'));
+	});
+
+	it('omits the email when it is blank', async () => {
+		const userData = await buildUserData({ email: '   ', firstName: 'Jo', lastName: 'Doe' });
+		expect(userData.em).toBeUndefined();
+		expect(userData.fn).toBeDefined();
+	});
+
+	it('omits an unusable phone rather than hashing it', async () => {
+		const userData = await buildUserData({
+			email: 'a@b.com',
+			firstName: 'Jo',
+			lastName: 'Doe',
+			phone: '000'
+		});
+		expect(userData.ph).toBeUndefined();
+	});
+});
+
+describe('sendMetaConversionEvent — conversion value', () => {
+	function stubMeta() {
+		const bodies: string[] = [];
+		vi.stubGlobal(
+			'fetch',
+			vi.fn(async (_url: string, init: RequestInit) => {
+				bodies.push(String(init.body));
+				return Response.json({ events_received: 1 });
+			})
+		);
+		return bodies;
+	}
+
+	const base = {
+		accessToken: 'token',
+		pixelId: '123',
+		eventId: 'abc',
+		user: { email: 'a@b.com', firstName: 'Jo', lastName: 'Doe' },
+		sourceUrl: 'https://awvaughan.com/contact'
+	};
+
+	it('omits custom_data when no value is supplied', async () => {
+		const bodies = stubMeta();
+		await sendMetaConversionEvent(base);
+		expect(JSON.parse(bodies[0]).data[0].custom_data).toBeUndefined();
+	});
+
+	it('includes the value and currency when one is supplied', async () => {
+		const bodies = stubMeta();
+		await sendMetaConversionEvent({ ...base, leadValue: 250 });
+		expect(JSON.parse(bodies[0]).data[0].custom_data).toEqual({
+			value: 250,
+			currency: 'USD'
+		});
 	});
 });

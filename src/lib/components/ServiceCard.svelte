@@ -22,7 +22,7 @@
 -->
 <Card>
 	<!-- Service title - xl size, bold weight -->
-	<h3 class="mb-4 text-xl font-bold text-gray-900">
+	<h3 class="mb-4 font-bold text-gray-900">
 		{service.title}
 	</h3>
 	<!-- Service description - base size, regular weight -->

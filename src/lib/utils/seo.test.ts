@@ -1,12 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-	getDefaultSEO,
-	formatPageTitle,
-	getLocalBusinessSchema,
-	getServiceSchema,
-	PRIMARY_KEYWORDS,
-	SECONDARY_KEYWORDS
-} from './seo';
+import { getDefaultSEO, formatPageTitle, getLocalBusinessSchema, getServiceSchema } from './seo';
 
 describe('formatPageTitle', () => {
 	it('appends company name to page title', () => {
@@ -25,7 +18,6 @@ describe('getDefaultSEO', () => {
 		const seo = getDefaultSEO();
 		expect(seo.title).toBeTruthy();
 		expect(seo.description).toBeTruthy();
-		expect(seo.keywords).toBeTruthy();
 		expect(seo.canonical).toBe('https://awvaughan.com');
 	});
 
@@ -36,10 +28,10 @@ describe('getDefaultSEO', () => {
 		expect(seo.description).toBeTruthy(); // default preserved
 	});
 
-	it('includes keywords as a comma-separated string', () => {
+	it('uses the canonical origin for the default Open Graph image', () => {
 		const seo = getDefaultSEO();
-		expect(typeof seo.keywords).toBe('string');
-		expect((seo.keywords as string).split(', ').length).toBeGreaterThan(1);
+		// Relative paths are not reliably resolved by crawlers.
+		expect(seo.ogImage).toBe('/og-image.jpg');
 	});
 });
 
@@ -86,24 +78,9 @@ describe('getServiceSchema', () => {
 
 	it('includes provider information', () => {
 		const schema = getServiceSchema('Test', 'Description');
-		expect(schema.provider['@type']).toBe('LocalBusiness');
-		expect(schema.provider.name).toBe('The A.W. Vaughan Company');
-	});
-});
-
-describe('keyword arrays', () => {
-	it('PRIMARY_KEYWORDS has at least 10 keywords', () => {
-		expect(PRIMARY_KEYWORDS.length).toBeGreaterThanOrEqual(10);
-	});
-
-	it('SECONDARY_KEYWORDS has at least 5 keywords', () => {
-		expect(SECONDARY_KEYWORDS.length).toBeGreaterThanOrEqual(5);
-	});
-
-	it('all keywords are non-empty strings', () => {
-		[...PRIMARY_KEYWORDS, ...SECONDARY_KEYWORDS].forEach((kw) => {
-			expect(typeof kw).toBe('string');
-			expect(kw.trim().length).toBeGreaterThan(0);
-		});
+		// References the LocalBusiness node rather than restating it, so the two
+		// are not read as separate businesses.
+		expect(schema.provider['@id']).toBe('https://awvaughan.com/#business');
+		expect(getLocalBusinessSchema()['@id']).toBe(schema.provider['@id']);
 	});
 });

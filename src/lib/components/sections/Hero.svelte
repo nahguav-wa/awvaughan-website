@@ -3,16 +3,18 @@
 	Full-screen hero section with background image, title, subtitle, and CTA buttons
 -->
 <script lang="ts">
-	import { Button } from '$lib';
+	import { Button, Picture } from '$lib';
 
 	/**
 	 * Component Props
 	 */
 	interface Props {
-		/** Background image source URL */
-		imageSrc?: string;
-		/** Image alt text for accessibility */
-		imageAlt?: string;
+		/** Basename of the background photograph under /images. */
+		imageName?: string;
+		/** Intrinsic width of the source photograph. */
+		imageWidth?: number;
+		/** Intrinsic height of the source photograph. */
+		imageHeight?: number;
 		/** Main heading text */
 		title?: string;
 		/** Subtitle/tagline text */
@@ -28,8 +30,9 @@
 	}
 
 	let {
-		imageSrc = '/hero-image.jpg',
-		imageAlt = 'The A.W. Vaughan Company - Professional Gravel Driveway Repair and Drainage Solutions',
+		imageName = 'hero-image',
+		imageWidth = 710,
+		imageHeight = 1125,
 		title = 'Professional Gravel Driveway Repair & Drainage Solutions',
 		subtitle = 'Serving Virginia Beach and the 757 area with expert excavation and site work',
 		primaryCTA = 'Get Started',
@@ -39,19 +42,44 @@
 	}: Props = $props();
 </script>
 
+<svelte:head>
+	<!--
+		The hero photograph is the LCP element, so the browser is told about it
+		before it has parsed this far. Browsers without AVIF support skip a
+		preload carrying a type they cannot decode.
+	-->
+	<link
+		rel="preload"
+		as="image"
+		type="image/avif"
+		href="/images/{imageName}.avif"
+		imagesrcset="/images/{imageName}-480.avif 480w, /images/{imageName}.avif {imageWidth}w"
+		imagesizes="100vw"
+	/>
+</svelte:head>
+
 <!--
-	Hero Section - Full viewport height with background image
+	Hero Section - Full viewport height with background image.
+	`min-h-dvh` rather than `h-screen`: on iOS Safari, 100vh includes the browser
+	chrome, so a 100vh hero is taller than the visible viewport and its content
+	is clipped until the toolbar collapses.
 -->
-<section class="relative h-screen w-full pt-16 md:pt-24">
+<section class="relative min-h-dvh w-full pt-16 md:pt-24">
 	<!-- Background Image Container -->
 	<div class="absolute inset-0 overflow-hidden">
-		<img
-			src={imageSrc}
-			alt={imageAlt}
+		<!--
+			Decorative: the headline and subtitle below carry the meaning, so an alt
+			description here would only make a screen reader read marketing copy
+			before reaching the actual content.
+		-->
+		<Picture
+			name={imageName}
+			alt=""
+			width={imageWidth}
+			height={imageHeight}
+			sizes="100vw"
 			class="h-full w-full object-cover object-top"
-			width="710"
-			height="1125"
-			loading="eager"
+			priority
 		/>
 
 		<!-- Dark overlay for better text readability -->
@@ -59,10 +87,12 @@
 	</div>
 
 	<!-- Hero Content - Centered -->
-	<div class="relative z-10 container mx-auto flex h-full items-center justify-center px-4">
+	<div
+		class="relative z-10 container mx-auto flex min-h-dvh items-center justify-center px-4 py-24"
+	>
 		<div class="max-w-4xl text-center text-white">
-			<!-- Main Heading - Responsive hero sizing via clamp -->
-			<h1 class="hero-heading mb-6 font-bold drop-shadow-lg">
+			<!-- Main Heading -->
+			<h1 class="mb-6 drop-shadow-lg">
 				{title}
 			</h1>
 
@@ -83,7 +113,7 @@
 		</div>
 	</div>
 
-	<!-- Scroll Indicator (animated) -->
+	<!-- Scroll Indicator (animated; suppressed by prefers-reduced-motion) -->
 	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce">
 		<svg
 			class="h-6 w-6 text-white"

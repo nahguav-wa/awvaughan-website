@@ -1,45 +1,23 @@
 /**
  * SEO Utilities
  * Helper functions for generating SEO metadata and structured data
+ *
+ * Target keyword lists used to live here and were rendered into a
+ * `<meta name="keywords">` tag. Search engines have ignored that tag for well
+ * over a decade, so the tag is gone and the keyword strategy now lives in
+ * docs/keyword-strategy.md, where it can be read and maintained as the content
+ * planning document it actually is.
  */
 
-import { COMPANY_INFO } from '$lib/config/constants';
+import { absoluteUrl, COMPANY_INFO, SITE_URL, SOCIAL_LINKS } from '$lib/config/constants';
 import type { SEOMetadata } from '$lib/types';
 
 /**
- * Primary SEO Keywords
- * Target keywords for search engine optimization
+ * Stable identifier for the business entity, so the LocalBusiness node emitted
+ * on every page and the Service nodes that reference it are understood as one
+ * organization rather than several.
  */
-export const PRIMARY_KEYWORDS = [
-	// Geographic + Core Services
-	'gravel driveway repair Virginia Beach',
-	'gravel driveway repair 757',
-	'drainage solutions Norfolk VA',
-	'shed pad preparation Virginia Beach',
-	'driveway grading 757',
-	'ditch and swale repair Virginia Beach',
-
-	// Service-Specific
-	'gravel driveway crown restoration',
-	'driveway drainage repair near me',
-	'small excavation contractor 757',
-	'shed foundation prep Virginia Beach',
-	'culvert repair Virginia Beach',
-	'rural property drainage solutions'
-];
-
-/**
- * Secondary SEO Keywords
- * Problem-focused search terms
- */
-export const SECONDARY_KEYWORDS = [
-	'how to fix standing water in driveway',
-	'gravel driveway potholes repair cost',
-	'why does my driveway wash out',
-	'small site prep contractor',
-	'fixing muddy driveway',
-	'driveway crown repair'
-];
+const BUSINESS_ID = `${SITE_URL}/#business`;
 
 /**
  * Generates Schema.org LocalBusiness structured data
@@ -49,12 +27,25 @@ export function getLocalBusinessSchema() {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'LocalBusiness',
+		'@id': BUSINESS_ID,
 		name: COMPANY_INFO.name,
 		description: COMPANY_INFO.description,
-		url: 'https://awvaughan.com',
-		telephone: COMPANY_INFO.phone,
+		url: SITE_URL,
+		// E.164, which is the form Google's documentation asks for.
+		telephone: COMPANY_INFO.phoneE164,
 		email: COMPANY_INFO.email,
 		priceRange: '$$',
+		logo: absoluteUrl('/Horizontal Color Logo.svg'),
+		image: absoluteUrl('/og-image.jpg'),
+		foundingDate: String(COMPANY_INFO.yearEstablished),
+		// The social profiles are what let a knowledge panel connect this entity
+		// to the accounts that post about it.
+		sameAs: [
+			SOCIAL_LINKS.facebook,
+			SOCIAL_LINKS.instagram,
+			SOCIAL_LINKS.youtube,
+			SOCIAL_LINKS.nextdoor
+		],
 		address: {
 			'@type': 'PostalAddress',
 			addressLocality: 'Virginia Beach',
@@ -91,15 +82,13 @@ export function getServiceSchema(serviceName: string, description: string) {
 		'@context': 'https://schema.org',
 		'@type': 'Service',
 		serviceType: serviceName,
-		provider: {
-			'@type': 'LocalBusiness',
-			name: COMPANY_INFO.name,
-			telephone: COMPANY_INFO.phone
-		},
-		areaServed: {
-			'@type': 'State',
-			name: 'Virginia'
-		},
+		// Points at the LocalBusiness node rather than restating it, so the two
+		// are not read as separate businesses.
+		provider: { '@id': BUSINESS_ID },
+		areaServed: COMPANY_INFO.serviceArea.regions.map((region) => ({
+			'@type': 'City',
+			name: region
+		})),
 		description
 	};
 }
@@ -113,10 +102,9 @@ export function getDefaultSEO(overrides?: Partial<SEOMetadata>): SEOMetadata {
 	return {
 		title: `${COMPANY_INFO.name} | ${COMPANY_INFO.businessType} | ${COMPANY_INFO.serviceArea.primary}`,
 		description: COMPANY_INFO.description,
-		keywords: PRIMARY_KEYWORDS.join(', '),
 		type: 'business.business',
 		ogImage: '/og-image.jpg',
-		canonical: 'https://awvaughan.com',
+		canonical: SITE_URL,
 		...overrides
 	};
 }

@@ -11,6 +11,7 @@ export { default as Footer } from './components/layout/Footer.svelte';
 export { default as Button } from './components/ui/Button.svelte';
 export { default as Card } from './components/ui/Card.svelte';
 export { default as Section } from './components/ui/Section.svelte';
+export { default as Picture } from './components/ui/Picture.svelte';
 
 // Feature Components
 export { default as ServiceCard } from './components/ServiceCard.svelte';

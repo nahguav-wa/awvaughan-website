@@ -1,0 +1,35 @@
+# Security headers for statically served routes.
+#
+# Prerendered pages and static assets are served by Cloudflare's asset handler
+# and never enter the Worker, so src/hooks.server.ts cannot reach them. This
+# file mirrors src/lib/config/security-headers.ts — a test asserts the two agree.
+#
+# It lives in the project root because @sveltejs/adapter-cloudflare requires it
+# there; the adapter copies it into the build output.
+#
+# Content-Security-Policy is intentionally not set here. It is generated per
+# page by `kit.csp` (svelte.config.js) and delivered in a <meta> tag; a second
+# policy in this file would intersect with it and block SvelteKit's own
+# hydration script.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Generated derivatives are named by width, not by content hash, and
+# `npm run images` rewrites them in place — so these URLs are NOT immutable.
+# Marking them so would pin a replaced photograph in returning visitors'
+# browsers for a year with no revalidation.
+#
+# Instead: a day of hard caching, then a week during which the stale copy is
+# served instantly while the browser revalidates in the background. Repeat
+# visitors still get an instant image, and a replaced photograph propagates
+# within about a day.
+#
+# If instant propagation is ever needed, fingerprint the filenames in
+# scripts/optimize-images.mjs and restore `immutable`.
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

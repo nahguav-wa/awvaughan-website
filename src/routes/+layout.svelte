@@ -7,6 +7,7 @@
 	 * Imports - External Dependencies
 	 */
 	import '../app.css';
+	import { page } from '$app/state';
 
 	/**
 	 * Imports - Internal Components
@@ -14,12 +15,8 @@
 	import { Header, Footer, SEOHead } from '$lib';
 	import { getLocalBusinessSchema } from '$lib/utils/seo';
 
-	/**
-	 * Imports - Assets
-	 */
-	const favicon = '/Favicon.svg';
-
 	import type { Snippet } from 'svelte';
+	import type { SEOMetadata } from '$lib/types';
 	import type { LayoutData } from './$types';
 
 	/**
@@ -36,26 +33,47 @@
 	let { children, data }: Props = $props();
 
 	/**
-	 * Structured data for LocalBusiness schema
+	 * Resolved SEO metadata for the current route.
+	 *
+	 * Read from `page.data`, which merges layout and page data, rather than from
+	 * this layout's own `data`. Reading `data.seo` here meant every route shipped
+	 * the layout's defaults: identical <title> tags sitewide, and a canonical of
+	 * https://awvaughan.com on every page — which told search engines that the
+	 * service pages *were* the homepage and should be dropped from the index.
+	 * Page-level values are layered over the defaults so a page only has to
+	 * specify what differs.
 	 */
-	const structuredData = getLocalBusinessSchema();
+	const seo = $derived<SEOMetadata>({
+		...data.seo,
+		...(page.data.seo ?? {})
+	});
+
+	/**
+	 * Structured data for the current route.
+	 *
+	 * LocalBusiness describes the company on every page; a page may contribute an
+	 * additional entity (service pages add Schema.org Service).
+	 */
+	const structuredData = $derived([
+		getLocalBusinessSchema(),
+		...(page.data.structuredData ? [page.data.structuredData] : [])
+	]);
+
+	/**
+	 * The header is fixed, so content needs to clear it. The homepage is exempt:
+	 * its hero is deliberately full-bleed and sits underneath the transparent
+	 * header. This used to be an `mt-16 md:mt-28` repeated in every page
+	 * component, which meant seven files had to change together whenever the
+	 * header's height did.
+	 */
+	const isHomepage = $derived(page.url.pathname === '/');
 </script>
 
 <!--
-	Document Head - Favicon and SEO
--->
-<svelte:head>
-	<!-- Favicon -->
-	<link rel="icon" href={favicon} />
-</svelte:head>
-
-<!--
 	SEO Component - Meta tags and structured data
-	Uses data from +layout.ts and page-specific overrides
+	Uses defaults from +layout.ts, overridden per page via page.data
 -->
-{#if data?.seo}
-	<SEOHead metadata={data.seo} {structuredData} />
-{/if}
+<SEOHead metadata={seo} {structuredData} />
 
 <!--
 	Skip to Content Link - Accessibility
@@ -76,7 +94,7 @@
 	Main Content Area - Page-specific content
 	Rendered from individual +page.svelte files
 -->
-<main id="main-content">
+<main id="main-content" class={isHomepage ? '' : 'pt-16 md:pt-28'}>
 	{@render children()}
 </main>
 

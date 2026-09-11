@@ -3,6 +3,7 @@
 	Renders meta tags, Open Graph tags, Twitter Cards, and structured data for SEO
 -->
 <script lang="ts">
+	import { absoluteUrl, COMPANY_INFO, SITE_URL } from '$lib/config/constants';
 	import type { SEOMetadata } from '$lib/types';
 
 	/**
@@ -17,27 +18,40 @@
 
 	let { metadata, structuredData }: Props = $props();
 
-	/**
-	 * Resolve keywords to a string (handles both string and string[])
-	 */
-	const resolvedKeywords = $derived(
-		Array.isArray(metadata.keywords) ? metadata.keywords.join(', ') : metadata.keywords
-	);
+	/** Dimensions of static/og-image.jpg, produced by scripts/optimize-images.mjs. */
+	const OG_IMAGE_WIDTH = 1200;
+	const OG_IMAGE_HEIGHT = 630;
 
 	/** Use openGraph overrides when available, fall back to top-level metadata */
 	const ogType = $derived(metadata.openGraph?.type || metadata.type || 'website');
 	const ogTitle = $derived(metadata.openGraph?.title || metadata.title);
 	const ogDescription = $derived(metadata.openGraph?.description || metadata.description);
-	const ogUrl = $derived(metadata.openGraph?.url || metadata.canonical || 'https://awvaughan.com');
-	const ogImage = $derived(metadata.openGraph?.image?.url || metadata.ogImage);
+	const ogUrl = $derived(metadata.openGraph?.url || metadata.canonical || SITE_URL);
 
 	/**
-	 * Build the full JSON-LD script tag HTML for structured data
+	 * Open Graph and Twitter images must be absolute URLs; a relative path is not
+	 * resolved reliably by crawlers, so a page whose metadata carries only
+	 * `/og-image.jpg` previously shared with no image at all.
+	 */
+	const ogImage = $derived.by(() => {
+		const candidate = metadata.openGraph?.image?.url || metadata.ogImage;
+		return candidate ? absoluteUrl(candidate) : undefined;
+	});
+
+	const ogImageWidth = $derived(metadata.openGraph?.image?.width ?? OG_IMAGE_WIDTH);
+	const ogImageHeight = $derived(metadata.openGraph?.image?.height ?? OG_IMAGE_HEIGHT);
+	const ogImageAlt = $derived(metadata.openGraph?.image?.alt ?? metadata.title);
+
+	/**
+	 * Build the full JSON-LD script tag HTML for structured data.
+	 *
+	 * `<` is escaped to its JSON unicode form so no value can terminate the
+	 * script element early, whatever ends up in the data.
 	 */
 	const structuredDataHtml = $derived.by(() => {
 		if (!structuredData) return '';
 		const data = Array.isArray(structuredData) ? structuredData : [structuredData];
-		const json = data.map((item) => JSON.stringify(item)).join('\n');
+		const json = data.map((item) => JSON.stringify(item).replace(/</g, '\\u003c')).join('\n');
 		return '<script type="application/ld+json">' + json + '</' + 'script>';
 	});
 </script>
@@ -49,12 +63,7 @@
 <svelte:head>
 	<!-- Primary Meta Tags -->
 	<title>{metadata.title}</title>
-	<meta name="title" content={metadata.title} />
 	<meta name="description" content={metadata.description} />
-
-	{#if resolvedKeywords}
-		<meta name="keywords" content={resolvedKeywords} />
-	{/if}
 
 	<!-- Canonical URL -->
 	{#if metadata.canonical}
@@ -74,29 +83,25 @@
 	<meta property="og:url" content={ogUrl} />
 	<meta property="og:title" content={ogTitle} />
 	<meta property="og:description" content={ogDescription} />
-	{#if metadata.openGraph?.siteName}
-		<meta property="og:site_name" content={metadata.openGraph.siteName} />
-	{/if}
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content={metadata.openGraph?.siteName ?? COMPANY_INFO.name} />
 	{#if ogImage}
 		<meta property="og:image" content={ogImage} />
-	{/if}
-	{#if metadata.openGraph?.image?.width}
-		<meta property="og:image:width" content={String(metadata.openGraph.image.width)} />
-	{/if}
-	{#if metadata.openGraph?.image?.height}
-		<meta property="og:image:height" content={String(metadata.openGraph.image.height)} />
-	{/if}
-	{#if metadata.openGraph?.image?.alt}
-		<meta property="og:image:alt" content={metadata.openGraph.image.alt} />
+		<meta property="og:image:width" content={String(ogImageWidth)} />
+		<meta property="og:image:height" content={String(ogImageHeight)} />
+		<meta property="og:image:alt" content={ogImageAlt} />
 	{/if}
 
-	<!-- Twitter Card Meta Tags -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={ogUrl} />
-	<meta property="twitter:title" content={ogTitle} />
-	<meta property="twitter:description" content={ogDescription} />
+	<!--
+		Twitter Card Meta Tags
+		Twitter reads these from `name`, not `property`.
+	-->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={ogTitle} />
+	<meta name="twitter:description" content={ogDescription} />
 	{#if ogImage}
-		<meta property="twitter:image" content={ogImage} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content={ogImageAlt} />
 	{/if}
 
 	<!-- Structured Data (JSON-LD) -->

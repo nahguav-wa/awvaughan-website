@@ -6,47 +6,36 @@
 import { onMount } from 'svelte';
 
 /**
- * Creates a scroll event observer with automatic cleanup
- * @param callback - Function to call on scroll with current scrollY position
- * @returns Cleanup function (automatically called on component unmount)
+ * Creates a scroll event observer with automatic cleanup.
+ *
+ * Reads are coalesced with requestAnimationFrame so the callback runs at most
+ * once per frame. The listener previously wrote reactive state on every scroll
+ * event, which re-rendered the header far more often than the display could
+ * show.
+ *
+ * @param callback - Function to call with the current scrollY position
  */
 export function createScrollObserver(callback: (scrollY: number) => void) {
 	onMount(() => {
-		// Handler function to call callback with current scroll position
+		let frame = 0;
+
 		const handleScroll = () => {
-			callback(window.scrollY);
+			if (frame) return;
+			frame = requestAnimationFrame(() => {
+				frame = 0;
+				callback(window.scrollY);
+			});
 		};
 
 		// Initial call to set initial state
-		handleScroll();
+		callback(window.scrollY);
 
 		// Add passive listener for better performance
 		window.addEventListener('scroll', handleScroll, { passive: true });
 
-		// Cleanup function (called on component unmount)
 		return () => {
+			if (frame) cancelAnimationFrame(frame);
 			window.removeEventListener('scroll', handleScroll);
 		};
 	});
-}
-
-/**
- * Throttles a function to execute at most once per delay period
- * Useful for optimizing scroll event handlers
- * @param func - Function to throttle
- * @param delay - Minimum time between executions in milliseconds
- * @returns Throttled function
- */
-export function throttle<Args extends unknown[], R>(
-	func: (...args: Args) => R,
-	delay: number
-): (...args: Args) => void {
-	let lastCall = 0;
-	return (...args: Args) => {
-		const now = Date.now();
-		if (now - lastCall >= delay) {
-			lastCall = now;
-			func(...args);
-		}
-	};
 }

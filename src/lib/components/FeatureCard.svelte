@@ -32,7 +32,7 @@
 	</div>
 
 	<!-- Feature title - xl size, bold weight -->
-	<h3 class="mb-2 text-xl font-bold text-gray-900">
+	<h3 class="mb-2 font-bold text-gray-900">
 		{feature.title}
 	</h3>
 

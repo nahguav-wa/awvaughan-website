@@ -13,7 +13,7 @@
 <Section variant="white">
 	<div class="mx-auto max-w-4xl text-center">
 		<!-- Section Heading - xl size, bold weight -->
-		<h2 class="mb-6 text-xl font-bold text-gray-900">About Us</h2>
+		<h2 class="mb-6 font-bold text-gray-900">About Us</h2>
 
 		<!-- Company Description - lg size, regular weight -->
 		<p class="mb-8 text-lg font-normal text-gray-600">
