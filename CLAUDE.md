@@ -1,6 +1,6 @@
 # CLAUDE.md - AI Assistant Documentation
 
-**Last Updated**: 2026-01-05
+**Last Updated**: 2026-09-11
 **Project**: The A.W. Vaughan Company Website
 **Repository**: awvaughan-website
 
@@ -55,24 +55,27 @@ This is a professional business website for The A.W. Vaughan Company, a gravel d
 ### Styling
 
 - **Tailwind CSS v4** - Utility-first CSS framework
-- **Flowbite Svelte** - Component library (limited usage)
-- **Custom Design System** - 4 font sizes, 2 weights, standardized spacing
+- **Custom Design System** - 4 body text sizes, 3 heading steps, 2 weights
 
 ### Libraries
 
 - **@lucide/svelte** - Icon library for UI elements
 - **MS365 Graph API** - Email sending for contact form
+- **sharp** (dev only) - Image derivative pipeline, `npm run images`
 
 ### Development Tools
 
 - **ESLint** - Code linting with TypeScript and Svelte plugins
 - **Prettier** - Code formatting (tabs, single quotes, 100 char width)
 - **TypeScript** - Strict type checking enabled
+- **Vitest** - Unit tests
+- **Playwright** - End-to-end tests (`npm run test:e2e`)
 
 ### Deployment
 
 - **Cloudflare Pages** - Hosting and serverless functions
-- **@sveltejs/adapter-auto** - Auto-detects deployment environment
+- **@sveltejs/adapter-cloudflare** - Pinned deliberately; `adapter-auto` produced
+  no deployable output locally, so local builds did not match production
 
 ---
 
@@ -92,14 +95,23 @@ src/routes/
 │   ├── +page.svelte        # About page (/about)
 │   └── +page.ts            # About page load function
 ├── services/
-│   ├── +page.svelte        # Services page (/services)
-│   └── +page.ts            # Services page load function
+│   ├── +page.svelte        # Services listing (/services)
+│   ├── +page.ts            # Services listing load function
+│   └── [slug]/             # One template for all four service pages
+│       ├── +page.svelte    # Renders a ServiceDetail record
+│       └── +page.ts        # Resolves the slug, builds SEO + Service schema
 ├── contact/
 │   ├── +page.svelte        # Contact page (/contact)
-│   └── +page.ts            # Contact page load function
+│   └── +page.server.ts     # Server load: SEO + Turnstile site key
+├── sitemap.xml/
+│   └── +server.ts          # Generated from the route data
 └── api/
-    └── contact/
-        └── +server.ts      # API endpoint (POST /api/contact)
+    ├── contact/
+    │   └── +server.ts      # POST /api/contact
+    ├── health/
+    │   └── +server.ts      # GET /api/health (config check, secret-gated)
+    └── meta-emq/
+        └── +server.ts      # GET /api/meta-emq (EMQ diagnostics)
 ```
 
 **Key Patterns**:
@@ -136,7 +148,11 @@ src/routes/
 
 ### Data Flow
 
-1. **SEO Metadata**: `+layout.ts` → `+layout.svelte` → `SEOHead` component
+1. **SEO Metadata**: `+layout.ts` defaults are merged with the current route's
+   `page.data.seo` inside `+layout.svelte`, then passed to `SEOHead`. The layout
+   must read `page.data`, not its own `data` — reading `data.seo` shipped the
+   layout defaults on every route, giving all pages one title and a canonical
+   pointing at the homepage.
 2. **Static Data**: `src/lib/data/*.ts` → Components
 3. **Configuration**: `src/lib/config/constants.ts` → Used throughout app
 4. **Types**: `src/lib/types/index.ts` → Shared across all files
@@ -165,7 +181,7 @@ awvaughan-website/
 │   │   │   └── typography.ts   # Typography system config
 │   │   ├── data/               # Static data files
 │   │   │   ├── features.ts     # Feature/value propositions
-│   │   │   └── services.ts     # Service offerings
+│   │   │   └── services.ts     # Service offerings + full service page content
 │   │   ├── types/              # TypeScript type definitions
 │   │   │   └── index.ts        # Shared interfaces
 │   │   └── utils/              # Utility functions
@@ -456,14 +472,21 @@ If you see these imported, replace with modern equivalents.
 
 ### Typography System
 
-**Standardized to 4 sizes and 2 weights**:
+**Body text: 4 sizes. Headings: their own 3-step scale. 2 weights.**
 
-**Sizes**:
+**Body sizes**:
 
 - `text-sm` - 14px (small text, captions)
 - `text-base` - 16px (body text, default)
 - `text-lg` - 18px (large body text)
-- `text-xl` - 20px (headings)
+- `text-xl` - 20px (lead-in text, callout numerals)
+
+**Heading scale** (defined in `@theme` in `src/app.css`, applied as element
+defaults in the base layer):
+
+- `h1` - `clamp(2rem, 4vw + 1rem, 3.5rem)` — 32px to 56px, fluid
+- `h2` - `clamp(1.5rem, 1.5vw + 1rem, 2rem)` — 24px to 32px, fluid
+- `h3` - 20px
 
 **Weights**:
 
@@ -472,10 +495,19 @@ If you see these imported, replace with modern equivalents.
 
 **DO NOT USE**:
 
-- `text-2xl`, `text-3xl`, `text-4xl`, etc.
 - `font-light`, `font-medium`, `font-semibold`, etc.
+- A size utility on a heading. Headings get their size from the element rule, so
+  `<h2 class="mb-4 text-gray-900">` is complete — adding `text-xl` overrides the
+  scale and breaks hierarchy.
 
-**Rationale**: Consistency and simplicity. These 4 sizes + 2 weights cover all use cases.
+**Rationale**: headings previously shared the body scale at `text-xl`, so `h1`,
+`h2` and `h3` all rendered at an identical 20px and pages had no visual
+hierarchy at all. The homepage worked around it with a one-off `.hero-heading`
+clamp, which meant the homepage `h1` was 60px while every other page's `h1` was
+20px — the exact inconsistency the single scale was meant to prevent. Body text
+is still deliberately restricted; headings now have one scale used everywhere.
+
+An e2e test asserts `h1 > h2 > h3` in computed pixels.
 
 ### Design Tokens
 
@@ -560,7 +592,10 @@ Applied at `<body>` level in `app.html`:
 - small excavation contractor 757
 - culvert repair Virginia Beach
 
-**Full list**: See `src/lib/utils/seo.ts` → `PRIMARY_KEYWORDS`, `SECONDARY_KEYWORDS`
+**Full list**: See `docs/keyword-strategy.md`. Keywords are a content planning
+document, not markup: the `<meta name="keywords">` tag is not emitted, because
+search engines ignore it and publishing the list hands competitors the strategy.
+Work the terms into headings, body copy, alt text, and titles instead.
 
 ### SEO Implementation Pattern
 
@@ -575,12 +610,20 @@ export const load: PageLoad = () => {
 		seo: {
 			title: formatPageTitle('About Us'),
 			description: 'Learn about The A.W. Vaughan Company...',
-			keywords: 'gravel driveway repair, Virginia Beach contractor...',
-			canonical: 'https://awvaughan.com/about'
+			canonical: absoluteUrl('/about')
 		}
 	};
 };
 ```
+
+**Always build URLs with `absoluteUrl()`** (from `$lib/config/constants`), never
+by writing the origin out by hand. `SITE_URL` is the single canonical origin;
+hardcoded copies are how the apex and www spellings drift apart.
+
+**Every page needs its own `canonical`.** A page that omits it inherits the
+layout default, which points at the homepage — that asks search engines to drop
+the page from the index. An e2e test asserts each route's canonical matches its
+own path and that no two pages share a title.
 
 **Structured Data**:
 
@@ -615,17 +658,27 @@ Automatically generates:
 
 **Open Graph Images**:
 
-- Use `/og-image.jpg` (1200x630px recommended)
-- Specified in SEO metadata: `ogImage: '/og-image.jpg'`
+- `/og-image.jpg` is generated at exactly 1200x630 by `npm run images`, cropped
+  from the hero photograph. It was previously a byte-identical copy of the
+  portrait hero image at 710x1125, so every social share rendered a cropped
+  sliver — while the metadata declared 1200x630, which made the crop worse.
+- `SEOHead` resolves image paths to absolute URLs via `absoluteUrl()`. Crawlers
+  do not reliably resolve a relative `og:image`.
 
 ### Sitemap & Robots
 
-**Static files**:
+- `/sitemap.xml` is **generated** by `src/routes/sitemap.xml/+server.ts` from
+  `ROUTES` and `serviceDetails`, so it cannot fall behind the routes. There is
+  nothing to update by hand. `changefreq` and `priority` are omitted (Google
+  ignores both) and so is `lastmod`, because an inaccurate value is ignored too
+  and nothing in the build knows when a page's copy last changed.
+- `static/robots.txt` - Crawler directives.
 
-- `static/sitemap.xml` - List of all pages
-- `static/robots.txt` - Crawler directives
-
-**Update these when adding new pages**!
+**www vs apex**: `SITE_URL` is the apex (`https://awvaughan.com`) and every
+canonical points there. Redirecting www to the apex **cannot** be done from this
+repository — Cloudflare Pages `_redirects` matches on path only, and prerendered
+pages never reach the Worker. Add a Redirect Rule in the Cloudflare dashboard if
+a www record exists.
 
 ---
 
@@ -651,28 +704,61 @@ interface ContactFormData {
 }
 ```
 
-**Response** (Success):
+**Response** (delivered):
 
 ```json
 {
 	"success": true,
+	"delivered": true,
 	"message": "Thank you for your message. We will get back to you soon!"
 }
 ```
 
-**Response** (Error):
+**Response** (captured, but the email did not go out — stored in KV):
 
 ```json
-HTTP 400 Bad Request
+HTTP 200 OK
 {
-	"error": "Missing required fields"
-}
-
-HTTP 500 Internal Server Error
-{
-	"error": "Failed to process contact form submission"
+	"success": true,
+	"delivered": false,
+	"message": "We have received your message, but our email system is currently delayed..."
 }
 ```
+
+**Response** (not captured at all):
+
+```json
+HTTP 502 Bad Gateway
+{ "message": "We could not submit your message. Please call us at 757-402-1100..." }
+```
+
+Other errors: `400` (validation, or a failed/expired CAPTCHA), `413` (body over
+64KB). All carry a `message` the client displays verbatim.
+
+**The endpoint must never report success for a submission it did not capture.**
+It previously caught every email failure and returned `{ success: true }`, so a
+customer was thanked while the lead vanished — and a Meta Lead conversion was
+reported for a lead nobody received, training the ad platform to buy more of
+that traffic. The Meta event now fires only on a captured submission.
+
+**Delivery outcomes** (`DeliveryOutcome` in the handler):
+
+| Outcome   | Meaning                                                      | Response                |
+| --------- | ------------------------------------------------------------ | ----------------------- |
+| `sent`    | Email accepted by Graph                                      | 200, `delivered: true`  |
+| `stored`  | Email failed, submission written to the `LEADS` KV namespace | 200, `delivered: false` |
+| `skipped` | No mailer configured **and** `dev` is true                   | 200, `delivered: true`  |
+| `failed`  | Nothing captured it                                          | 502                     |
+
+The dev/production distinction keys off SvelteKit's `dev` flag, **not** the
+presence of `platform`: both `vite dev` and `vite preview` supply a platform
+object with an empty env, so keying off it would make every local submission
+look like a production misconfiguration.
+
+**Spam controls**: a hidden honeypot field (`website`) is accepted silently and
+discarded; Turnstile is verified whenever `TURNSTILE_SECRET_KEY` is set. Rate
+limiting is still a Cloudflare WAF rule — a Worker cannot hold reliable counters
+across isolates.
 
 ### Email Sending (MS365 Graph API)
 
@@ -805,6 +891,36 @@ npm run format
 - No trailing commas
 - 100 character line width
 - Tailwind class sorting enabled
+
+### Testing
+
+```bash
+npm run test        # Vitest unit tests
+npm run test:e2e    # Playwright end-to-end tests (builds and previews first)
+```
+
+**Unit tests** cover pure logic and the contact endpoint's handler directly:
+validation, normalization, Turnstile outcomes, delivery outcomes, the KV
+fallback, and the Meta CAPI payload.
+
+**End-to-end tests** (`e2e/site.spec.ts`) run against the **production build**,
+because the bugs worth catching there only exist in built output — the CSP is
+generated at build time and most pages are prerendered. They cover: no CSP
+violations on any route, per-page titles and canonicals, an absolute `og:image`,
+the contact form submitting and surfacing the server's message, the form never
+claiming success when the submission was not captured, all four service pages
+rendering from the shared template, heading hierarchy in computed pixels, and
+the mobile menu's `aria-expanded`/`aria-current`/Escape behaviour.
+
+**Drift guards** (`src/lib/config/deployment.test.ts`) assert the things that
+live in two places stay in step: `_headers` against `security-headers.ts`, the
+pixel ID in `static/meta-pixel.js` against `constants.ts`, the CSP against the
+hosts the pixel needs, and that no placeholder key reappears in source. Most of
+the bugs this codebase had were two copies of one fact in files nobody edited
+together — if you duplicate a value, add a guard here.
+
+`PLAYWRIGHT_CHROMIUM_EXECUTABLE` overrides the browser binary for environments
+that ship a pre-provisioned Chromium; leave it unset in CI.
 
 ### Building for Production
 
@@ -939,37 +1055,66 @@ export const COMPANY_INFO = {
 
 ### Adding a New Service
 
-1. **Edit**: `src/lib/data/services.ts`
+**Edit one file**: `src/lib/data/services.ts`. Append a `ServiceDetail` record
+(see `src/lib/types/index.ts` for the shape) and everything follows from it:
 
-```typescript
-export const services: Service[] = [
-	// ... existing services
-	{
-		title: 'New Service',
-		description: 'Description of the new service offering',
-		href: '/services#new-service',
-		keywords: ['keyword1', 'keyword2']
-	}
-];
-```
+- its page at `/services/<slug>`, rendered by `src/routes/services/[slug]/`
+- its card on the homepage grid and the services listing
+- its `<title>`, description, canonical, Open Graph tags and Schema.org `Service`
+- its entry in `/sitemap.xml`
+- its prerendered HTML (the `entries()` export in `[slug]/+page.ts` tells the
+  prerenderer which slugs exist)
 
-2. **Automatically appears** in services section on homepage and services page
+Then add its target terms to `docs/keyword-strategy.md`.
+
+The four service pages used to be four near-identical `.svelte` files differing
+only in strings, so every layout change meant four edits and the copies drifted.
+Do not reintroduce a bespoke page for a service unless it genuinely needs a
+different layout.
 
 ### Updating Images
 
-**Replace files** in `static/` directory:
+Source photographs live in `static/` and are never served directly. Web-ready
+derivatives are generated into `static/images/`:
 
-- `hero-image.jpg` - Hero background (1920x1080+ recommended)
-- `about-image.jpg` - About section image
-- `og-image.jpg` - Social share image (1200x630px)
-
-**Images are referenced** in components by path:
-
-```svelte
-<Hero imageSrc="/hero-image.jpg" imageAlt="Description" />
+```bash
+npm run images   # scripts/optimize-images.mjs
 ```
 
-**Important**: Update `imageAlt` text for SEO!
+The script emits, per photograph, an AVIF and a mozjpeg fallback at the source
+width and at 480px, plus the 1200x630 `static/og-image.jpg` card. Measured on
+these photographs: mozjpeg 172KB, WebP 205KB, AVIF 126KB — so WebP is not
+generated, as it is larger than the fallback it would replace.
+
+**To add or replace a photograph**:
+
+1. Drop the source JPEG in `static/`.
+2. Add its basename to `PHOTOS` in `scripts/optimize-images.mjs`.
+3. Run `npm run images`.
+4. Reference it with the `Picture` component, passing the **real** source
+   dimensions — they set the aspect ratio the browser reserves, so a wrong value
+   causes layout shift:
+
+```svelte
+<Picture
+	name="about-image"
+	alt="Descriptive alt text"
+	width={844}
+	height={1125}
+	sizes="(min-width: 768px) 28rem, 100vw"
+/>
+```
+
+Pass `priority` for the largest above-the-fold image on a page (the LCP
+element); everything else lazy-loads.
+
+**Alt text**: descriptive for content images. Empty (`alt=""`) for decorative
+ones — the hero photograph is decorative because the headline beside it carries
+the meaning, and a keyword-stuffed alt there just makes screen readers read
+marketing copy before the content.
+
+**Note**: the source JPEGs in `static/` are still deployed but nothing
+references them. They can be removed once you are happy with the derivatives.
 
 ---
 
@@ -1048,7 +1193,7 @@ export const services: Service[] = [
 
 **Cloudflare Pages** - Serverless deployment with edge functions
 
-**Adapter**: `@sveltejs/adapter-auto` (auto-detects Cloudflare)
+**Adapter**: `@sveltejs/adapter-cloudflare` (pinned; see Technology Stack)
 
 ### Deployment Process
 
@@ -1077,14 +1222,35 @@ npm run build
 - `MS365_CLIENT_ID` - App registration client ID
 - `MS365_CLIENT_SECRET` - App registration client secret
 - `MS365_EMAIL` - contact@awvaughan.com
+- `CONTACT_RECIPIENT_EMAIL` - optional submission recipient override
+- `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` - set both or neither
 - `META_PIXEL_TOKEN` - Meta Conversions API access token
+- `META_LEAD_VALUE` - optional; estimated value of one lead, in USD. When unset
+  the Lead event carries no value at all, which is deliberate: a hardcoded 0.0
+  gives value-based bidding nothing to optimize toward while looking like a real
+  measurement. Set it to enable value-based bidding.
 - `META_AGENT_NAME` - Meta partner agent name (EMQ endpoint)
 - `META_EMQ_ADMIN_SECRET` - shared secret for `/api/meta-emq`
 - `META_TEST_EVENT_CODE` - optional, Meta Test Events only
+- `HEALTH_CHECK_SECRET` - shared secret for `/api/health`
+
+Bindings: a KV namespace named `LEADS` for the contact form fallback store.
+
+**Verify configuration after deploying**:
+
+```bash
+curl -H "x-health-secret: $HEALTH_CHECK_SECRET" https://awvaughan.com/api/health
+```
+
+It reports which integrations are wired up (presence only, never values), so a
+mistyped variable is visible immediately rather than weeks later from an absence
+of leads.
 
 **Preview/Development**:
 
-- Can be left unset (will log instead of sending email; CAPI is skipped)
+- In `vite dev`, submissions are logged rather than sent, and CAPI is skipped.
+- A **deployed** environment with missing mail credentials is treated as a
+  failure, not as development.
 
 ### Build Settings
 
@@ -1114,33 +1280,91 @@ npm run build
 ### Things to NEVER Do
 
 1. **Don't over-engineer** - Only build what's explicitly requested
-2. **Don't use deprecated components** - Header1, Header2, HeroImage are legacy
-3. **Don't break the typography system** - Stick to 4 sizes + 2 weights
+2. **Don't use `$app/stores`** - use `$app/state`'s reactive `page`
+3. **Don't break the typography system** - body text uses the 4 body sizes;
+   headings get their size from the element scale, never a utility class
 4. **Don't skip type checking** - Run `npm run check` before committing
 5. **Don't commit without formatting** - Run `npm run format`
 6. **Don't modify auto-generated files** - `.svelte-kit/` directory
 7. **Don't use different design tokens** - Use values from `constants.ts`
 8. **Don't add unnecessary dependencies** - Justify all new packages
+9. **Don't set CSP outside `kit.csp`** - see Security Headers and CSP
+10. **Don't hardcode `https://awvaughan.com`** - use `absoluteUrl()`/`SITE_URL`
+11. **Don't return success for work that failed** - the contact endpoint reports
+    what actually happened; a reassuring lie loses the lead and corrupts ad data
+12. **Don't hash an empty normalized value** for Meta - omit the field instead
 
 ### Things to ALWAYS Do
 
 1. **Always use TypeScript interfaces** - No `any` types
-2. **Always add SEO metadata** - Every page needs title, description, keywords
+2. **Always add SEO metadata** - Every page needs a title, description and its
+   own `canonical`
 3. **Always include alt text** - All images need descriptive alt text
 4. **Always sanitize user input** - Contact form and any user data
-5. **Always update sitemap** - When adding new pages
+5. **Always add new routes to the generated sitemap source** - `paths` in
+   `src/routes/sitemap.xml/+server.ts` (service pages are automatic)
 6. **Always test locally** - Run dev server before pushing
 7. **Always use $lib imports** - Don't use relative paths for shared code
 8. **Always follow Prettier rules** - Tabs, single quotes, 100 char width
+
+### Security Headers and CSP — read this before touching either
+
+Most pages are **prerendered** (`export const prerender = true` in
+`+layout.ts`). Cloudflare Pages serves those straight off its asset handler, so
+they **never enter the Worker** and `src/hooks.server.ts` cannot reach them —
+`_routes.json` in the build output lists exactly which paths are excluded.
+Anything set only in the hook protects `/contact` and `/api/*` and nothing else.
+
+The split is therefore:
+
+| Concern                 | Where it lives                                                                           | Covers                                                              |
+| ----------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Content-Security-Policy | `kit.csp` in `svelte.config.js`                                                          | Everything: header on SSR routes, `<meta>` tag on prerendered pages |
+| Other security headers  | `src/lib/config/security-headers.ts` (used by the hook) + `_headers` at the project root | SSR routes and static routes respectively                           |
+
+**Rules**:
+
+1. **Never set `Content-Security-Policy` in `hooks.server.ts` or `_headers`.**
+   SvelteKit generates a per-page policy that allows its own inline hydration
+   script by nonce or hash. A second policy intersects with it and blocks that
+   script, breaking hydration with no visible error.
+2. **`_headers` lives in the project root**, not `static/` — adapter-cloudflare
+   requires it there and copies it into the build.
+3. **Add a header to both places.** A test asserts `_headers` repeats every entry
+   in `security-headers.ts`.
+4. **`frame-ancestors` is not usable here** — it is ignored when a policy arrives
+   via `<meta>`, which is how prerendered pages receive theirs. Clickjacking
+   protection is carried by `X-Frame-Options` instead.
+5. **Third-party hosts must be in the CSP.** `script-src` once omitted
+   `connect.facebook.net`, which silently blocked `fbevents.js` on `/contact` —
+   the only page that fires the `Lead` event. The inline stub still defined
+   `window.fbq`, so events queued forever and `_fbp`/`_fbc` were never set,
+   losing the highest-weighted Meta match keys on exactly the traffic that
+   matters most (an ad click landing on `/contact`). Tests assert the hosts are
+   present; an e2e test asserts no CSP violations on any route.
+6. **The pixel bootstrap is a file** (`static/meta-pixel.js`), not an inline
+   script, so `script-src` does not need `'unsafe-inline'`.
 
 ### Security Considerations
 
 **Contact Form**:
 
-- Input sanitization (remove `<>` characters)
-- Email validation (regex check)
-- No sensitive data in error messages
-- Rate limiting (consider adding Cloudflare Turnstile)
+- Normalization strips control characters, folds CRLF, collapses blank lines, and
+  trims. It deliberately **does not strip HTML tags**: the notification email is
+  sent as `contentType: 'Text'`, so there is nothing to inject into, and the old
+  tag regex ate real content — "I need a pad `<10 ft >` wide" arrived as "I need
+  a pad wide", deleting the dimensions of the job. Anything that renders this
+  text as HTML later must escape it at the point of rendering.
+- Validation runs on the **normalized** values, so an input that is empty by the
+  time it reaches the email is rejected rather than producing a nameless lead.
+- Field length limits, plus a 64KB body ceiling checked before parsing.
+- Email validation (regex check).
+- No sensitive data in error messages; the `/api/meta-emq` endpoint logs
+  upstream failures rather than reflecting Meta's status and message.
+- Honeypot field plus Turnstile. Rate limiting remains a Cloudflare WAF rule.
+- Every outbound fetch has an `AbortSignal.timeout`; the MS365 access token is
+  cached per isolate instead of re-fetched on every submission; the Meta CAPI
+  call is handed to `waitUntil` so the visitor does not wait on it.
 
 **Environment Variables**:
 
@@ -1201,6 +1425,27 @@ npm run build
 ---
 
 ## Changelog
+
+**2026-09-11** - Code review remediation
+
+- Contact form: Turnstile site key moved to env (was a hardcoded placeholder that
+  made the form unsubmittable); expired/duplicate tokens now recoverable; server
+  error messages surfaced to the visitor; honeypot added
+- Contact endpoint no longer reports success for submissions it failed to
+  deliver; added a KV fallback store, request timeouts, token caching, a body
+  size limit, and `waitUntil` for the Meta call
+- CSP moved from `hooks.server.ts` to `kit.csp` so it covers prerendered pages,
+  and widened to the hosts the Meta pixel actually uses (it was silently
+  blocking the pixel on `/contact`); pixel bootstrap moved out of line
+- Fixed per-page SEO: the layout read its own `data` instead of `page.data`, so
+  every route shipped the homepage's title and canonical
+- Meta CAPI: non-Latin names and accents normalized correctly, empty values
+  omitted rather than hashed, NANP phone validation, client `event_id`
+  validated, conversion value no longer hardcoded to zero
+- Four duplicated service pages consolidated into `services/[slug]`
+- Heading scale added; generated sitemap; image pipeline with AVIF derivatives
+  and a correctly sized OG card; accessibility fixes in the header and hero
+- Added `/api/health`, drift-guard tests, and a Playwright e2e suite
 
 **2026-01-05** - Initial CLAUDE.md creation
 
