@@ -9,15 +9,27 @@
 /* Custom dark mode variant */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Flowbite component library sources */
-@source '../node_modules/flowbite-svelte/dist';
-@source '../node_modules/flowbite-svelte-icons/dist';
-
 /**
  * Custom Theme Configuration
  * Extended color palette and z-index scale
  */
 @theme {
+	/*
+	 * Heading scale.
+	 *
+	 * The body scale below is deliberately small (sm/base/lg/xl), but headings
+	 * need their own scale: with everything pinned at text-xl, h1, h2 and h3
+	 * rendered at an identical 20px and the pages had no visual hierarchy at
+	 * all. These three fluid steps are applied as element defaults in the base
+	 * layer, so a heading is correctly sized without any utility class.
+	 */
+	--text-h1: clamp(2rem, 4vw + 1rem, 3.5rem);
+	--text-h1--line-height: 1.1;
+	--text-h2: clamp(1.5rem, 1.5vw + 1rem, 2rem);
+	--text-h2--line-height: 1.2;
+	--text-h3: 1.25rem;
+	--text-h3--line-height: 1.4;
+
 	/* Z-index scale */
 	--z-index-100: 100;
 
@@ -78,11 +90,20 @@
 		@apply text-base font-normal tracking-wide dark:text-white;
 	}
 
-	/* Headings - Bold weight, xl size */
-	h1,
-	h2,
+	/*
+	 * Headings - Bold weight, one step per level.
+	 * Sized here rather than per-page so hierarchy cannot drift.
+	 */
+	h1 {
+		@apply text-h1 font-bold tracking-tight dark:text-white;
+	}
+
+	h2 {
+		@apply text-h2 font-bold tracking-tight dark:text-white;
+	}
+
 	h3 {
-		@apply text-xl font-bold tracking-wide dark:text-white;
+		@apply text-h3 font-bold tracking-wide dark:text-white;
 	}
 
 	/* Tables - Base size, regular weight */
@@ -94,36 +115,20 @@
 	code {
 		@apply text-base text-primary-700 dark:text-primary-400;
 	}
-
-	/**
-	 * Code blocks - Syntax highlighted pre elements
-	 * Used within #mainContent container
-	 * Uses sm size from typography system
-	 */
-	#mainContent > pre {
-		@apply mx-auto my-4 w-full overflow-auto rounded-xl border border-gray-200 bg-gray-50 bg-gradient-to-r p-2 text-sm font-normal text-gray-600 sm:p-6 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400;
-	}
 }
 
 /**
- * Components Layer
- * Reusable component utility classes
+ * Reduced Motion
+ * Honours the OS-level preference; the hero scroll indicator animates forever
+ * by default, which is exactly what this preference exists to stop.
  */
-@layer components {
-	/**
-	 * Dark background theme override
-	 * Overwrites default Svelte Runes styling with !important
-	 */
-	.dark_bg_theme {
-		@apply dark:bg-stone-900;
-	}
-
-	/**
-	 * Hero heading - Exception to the 4-size typography system.
-	 * The hero headline needs to be larger for visual impact at full-screen size.
-	 * Uses clamp() for fluid responsive scaling.
-	 */
-	.hero-heading {
-		font-size: clamp(1.875rem, 5vw, 3.75rem);
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
 	}
 }

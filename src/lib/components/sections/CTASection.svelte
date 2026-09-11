@@ -14,7 +14,7 @@
 <Section variant="blue">
 	<div class="text-center">
 		<!-- CTA Heading - xl size, bold weight -->
-		<h2 class="mb-6 text-xl font-bold">Ready to Get Started?</h2>
+		<h2 class="mb-6 font-bold">Ready to Get Started?</h2>
 
 		<!-- CTA Description - lg size, regular weight -->
 		<p class="mx-auto mb-8 max-w-2xl text-lg font-normal">
