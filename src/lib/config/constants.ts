@@ -37,15 +37,17 @@ export const COMPANY_INFO = {
 	// Service area
 	serviceArea: {
 		primary: 'Williamsburg',
-		areaCode: '757',
 		/**
 		 * Umbrella phrase for the whole footprint, used wherever copy needs to
 		 * name the region rather than list towns.
 		 *
-		 * Prefer this over "the 757 area" in copy. The footprint straddles two
-		 * area codes — Williamsburg, Toano and Yorktown are 757, while West
-		 * Point, Gloucester and Saluda are 804 — so "the 757" no longer
-		 * describes where the company works.
+		 * There is deliberately no `areaCode` here to reach for instead. One
+		 * existed, and the service page template rendered "we serve Williamsburg
+		 * and the entire 757 area" on all four pages — which told every
+		 * prospect in West Point, Gloucester and Saluda they were out of area,
+		 * since those are 804. The footprint straddles both area codes, so no
+		 * single one describes it. The phone number stays a 757 number and is
+		 * written out in `phone`.
 		 */
 		region: 'the Historic Triangle and Middle Peninsula',
 		/**

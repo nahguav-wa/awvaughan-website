@@ -182,7 +182,7 @@ export const serviceDetails: ServiceDetail[] = [
 		],
 		cta: {
 			heading: 'Ready to Prepare Your Site?',
-			body: 'Free site assessment and quote. Give us your delivery date and we will work to it.'
+			body: 'Free site assessment and quote across Williamsburg, the Historic Triangle, and the Middle Peninsula. Give us your delivery date and we will work to it.'
 		},
 		schemaDescription:
 			'Shed pad preparation including site clearing, leveling, gravel base installation, and compaction in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
@@ -242,7 +242,7 @@ export const serviceDetails: ServiceDetail[] = [
 		],
 		cta: {
 			heading: 'Need Excavation Work Done?',
-			body: 'Free consultation and quote. If it is small and nobody else will take it, call us.'
+			body: 'Free consultation and quote from Williamsburg out through West Point, Gloucester and Saluda. If it is small and nobody else will take it, call us.'
 		},
 		schemaDescription:
 			'Small excavation services including lot clearing, trenching, culvert repair, and rural property maintenance in Williamsburg, New Kent, West Point, Gloucester and Saluda, Virginia.',

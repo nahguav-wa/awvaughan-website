@@ -65,10 +65,7 @@
 <Section variant="white">
 	<div class="mx-auto max-w-4xl text-center">
 		<h2 class="mb-6 text-gray-900">{service.cta.heading}</h2>
-		<p class="mb-8 text-lg font-normal text-gray-600">
-			{service.cta.body} We serve {COMPANY_INFO.serviceArea.primary} and the entire {COMPANY_INFO
-				.serviceArea.areaCode} area.
-		</p>
+		<p class="mb-8 text-lg font-normal text-gray-600">{service.cta.body}</p>
 		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<Button variant="primary" href="/contact" size="md">Get a Free Quote</Button>
 			<Button variant="secondary" href={COMPANY_INFO.phoneHref} size="md">

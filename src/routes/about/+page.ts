@@ -15,7 +15,7 @@ export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
 		title: 'About Us | Williamsburg VA Excavation & Driveway Contractor',
 		description:
-			'The A.W. Vaughan Company is a Williamsburg, VA gravel driveway repair and drainage contractor. Founded in Virginia Beach in 2025, now serving Toano, Yorktown, West Point, Gloucester and Saluda.',
+			'The A.W. Vaughan Company is a Williamsburg, VA gravel driveway repair, drainage, and small excavation contractor serving Toano, Norge, Yorktown, New Kent, West Point, Gloucester and Saluda across the Historic Triangle and Middle Peninsula.',
 		canonical: absoluteUrl('/about'),
 		openGraph: {
 			type: 'website',

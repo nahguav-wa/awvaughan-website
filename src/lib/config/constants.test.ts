@@ -12,8 +12,11 @@ describe('COMPANY_INFO', () => {
 
 	it('has service area information', () => {
 		expect(COMPANY_INFO.serviceArea.primary).toBe('Williamsburg');
-		expect(COMPANY_INFO.serviceArea.areaCode).toBe('757');
 		expect(COMPANY_INFO.serviceArea.region).toBeTruthy();
+		// No area code: the footprint spans 757 and 804, so naming either one
+		// tells half the service area it is not covered. See the note in
+		// constants.ts.
+		expect(COMPANY_INFO.serviceArea).not.toHaveProperty('areaCode');
 		expect(COMPANY_INFO.serviceArea.regions.length).toBeGreaterThan(0);
 	});
 

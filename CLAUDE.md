@@ -600,11 +600,22 @@ service-area paragraph on `/about`, which renders `regions.slice(1)` as
 "and surrounding" — so **the primary city must stay first in that array**. A
 test asserts it.
 
-**Do not write "the 757 area" in new copy.** The footprint straddles two area
-codes — Williamsburg, Toano and Yorktown are 757, while West Point, Gloucester
-and Saluda are 804 — and "757" is a Hampton Roads identifier, which is the
-market the company left. `serviceArea.areaCode` remains only because the phone
-number is a 757 number.
+**Do not write "the 757 area" in new copy, and do not reintroduce an
+`areaCode` constant.** The footprint straddles two area codes — Williamsburg,
+Toano and Yorktown are 757, while West Point, Gloucester and Saluda are 804 —
+and "757" is a Hampton Roads identifier, the market the company left.
+
+There was an `areaCode` field, and the service page template appended
+"We serve Williamsburg and the entire 757 area" to every service CTA, telling
+every prospect in West Point, Gloucester and Saluda they were outside the
+coverage area. The field is gone and a test asserts it stays gone. Reach for
+`serviceArea.region` instead. The phone number is still a 757 number and lives
+in `COMPANY_INFO.phone`.
+
+Relatedly: **service page copy belongs in `src/lib/data/services.ts`, not in
+the `[slug]` template.** That CTA sentence was the one string the template
+hardcoded, which is precisely why it drifted while the data file was updated.
+Each record's `cta.body` now carries its own service area.
 
 Off-site geography is not in this repository and has to be moved by hand: the
 Google Business Profile (which is what actually drives a local pack ranking),
