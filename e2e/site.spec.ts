@@ -302,3 +302,49 @@ test.describe('navigation', () => {
 		await expect(menu).toBeHidden();
 	});
 });
+
+test.describe('homepage services carousel', () => {
+	// The homepage services grid became a carousel. The risk a carousel carries
+	// is that the cards it is not showing stop existing — for the visitor without
+	// JavaScript, and for the crawler that never runs it — so what is asserted
+	// here is that all five service links ship in the prerendered HTML, and that
+	// the controls move the track and track their own position.
+	test('ships every service link in the HTML and steps through the pages', async ({ page }) => {
+		const slugs = [
+			'land-clearing',
+			'bush-hogging',
+			'forestry-mulching',
+			'trail-systems',
+			'property-maintenance'
+		];
+
+		const html = await (await page.request.get('/')).text();
+		for (const slug of slugs) {
+			expect(html).toContain(`href="/services/${slug}"`);
+		}
+
+		await page.goto('/');
+		const carousel = page.getByRole('group', { name: 'Our services' });
+		const track = carousel.getByRole('group', { name: /scrollable/i });
+		const previous = carousel.getByRole('button', { name: 'Previous services' });
+		const next = carousel.getByRole('button', { name: 'Next services' });
+		const dots = carousel.getByRole('button', { name: /^Go to services/ });
+
+		await expect(previous).toBeDisabled();
+		await expect(dots.first()).toHaveAttribute('aria-current', 'true');
+
+		// How many cards fit is decided by CSS, so the page count is read from the
+		// dots rather than assumed: two per view on desktop, one on mobile.
+		const pageCount = await dots.count();
+		expect(pageCount).toBeGreaterThan(1);
+
+		for (let index = 1; index < pageCount; index++) {
+			await next.click();
+			await expect(dots.nth(index)).toHaveAttribute('aria-current', 'true');
+		}
+
+		await expect(next).toBeDisabled();
+		await expect(previous).toBeEnabled();
+		await expect.poll(() => track.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
+	});
+});
