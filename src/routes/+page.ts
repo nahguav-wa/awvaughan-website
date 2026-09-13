@@ -14,8 +14,8 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = () => {
 	return {
 		seo: getDefaultSEO({
-			title: `${COMPANY_INFO.name} | Gravel Driveway Repair & Drainage Solutions Virginia Beach 757`,
-			description: `Professional gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area. Expert driveway grading, shed pad preparation, and rural property maintenance. Call ${COMPANY_INFO.phone} for quality service.`,
+			title: `Land Clearing & Forestry Mulching in Williamsburg VA | ${COMPANY_INFO.name}`,
+			description: `Land clearing, bush hogging, forestry mulching, trail systems and property maintenance in Williamsburg, VA. Serving Toano, Yorktown, New Kent, West Point, Saluda and Gloucester. Call ${COMPANY_INFO.phone} for a free quote.`,
 			canonical: absoluteUrl('/'),
 			ogImage: absoluteUrl('/og-image.jpg')
 		})

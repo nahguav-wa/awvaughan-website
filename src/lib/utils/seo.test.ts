@@ -49,8 +49,27 @@ describe('getLocalBusinessSchema', () => {
 	it('includes address information', () => {
 		const schema = getLocalBusinessSchema();
 		expect(schema.address['@type']).toBe('PostalAddress');
-		expect(schema.address.addressLocality).toBe('Virginia Beach');
+		expect(schema.address.addressLocality).toBe('Williamsburg');
 		expect(schema.address.addressRegion).toBe('VA');
+	});
+
+	it('records the founding city separately from where the business now operates', () => {
+		// The business moved from Virginia Beach to Williamsburg. `address` must
+		// track the current base, or the local pack is optimized for the wrong
+		// city; `foundingLocation` keeps the history without competing with it.
+		const schema = getLocalBusinessSchema();
+		expect(schema.foundingLocation.address.addressLocality).toBe('Virginia Beach');
+		expect(schema.address.addressLocality).not.toBe(
+			schema.foundingLocation.address.addressLocality
+		);
+	});
+
+	it('serves every town listed in the service area', () => {
+		const schema = getLocalBusinessSchema();
+		const served = schema.areaServed.map((area) => area.name);
+		expect(served).toContain('Williamsburg');
+		expect(served).toContain('Gloucester');
+		expect(served).not.toContain('Virginia Beach');
 	});
 
 	it('includes service areas', () => {
@@ -63,7 +82,8 @@ describe('getLocalBusinessSchema', () => {
 	it('includes service types', () => {
 		const schema = getLocalBusinessSchema();
 		expect(Array.isArray(schema.serviceType)).toBe(true);
-		expect(schema.serviceType).toContain('Gravel Driveway Repair');
+		expect(schema.serviceType).toContain('Land Clearing');
+		expect(schema.serviceType).toContain('Forestry Mulching');
 	});
 });
 

@@ -13,22 +13,22 @@ import { absoluteUrl, COMPANY_INFO } from '$lib/config/constants';
  */
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title: 'About Us - The A.W. Vaughan Company | Virginia Beach Excavation Experts',
+		title: 'About Us | Williamsburg VA Land Management Contractor',
 		description:
-			'Learn about The A.W. Vaughan Company, your trusted partner for gravel driveway repair, drainage solutions, and excavation services in Virginia Beach and the 757 area since 2025.',
+			'The A.W. Vaughan Company is a Williamsburg, VA land management contractor — land clearing, bush hogging, forestry mulching, trail systems and property maintenance for Toano, Norge, Yorktown, New Kent, West Point, Gloucester and Saluda.',
 		canonical: absoluteUrl('/about'),
 		openGraph: {
 			type: 'website',
-			title: 'About The A.W. Vaughan Company | Virginia Beach Excavation',
+			title: 'About The A.W. Vaughan Company | Williamsburg VA Land Management',
 			description:
-				'Professional gravel driveway repair and drainage solutions serving Virginia Beach and the 757 area. Expert excavation services for residential and rural properties.',
+				'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula.',
 			url: absoluteUrl('/about'),
 			siteName: COMPANY_INFO.name,
 			image: {
 				url: absoluteUrl('/og-image.jpg'),
 				width: 1200,
 				height: 630,
-				alt: 'The A.W. Vaughan Company - Virginia Beach Excavation Experts'
+				alt: 'The A.W. Vaughan Company - Williamsburg VA Land Management and Clearing'
 			}
 		}
 	};

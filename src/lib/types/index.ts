@@ -57,7 +57,15 @@ export interface ServiceDetail {
 	intro: string;
 	/** Opening narrative block. */
 	problem: { heading: string; paragraphs: string[] };
-	image: ServiceImage;
+	/**
+	 * Optional: a photograph of this service being performed.
+	 *
+	 * Omitted when no honest photograph of the work exists yet. A service page
+	 * must not illustrate itself with a picture of different work — that is
+	 * false content for search engines and a lie to a screen reader. The
+	 * template renders a single column when this is absent.
+	 */
+	image?: ServiceImage;
 	offeringsHeading: string;
 	offerings: ServiceOffering[];
 	cta: { heading: string; body: string };

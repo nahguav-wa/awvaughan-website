@@ -8,6 +8,11 @@
  *
  * Target keywords per service are documented in docs/keyword-strategy.md rather
  * than held here: they inform the copy, but nothing in the app renders them.
+ *
+ * The company previously offered gravel driveway repair, drainage solutions,
+ * shed pads and small excavation. Those services were retired in favour of land
+ * management; their URLs are 301'd in `_redirects` at the project root, and a
+ * test asserts every redirect still points at a route that exists.
  */
 
 import type { Service, ServiceDetail } from '$lib/types';
@@ -17,243 +22,293 @@ import type { Service, ServiceDetail } from '$lib/types';
  */
 export const serviceDetails: ServiceDetail[] = [
 	{
-		slug: 'gravel-driveway-repair',
-		title: 'Gravel Driveway Repair & Restoration',
+		slug: 'land-clearing',
+		title: 'Land Clearing',
 		description:
-			'Expert gravel driveway repair services in the Virginia Beach 757 area. We restore proper crown, fix potholes, eliminate washout problems, and ensure proper drainage for long-lasting results.',
-		heading: 'Gravel Driveway Repair & Restoration',
+			'Land clearing in Williamsburg, VA and across the Historic Triangle. Brush, saplings, trees and stumps taken off building lots, pasture, and overgrown parcels, then graded back to usable ground.',
+		heading: 'Land Clearing in Williamsburg, VA',
 		intro:
-			'Professional gravel driveway repair services in Virginia Beach and the 757 area. We restore your driveway to proper grade and crown for long-lasting results.',
+			'Building lots, reclaimed pasture, fence lines, and parcels that have grown up — cleared and left as ground you can actually use.',
 		problem: {
-			heading: 'Is Your Gravel Driveway Showing Its Age?',
+			heading: 'Reclaiming Ground That Has Grown Up',
 			paragraphs: [
-				"Over time, gravel driveways develop potholes, lose their crown, and suffer from washout. These problems don't just look bad—they cause poor drainage, vehicle damage, and can worsen rapidly if left unaddressed.",
-				'At The A.W. Vaughan Company, we specialize in restoring gravel driveways to their proper condition. Our approach focuses on correct grading and crown restoration, ensuring water flows off your driveway instead of pooling and causing damage.'
+				'Land goes back to woods quickly in this part of Virginia. A field that misses a couple of seasons fills with sweetgum, pine and cedar whips; give it ten years and it is a thicket you cannot walk through, let alone build on. The same thing creeps in from the edges of a yard, swallowing a few feet of lawn a year until the wood line is at the back door.',
+				'There are two honest ways to take it back, and they suit different jobs. Full mechanical clearing pulls the stumps and roots and leaves you bare, gradeable dirt — that is what you want before building, running a driveway, seeding pasture, or putting in a septic field. Forestry mulching grinds everything down in place and leaves the root mat intact, which is faster and gentler on the ground but is not a building surface. We will tell you which one your project actually needs rather than selling you the more expensive one.'
 			]
 		},
 		image: {
-			name: 'work-example-2',
-			alt: 'Gravel driveway repair project in Virginia Beach showing restored crown and proper drainage',
-			width: 900,
+			name: 'about-image',
+			alt: 'Cleared field meeting the wood line on a rural property near Williamsburg, Virginia',
+			width: 844,
 			height: 1125
 		},
-		offeringsHeading: 'Our Driveway Repair Services',
+		offeringsHeading: 'Our Land Clearing Services',
 		offerings: [
 			{
-				title: 'Crown Restoration',
+				title: 'Lot & Building Site Clearing',
 				description:
-					'We restore the proper crown (center-high profile) to your driveway, ensuring water naturally flows to the edges rather than pooling in the middle.'
+					'Full clearing for a house site, shop, barn, driveway route, or septic field — trees down, stumps out, and the site left gradeable.'
 			},
 			{
-				title: 'Pothole Filling & Grading',
+				title: 'Pasture & Field Reclamation',
 				description:
-					'We fill potholes with properly graded gravel and regrade your driveway surface for a smooth, even driving surface that resists future damage.'
+					'Taking a field back from the saplings and briars that have claimed it, so it can be mowed, fenced, and grazed again.'
 			},
 			{
-				title: 'Washout Repair & Prevention',
+				title: 'Stump Removal & Grubbing',
 				description:
-					'We repair washout damage and address the underlying drainage issues that caused it, preventing recurring problems and protecting your investment.'
+					'Stumps and root balls pulled rather than ground flush, for sites where anything left in the ground will cause problems later.'
 			},
 			{
-				title: 'New Gravel & Edge Definition',
+				title: 'Debris Handling & Final Grade',
 				description:
-					'We add fresh gravel where needed and define clean driveway edges, giving your property a well-maintained, professional appearance.'
+					'Material chipped, piled, burned where permitted, or hauled — then the site graded so water leaves it. Clearing changes how a parcel drains, and that is not an afterthought for us.'
 			}
 		],
 		cta: {
-			heading: 'Get Your Driveway Fixed Right',
-			body: 'Contact us today for a free assessment of your gravel driveway.'
+			heading: 'Ready to Clear Your Property?',
+			body: 'Free walk-through and quote across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Expert gravel driveway repair services including crown restoration, pothole filling, washout repair, and professional grading in Virginia Beach and the 757 area.',
+			'Land clearing including building site clearing, pasture reclamation, stump removal and grubbing, and final grading in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Gravel Driveway Repair & Restoration | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Land Clearing Williamsburg VA | The A.W. Vaughan Company',
 			description:
-				'Expert gravel driveway repair in Virginia Beach and the 757 area. Crown restoration, pothole filling, washout repair, and professional driveway grading. Call 757-402-1100 for a free quote.',
-			ogTitle: 'Gravel Driveway Repair & Restoration | The A.W. Vaughan Company',
+				'Land clearing in Williamsburg, VA. Building site clearing, pasture reclamation, stump removal, and grading in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Land Clearing in Williamsburg, VA | The A.W. Vaughan Company',
 			ogDescription:
-				'Professional gravel driveway repair services in Virginia Beach. Crown restoration, pothole filling, and washout repair.',
-			ogImageAlt: 'Gravel Driveway Repair Services - The A.W. Vaughan Company'
+				'Building lots, pasture reclamation, and overgrown parcels cleared across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Land clearing in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
-		slug: 'drainage-solutions',
-		title: 'Drainage Solutions & Grading',
+		slug: 'bush-hogging',
+		title: 'Bush Hogging',
 		description:
-			'Professional drainage solutions for Norfolk VA and Hampton Roads. We fix standing water issues, install swales and ditches, repair culverts, and provide expert driveway grading to prevent water damage.',
-		heading: 'Drainage Solutions & Grading',
+			'Bush hogging and field mowing in Williamsburg, VA and the Middle Peninsula. Overgrown fields, pasture, vacant lots, hunting land and right-of-way cut back in a single pass.',
+		heading: 'Bush Hogging in Williamsburg & the Middle Peninsula',
 		intro:
-			'Eliminate standing water and protect your property with professional drainage solutions designed for Virginia Beach soil and weather conditions.',
+			'Overgrown fields, pasture, vacant lots and hunting land cut back — once to reclaim it, or on a schedule so it never gets away from you again.',
 		problem: {
-			heading: 'Standing Water Damaging Your Property?',
+			heading: 'Field Gone to Seed?',
 			paragraphs: [
-				'Poor drainage is one of the most common and destructive problems for properties in the Virginia Beach area. Standing water erodes driveways, damages foundations, creates breeding grounds for mosquitoes, and turns yards into muddy messes.',
-				"We design and implement drainage solutions customized for your property's specific needs. Our understanding of local soil conditions and coastal weather patterns means we build systems that work effectively year-round."
-			]
-		},
-		image: {
-			name: 'work-example-3',
-			alt: 'Professional drainage solution installation in Virginia Beach property',
-			width: 710,
-			height: 1125
-		},
-		offeringsHeading: 'Our Drainage Services',
-		offerings: [
-			{
-				title: 'Swale & Ditch Repair',
-				description:
-					'We install and repair swales and ditches to channel water away from your driveway, buildings, and sensitive areas of your property.'
-			},
-			{
-				title: 'French Drain Systems',
-				description:
-					"Subsurface French drains collect and redirect groundwater, solving persistent wet spots and protecting your property's foundation."
-			},
-			{
-				title: 'Culvert Installation & Repair',
-				description:
-					'We install new culverts and repair existing ones to ensure proper water flow under driveways and access roads.'
-			},
-			{
-				title: 'Site Grading & Erosion Control',
-				description:
-					"Professional grading directs water flow away from structures and prevents erosion, protecting your property's long-term value."
-			}
-		],
-		cta: {
-			heading: 'Solve Your Drainage Problems',
-			body: 'Contact us today for a free drainage assessment.'
-		},
-		schemaDescription:
-			'Professional drainage solutions including French drains, swale repair, culvert installation, and site grading in Virginia Beach and the 757 area.',
-		seo: {
-			title: 'Drainage Solutions & Grading | Virginia Beach 757 | The A.W. Vaughan Company',
-			description:
-				'Professional drainage solutions in Virginia Beach and the 757 area. French drains, swale repair, culvert installation, and site grading to eliminate standing water. Call 757-402-1100.',
-			ogTitle: 'Drainage Solutions & Grading | The A.W. Vaughan Company',
-			ogDescription:
-				'Professional drainage solutions and grading services in Virginia Beach. Eliminate standing water and protect your property.',
-			ogImageAlt: 'Drainage Solutions - The A.W. Vaughan Company'
-		}
-	},
-	{
-		slug: 'shed-pad-preparation',
-		title: 'Shed Pad & Foundation Preparation',
-		description:
-			'Quality shed pad preparation and foundation work in Virginia Beach. We provide precise site preparation, proper grading, and solid base construction for sheds, small buildings, and structures.',
-		heading: 'Shed Pad & Foundation Preparation',
-		intro:
-			'Professional site preparation for sheds and small structures in Virginia Beach. We build level, stable foundations that drain properly and last for years.',
-		problem: {
-			heading: 'Getting a New Shed or Structure?',
-			paragraphs: [
-				"A proper foundation is the most important factor in your shed's longevity. Without correct site preparation, sheds settle unevenly, doors stop closing, and moisture damage sets in quickly.",
-				'We prepare shed pads with precise leveling, proper drainage grading, and compacted gravel bases that provide a stable, long-lasting foundation. Our preparation ensures your shed stays level and dry for years to come.'
+				'A rotary cutter is the right tool for grass, weeds, briars and saplings up to roughly two inches through. That covers most fields that have sat a season or two, most vacant lots, and most hunting land between seasons. Past about two inches the cutter starts fighting the material instead of cutting it, and the job becomes forestry mulching — we will say so up front rather than beating up your property and our equipment to avoid quoting the other service.',
+				'What bush hogging really buys you is that the field stays a field. Cut once or twice a season and the woody stuff never gets established; skip three years and you are paying for clearing instead of mowing. It also pushes back the ticks and snakes that thrive in waist-high cover, and it keeps you clear of county nuisance and vegetation ordinances on a lot you are holding.'
 			]
 		},
 		image: {
 			name: 'work-example-4',
-			alt: 'Prepared shed pad with level gravel base in Virginia Beach',
+			alt: 'Field cut back around a utility pedestal, with the uncut brush line still standing behind it',
 			width: 675,
 			height: 844
 		},
-		offeringsHeading: 'Our Preparation Process',
+		offeringsHeading: 'Our Bush Hogging Services',
 		offerings: [
 			{
-				title: 'Site Clearing & Leveling',
+				title: 'Overgrown Field & Pasture Mowing',
 				description:
-					'We clear vegetation, remove debris, and level the site to create a clean, even surface for your foundation.'
+					'First-cut work on fields that have gone up, and routine cutting to keep pasture and hay ground clean.'
 			},
 			{
-				title: 'Drainage Grading',
+				title: 'Vacant Lot & Right-of-Way Cutting',
 				description:
-					'Proper grading ensures water flows away from your shed, preventing moisture damage and extending the life of your structure.'
+					'Lots being held, road frontage, easements and utility corridors kept cut and presentable.'
 			},
 			{
-				title: 'Gravel Base Installation',
+				title: 'Hunting Land & Food Plot Maintenance',
 				description:
-					'We install and spread the right type and depth of gravel to create a solid, well-draining base for your structure.'
+					'Shooting lanes, plot edges, and access lanes cut back ahead of the season on properties out toward New Kent, West Point and King and Queen.'
 			},
 			{
-				title: 'Compaction & Final Prep',
+				title: 'Scheduled Seasonal Cutting',
 				description:
-					'Professional compaction ensures your base is solid and stable, preventing settling and providing a level surface for years to come.'
+					'Put the property on a schedule and we come when it needs it, which costs less over a year than reclaiming it every third spring.'
 			}
 		],
 		cta: {
-			heading: 'Ready to Prepare Your Site?',
-			body: 'Contact us for a free site assessment and quote.'
+			heading: 'Get Your Field Cut',
+			body: 'Free quote on one-time or seasonal cutting anywhere from Williamsburg to the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Professional shed pad preparation including site clearing, leveling, gravel base installation, and compaction in Virginia Beach and the 757 area.',
+			'Bush hogging and rotary mowing for overgrown fields, pasture, vacant lots, right-of-way and hunting land in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Shed Pad & Foundation Preparation | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Bush Hogging Williamsburg VA | Field & Pasture Mowing',
 			description:
-				'Professional shed pad preparation and foundation work in Virginia Beach. Precise site leveling, gravel base installation, and proper drainage for sheds and small structures. Call 757-402-1100.',
-			ogTitle: 'Shed Pad & Foundation Preparation | The A.W. Vaughan Company',
+				'Bush hogging in Williamsburg, VA. Overgrown fields, pasture, vacant lots, right-of-way and hunting land cut back in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Bush Hogging & Field Mowing | The A.W. Vaughan Company',
 			ogDescription:
-				'Professional shed pad preparation in Virginia Beach. Site leveling, gravel base installation, and proper drainage.',
-			ogImageAlt: 'Shed Pad Preparation - The A.W. Vaughan Company'
+				'Overgrown fields, pasture and hunting land cut back across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Bush hogging and field mowing in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
-		slug: 'excavation',
-		title: 'Small Excavation & Site Work',
+		slug: 'forestry-mulching',
+		title: 'Forestry Mulching',
 		description:
-			'Specialized small excavation contractor serving the 757 area. From culvert repair to rural property maintenance, we handle projects too small for large contractors but requiring professional expertise.',
-		heading: 'Small Excavation & Site Work',
+			'Forestry mulching in Williamsburg, VA and the Middle Peninsula. Standing brush and small trees ground in place into a mulch mat — no burn piles, no hauling, no torn-up ground.',
+		heading: 'Forestry Mulching in Williamsburg, VA',
 		intro:
-			"Specialized small excavation services for residential and rural properties in Virginia Beach and the 757 area. We handle the projects larger contractors won't.",
+			'Underbrush, invasives, fence lines and view corridors cleared in a single pass, with the material left on the ground instead of in a burn pile.',
 		problem: {
-			heading: 'The Right-Sized Excavation Contractor',
+			heading: 'Clearing Without the Cleanup',
 			paragraphs: [
-				"Many excavation contractors focus on large commercial projects and won't take on smaller residential or rural jobs. That's where we come in. The A.W. Vaughan Company specializes in exactly these projects.",
-				'From clearing a small lot to trenching for utilities, repairing culverts, or maintaining rural property access roads, we bring professional expertise and the right equipment to every job, no matter the size.'
+				'A mulching head grinds standing brush and small trees where they stand and lays the material down as a mulch mat. That removes the three worst parts of conventional clearing in one go: no burn piles and no permit to sit with, no trucking debris off the property, and no field of stump holes to fill afterwards. Because the machine works off the surface rather than digging, the ground comes through largely undisturbed.',
+				'The mat that gets left behind is doing real work, not just sitting there. It holds soil on slopes through a hard rain, suppresses the seed bank that would otherwise come straight back, and breaks down into the ground over a couple of seasons. On the sandy ground around Toano and Norge, where bare cleared soil washes badly, that mat is often worth more than the clearing itself. Honest limits: this is sized for stems up to roughly eight inches, anything bigger comes out another way, and since the roots stay in the ground it is not a substitute for grubbing a building site.'
+			]
+		},
+		offeringsHeading: 'Our Forestry Mulching Services',
+		offerings: [
+			{
+				title: 'Underbrush & Understory Clearing',
+				description:
+					'Clearing the tangle beneath mature hardwoods while leaving the trees you want — the fastest way to make woods walkable again.'
+			},
+			{
+				title: 'Invasive Species Knockdown',
+				description:
+					'Privet, autumn olive, wisteria, tree-of-heaven and Bradford pear taken down hard. Mulching alone will not kill the roots, so we will be straight with you about follow-up treatment.'
+			},
+			{
+				title: 'Fence & Property Line Clearing',
+				description:
+					'Grown-in fence lines, survey lines and easements opened back up so a fence can be run, repaired, or simply seen.'
+			},
+			{
+				title: 'Selective Clearing & View Lines',
+				description:
+					'Opening a view to the water or the field, thinning without clear-cutting, and cutting light into ground you want to plant.'
+			}
+		],
+		cta: {
+			heading: 'Clear It Without the Burn Pile',
+			body: 'Free assessment across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
+		},
+		schemaDescription:
+			'Forestry mulching including underbrush clearing, invasive species removal, fence line clearing and selective view-line clearing in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Forestry Mulching Williamsburg VA | The A.W. Vaughan Company',
+			description:
+				'Forestry mulching in Williamsburg, VA. Underbrush, invasives, fence lines and view corridors cleared in place with no burn piles, in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Forestry Mulching in Williamsburg, VA | The A.W. Vaughan Company',
+			ogDescription:
+				'Brush and small trees ground in place — no burn piles, no hauling, no stump holes. Across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Forestry mulching in Williamsburg, VA - The A.W. Vaughan Company'
+		}
+	},
+	{
+		slug: 'trail-systems',
+		title: 'Trail Systems',
+		description:
+			'Trail cutting and maintenance in Williamsburg, VA and the Middle Peninsula. ATV, walking and hunting trails laid out to shed water, cut, and kept open — plus crossings at the wet spots.',
+		heading: 'Trail Systems & Recreational Access',
+		intro:
+			'ATV and UTV trails, walking and riding trails, hunting access and firebreaks — routed to drain, cut clean, and maintained so they stay open.',
+		problem: {
+			heading: 'A Trail Is Only as Good as Its Drainage',
+			paragraphs: [
+				'Almost every failed trail we are called out to fix failed the same way. It was cut straight up the slope, so the first hard rain used it as a channel, and by the third it was a rutted gully that is harder to walk than the woods beside it. A trail is a small piece of earthwork, and the route has to be chosen for where water will go long before anyone thinks about where the view is.',
+				'This is the part of the old business we brought with us. We came up doing driveway grading and drainage, and the same rules apply at trail scale: cross the slope rather than run down it, outslope the tread so water sheds off instead of collecting, break long runs with water bars, and put a real crossing at the wet spot rather than hoping it dries out. Get that right at layout and the trail needs a cut once a year instead of a rebuild every spring.'
+			]
+		},
+		offeringsHeading: 'Our Trail Services',
+		offerings: [
+			{
+				title: 'Trail Layout & Routing',
+				description:
+					'We walk the property with you and lay the route to the ground — grade, drainage, and the places worth getting to.'
+			},
+			{
+				title: 'Trail Cutting & Mulching',
+				description:
+					'The corridor cleared and mulched to the width you want, from a foot trail to something a side-by-side or a tractor can use.'
+			},
+			{
+				title: 'Crossings, Culverts & Water Bars',
+				description:
+					'Wet crossings, ditch lines and low spots built properly, so the trail survives the weather instead of being defined by it.'
+			},
+			{
+				title: 'Trail Maintenance & Reopening',
+				description:
+					'Existing trails brushed back, re-cut, and repaired — including ones that have been closed in for years.'
+			}
+		],
+		cta: {
+			heading: 'Open Up Your Property',
+			body: 'Free walk-through and quote on new trails or reopening old ones, anywhere across the Historic Triangle and Middle Peninsula.'
+		},
+		schemaDescription:
+			'Trail system layout, cutting, drainage crossings and maintenance for ATV, walking, riding and hunting trails in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Trail Systems Williamsburg VA | ATV & Hunting Trail Cutting',
+			description:
+				'Trail cutting and maintenance in Williamsburg, VA. ATV, walking and hunting trails routed to drain properly, with crossings and water bars, in New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Trail Systems & Recreational Access | The A.W. Vaughan Company',
+			ogDescription:
+				'ATV, walking and hunting trails laid out to shed water, cut clean, and kept open across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt:
+				'Trail cutting and recreational access in Williamsburg, VA - The A.W. Vaughan Company'
+		}
+	},
+	{
+		slug: 'property-maintenance',
+		title: 'Property Maintenance',
+		description:
+			'Grass cutting, lawn maintenance and general property upkeep in Williamsburg, VA. Larger residential lots, rural property and acreage kept mown, trimmed and presentable year round.',
+		heading: 'Property Maintenance in Williamsburg, VA',
+		intro:
+			'Grass cutting, lawn maintenance and the general upkeep that keeps a larger lot or a rural property looking like somebody is on top of it.',
+		problem: {
+			heading: 'Keeping a Property Looking Kept',
+			paragraphs: [
+				'This is the finish side of what we do, and it is a different job from bush hogging. A rotary cutter is for ground that has got away from you — a field, a lot gone to briars. This is mown grass, trimmed edges, and a property that looks maintained week to week. Both are mowing; they are not the same work and they do not take the same equipment.',
+				'Bigger lots out here fall through a gap. They are too much ground and too far out for a lawn company working a tight suburban route, and too fine for the rough-cutting crowd. So the grass gets cut and everything else gets left: around the shed and the well head, along the fence, at the culvert ends, behind the propane tank, and the wood line quietly taking a foot of yard a year. We already have the equipment out on these properties for the heavier work, which is what makes the acre-to-five-acre places worth doing properly.'
 			]
 		},
 		image: {
 			name: 'work-example-2',
-			alt: 'Small excavation and site work project in Virginia Beach',
+			alt: 'Mown grounds around an outbuilding on a property near Williamsburg, Virginia',
 			width: 900,
 			height: 1125
 		},
-		offeringsHeading: 'Our Excavation Services',
+		offeringsHeading: 'Our Property Maintenance Services',
 		offerings: [
 			{
-				title: 'Small Lot Clearing & Grading',
+				title: 'Grass Cutting & Lawn Maintenance',
 				description:
-					'We clear and grade small lots for construction, landscaping, or property improvement projects with precision equipment.'
+					'Regular mowing on larger residential lots, rural property and acreage, on a schedule that matches how fast it actually grows rather than a fixed suburban route.'
 			},
 			{
-				title: 'Trenching for Utilities',
+				title: 'Trimming & Edging',
 				description:
-					'Professional trenching services for water lines, electrical conduit, drainage pipes, and other utility installations.'
+					'The places a mower cannot reach and most crews skip — around outbuildings, fence lines and posts, well heads, culvert ends, propane tanks and utility pedestals.'
 			},
 			{
-				title: 'Culvert Repair & Installation',
+				title: 'Wood Line & Yard Edge Upkeep',
 				description:
-					'We repair damaged culverts and install new ones to maintain proper water flow under driveways and access roads.'
+					'Keeping the tree line where it is. Left alone it takes a foot or two of yard a year, and reclaiming it later costs far more than holding it does.'
 			},
 			{
-				title: 'Rural Property Maintenance',
+				title: 'Seasonal & Absentee Property Care',
 				description:
-					'Access road grading, drainage maintenance, and general site work to keep rural properties functional and well-maintained.'
+					'Rental, hunting, weekend and inherited property kept presentable for owners who are not there to see it — including one-time cleanups before a visit or a sale.'
 			}
 		],
 		cta: {
-			heading: 'Need Excavation Work Done?',
-			body: 'Contact us for a free consultation and quote.'
+			heading: 'Keep It Looking Kept',
+			body: 'Free quote on a one-time cleanup or regular maintenance, across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Specialized small excavation services including lot clearing, trenching, culvert repair, and rural property maintenance in Virginia Beach and the 757 area.',
+			'Property maintenance including grass cutting, lawn maintenance, trimming and edging, wood line upkeep and seasonal property care in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Small Excavation & Site Work | Virginia Beach 757 | The A.W. Vaughan Company',
+			title: 'Property Maintenance Williamsburg VA | Lawn & Grass Cutting',
 			description:
-				'Specialized small excavation contractor in Virginia Beach and the 757 area. Lot clearing, trenching, culvert repair, and rural property maintenance. Call 757-402-1100 for a free quote.',
-			ogTitle: 'Small Excavation & Site Work | The A.W. Vaughan Company',
+				'Grass cutting, lawn maintenance and property upkeep in Williamsburg, VA. Larger residential lots, rural property and acreage in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Property Maintenance & Lawn Care | The A.W. Vaughan Company',
 			ogDescription:
-				'Specialized small excavation services in Virginia Beach. Lot clearing, trenching, and rural property maintenance.',
-			ogImageAlt: 'Small Excavation Services - The A.W. Vaughan Company'
+				'Grass cutting, trimming and general upkeep for larger lots and rural property across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt:
+				'Property maintenance and lawn care in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	}
 ];

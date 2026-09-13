@@ -13,22 +13,22 @@ import { absoluteUrl, COMPANY_INFO } from '$lib/config/constants';
  */
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title: 'Our Services - Gravel Driveway Repair & Drainage Solutions | Virginia Beach 757',
+		title: 'Services | Land Clearing, Mulching & Property Maintenance in Williamsburg VA',
 		description:
-			'Professional excavation services including gravel driveway repair, drainage solutions, shed pad preparation, and site work in Virginia Beach and the 757 area.',
+			'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance in Williamsburg, VA. Serving Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
 		canonical: absoluteUrl('/services'),
 		openGraph: {
 			type: 'website',
-			title: 'Professional Excavation Services | The A.W. Vaughan Company',
+			title: 'Land Management Services | The A.W. Vaughan Company',
 			description:
-				'Expert gravel driveway repair, drainage solutions, shed pad preparation, and excavation services serving Virginia Beach and the 757 area.',
+				'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula.',
 			url: absoluteUrl('/services'),
 			siteName: COMPANY_INFO.name,
 			image: {
 				url: absoluteUrl('/og-image.jpg'),
 				width: 1200,
 				height: 630,
-				alt: 'The A.W. Vaughan Company Excavation Services'
+				alt: 'The A.W. Vaughan Company land management services in Williamsburg, VA'
 			}
 		}
 	};

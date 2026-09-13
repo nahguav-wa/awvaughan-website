@@ -38,6 +38,17 @@ export function getLocalBusinessSchema() {
 		logo: absoluteUrl('/Horizontal Color Logo.svg'),
 		image: absoluteUrl('/og-image.jpg'),
 		foundingDate: String(COMPANY_INFO.yearEstablished),
+		// The company started in Virginia Beach and relocated to Williamsburg.
+		// `address` is where it operates from now; this records where it began.
+		foundingLocation: {
+			'@type': 'Place',
+			address: {
+				'@type': 'PostalAddress',
+				addressLocality: 'Virginia Beach',
+				addressRegion: 'VA',
+				addressCountry: 'US'
+			}
+		},
 		// The social profiles are what let a knowledge panel connect this entity
 		// to the accounts that post about it.
 		sameAs: [
@@ -48,25 +59,28 @@ export function getLocalBusinessSchema() {
 		],
 		address: {
 			'@type': 'PostalAddress',
-			addressLocality: 'Virginia Beach',
+			addressLocality: 'Williamsburg',
 			addressRegion: 'VA',
 			addressCountry: 'US'
 		},
 		geo: {
 			'@type': 'GeoCoordinates',
-			latitude: 36.8529,
-			longitude: -75.978
+			latitude: 37.2707,
+			longitude: -76.7075
 		},
 		areaServed: COMPANY_INFO.serviceArea.regions.map((region) => ({
 			'@type': 'City',
 			name: region
 		})),
 		serviceType: [
-			'Gravel Driveway Repair',
-			'Drainage Solutions',
-			'Excavation Services',
-			'Driveway Grading',
-			'Shed Pad Preparation'
+			'Land Clearing',
+			'Bush Hogging',
+			'Forestry Mulching',
+			'Trail Construction',
+			'Brush Removal',
+			'Pasture Reclamation',
+			'Property Maintenance',
+			'Lawn Maintenance'
 		]
 	};
 }
@@ -100,7 +114,7 @@ export function getServiceSchema(serviceName: string, description: string) {
  */
 export function getDefaultSEO(overrides?: Partial<SEOMetadata>): SEOMetadata {
 	return {
-		title: `${COMPANY_INFO.name} | ${COMPANY_INFO.businessType} | ${COMPANY_INFO.serviceArea.primary}`,
+		title: `${COMPANY_INFO.name} | ${COMPANY_INFO.businessType} | ${COMPANY_INFO.locationFull}`,
 		description: COMPANY_INFO.description,
 		type: 'business.business',
 		ogImage: '/og-image.jpg',

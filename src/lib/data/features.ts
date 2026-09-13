@@ -12,21 +12,21 @@ import { Zap, CheckCircle, Users } from '@lucide/svelte';
  */
 export const features: Feature[] = [
 	{
-		title: 'Fast & Efficient',
+		title: 'Right-Sized Equipment',
 		description:
-			'Quick turnaround times without compromising quality. We understand your driveway and drainage issues need prompt attention.',
+			'Machines that fit through a farm gate and down a narrow lane without tearing up the ground you are keeping.',
 		icon: Zap
 	},
 	{
-		title: 'Quality Assured',
+		title: 'We Think About Water',
 		description:
-			'Rigorous standards ensuring the best outcomes. Every gravel driveway repair and drainage solution is built to last.',
+			'We came up doing grading and drainage. Cleared ground and new trails change where water goes, and we build for that instead of finding out next spring.',
 		icon: CheckCircle
 	},
 	{
-		title: 'Local Expert Team',
+		title: 'Local Expertise',
 		description:
-			'Experienced professionals who know Virginia Beach soil, drainage patterns, and climate. Dedicated to your success.',
+			'Virginia pine and hardwood, the invasives that take over here, and how fast a field reverts on Toano sand or Middle Peninsula bottomland.',
 		icon: Users
 	}
 ];

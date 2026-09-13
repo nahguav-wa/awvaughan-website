@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { SECURITY_HEADERS } from './security-headers';
-import { META_PIXEL_ID, SITE_URL } from './constants';
+import { META_PIXEL_ID, ROUTES, SITE_URL } from './constants';
+import { serviceDetails } from '$lib/data/services';
 
 /**
  * Guards against the class of bug that caused most of the problems here: two
@@ -116,6 +117,53 @@ describe('no placeholder configuration reaches the build', () => {
 		];
 		for (const file of files) {
 			expect(read(file)).not.toContain('placeholder_replace_me');
+		}
+	});
+});
+
+describe('_redirects for retired service pages', () => {
+	/** [source, destination] for each non-comment, non-blank line. */
+	function redirects(): Array<[string, string]> {
+		return read('_redirects')
+			.split('\n')
+			.map((line) => line.trim())
+			.filter((line) => line && !line.startsWith('#'))
+			.map((line) => {
+				const [source, destination] = line.split(/\s+/);
+				return [source, destination] as [string, string];
+			});
+	}
+
+	const liveRoutes = () => [
+		...Object.values(ROUTES),
+		...serviceDetails.map(({ slug }) => `/services/${slug}`)
+	];
+
+	it('sends every retired service URL somewhere that still exists', () => {
+		// A redirect to a page that was itself removed is a 404 with extra steps.
+		const routes = liveRoutes();
+		for (const [source, destination] of redirects()) {
+			expect(routes, `${source} redirects to ${destination}, which is not a route`).toContain(
+				destination
+			);
+		}
+	});
+
+	it('never redirects a URL that is still a live service page', () => {
+		// A redirect shadows the page: the asset handler answers before the
+		// prerendered HTML is ever served, so the service would be unreachable.
+		const routes = liveRoutes();
+		for (const [source] of redirects()) {
+			expect(routes, `${source} is redirected but is still a live route`).not.toContain(source);
+		}
+	});
+
+	it('uses permanent redirects, so the new URL is the one that gets indexed', () => {
+		for (const line of read('_redirects')
+			.split('\n')
+			.map((l) => l.trim())
+			.filter((l) => l && !l.startsWith('#'))) {
+			expect(line, `${line} should end in 301`).toMatch(/\s301$/);
 		}
 	});
 });

@@ -17,11 +17,10 @@
 
 		<!-- Company Description - lg size, regular weight -->
 		<p class="mb-8 text-lg font-normal text-gray-600">
-			We are The A.W. Vaughan Company, a leading gravel driveway repair and drainage solutions
-			provider in Virginia Beach and the 757 area. With specialized expertise in excavation,
-			driveway grading, and rural property maintenance, we deliver results that exceed expectations.
-			From fixing standing water issues to professional shed pad preparation, we're the small
-			excavation contractor dedicated to your success.
+			The A.W. Vaughan Company is a land management contractor based in Williamsburg, Virginia. We
+			clear land, bush hog fields that have gone up, mulch out underbrush and invasives, cut trail
+			systems that drain properly, and keep grass and grounds maintained — on rural and residential
+			property across Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.
 		</p>
 
 		<!-- Value Propositions Grid -->

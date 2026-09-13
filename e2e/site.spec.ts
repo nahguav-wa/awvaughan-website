@@ -117,10 +117,11 @@ test.describe('page metadata', () => {
 			'/',
 			'/about',
 			'/services',
-			'/services/gravel-driveway-repair',
-			'/services/drainage-solutions',
-			'/services/shed-pad-preparation',
-			'/services/excavation',
+			'/services/land-clearing',
+			'/services/bush-hogging',
+			'/services/forestry-mulching',
+			'/services/trail-systems',
+			'/services/property-maintenance',
 			'/contact'
 		]) {
 			await page.goto(path, { waitUntil: 'domcontentloaded' });
@@ -226,21 +227,38 @@ test.describe('contact form', () => {
 test.describe('service pages', () => {
 	test('all four render from the shared template', async ({ page }) => {
 		test.slow();
+		// The `heading` field of each record in src/lib/data/services.ts — which is
+		// not the same string as its `title`, the card label used on the listing.
 		const expected = [
-			['/services/gravel-driveway-repair', 'Gravel Driveway Repair & Restoration'],
-			['/services/drainage-solutions', 'Drainage Solutions & Grading'],
-			['/services/shed-pad-preparation', 'Shed Pad & Foundation Preparation'],
-			['/services/excavation', 'Small Excavation & Site Work']
+			['/services/land-clearing', 'Land Clearing in Williamsburg, VA'],
+			['/services/bush-hogging', 'Bush Hogging in Williamsburg & the Middle Peninsula'],
+			['/services/forestry-mulching', 'Forestry Mulching in Williamsburg, VA'],
+			['/services/trail-systems', 'Trail Systems & Recreational Access'],
+			['/services/property-maintenance', 'Property Maintenance in Williamsburg, VA']
 		];
 
 		for (const [path, heading] of expected) {
 			await page.goto(path, { waitUntil: 'domcontentloaded' });
 			await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
-			// Four offerings and a photograph, from the service data. Scoped to
-			// main, since the footer has headings of its own.
+			// Four offerings, from the service data. Scoped to main, since the
+			// footer has headings of its own. The photograph is deliberately not
+			// asserted: `image` is optional, and a service with no honest photo of
+			// the work ships without one.
 			const main = page.locator('#main-content');
 			await expect(main.getByRole('heading', { level: 3 })).toHaveCount(4);
-			await expect(main.locator('picture img').first()).toBeVisible();
+		}
+	});
+
+	test('retired service URLs redirect instead of 404ing', async ({ page }) => {
+		test.slow();
+		// These four were retired when the company moved to land management.
+		// Redirects live in _redirects and are applied by Cloudflare Pages, which
+		// `vite preview` does not emulate — so this only asserts the destinations
+		// are reachable. The mapping itself is guarded in deployment.test.ts.
+		const destinations = ['/services/land-clearing', '/services'];
+		for (const path of destinations) {
+			const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+			expect(response?.status(), `${path} should be served`).toBe(200);
 		}
 	});
 
