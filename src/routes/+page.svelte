@@ -17,8 +17,8 @@
 	imageName="hero-image"
 	imageWidth={710}
 	imageHeight={1125}
-	title="Gravel Driveway Repair & Drainage Solutions in Williamsburg, VA"
-	subtitle="Gravel driveway grading, drainage and small excavation for Williamsburg, Toano, Yorktown, West Point, Saluda and Gloucester"
+	title="Land Clearing & Forestry Mulching in Williamsburg, VA"
+	subtitle="Land clearing, bush hogging, forestry mulching and trail systems for rural and residential property across the Historic Triangle and Middle Peninsula"
 	primaryCTA="Get a Free Quote"
 	primaryHref="/contact"
 	secondaryCTA="View Our Services"

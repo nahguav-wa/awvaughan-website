@@ -71,12 +71,12 @@ export const COMPANY_INFO = {
 	},
 
 	// Business details for SEO
-	businessType: 'Excavation and Grading Contractor',
+	businessType: 'Land Management Contractor',
 	yearEstablished: 2025,
 	/** Where the company started. It is now based in Williamsburg. */
 	foundedIn: 'Virginia Beach, Virginia',
 	description:
-		'Gravel driveway repair, drainage solutions, and small excavation in Williamsburg, VA. Serving Toano, Yorktown, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula with driveway grading, shed pad preparation, and rural property maintenance.'
+		'Land management in Williamsburg, VA: land clearing, bush hogging, forestry mulching, and trail systems. Serving Toano, Yorktown, New Kent, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula.'
 } as const;
 
 /**

@@ -14,8 +14,8 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = () => {
 	return {
 		seo: getDefaultSEO({
-			title: `Gravel Driveway Repair & Drainage in Williamsburg VA | ${COMPANY_INFO.name}`,
-			description: `Gravel driveway repair, drainage solutions, and small excavation in Williamsburg, VA. Serving Toano, Yorktown, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula. Call ${COMPANY_INFO.phone} for a free quote.`,
+			title: `Land Clearing & Forestry Mulching in Williamsburg VA | ${COMPANY_INFO.name}`,
+			description: `Land clearing, bush hogging, forestry mulching and trail systems in Williamsburg, VA. Serving Toano, Yorktown, New Kent, West Point, Saluda and Gloucester across the Historic Triangle and Middle Peninsula. Call ${COMPANY_INFO.phone} for a free quote.`,
 			canonical: absoluteUrl('/'),
 			ogImage: absoluteUrl('/og-image.jpg')
 		})

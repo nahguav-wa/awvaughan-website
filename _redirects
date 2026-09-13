@@ -1,0 +1,24 @@
+# Redirects for statically served routes.
+#
+# Like _headers, this file lives in the project root because
+# @sveltejs/adapter-cloudflare requires it there and copies it into the build.
+# Cloudflare Pages applies these at its asset handler, before a prerendered
+# page is served, so they reach routes the Worker never sees.
+#
+# These four service pages were retired when the company moved from excavation
+# and drainage work to land management. Without a redirect each becomes a 404,
+# throwing away any link equity and dropping anyone who arrives from an old
+# search result or a saved link.
+#
+# Small excavation is the closest survivor of the retired set, so it points at
+# land clearing. The other three have no equivalent service, and sending them to
+# a specific page we do not offer would be worse than honest: they land on the
+# services listing, which shows what the company does now.
+#
+# A test in src/lib/config/deployment.test.ts asserts every destination below is
+# still a real route and every source is no longer a live service slug.
+
+/services/excavation              /services/land-clearing  301
+/services/gravel-driveway-repair  /services                301
+/services/drainage-solutions      /services                301
+/services/shed-pad-preparation    /services                301

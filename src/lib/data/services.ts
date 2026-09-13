@@ -8,6 +8,11 @@
  *
  * Target keywords per service are documented in docs/keyword-strategy.md rather
  * than held here: they inform the copy, but nothing in the app renders them.
+ *
+ * The company previously offered gravel driveway repair, drainage solutions,
+ * shed pads and small excavation. Those services were retired in favour of land
+ * management; their URLs are 301'd in `_redirects` at the project root, and a
+ * test asserts every redirect still points at a route that exists.
  */
 
 import type { Service, ServiceDetail } from '$lib/types';
@@ -17,243 +22,232 @@ import type { Service, ServiceDetail } from '$lib/types';
  */
 export const serviceDetails: ServiceDetail[] = [
 	{
-		slug: 'gravel-driveway-repair',
-		title: 'Gravel Driveway Repair & Restoration',
+		slug: 'land-clearing',
+		title: 'Land Clearing',
 		description:
-			'Gravel driveway repair in Williamsburg, VA and across the Historic Triangle. We restore proper crown, fill potholes, stop washout, and get water running off the driveway instead of standing in it.',
-		heading: 'Gravel Driveway Repair in Williamsburg, VA',
+			'Land clearing in Williamsburg, VA and across the Historic Triangle. Brush, saplings, trees and stumps taken off building lots, pasture, and overgrown parcels, then graded back to usable ground.',
+		heading: 'Land Clearing in Williamsburg, VA',
 		intro:
-			'Crown restoration, pothole repair, and regrading for gravel driveways in Williamsburg, Toano, Yorktown, and out through New Kent, West Point, Gloucester and Saluda.',
+			'Building lots, reclaimed pasture, fence lines, and parcels that have grown up — cleared and left as ground you can actually use.',
 		problem: {
-			heading: 'Is Your Gravel Driveway Holding Water?',
+			heading: 'Reclaiming Ground That Has Grown Up',
 			paragraphs: [
-				'Gravel driveways fail in a predictable order. The crown flattens, water stops running to the edges and starts standing in the wheel tracks, the base softens, and then every vehicle that drives over it pushes a rut deeper. Once the ruts are established a hard rain will wash the stone straight down the slope.',
-				'Adding a load of gravel on top does not fix it — it just gives the next storm more to move. We regrade the driveway to a proper center-high crown first, so the surface sheds water, and then place stone where it will actually stay. On long rural drives around New Kent and West Point that usually means addressing the ditch line at the same time, because a driveway can only drain as well as the ground beside it.'
+				'Land goes back to woods quickly in this part of Virginia. A field that misses a couple of seasons fills with sweetgum, pine and cedar whips; give it ten years and it is a thicket you cannot walk through, let alone build on. The same thing creeps in from the edges of a yard, swallowing a few feet of lawn a year until the wood line is at the back door.',
+				'There are two honest ways to take it back, and they suit different jobs. Full mechanical clearing pulls the stumps and roots and leaves you bare, gradeable dirt — that is what you want before building, running a driveway, seeding pasture, or putting in a septic field. Forestry mulching grinds everything down in place and leaves the root mat intact, which is faster and gentler on the ground but is not a building surface. We will tell you which one your project actually needs rather than selling you the more expensive one.'
 			]
 		},
 		image: {
-			name: 'work-example-2',
-			alt: 'Gravel driveway regraded to a proper crown on a Williamsburg-area property',
-			width: 900,
+			name: 'about-image',
+			alt: 'Cleared field meeting the wood line on a rural property near Williamsburg, Virginia',
+			width: 844,
 			height: 1125
 		},
-		offeringsHeading: 'Our Driveway Repair Services',
+		offeringsHeading: 'Our Land Clearing Services',
 		offerings: [
 			{
-				title: 'Crown Restoration',
+				title: 'Lot & Building Site Clearing',
 				description:
-					'We rebuild the center-high profile that makes a gravel driveway work, so rain runs to the shoulders within minutes instead of sitting in the middle for days.'
+					'Full clearing for a house site, shop, barn, driveway route, or septic field — trees down, stumps out, and the site left gradeable.'
 			},
 			{
-				title: 'Pothole Filling & Grading',
+				title: 'Pasture & Field Reclamation',
 				description:
-					'Potholes get cut out and filled with properly graded stone, then the whole surface is regraded — patching alone leaves the low spot that made the hole in the first place.'
+					'Taking a field back from the saplings and briars that have claimed it, so it can be mowed, fenced, and grazed again.'
 			},
 			{
-				title: 'Washout Repair & Prevention',
+				title: 'Stump Removal & Grubbing',
 				description:
-					'We repair washed-out sections and fix the drainage that caused them, which on sloped drives around Toano and Norge usually means restoring the shoulder and the ditch alongside it.'
+					'Stumps and root balls pulled rather than ground flush, for sites where anything left in the ground will cause problems later.'
 			},
 			{
-				title: 'New Gravel & Edge Definition',
+				title: 'Debris Handling & Final Grade',
 				description:
-					'Fresh stone where the base needs it and clean, defined edges that keep gravel on the driveway and out of the lawn.'
+					'Material chipped, piled, burned where permitted, or hauled — then the site graded so water leaves it. Clearing changes how a parcel drains, and that is not an afterthought for us.'
 			}
 		],
 		cta: {
-			heading: 'Get Your Driveway Fixed Right',
-			body: 'Free assessment of your gravel driveway, anywhere from Williamsburg to the Middle Peninsula.'
+			heading: 'Ready to Clear Your Property?',
+			body: 'Free walk-through and quote across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Gravel driveway repair including crown restoration, pothole filling, washout repair, and regrading in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+			'Land clearing including building site clearing, pasture reclamation, stump removal and grubbing, and final grading in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Gravel Driveway Repair Williamsburg VA | The A.W. Vaughan Company',
+			title: 'Land Clearing Williamsburg VA | The A.W. Vaughan Company',
 			description:
-				'Gravel driveway repair in Williamsburg, VA. Crown restoration, pothole filling, washout repair, and driveway grading in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Gravel Driveway Repair in Williamsburg, VA | The A.W. Vaughan Company',
+				'Land clearing in Williamsburg, VA. Building site clearing, pasture reclamation, stump removal, and grading in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Land Clearing in Williamsburg, VA | The A.W. Vaughan Company',
 			ogDescription:
-				'Crown restoration, pothole repair, and regrading for gravel driveways across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt: 'Gravel driveway repair in Williamsburg, VA - The A.W. Vaughan Company'
+				'Building lots, pasture reclamation, and overgrown parcels cleared across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Land clearing in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
-		slug: 'drainage-solutions',
-		title: 'Drainage Solutions & Grading',
+		slug: 'bush-hogging',
+		title: 'Bush Hogging',
 		description:
-			'Drainage solutions for Williamsburg, Yorktown, Gloucester and the Middle Peninsula. We fix standing water, cut swales and ditches, install French drains and culverts, and grade sites so water leaves.',
-		heading: 'Drainage Solutions in Williamsburg & the Middle Peninsula',
+			'Bush hogging and field mowing in Williamsburg, VA and the Middle Peninsula. Overgrown fields, pasture, vacant lots, hunting land and right-of-way cut back in a single pass.',
+		heading: 'Bush Hogging in Williamsburg & the Middle Peninsula',
 		intro:
-			'Standing water, soggy yards, and washed-out driveways solved with drainage built for the ground it sits in — clay, sand, or flat low-lying lot.',
+			'Overgrown fields, pasture, vacant lots and hunting land cut back — once to reclaim it, or on a schedule so it never gets away from you again.',
 		problem: {
-			heading: 'Standing Water Damaging Your Property?',
+			heading: 'Field Gone to Seed?',
 			paragraphs: [
-				'Drainage problems in this part of Virginia are mostly a soil problem. Williamsburg, Yorktown and much of James City County sit on heavy clay that holds water for days after a storm. The Toano and Norge corridor runs to sand, which drains fast but washes badly. Gloucester, West Point and Saluda are flat and low, so there is often nowhere obvious for the water to go. Each of those needs a different answer.',
-				'We walk the property, find where the water is actually coming from and where it can legally and practically be sent, and then build the system that fits — a graded swale, a French drain, a culvert under the drive, or simply regrading so the ground falls away from the house instead of toward it.'
-			]
-		},
-		image: {
-			name: 'work-example-3',
-			alt: 'Drainage swale cut to carry water away from a driveway on a Middle Peninsula property',
-			width: 710,
-			height: 1125
-		},
-		offeringsHeading: 'Our Drainage Services',
-		offerings: [
-			{
-				title: 'Swale & Ditch Repair',
-				description:
-					'We cut and restore swales and roadside ditches to carry water away from your driveway and buildings — the single most effective fix on most rural properties here.'
-			},
-			{
-				title: 'French Drain Systems',
-				description:
-					'Subsurface French drains collect groundwater and move it out, which is what persistent wet spots in Williamsburg-area clay usually need.'
-			},
-			{
-				title: 'Culvert Installation & Repair',
-				description:
-					'New culverts and repairs to crushed or silted-in existing ones, so water keeps moving under driveways and farm access roads instead of backing up behind them.'
-			},
-			{
-				title: 'Site Grading & Erosion Control',
-				description:
-					'Regrading that pushes water away from foundations, outbuildings, and driveways, and stabilizes the slopes that keep eroding after every storm.'
-			}
-		],
-		cta: {
-			heading: 'Solve Your Drainage Problems',
-			body: 'Free drainage assessment across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
-		},
-		schemaDescription:
-			'Drainage solutions including French drains, swale and ditch repair, culvert installation, and site grading in Williamsburg, Yorktown, West Point, Gloucester and Saluda, Virginia.',
-		seo: {
-			title: 'Drainage Solutions Williamsburg VA | Yard & Driveway Drainage',
-			description:
-				'Drainage contractor in Williamsburg, VA. French drains, swale and ditch repair, culvert installation, and grading to stop standing water in Yorktown, Gloucester, West Point and Saluda. Call 757-402-1100.',
-			ogTitle: 'Drainage Solutions & Grading | The A.W. Vaughan Company',
-			ogDescription:
-				'Stop standing water. Drainage built for Williamsburg clay, Toano sand, and low-lying Middle Peninsula ground.',
-			ogImageAlt: 'Drainage solutions in Williamsburg, VA - The A.W. Vaughan Company'
-		}
-	},
-	{
-		slug: 'shed-pad-preparation',
-		title: 'Shed Pad & Foundation Preparation',
-		description:
-			'Shed pad preparation in Williamsburg, VA and the surrounding Historic Triangle. Level, compacted, well-draining gravel pads ready for delivery day, for sheds, garages, and small outbuildings.',
-		heading: 'Shed Pad Preparation in Williamsburg, VA',
-		intro:
-			'Level, compacted gravel pads built and ready before your shed arrives — in Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
-		problem: {
-			heading: 'Getting a Shed Delivered?',
-			paragraphs: [
-				'Most shed problems are pad problems. A shed set on ground that is not level will rack within a season — doors bind, windows stop closing square, and the floor frame twists. A shed set on ground that holds water rots from the bottom up, which happens fast on Williamsburg clay where water sits against the skids after every rain.',
-				'We build the pad before delivery day: cleared, cut to level, graded so water runs away from the structure, and topped with compacted stone that will not settle under the load. Tell us the footprint and the delivery date and we will have it ready.'
+				'A rotary cutter is the right tool for grass, weeds, briars and saplings up to roughly two inches through. That covers most fields that have sat a season or two, most vacant lots, and most hunting land between seasons. Past about two inches the cutter starts fighting the material instead of cutting it, and the job becomes forestry mulching — we will say so up front rather than beating up your property and our equipment to avoid quoting the other service.',
+				'What bush hogging really buys you is that the field stays a field. Cut once or twice a season and the woody stuff never gets established; skip three years and you are paying for clearing instead of mowing. It also pushes back the ticks and snakes that thrive in waist-high cover, and it keeps you clear of county nuisance and vegetation ordinances on a lot you are holding.'
 			]
 		},
 		image: {
 			name: 'work-example-4',
-			alt: 'Level compacted gravel shed pad prepared on a Williamsburg-area property',
+			alt: 'Field cut back around a utility pedestal, with the uncut brush line still standing behind it',
 			width: 675,
 			height: 844
 		},
-		offeringsHeading: 'Our Preparation Process',
+		offeringsHeading: 'Our Bush Hogging Services',
 		offerings: [
 			{
-				title: 'Site Clearing & Leveling',
+				title: 'Overgrown Field & Pasture Mowing',
 				description:
-					'Vegetation, stumps, and debris cleared, then the site cut to level — including the sloped back-lot corners where sheds usually end up.'
+					'First-cut work on fields that have gone up, and routine cutting to keep pasture and hay ground clean.'
 			},
 			{
-				title: 'Drainage Grading',
+				title: 'Vacant Lot & Right-of-Way Cutting',
 				description:
-					'The pad is graded so water sheds away from the structure rather than pooling against the skids, which is what rots a shed floor from below.'
+					'Lots being held, road frontage, easements and utility corridors kept cut and presentable.'
 			},
 			{
-				title: 'Gravel Base Installation',
+				title: 'Hunting Land & Food Plot Maintenance',
 				description:
-					'The right stone at the right depth for the load, with a defined edge so the pad holds its shape instead of spreading out over time.'
+					'Shooting lanes, plot edges, and access lanes cut back ahead of the season on properties out toward New Kent, West Point and King and Queen.'
 			},
 			{
-				title: 'Compaction & Final Prep',
+				title: 'Scheduled Seasonal Cutting',
 				description:
-					'Mechanically compacted in lifts so the pad is solid on delivery day and stays level once the building is loaded.'
+					'Put the property on a schedule and we come when it needs it, which costs less over a year than reclaiming it every third spring.'
 			}
 		],
 		cta: {
-			heading: 'Ready to Prepare Your Site?',
-			body: 'Free site assessment and quote across Williamsburg, the Historic Triangle, and the Middle Peninsula. Give us your delivery date and we will work to it.'
+			heading: 'Get Your Field Cut',
+			body: 'Free quote on one-time or seasonal cutting anywhere from Williamsburg to the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Shed pad preparation including site clearing, leveling, gravel base installation, and compaction in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+			'Bush hogging and rotary mowing for overgrown fields, pasture, vacant lots, right-of-way and hunting land in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Shed Pad Preparation Williamsburg VA | The A.W. Vaughan Company',
+			title: 'Bush Hogging Williamsburg VA | Field & Pasture Mowing',
 			description:
-				'Shed pad and foundation preparation in Williamsburg, VA. Level, compacted, well-draining gravel pads for sheds and outbuildings in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Shed Pad & Foundation Preparation | The A.W. Vaughan Company',
+				'Bush hogging in Williamsburg, VA. Overgrown fields, pasture, vacant lots, right-of-way and hunting land cut back in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Bush Hogging & Field Mowing | The A.W. Vaughan Company',
 			ogDescription:
-				'Level, compacted, well-draining shed pads built before delivery day across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt: 'Shed pad preparation in Williamsburg, VA - The A.W. Vaughan Company'
+				'Overgrown fields, pasture and hunting land cut back across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Bush hogging and field mowing in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	},
 	{
-		slug: 'excavation',
-		title: 'Small Excavation & Site Work',
+		slug: 'forestry-mulching',
+		title: 'Forestry Mulching',
 		description:
-			'Small excavation contractor serving Williamsburg, New Kent, West Point, Gloucester and Saluda. Culverts, trenching, lot clearing, and rural access road work — the jobs big contractors turn down.',
-		heading: 'Small Excavation & Site Work in Williamsburg, VA',
+			'Forestry mulching in Williamsburg, VA and the Middle Peninsula. Standing brush and small trees ground in place into a mulch mat — no burn piles, no hauling, no torn-up ground.',
+		heading: 'Forestry Mulching in Williamsburg, VA',
 		intro:
-			'Culverts, trenching, lot clearing, and rural property maintenance across the Historic Triangle and the Middle Peninsula. No job too small.',
+			'Underbrush, invasives, fence lines and view corridors cleared in a single pass, with the material left on the ground instead of in a burn pile.',
 		problem: {
-			heading: 'The Right-Sized Excavation Contractor',
+			heading: 'Clearing Without the Cleanup',
 			paragraphs: [
-				'Most excavation outfits are set up for subdivisions and commercial pads. A half-day culvert replacement or a few hundred feet of trench does not fit their schedule, so rural property owners around New Kent, West Point and Gloucester often cannot get anyone to return the call.',
-				'That is the work we are built for. We bring equipment sized for residential lots and wooded rural parcels — the kind that can get down a narrow farm lane without tearing up what is already there — and we show up for the small jobs.'
+				'A mulching head grinds standing brush and small trees where they stand and lays the material down as a mulch mat. That removes the three worst parts of conventional clearing in one go: no burn piles and no permit to sit with, no trucking debris off the property, and no field of stump holes to fill afterwards. Because the machine works off the surface rather than digging, the ground comes through largely undisturbed.',
+				'The mat that gets left behind is doing real work, not just sitting there. It holds soil on slopes through a hard rain, suppresses the seed bank that would otherwise come straight back, and breaks down into the ground over a couple of seasons. On the sandy ground around Toano and Norge, where bare cleared soil washes badly, that mat is often worth more than the clearing itself. Honest limits: this is sized for stems up to roughly eight inches, anything bigger comes out another way, and since the roots stay in the ground it is not a substitute for grubbing a building site.'
 			]
 		},
-		image: {
-			name: 'work-example-2',
-			alt: 'Small excavation and site work on a rural property near West Point, Virginia',
-			width: 900,
-			height: 1125
-		},
-		offeringsHeading: 'Our Excavation Services',
+		offeringsHeading: 'Our Forestry Mulching Services',
 		offerings: [
 			{
-				title: 'Small Lot Clearing & Grading',
+				title: 'Underbrush & Understory Clearing',
 				description:
-					'Clearing and grading residential lots and wooded parcels for building, fencing, pasture, or simply getting a property usable again.'
+					'Clearing the tangle beneath mature hardwoods while leaving the trees you want — the fastest way to make woods walkable again.'
 			},
 			{
-				title: 'Trenching for Utilities',
+				title: 'Invasive Species Knockdown',
 				description:
-					'Trenching for water lines, electrical conduit, drainage pipe, and irrigation, backfilled and restored properly.'
+					'Privet, autumn olive, wisteria, tree-of-heaven and Bradford pear taken down hard. Mulching alone will not kill the roots, so we will be straight with you about follow-up treatment.'
 			},
 			{
-				title: 'Culvert Repair & Installation',
+				title: 'Fence & Property Line Clearing',
 				description:
-					'Crushed, silted, or undersized culverts replaced so the driveway entrance stops flooding — common on the older rural drives out toward Saluda and Urbanna.'
+					'Grown-in fence lines, survey lines and easements opened back up so a fence can be run, repaired, or simply seen.'
 			},
 			{
-				title: 'Rural Property Maintenance',
+				title: 'Selective Clearing & View Lines',
 				description:
-					'Access road grading, ditch clearing, and general site work that keeps a rural property passable year round, including through mud season.'
+					'Opening a view to the water or the field, thinning without clear-cutting, and cutting light into ground you want to plant.'
 			}
 		],
 		cta: {
-			heading: 'Need Excavation Work Done?',
-			body: 'Free consultation and quote from Williamsburg out through West Point, Gloucester and Saluda. If it is small and nobody else will take it, call us.'
+			heading: 'Clear It Without the Burn Pile',
+			body: 'Free assessment across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Small excavation services including lot clearing, trenching, culvert repair, and rural property maintenance in Williamsburg, New Kent, West Point, Gloucester and Saluda, Virginia.',
+			'Forestry mulching including underbrush clearing, invasive species removal, fence line clearing and selective view-line clearing in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Small Excavation Contractor Williamsburg VA | Site Work & Culverts',
+			title: 'Forestry Mulching Williamsburg VA | The A.W. Vaughan Company',
 			description:
-				'Small excavation contractor in Williamsburg, VA. Lot clearing, trenching, culvert repair, and rural property maintenance in New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Small Excavation & Site Work | The A.W. Vaughan Company',
+				'Forestry mulching in Williamsburg, VA. Underbrush, invasives, fence lines and view corridors cleared in place with no burn piles, in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Forestry Mulching in Williamsburg, VA | The A.W. Vaughan Company',
 			ogDescription:
-				'Lot clearing, trenching, culverts, and rural access road work across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt: 'Small excavation and site work in Williamsburg, VA - The A.W. Vaughan Company'
+				'Brush and small trees ground in place — no burn piles, no hauling, no stump holes. Across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Forestry mulching in Williamsburg, VA - The A.W. Vaughan Company'
+		}
+	},
+	{
+		slug: 'trail-systems',
+		title: 'Trail Systems',
+		description:
+			'Trail cutting and maintenance in Williamsburg, VA and the Middle Peninsula. ATV, walking and hunting trails laid out to shed water, cut, and kept open — plus crossings at the wet spots.',
+		heading: 'Trail Systems & Recreational Access',
+		intro:
+			'ATV and UTV trails, walking and riding trails, hunting access and firebreaks — routed to drain, cut clean, and maintained so they stay open.',
+		problem: {
+			heading: 'A Trail Is Only as Good as Its Drainage',
+			paragraphs: [
+				'Almost every failed trail we are called out to fix failed the same way. It was cut straight up the slope, so the first hard rain used it as a channel, and by the third it was a rutted gully that is harder to walk than the woods beside it. A trail is a small piece of earthwork, and the route has to be chosen for where water will go long before anyone thinks about where the view is.',
+				'This is the part of the old business we brought with us. We came up doing driveway grading and drainage, and the same rules apply at trail scale: cross the slope rather than run down it, outslope the tread so water sheds off instead of collecting, break long runs with water bars, and put a real crossing at the wet spot rather than hoping it dries out. Get that right at layout and the trail needs a cut once a year instead of a rebuild every spring.'
+			]
+		},
+		offeringsHeading: 'Our Trail Services',
+		offerings: [
+			{
+				title: 'Trail Layout & Routing',
+				description:
+					'We walk the property with you and lay the route to the ground — grade, drainage, and the places worth getting to.'
+			},
+			{
+				title: 'Trail Cutting & Mulching',
+				description:
+					'The corridor cleared and mulched to the width you want, from a foot trail to something a side-by-side or a tractor can use.'
+			},
+			{
+				title: 'Crossings, Culverts & Water Bars',
+				description:
+					'Wet crossings, ditch lines and low spots built properly, so the trail survives the weather instead of being defined by it.'
+			},
+			{
+				title: 'Trail Maintenance & Reopening',
+				description:
+					'Existing trails brushed back, re-cut, and repaired — including ones that have been closed in for years.'
+			}
+		],
+		cta: {
+			heading: 'Open Up Your Property',
+			body: 'Free walk-through and quote on new trails or reopening old ones, anywhere across the Historic Triangle and Middle Peninsula.'
+		},
+		schemaDescription:
+			'Trail system layout, cutting, drainage crossings and maintenance for ATV, walking, riding and hunting trails in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Trail Systems Williamsburg VA | ATV & Hunting Trail Cutting',
+			description:
+				'Trail cutting and maintenance in Williamsburg, VA. ATV, walking and hunting trails routed to drain properly, with crossings and water bars, in New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Trail Systems & Recreational Access | The A.W. Vaughan Company',
+			ogDescription:
+				'ATV, walking and hunting trails laid out to shed water, cut clean, and kept open across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt:
+				'Trail cutting and recreational access in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	}
 ];

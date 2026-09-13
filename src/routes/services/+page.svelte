@@ -12,11 +12,11 @@
 -->
 <Section variant="gray">
 	<div class="mx-auto max-w-4xl text-center">
-		<h1 class="mb-6 font-bold text-gray-900">Excavation & Driveway Services in Williamsburg, VA</h1>
+		<h1 class="mb-6 font-bold text-gray-900">Land Management Services in Williamsburg, VA</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Gravel driveway repair, drainage solutions, shed pads, and small excavation for Williamsburg,
-			Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic
-			Triangle and Middle Peninsula.
+			Land clearing, bush hogging, forestry mulching, and trail systems for Williamsburg, Toano,
+			Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic Triangle and
+			Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -42,7 +42,7 @@
 		<h2 class="mb-12 text-center font-bold text-gray-900">What We Do</h2>
 
 		<div class="space-y-12">
-			<!-- Gravel Driveway Repair -->
+			<!-- Land Clearing -->
 			<div>
 				<div class="flex items-start gap-6">
 					<div
@@ -51,24 +51,24 @@
 						1
 					</div>
 					<div class="flex-1">
-						<h3 class="mb-3 font-bold text-gray-900">Gravel Driveway Repair & Restoration</h3>
+						<h3 class="mb-3 font-bold text-gray-900">Land Clearing</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							Potholes, ruts, washout, or a driveway that has gone flat and holds water? We regrade
-							gravel driveways across Williamsburg and James City County back to a proper crown, so
-							water runs to the edges instead of standing in the wheel tracks.
+							Building lots, reclaimed pasture, and parcels that have grown up. Trees and brush
+							down, stumps out where the job calls for it, and the ground graded back to something
+							you can build on, fence, or seed.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
-							<li>Crown restoration for proper water runoff</li>
-							<li>Pothole filling and grading</li>
-							<li>Washout repair and prevention</li>
-							<li>New gravel installation and spreading</li>
-							<li>Edge definition and maintenance</li>
+							<li>House, shop, barn and driveway site clearing</li>
+							<li>Pasture and field reclamation</li>
+							<li>Stump removal and grubbing</li>
+							<li>Debris chipped, burned where permitted, or hauled</li>
+							<li>Final grading so the cleared ground drains</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<!-- Drainage Solutions -->
+			<!-- Bush Hogging -->
 			<div>
 				<div class="flex items-start gap-6">
 					<div
@@ -77,25 +77,24 @@
 						2
 					</div>
 					<div class="flex-1">
-						<h3 class="mb-3 font-bold text-gray-900">Drainage Solutions & Grading</h3>
+						<h3 class="mb-3 font-bold text-gray-900">Bush Hogging</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							Standing water in the driveway or yard? We design drainage that suits the ground it is
-							built in — heavy clay around Williamsburg and Yorktown, sand near Toano, and the flat,
-							low-lying lots common in Gloucester and Saluda.
+							Rotary cutting for fields, pasture, vacant lots and hunting land — grass, briars and
+							saplings up to about two inches. One pass to reclaim it, or a seasonal schedule so it
+							never gets away from you again.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
-							<li>Swale and ditch installation/repair</li>
-							<li>French drain systems</li>
-							<li>Culvert installation and repair</li>
-							<li>Site grading for water management</li>
-							<li>Erosion control solutions</li>
-							<li>Yard drainage systems</li>
+							<li>Overgrown field and pasture mowing</li>
+							<li>Vacant lot, road frontage and right-of-way cutting</li>
+							<li>Hunting land, shooting lanes and food plot edges</li>
+							<li>Easement and utility corridor maintenance</li>
+							<li>Scheduled seasonal cutting</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<!-- Shed Pad Preparation -->
+			<!-- Forestry Mulching -->
 			<div>
 				<div class="flex items-start gap-6">
 					<div
@@ -104,24 +103,24 @@
 						3
 					</div>
 					<div class="flex-1">
-						<h3 class="mb-3 font-bold text-gray-900">Shed Pad & Foundation Preparation</h3>
+						<h3 class="mb-3 font-bold text-gray-900">Forestry Mulching</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							Having a shed or outbuilding delivered? The pad has to be level, compacted, and
-							draining before it arrives. We prepare shed pads across the Historic Triangle and
-							Middle Peninsula that stay level and stay dry.
+							Standing brush and small trees ground in place and left as a mulch mat. No burn piles,
+							no hauling, no stump holes, and the mat holds the soil while it breaks down — which
+							matters on the sandy ground that washes.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
-							<li>Site clearing and leveling</li>
-							<li>Precise grading for proper drainage</li>
-							<li>Gravel base installation</li>
-							<li>Compaction for stability</li>
-							<li>Site preparation for small buildings</li>
+							<li>Underbrush and understory clearing</li>
+							<li>Invasive species knockdown</li>
+							<li>Fence line and property line clearing</li>
+							<li>Selective clearing and view lines</li>
+							<li>Trail corridors</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<!-- Small Excavation -->
+			<!-- Trail Systems -->
 			<div>
 				<div class="flex items-start gap-6">
 					<div
@@ -130,19 +129,18 @@
 						4
 					</div>
 					<div class="flex-1">
-						<h3 class="mb-3 font-bold text-gray-900">Small Excavation & Site Work</h3>
+						<h3 class="mb-3 font-bold text-gray-900">Trail Systems</h3>
 						<p class="mb-4 text-base font-normal text-gray-600">
-							We take the small excavation jobs larger contractors turn down. Culverts, trenching,
-							lot clearing, and keeping rural access roads passable on properties out toward New
-							Kent, West Point, Gloucester, and Saluda.
+							ATV and UTV trails, walking and riding trails, hunting access and firebreaks. Routed
+							to shed water rather than channel it, because a trail cut straight up a slope is a
+							gully by the second storm.
 						</p>
 						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
-							<li>Small lot clearing and grading</li>
-							<li>Trenching for utilities</li>
-							<li>Property access improvements</li>
-							<li>Rural property maintenance</li>
-							<li>Post hole augering</li>
-							<li>Custom excavation projects</li>
+							<li>Trail layout and routing</li>
+							<li>Corridor cutting and mulching</li>
+							<li>Crossings, culverts and water bars</li>
+							<li>Firebreaks and equipment access lanes</li>
+							<li>Maintenance and reopening closed-in trails</li>
 						</ul>
 					</div>
 				</div>

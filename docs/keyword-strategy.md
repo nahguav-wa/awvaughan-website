@@ -54,33 +54,34 @@ an FAQ entry or a short explainer section.
 
 Geographic plus core service — these are what the money pages target.
 
-| Term                                     | Page                             |
-| ---------------------------------------- | -------------------------------- |
-| gravel driveway repair Williamsburg VA   | /services/gravel-driveway-repair |
-| gravel driveway grading Williamsburg     | /services/gravel-driveway-repair |
-| driveway crown restoration               | /services/gravel-driveway-repair |
-| gravel driveway potholes repair          | /services/gravel-driveway-repair |
-| gravel driveway repair Toano VA          | /services/gravel-driveway-repair |
-| gravel driveway washout repair           | /services/gravel-driveway-repair |
-| driveway repair Yorktown VA              | /services/gravel-driveway-repair |
-| drainage solutions Williamsburg VA       | /services/drainage-solutions     |
-| yard drainage Yorktown VA                | /services/drainage-solutions     |
-| ditch and swale repair Williamsburg      | /services/drainage-solutions     |
-| French drain installation Williamsburg   | /services/drainage-solutions     |
-| standing water driveway fix              | /services/drainage-solutions     |
-| drainage contractor Gloucester VA        | /services/drainage-solutions     |
-| shed pad preparation Williamsburg VA     | /services/shed-pad-preparation   |
-| shed foundation prep                     | /services/shed-pad-preparation   |
-| gravel shed pad Yorktown VA              | /services/shed-pad-preparation   |
-| small building foundation Williamsburg   | /services/shed-pad-preparation   |
-| small excavation contractor Williamsburg | /services/excavation             |
-| culvert repair Williamsburg VA           | /services/excavation             |
-| rural property drainage solutions        | /services/excavation             |
-| lot clearing New Kent VA                 | /services/excavation             |
-| trenching services Williamsburg VA       | /services/excavation             |
-| excavation contractor West Point VA      | /services/excavation             |
-| excavation services Historic Triangle    | /services                        |
-| excavation contractor Middle Peninsula   | /services                        |
+| Term                                    | Page                        |
+| --------------------------------------- | --------------------------- |
+| land clearing Williamsburg VA           | /services/land-clearing     |
+| land clearing services near me          | /services/land-clearing     |
+| lot clearing Williamsburg VA            | /services/land-clearing     |
+| pasture reclamation Virginia            | /services/land-clearing     |
+| stump removal Williamsburg VA           | /services/land-clearing     |
+| land clearing New Kent VA               | /services/land-clearing     |
+| bush hogging Williamsburg VA            | /services/bush-hogging      |
+| bush hogging near me                    | /services/bush-hogging      |
+| field mowing Williamsburg VA            | /services/bush-hogging      |
+| brush hog services Gloucester VA        | /services/bush-hogging      |
+| overgrown field mowing Virginia         | /services/bush-hogging      |
+| bush hogging West Point VA              | /services/bush-hogging      |
+| forestry mulching Williamsburg VA       | /services/forestry-mulching |
+| forestry mulching near me               | /services/forestry-mulching |
+| underbrush clearing Virginia            | /services/forestry-mulching |
+| mulching head clearing Yorktown VA      | /services/forestry-mulching |
+| invasive species removal Virginia       | /services/forestry-mulching |
+| fence line clearing Williamsburg        | /services/forestry-mulching |
+| trail clearing Williamsburg VA          | /services/trail-systems     |
+| ATV trail building Virginia             | /services/trail-systems     |
+| hunting trail cutting Virginia          | /services/trail-systems     |
+| walking trail construction Williamsburg | /services/trail-systems     |
+| firebreak cutting Virginia              | /services/trail-systems     |
+| land management Williamsburg VA         | /services                   |
+| land clearing Historic Triangle         | /services                   |
+| land management Middle Peninsula        | /services                   |
 
 ## Secondary terms
 
@@ -88,21 +89,42 @@ Problem-focused, question-shaped searches. These are the ones worth answering
 with real content — an FAQ section or a short article earns these, a meta tag
 never did.
 
-- how to fix standing water in driveway
-- gravel driveway potholes repair cost
-- why does my driveway wash out
-- fixing muddy driveway
-- driveway crown repair
-- small site prep contractor
-- driveway drainage for clay soil
-- how much gravel for a shed pad
+- forestry mulching vs land clearing
+- how much does land clearing cost per acre
+- how often should a field be bush hogged
+- what size trees can a forestry mulcher handle
+- do you need a permit to clear land in Virginia
+- how to get rid of privet / autumn olive
+- reclaiming a field that has grown up
+- why do my trails wash out
+
+## Content the copy already leans on
+
+These are genuine differentiators and should keep appearing in body copy,
+because they are what separates this company from a man with a tractor:
+
+- **Drainage carries over.** The company came up doing grading and drainage.
+  Clearing changes where water goes, and a trail cut straight up a slope becomes
+  a gully. That is on `/services/trail-systems` and `/about`, and it is the most
+  defensible thing on the site.
+- **Naming the right method.** Mowing, mulching and full clearing solve
+  different problems at different prices. Saying so plainly — including the
+  honest limits, roughly two inches for a rotary cutter and roughly eight for a
+  mulching head — earns the "vs" searches above.
+- **Equipment that fits.** Machines that get through a farm gate and down a
+  narrow lane matter to exactly the rural properties this business serves.
 
 ## Notes
 
 - The four service pages are generated from `src/lib/data/services.ts`. Edit the
   copy there; the page template is `src/routes/services/[slug]/+page.svelte`.
+- The company previously sold gravel driveway repair, drainage solutions, shed
+  pads and small excavation. Those services are retired; their URLs are 301'd in
+  `_redirects` at the project root. Do not write copy targeting those terms —
+  ranking for work the company no longer does produces calls it has to turn
+  down.
 - `/contact` and `/about` target brand and intent terms ("contact A.W. Vaughan",
-  "free excavation quote Williamsburg") rather than service terms.
+  "free land clearing quote Williamsburg") rather than service terms.
 - Adding a service to `src/lib/data/services.ts` automatically creates its page,
   adds it to the services listing and homepage grid, and includes it in
   `/sitemap.xml`. Add its target terms to the table above at the same time.

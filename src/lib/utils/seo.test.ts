@@ -82,7 +82,8 @@ describe('getLocalBusinessSchema', () => {
 	it('includes service types', () => {
 		const schema = getLocalBusinessSchema();
 		expect(Array.isArray(schema.serviceType)).toBe(true);
-		expect(schema.serviceType).toContain('Gravel Driveway Repair');
+		expect(schema.serviceType).toContain('Land Clearing');
+		expect(schema.serviceType).toContain('Forestry Mulching');
 	});
 });
 

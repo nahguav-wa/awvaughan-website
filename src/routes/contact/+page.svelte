@@ -220,7 +220,7 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 text-gray-900">Contact Us</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Free quotes on gravel driveway repair, drainage, shed pads, and small excavation in
+			Free quotes on land clearing, bush hogging, forestry mulching, and trail systems in
 			Williamsburg and across the Historic Triangle and Middle Peninsula.
 		</p>
 	</div>
@@ -237,9 +237,9 @@
 				<div>
 					<h2 class="mb-6 text-gray-900">Get In Touch</h2>
 					<p class="mb-6 text-base font-normal text-gray-600">
-						Tell us what the property is doing — where the water stands, where the driveway is
-						rutting, what you need the site to hold. The more detail you give us, the more useful
-						the first answer will be. Use the form, or call and talk it through.
+						Tell us about the property — roughly how many acres, how long since it was last cut, and
+						how thick it has got. Photos help more than anything. The more you give us, the more
+						useful the first answer will be. Use the form, or call and talk it through.
 					</p>
 				</div>
 

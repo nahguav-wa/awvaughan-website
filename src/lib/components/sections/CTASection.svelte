@@ -18,9 +18,9 @@
 
 		<!-- CTA Description - lg size, regular weight -->
 		<p class="mx-auto mb-8 max-w-2xl text-lg font-normal">
-			Need gravel driveway repair, drainage work, or small excavation in Williamsburg or anywhere
-			across the Historic Triangle and Middle Peninsula? Tell us what the property is doing and
-			we'll tell you how to fix it. Call {COMPANY_INFO.phone} for a free quote.
+			Have a parcel that has grown up, a field that needs cutting, or a trail you want opened? Tell
+			us what you are looking at and we will come walk it with you. Free quotes across Williamsburg,
+			the Historic Triangle, and the Middle Peninsula — call {COMPANY_INFO.phone}.
 		</p>
 
 		<!-- CTA Button -->

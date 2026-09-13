@@ -19,12 +19,12 @@ export const prerender = false;
 export const load: PageServerLoad = ({ platform }) => {
 	const seo: SEOMetadata = {
 		title: `Contact Us - Free Quote | ${COMPANY_INFO.name} Williamsburg VA`,
-		description: `Contact ${COMPANY_INFO.name} for a free quote on gravel driveway repair, drainage solutions, and small excavation in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda. Call ${COMPANY_INFO.phone}.`,
+		description: `Contact ${COMPANY_INFO.name} for a free quote on land clearing, bush hogging, forestry mulching and trail systems in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda. Call ${COMPANY_INFO.phone}.`,
 		canonical: absoluteUrl('/contact'),
 		openGraph: {
 			type: 'website',
 			title: `Contact ${COMPANY_INFO.name} | Free Quotes`,
-			description: `Get a free quote for gravel driveway repair, drainage solutions, and small excavation in Williamsburg and across the Historic Triangle and Middle Peninsula. Call ${COMPANY_INFO.phone} or use our contact form.`,
+			description: `Get a free quote for land clearing, bush hogging, forestry mulching and trail systems in Williamsburg and across the Historic Triangle and Middle Peninsula. Call ${COMPANY_INFO.phone} or use our contact form.`,
 			url: absoluteUrl('/contact'),
 			siteName: COMPANY_INFO.name,
 			image: {

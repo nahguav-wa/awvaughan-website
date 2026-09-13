@@ -73,11 +73,12 @@ export function getLocalBusinessSchema() {
 			name: region
 		})),
 		serviceType: [
-			'Gravel Driveway Repair',
-			'Drainage Solutions',
-			'Excavation Services',
-			'Driveway Grading',
-			'Shed Pad Preparation'
+			'Land Clearing',
+			'Bush Hogging',
+			'Forestry Mulching',
+			'Trail Construction',
+			'Brush Removal',
+			'Pasture Reclamation'
 		]
 	};
 }

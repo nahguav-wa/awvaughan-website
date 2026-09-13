@@ -34,18 +34,36 @@ describe('services data', () => {
 		});
 	});
 
-	it('every service page declares real image dimensions', () => {
+	it('every service page that has an image declares real dimensions', () => {
 		// A wrong intrinsic size makes the browser reserve the wrong box and the
-		// page shifts once the photo decodes.
+		// page shifts once the photo decodes. The image is optional: a service
+		// with no honest photograph of the work ships without one rather than
+		// illustrating itself with a picture of something else.
 		serviceDetails.forEach((service) => {
+			if (!service.image) return;
 			expect(service.image.width).toBeGreaterThan(0);
 			expect(service.image.height).toBeGreaterThan(0);
+			expect(service.image.alt).toBeTruthy();
 		});
 	});
 
 	it('resolves a service by slug and rejects unknown ones', () => {
-		expect(getServiceBySlug('drainage-solutions')?.title).toBe('Drainage Solutions & Grading');
+		expect(getServiceBySlug('forestry-mulching')?.title).toBe('Forestry Mulching');
 		expect(getServiceBySlug('nope')).toBeUndefined();
+	});
+
+	it('does not resurrect a retired service slug', () => {
+		// These four were retired when the company moved to land management, and
+		// _redirects points their URLs elsewhere. A slug reappearing here would
+		// be shadowed by its own redirect and never render.
+		for (const slug of [
+			'gravel-driveway-repair',
+			'drainage-solutions',
+			'shed-pad-preparation',
+			'excavation'
+		]) {
+			expect(getServiceBySlug(slug)).toBeUndefined();
+		}
 	});
 
 	it('slugs are unique', () => {
@@ -55,10 +73,10 @@ describe('services data', () => {
 
 	it('service hrefs match expected routes', () => {
 		const expectedHrefs = [
-			'/services/gravel-driveway-repair',
-			'/services/drainage-solutions',
-			'/services/shed-pad-preparation',
-			'/services/excavation'
+			'/services/land-clearing',
+			'/services/bush-hogging',
+			'/services/forestry-mulching',
+			'/services/trail-systems'
 		];
 		const actualHrefs = services.map((s) => s.href);
 		expectedHrefs.forEach((href) => {
