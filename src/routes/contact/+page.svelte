@@ -220,8 +220,8 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 text-gray-900">Contact Us</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Free quotes on land clearing, bush hogging, forestry mulching, and trail systems in
-			Williamsburg and across the Historic Triangle and Middle Peninsula.
+			Free quotes on land clearing, bush hogging, forestry mulching, trail systems and property
+			maintenance in Williamsburg and across the Historic Triangle and Middle Peninsula.
 		</p>
 	</div>
 </Section>

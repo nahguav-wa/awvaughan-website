@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { getServiceBySlug, serviceDetails, services } from './services';
 
 describe('services data', () => {
-	it('has 4 services', () => {
-		expect(services).toHaveLength(4);
+	it('has 5 services', () => {
+		expect(services).toHaveLength(5);
 	});
 
 	it('each service has required fields', () => {
@@ -76,7 +76,8 @@ describe('services data', () => {
 			'/services/land-clearing',
 			'/services/bush-hogging',
 			'/services/forestry-mulching',
-			'/services/trail-systems'
+			'/services/trail-systems',
+			'/services/property-maintenance'
 		];
 		const actualHrefs = services.map((s) => s.href);
 		expectedHrefs.forEach((href) => {

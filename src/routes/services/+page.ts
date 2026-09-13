@@ -13,15 +13,15 @@ import { absoluteUrl, COMPANY_INFO } from '$lib/config/constants';
  */
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title: 'Services | Land Clearing, Bush Hogging & Mulching in Williamsburg VA',
+		title: 'Services | Land Clearing, Mulching & Property Maintenance in Williamsburg VA',
 		description:
-			'Land clearing, bush hogging, forestry mulching, and trail systems in Williamsburg, VA. Serving Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
+			'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance in Williamsburg, VA. Serving Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
 		canonical: absoluteUrl('/services'),
 		openGraph: {
 			type: 'website',
 			title: 'Land Management Services | The A.W. Vaughan Company',
 			description:
-				'Land clearing, bush hogging, forestry mulching, and trail systems across the Historic Triangle and Middle Peninsula.',
+				'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula.',
 			url: absoluteUrl('/services'),
 			siteName: COMPANY_INFO.name,
 			image: {

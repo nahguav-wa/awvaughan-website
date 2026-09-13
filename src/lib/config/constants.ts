@@ -76,7 +76,7 @@ export const COMPANY_INFO = {
 	/** Where the company started. It is now based in Williamsburg. */
 	foundedIn: 'Virginia Beach, Virginia',
 	description:
-		'Land management in Williamsburg, VA: land clearing, bush hogging, forestry mulching, and trail systems. Serving Toano, Yorktown, New Kent, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula.'
+		'Land management and property maintenance in Williamsburg, VA: land clearing, bush hogging, forestry mulching, trail systems, and grass cutting. Serving Toano, Yorktown, New Kent, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula.'
 } as const;
 
 /**

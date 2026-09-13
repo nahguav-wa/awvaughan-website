@@ -1,6 +1,6 @@
 # The A.W. Vaughan Company Website
 
-Professional business website for The A.W. Vaughan Company — a land management contractor based in Williamsburg, VA, offering land clearing, bush hogging, forestry mulching and trail systems across the Historic Triangle and the Middle Peninsula.
+Professional business website for The A.W. Vaughan Company — a land management contractor based in Williamsburg, VA, offering land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and the Middle Peninsula.
 
 Built with SvelteKit 2, Svelte 5, TypeScript, and Tailwind CSS v4. Deployed on Cloudflare Pages.
 

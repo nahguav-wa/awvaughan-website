@@ -249,6 +249,67 @@ export const serviceDetails: ServiceDetail[] = [
 			ogImageAlt:
 				'Trail cutting and recreational access in Williamsburg, VA - The A.W. Vaughan Company'
 		}
+	},
+	{
+		slug: 'property-maintenance',
+		title: 'Property Maintenance',
+		description:
+			'Grass cutting, lawn maintenance and general property upkeep in Williamsburg, VA. Larger residential lots, rural property and acreage kept mown, trimmed and presentable year round.',
+		heading: 'Property Maintenance in Williamsburg, VA',
+		intro:
+			'Grass cutting, lawn maintenance and the general upkeep that keeps a larger lot or a rural property looking like somebody is on top of it.',
+		problem: {
+			heading: 'Keeping a Property Looking Kept',
+			paragraphs: [
+				'This is the finish side of what we do, and it is a different job from bush hogging. A rotary cutter is for ground that has got away from you — a field, a lot gone to briars. This is mown grass, trimmed edges, and a property that looks maintained week to week. Both are mowing; they are not the same work and they do not take the same equipment.',
+				'Bigger lots out here fall through a gap. They are too much ground and too far out for a lawn company working a tight suburban route, and too fine for the rough-cutting crowd. So the grass gets cut and everything else gets left: around the shed and the well head, along the fence, at the culvert ends, behind the propane tank, and the wood line quietly taking a foot of yard a year. We already have the equipment out on these properties for the heavier work, which is what makes the acre-to-five-acre places worth doing properly.'
+			]
+		},
+		image: {
+			name: 'work-example-2',
+			alt: 'Mown grounds around an outbuilding on a property near Williamsburg, Virginia',
+			width: 900,
+			height: 1125
+		},
+		offeringsHeading: 'Our Property Maintenance Services',
+		offerings: [
+			{
+				title: 'Grass Cutting & Lawn Maintenance',
+				description:
+					'Regular mowing on larger residential lots, rural property and acreage, on a schedule that matches how fast it actually grows rather than a fixed suburban route.'
+			},
+			{
+				title: 'Trimming & Edging',
+				description:
+					'The places a mower cannot reach and most crews skip — around outbuildings, fence lines and posts, well heads, culvert ends, propane tanks and utility pedestals.'
+			},
+			{
+				title: 'Wood Line & Yard Edge Upkeep',
+				description:
+					'Keeping the tree line where it is. Left alone it takes a foot or two of yard a year, and reclaiming it later costs far more than holding it does.'
+			},
+			{
+				title: 'Seasonal & Absentee Property Care',
+				description:
+					'Rental, hunting, weekend and inherited property kept presentable for owners who are not there to see it — including one-time cleanups before a visit or a sale.'
+			}
+		],
+		cta: {
+			heading: 'Keep It Looking Kept',
+			body: 'Free quote on a one-time cleanup or regular maintenance, across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
+		},
+		schemaDescription:
+			'Property maintenance including grass cutting, lawn maintenance, trimming and edging, wood line upkeep and seasonal property care in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Property Maintenance Williamsburg VA | Lawn & Grass Cutting',
+			description:
+				'Grass cutting, lawn maintenance and property upkeep in Williamsburg, VA. Larger residential lots, rural property and acreage in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Property Maintenance & Lawn Care | The A.W. Vaughan Company',
+			ogDescription:
+				'Grass cutting, trimming and general upkeep for larger lots and rural property across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt:
+				'Property maintenance and lawn care in Williamsburg, VA - The A.W. Vaughan Company'
+		}
 	}
 ];
 

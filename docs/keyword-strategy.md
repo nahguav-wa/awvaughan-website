@@ -54,34 +54,40 @@ an FAQ entry or a short explainer section.
 
 Geographic plus core service — these are what the money pages target.
 
-| Term                                    | Page                        |
-| --------------------------------------- | --------------------------- |
-| land clearing Williamsburg VA           | /services/land-clearing     |
-| land clearing services near me          | /services/land-clearing     |
-| lot clearing Williamsburg VA            | /services/land-clearing     |
-| pasture reclamation Virginia            | /services/land-clearing     |
-| stump removal Williamsburg VA           | /services/land-clearing     |
-| land clearing New Kent VA               | /services/land-clearing     |
-| bush hogging Williamsburg VA            | /services/bush-hogging      |
-| bush hogging near me                    | /services/bush-hogging      |
-| field mowing Williamsburg VA            | /services/bush-hogging      |
-| brush hog services Gloucester VA        | /services/bush-hogging      |
-| overgrown field mowing Virginia         | /services/bush-hogging      |
-| bush hogging West Point VA              | /services/bush-hogging      |
-| forestry mulching Williamsburg VA       | /services/forestry-mulching |
-| forestry mulching near me               | /services/forestry-mulching |
-| underbrush clearing Virginia            | /services/forestry-mulching |
-| mulching head clearing Yorktown VA      | /services/forestry-mulching |
-| invasive species removal Virginia       | /services/forestry-mulching |
-| fence line clearing Williamsburg        | /services/forestry-mulching |
-| trail clearing Williamsburg VA          | /services/trail-systems     |
-| ATV trail building Virginia             | /services/trail-systems     |
-| hunting trail cutting Virginia          | /services/trail-systems     |
-| walking trail construction Williamsburg | /services/trail-systems     |
-| firebreak cutting Virginia              | /services/trail-systems     |
-| land management Williamsburg VA         | /services                   |
-| land clearing Historic Triangle         | /services                   |
-| land management Middle Peninsula        | /services                   |
+| Term                                    | Page                           |
+| --------------------------------------- | ------------------------------ |
+| land clearing Williamsburg VA           | /services/land-clearing        |
+| land clearing services near me          | /services/land-clearing        |
+| lot clearing Williamsburg VA            | /services/land-clearing        |
+| pasture reclamation Virginia            | /services/land-clearing        |
+| stump removal Williamsburg VA           | /services/land-clearing        |
+| land clearing New Kent VA               | /services/land-clearing        |
+| bush hogging Williamsburg VA            | /services/bush-hogging         |
+| bush hogging near me                    | /services/bush-hogging         |
+| field mowing Williamsburg VA            | /services/bush-hogging         |
+| brush hog services Gloucester VA        | /services/bush-hogging         |
+| overgrown field mowing Virginia         | /services/bush-hogging         |
+| bush hogging West Point VA              | /services/bush-hogging         |
+| forestry mulching Williamsburg VA       | /services/forestry-mulching    |
+| forestry mulching near me               | /services/forestry-mulching    |
+| underbrush clearing Virginia            | /services/forestry-mulching    |
+| mulching head clearing Yorktown VA      | /services/forestry-mulching    |
+| invasive species removal Virginia       | /services/forestry-mulching    |
+| fence line clearing Williamsburg        | /services/forestry-mulching    |
+| trail clearing Williamsburg VA          | /services/trail-systems        |
+| ATV trail building Virginia             | /services/trail-systems        |
+| hunting trail cutting Virginia          | /services/trail-systems        |
+| walking trail construction Williamsburg | /services/trail-systems        |
+| firebreak cutting Virginia              | /services/trail-systems        |
+| property maintenance Williamsburg VA    | /services/property-maintenance |
+| grass cutting Williamsburg VA           | /services/property-maintenance |
+| lawn maintenance Williamsburg VA        | /services/property-maintenance |
+| lawn care Toano VA                      | /services/property-maintenance |
+| acreage mowing Virginia                 | /services/property-maintenance |
+| absentee property maintenance Virginia  | /services/property-maintenance |
+| land management Williamsburg VA         | /services                      |
+| land clearing Historic Triangle         | /services                      |
+| land management Middle Peninsula        | /services                      |
 
 ## Secondary terms
 
@@ -89,6 +95,7 @@ Problem-focused, question-shaped searches. These are the ones worth answering
 with real content — an FAQ section or a short article earns these, a meta tag
 never did.
 
+- bush hogging vs mowing
 - forestry mulching vs land clearing
 - how much does land clearing cost per acre
 - how often should a field be bush hogged
@@ -113,6 +120,17 @@ because they are what separates this company from a man with a tractor:
   mulching head — earns the "vs" searches above.
 - **Equipment that fits.** Machines that get through a farm gate and down a
   narrow lane matter to exactly the rural properties this business serves.
+- **The gap property maintenance fills.** Lots of an acre to five acres are too
+  much ground for a suburban lawn route and too fine for a rotary cutter, so the
+  edges get skipped. Naming those edges specifically — well heads, culvert ends,
+  fence posts, propane tanks, the creeping wood line — is what makes that page
+  read as written by someone who has actually been on these properties.
+
+**Keep bush hogging and property maintenance distinct.** They are both mowing
+and it would be easy to let the copy blur them, but they are different jobs for
+different customers: rough cutting reclaims ground that got away, property
+maintenance keeps ground that has not. Each page says so explicitly, which also
+earns the "bush hogging vs mowing" search above.
 
 ## Notes
 

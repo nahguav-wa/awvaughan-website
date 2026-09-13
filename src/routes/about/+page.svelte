@@ -15,8 +15,8 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">About The A.W. Vaughan Company</h1>
 		<p class="text-lg font-normal text-gray-600">
-			A Williamsburg-based land management contractor — clearing, bush hogging, forestry mulching
-			and trail systems across the Historic Triangle and the Middle Peninsula.
+			A Williamsburg-based land management contractor — clearing, bush hogging, forestry mulching,
+			trail systems and property maintenance across the Historic Triangle and the Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -53,8 +53,8 @@
 						Moving inland changed what people needed from us. Out here the problem is rarely a
 						driveway; it is a parcel that has grown up, a field that has not been cut in three
 						seasons, woods you cannot walk through, or a back forty you have no way to reach. So
-						that is the work we do now: land clearing, bush hogging, forestry mulching, and trail
-						systems.
+						that is the work we do now: land clearing, bush hogging, forestry mulching, trail
+						systems, and keeping the grass and grounds maintained once the heavy work is done.
 					</p>
 					<p>
 						What we kept from the earlier work is the part most land clearing outfits skip. Taking

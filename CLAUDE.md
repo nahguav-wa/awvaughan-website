@@ -29,7 +29,7 @@ This document provides comprehensive guidance for AI assistants working on this 
 
 ## Project Overview
 
-This is a professional business website for The A.W. Vaughan Company, a land management contractor based in Williamsburg, Virginia and serving the Historic Triangle and the Middle Peninsula. The four services are land clearing, bush hogging, forestry mulching, and trail systems. The site is built with modern web technologies and optimized for SEO and conversions.
+This is a professional business website for The A.W. Vaughan Company, a land management contractor based in Williamsburg, Virginia and serving the Historic Triangle and the Middle Peninsula. The five services are land clearing, bush hogging, forestry mulching, trail systems, and property maintenance. The site is built with modern web technologies and optimized for SEO and conversions.
 
 **Primary Goals**:
 
@@ -1229,6 +1229,19 @@ references them. They can be removed once you are happy with the derivatives.
    - Crossings, culverts and water bars
    - Maintenance and reopening
 
+5. **Property Maintenance**
+   - Grass cutting and lawn maintenance
+   - Trimming and edging (buildings, fences, well heads, culvert ends)
+   - Wood line and yard edge upkeep
+   - Seasonal and absentee property care
+
+**Bush hogging and property maintenance are different services**, and the copy
+must keep them distinct: bush hogging is rough cutting that reclaims ground
+which got away (a rotary cutter, saplings to roughly 2 inches); property
+maintenance is finish mowing that keeps ground which has not. Blurring them
+loses both the "bush hogging vs mowing" search and the reason a customer would
+call for one rather than the other.
+
 **Retired** (2026-09): gravel driveway repair, drainage solutions, shed pad
 preparation, small excavation. Their URLs are 301'd in `_redirects`. Do not
 reintroduce copy targeting those terms — ranking for work the company no longer
@@ -1239,6 +1252,7 @@ does produces calls it has to turn down.
 **Primary**:
 
 - Landowners with a parcel that has grown up and needs reclaiming
+- Owners of one-to-five-acre lots too large for a suburban lawn route
 - Property owners preparing a building site, pasture, or fence line
 - Hunters and recreational landowners wanting access and trails
 - Owners of vacant lots and acreage needing seasonal cutting
@@ -1250,6 +1264,9 @@ does produces calls it has to turn down.
 - Invasives taking over a property line or fence row
 - No way to reach the back of a property
 - Trails that wash out every spring
+- Grass cut but every edge skipped — fences, well heads, culvert ends
+- A wood line taking a foot of yard a year
+- Absentee, rental or inherited property that needs keeping presentable
 
 ### Competitive Advantages
 
@@ -1619,6 +1636,15 @@ rather than passing unnoticed.
 ---
 
 ## Changelog
+
+**2026-09-13** - Added property maintenance as a fifth service
+
+- Grass cutting, lawn maintenance and general upkeep at
+  `/services/property-maintenance`, with the copy, Schema.org `serviceType`
+  entries, and keyword terms that go with it
+- Deliberately distinct from bush hogging — rough cutting versus finish mowing —
+  and both pages say so, since the two are easy to blur and serve different
+  customers
 
 **2026-09-13** - Services replaced with land management
 

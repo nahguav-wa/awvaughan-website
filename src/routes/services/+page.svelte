@@ -14,9 +14,9 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">Land Management Services in Williamsburg, VA</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Land clearing, bush hogging, forestry mulching, and trail systems for Williamsburg, Toano,
-			Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic Triangle and
-			Middle Peninsula.
+			Land clearing, bush hogging, forestry mulching, trail systems and property maintenance for
+			Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding
+			Historic Triangle and Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -141,6 +141,32 @@
 							<li>Crossings, culverts and water bars</li>
 							<li>Firebreaks and equipment access lanes</li>
 							<li>Maintenance and reopening closed-in trails</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Property Maintenance -->
+			<div>
+				<div class="flex items-start gap-6">
+					<div
+						class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500 text-xl font-bold text-white"
+					>
+						5
+					</div>
+					<div class="flex-1">
+						<h3 class="mb-3 font-bold text-gray-900">Property Maintenance</h3>
+						<p class="mb-4 text-base font-normal text-gray-600">
+							The finish side, and a different job from bush hogging: mown grass, trimmed edges and
+							a property that looks maintained week to week. For the larger lots that are too much
+							ground for a suburban lawn route and too fine for a rotary cutter.
+						</p>
+						<ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-600">
+							<li>Grass cutting and lawn maintenance</li>
+							<li>Trimming and edging around buildings, fences and well heads</li>
+							<li>Wood line and yard edge upkeep</li>
+							<li>Seasonal and absentee property care</li>
+							<li>One-time cleanups before a visit or a sale</li>
 						</ul>
 					</div>
 				</div>

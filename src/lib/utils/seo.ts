@@ -78,7 +78,9 @@ export function getLocalBusinessSchema() {
 			'Forestry Mulching',
 			'Trail Construction',
 			'Brush Removal',
-			'Pasture Reclamation'
+			'Pasture Reclamation',
+			'Property Maintenance',
+			'Lawn Maintenance'
 		]
 	};
 }

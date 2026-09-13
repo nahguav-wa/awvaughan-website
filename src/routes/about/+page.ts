@@ -15,13 +15,13 @@ export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
 		title: 'About Us | Williamsburg VA Land Management Contractor',
 		description:
-			'The A.W. Vaughan Company is a Williamsburg, VA land management contractor — land clearing, bush hogging, forestry mulching and trail systems for Toano, Norge, Yorktown, New Kent, West Point, Gloucester and Saluda.',
+			'The A.W. Vaughan Company is a Williamsburg, VA land management contractor — land clearing, bush hogging, forestry mulching, trail systems and property maintenance for Toano, Norge, Yorktown, New Kent, West Point, Gloucester and Saluda.',
 		canonical: absoluteUrl('/about'),
 		openGraph: {
 			type: 'website',
 			title: 'About The A.W. Vaughan Company | Williamsburg VA Land Management',
 			description:
-				'Land clearing, bush hogging, forestry mulching and trail systems across the Historic Triangle and Middle Peninsula.',
+				'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula.',
 			url: absoluteUrl('/about'),
 			siteName: COMPANY_INFO.name,
 			image: {

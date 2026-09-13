@@ -121,6 +121,7 @@ test.describe('page metadata', () => {
 			'/services/bush-hogging',
 			'/services/forestry-mulching',
 			'/services/trail-systems',
+			'/services/property-maintenance',
 			'/contact'
 		]) {
 			await page.goto(path, { waitUntil: 'domcontentloaded' });
@@ -232,7 +233,8 @@ test.describe('service pages', () => {
 			['/services/land-clearing', 'Land Clearing in Williamsburg, VA'],
 			['/services/bush-hogging', 'Bush Hogging in Williamsburg & the Middle Peninsula'],
 			['/services/forestry-mulching', 'Forestry Mulching in Williamsburg, VA'],
-			['/services/trail-systems', 'Trail Systems & Recreational Access']
+			['/services/trail-systems', 'Trail Systems & Recreational Access'],
+			['/services/property-maintenance', 'Property Maintenance in Williamsburg, VA']
 		];
 
 		for (const [path, heading] of expected) {
