@@ -45,9 +45,12 @@ county and city as indexed text beside the map, which is the natural home for
 county terms that would read as stuffing anywhere else.
 
 **The map is wider than the marketed geography, and that is deliberate.** The
-localities shaded on `/service-area` include Charles City, Henrico, Surry, Isle
-of Wight, Suffolk, Chesapeake and Virginia Beach, which are none of them target
-terms. They are drawn because the company will travel for the right job; they
+localities shaded on `/service-area` include Mathews, Charles City, Henrico,
+Surry, Isle of Wight, Suffolk, Chesapeake and Virginia Beach, none of which are
+target terms. Mathews is the one worth revisiting: it is squarely in the Middle
+Peninsula, so if the company markets there, a Mathews town belongs in
+`COMPANY_INFO.serviceArea.regions` and the county belongs in the list above
+rather than here. They are drawn because the company will travel for the right job; they
 are not named in that page's prose, `<title>`, description, or any structured
 data, and they must not be. `/service-area` deliberately contributes **no**
 Schema.org node at all: the layout's LocalBusiness already carries `areaServed`

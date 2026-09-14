@@ -162,8 +162,8 @@ test.describe('service area map', () => {
 		await page.goto('/service-area', { waitUntil: 'domcontentloaded' });
 
 		const shapes = page.locator('svg[role="img"] path[aria-hidden="true"]');
-		// Sixteen served localities plus one combined backdrop path.
-		await expect(shapes).toHaveCount(17);
+		// Seventeen served localities plus one combined backdrop path.
+		await expect(shapes).toHaveCount(18);
 
 		// The locality names are the accessible equivalent of the map and the text
 		// search engines index, so they must be real content, not just shapes.

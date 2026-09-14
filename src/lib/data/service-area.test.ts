@@ -16,7 +16,7 @@ import { _paths as sitemapPaths } from '../../routes/sitemap.xml/+server';
  */
 describe('service area map data', () => {
 	it('covers the localities the business serves', () => {
-		expect(serviceAreaLocalities).toHaveLength(16);
+		expect(serviceAreaLocalities).toHaveLength(17);
 	});
 
 	it('shades the counties the named towns are in', () => {
