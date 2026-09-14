@@ -18,9 +18,9 @@
 
 		<!-- CTA Description - lg size, regular weight -->
 		<p class="mx-auto mb-8 max-w-2xl text-lg font-normal">
-			Need gravel driveway repair, drainage solutions, or excavation services in Virginia Beach?
-			Let's work together to solve your property maintenance challenges. Contact us today at
-			{COMPANY_INFO.phone} for a consultation.
+			Have a parcel that has grown up, a field that needs cutting, or a trail you want opened? Tell
+			us what you are looking at and we will come walk it with you. Free quotes across Williamsburg,
+			the Historic Triangle, and the Middle Peninsula — call {COMPANY_INFO.phone}.
 		</p>
 
 		<!-- CTA Button -->

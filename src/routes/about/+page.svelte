@@ -15,8 +15,8 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">About The A.W. Vaughan Company</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Your trusted partner for professional gravel driveway repair, drainage solutions, and
-			excavation services in Virginia Beach and the 757 area.
+			A Williamsburg-based land management contractor — clearing, bush hogging, forestry mulching,
+			trail systems and property maintenance across the Historic Triangle and the Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -31,7 +31,7 @@
 			<div class="overflow-hidden rounded-lg shadow-lg">
 				<Picture
 					name="about-image"
-					alt="The A.W. Vaughan Company team working on excavation project in Virginia Beach"
+					alt="Cut field meeting the wood line on a rural property near Williamsburg, Virginia"
 					width={844}
 					height={1125}
 					sizes="(min-width: 768px) 28rem, 100vw"
@@ -44,21 +44,24 @@
 				<h2 class="mb-4 font-bold text-gray-900">Our Story</h2>
 				<div class="space-y-4 text-base font-normal text-gray-600">
 					<p>
-						Founded in {COMPANY_INFO.yearEstablished}, The A.W. Vaughan Company has been serving
-						Virginia Beach and the 757 area with professional excavation, gravel driveway repair,
-						and drainage solutions. We specialize in the projects that are too small for large
-						contractors but require professional expertise and quality workmanship.
+						The A.W. Vaughan Company was founded in {COMPANY_INFO.yearEstablished} in {COMPANY_INFO.foundedIn},
+						doing grading and drainage work on coastal properties. We are now based in Williamsburg
+						and work across the Historic Triangle and the Middle Peninsula — from Toano and Yorktown
+						out through New Kent, West Point, Gloucester and Saluda.
 					</p>
 					<p>
-						What sets us apart is our deep understanding of local soil conditions, drainage
-						patterns, and climate challenges unique to the Virginia Beach area. Whether you're
-						dealing with a washed-out gravel driveway, standing water issues, or need a properly
-						prepared shed pad, we bring the right expertise and equipment to get the job done right.
+						Moving inland changed what people needed from us. Out here the problem is rarely a
+						driveway; it is a parcel that has grown up, a field that has not been cut in three
+						seasons, woods you cannot walk through, or a back forty you have no way to reach. So
+						that is the work we do now: land clearing, bush hogging, forestry mulching, trail
+						systems, and keeping the grass and grounds maintained once the heavy work is done.
 					</p>
 					<p>
-						Our commitment is simple: deliver professional results on time, with clear
-						communication, and fair pricing. We're not just about moving dirt—we're about solving
-						problems and creating lasting solutions for your property.
+						What we kept from the earlier work is the part most land clearing outfits skip. Taking
+						the cover off a piece of ground changes where the water goes, and a trail cut without
+						thinking about grade is a gully by the second storm. We plan for that at layout, not
+						after the first hard rain. Clear communication, honest estimates, fair pricing — and we
+						will tell you when the job needs a different service than the one you called about.
 					</p>
 				</div>
 			</div>
@@ -94,9 +97,9 @@
 			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="mb-2 font-bold text-gray-900">Local Expertise</h3>
 				<p class="text-base font-normal text-gray-600">
-					We understand Virginia Beach soil, drainage challenges, and weather patterns. Our
-					solutions are designed specifically for our local environment and built to last through
-					our coastal weather conditions.
+					Virginia pine, sweetgum and hardwood, the invasives that take hold here, and how quickly a
+					field reverts on Toano sand versus Middle Peninsula bottomland. We clear for the ground
+					you actually have.
 				</p>
 			</div>
 
@@ -104,17 +107,17 @@
 			<div class="border-l-4 border-primary-500 pl-6">
 				<h3 class="mb-2 font-bold text-gray-900">Right-Sized Service</h3>
 				<p class="text-base font-normal text-gray-600">
-					We specialize in residential and small commercial projects. You won't be too small for
-					us—these are exactly the projects we excel at and enjoy doing.
+					Back lots, single fields, one grown-in fence line. A half-day job is not too small for us
+					— it is exactly the work our equipment is sized for.
 				</p>
 			</div>
 
 			<!-- Reason 3 -->
 			<div class="border-l-4 border-primary-500 pl-6">
-				<h3 class="mb-2 font-bold text-gray-900">Quality Workmanship</h3>
+				<h3 class="mb-2 font-bold text-gray-900">The Right Method</h3>
 				<p class="text-base font-normal text-gray-600">
-					Every project is completed with attention to detail and professional standards. From
-					proper grading to drainage solutions, we do it right the first time.
+					Mulching, mowing and full clearing solve different problems and cost different amounts. We
+					tell you which one your job actually needs rather than quoting the biggest one.
 				</p>
 			</div>
 
@@ -135,10 +138,12 @@
 -->
 <Section variant="gray">
 	<div class="mx-auto max-w-4xl text-center">
-		<h2 class="mb-6 font-bold text-gray-900">Serving the 757 Area</h2>
+		<h2 class="mb-6 font-bold text-gray-900">Where We Work</h2>
 		<p class="mb-8 text-lg font-normal text-gray-600">
-			Proudly serving {COMPANY_INFO.serviceArea.primary} and surrounding communities including
-			{COMPANY_INFO.serviceArea.regions.slice(1).join(', ')}, and all of Hampton Roads.
+			Based in {COMPANY_INFO.serviceArea.primary} and serving
+			{COMPANY_INFO.serviceArea.regions.slice(1).join(', ')}, and the surrounding Historic Triangle
+			and Middle Peninsula. Not sure whether you are in range? Call and ask — if we can get there,
+			we will.
 		</p>
 		<a
 			href="/contact"

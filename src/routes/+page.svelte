@@ -17,8 +17,8 @@
 	imageName="hero-image"
 	imageWidth={710}
 	imageHeight={1125}
-	title="Professional Gravel Driveway Repair & Drainage Solutions"
-	subtitle="Serving Virginia Beach and the 757 area with expert excavation, driveway grading, and site work"
+	title="Land Clearing & Forestry Mulching in Williamsburg, VA"
+	subtitle="Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula"
 	primaryCTA="Get a Free Quote"
 	primaryHref="/contact"
 	secondaryCTA="View Our Services"

@@ -14,22 +14,22 @@ import { getServiceAreaSchema } from '$lib/utils/seo';
  */
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title: 'Service Area - Counties & Cities We Serve | The A.W. Vaughan Company',
+		title: 'Service Area | Land Management from Williamsburg to Virginia Beach',
 		description:
-			'See the Virginia counties and cities we serve on an interactive map — from Virginia Beach and Chesapeake through the Peninsula and Middle Peninsula to Henrico. Gravel driveway repair, drainage, and excavation.',
+			'An interactive map of the Virginia counties and cities we serve — land clearing, bush hogging, forestry mulching, trail systems and property maintenance from the Middle Peninsula through Williamsburg and the Historic Triangle down to South Hampton Roads.',
 		canonical: absoluteUrl('/service-area'),
 		openGraph: {
 			type: 'website',
 			title: 'Where We Work | The A.W. Vaughan Company Service Area',
 			description:
-				'An interactive map of the counties and cities served by The A.W. Vaughan Company for gravel driveway repair, drainage solutions, and small excavation.',
+				'An interactive map of the counties and cities served by The A.W. Vaughan Company for land clearing, bush hogging, forestry mulching, trail systems and property maintenance.',
 			url: absoluteUrl('/service-area'),
 			siteName: COMPANY_INFO.name,
 			image: {
 				url: absoluteUrl('/og-image.jpg'),
 				width: 1200,
 				height: 630,
-				alt: 'The A.W. Vaughan Company service area across southeastern Virginia'
+				alt: 'The A.W. Vaughan Company land management service area across eastern Virginia'
 			}
 		}
 	};

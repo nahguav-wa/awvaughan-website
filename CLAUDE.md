@@ -29,7 +29,7 @@ This document provides comprehensive guidance for AI assistants working on this 
 
 ## Project Overview
 
-This is a professional business website for The A.W. Vaughan Company, a gravel driveway repair and drainage solutions contractor serving the Virginia Beach 757 area. The site is built with modern web technologies and optimized for SEO and conversions.
+This is a professional business website for The A.W. Vaughan Company, a land management contractor based in Williamsburg, Virginia and serving the Historic Triangle and the Middle Peninsula. The five services are land clearing, bush hogging, forestry mulching, trail systems, and property maintenance. The site is built with modern web technologies and optimized for SEO and conversions.
 
 **Primary Goals**:
 
@@ -39,7 +39,7 @@ This is a professional business website for The A.W. Vaughan Company, a gravel d
 - Build trust and credibility
 - Mobile-first responsive design
 
-**Target Audience**: Homeowners and property managers in Virginia Beach, Norfolk, Chesapeake, and the Hampton Roads area needing gravel driveway repair, drainage solutions, and excavation services.
+**Target Audience**: Rural and residential property owners, landowners, hunters and property managers in Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic Triangle and Middle Peninsula needing land clearing, field mowing, brush and underbrush removal, or trail access.
 
 ---
 
@@ -590,23 +590,72 @@ Applied at `<body>` level in `app.html`:
 
 ## SEO Strategy
 
+### Geography — the company moved
+
+The company was founded in Virginia Beach and is now **based in Williamsburg**.
+All copy and SEO target the new footprint; Virginia Beach, Norfolk, Chesapeake
+and "Hampton Roads" are no longer target terms.
+
+Virginia Beach survives in exactly two places, both deliberate: the founding
+sentence in the Our Story section of `/about` (rendered from
+`COMPANY_INFO.foundedIn`), and Schema.org `foundingLocation` in
+`getLocalBusinessSchema()`. That schema node is separate from `address`, which
+must stay on Williamsburg — a LocalBusiness whose `address` names the wrong city
+is optimized into the wrong local pack. A test asserts the two differ.
+
+The footprint has three layers, all driven from `COMPANY_INFO.serviceArea`:
+
+| Layer        | Source                | Value                                                                                                                                  |
+| ------------ | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Primary city | `serviceArea.primary` | Williamsburg                                                                                                                           |
+| Named towns  | `serviceArea.regions` | Williamsburg, Toano, Norge, Lightfoot, Yorktown, New Kent, Providence Forge, West Point, Gloucester, Gloucester Point, Saluda, Urbanna |
+| Region       | `serviceArea.region`  | the Historic Triangle and Middle Peninsula                                                                                             |
+
+`serviceArea.regions` also generates Schema.org `areaServed` and the
+service-area paragraph on `/about`, which renders `regions.slice(1)` as
+"and surrounding" — so **the primary city must stay first in that array**. A
+test asserts it.
+
+**Do not write "the 757 area" in new copy, and do not reintroduce an
+`areaCode` constant.** The footprint straddles two area codes — Williamsburg,
+Toano and Yorktown are 757, while West Point, Gloucester and Saluda are 804 —
+and "757" is a Hampton Roads identifier, the market the company left.
+
+There was an `areaCode` field, and the service page template appended
+"We serve Williamsburg and the entire 757 area" to every service CTA, telling
+every prospect in West Point, Gloucester and Saluda they were outside the
+coverage area. The field is gone and a test asserts it stays gone. Reach for
+`serviceArea.region` instead. The phone number is still a 757 number and lives
+in `COMPANY_INFO.phone`.
+
+Relatedly: **service page copy belongs in `src/lib/data/services.ts`, not in
+the `[slug]` template.** That CTA sentence was the one string the template
+hardcoded, which is precisely why it drifted while the data file was updated.
+Each record's `cta.body` now carries its own service area.
+
+Off-site geography is not in this repository and has to be moved by hand: the
+Google Business Profile (which is what actually drives a local pack ranking),
+the Nextdoor page — whose URL still spells `virginia-beach`, so
+`SOCIAL_LINKS.nextdoor` needs updating once that page is moved — and the
+location fields on Facebook, Instagram and YouTube.
+
 ### Primary Keywords (Target Rankings)
 
 **Geographic + Core Services**:
 
-- gravel driveway repair Virginia Beach
-- gravel driveway repair 757
-- drainage solutions Norfolk VA
-- shed pad preparation Virginia Beach
-- driveway grading 757
-- ditch and swale repair Virginia Beach
+- land clearing Williamsburg VA
+- bush hogging Williamsburg VA
+- forestry mulching Williamsburg VA
+- trail clearing Williamsburg VA
+- field mowing Yorktown VA
+- lot clearing New Kent VA
 
 **Service-Specific**:
 
-- gravel driveway crown restoration
-- driveway drainage repair near me
-- small excavation contractor 757
-- culvert repair Virginia Beach
+- underbrush clearing Virginia
+- forestry mulching near me
+- pasture reclamation Virginia
+- ATV trail building Virginia
 
 **Full list**: See `docs/keyword-strategy.md`. Keywords are a content planning
 document, not markup: the `<meta name="keywords">` tag is not emitted, because
@@ -668,7 +717,7 @@ Automatically generates:
 ```svelte
 <Hero
 	imageSrc="/hero-image.jpg"
-	imageAlt="Professional gravel driveway repair and drainage solutions in Virginia Beach - The A.W. Vaughan Company"
+	imageAlt="Land clearing and forestry mulching in Williamsburg, VA - The A.W. Vaughan Company"
 />
 ```
 
@@ -1176,6 +1225,21 @@ ones — the hero photograph is decorative because the headline beside it carrie
 the meaning, and a keyword-stuffed alt there just makes screen readers read
 marketing copy before the content.
 
+**Open the photograph before you describe it.** Every alt string in this repo
+was once wrong: the shed photo was labelled a regraded gravel driveway, the
+truck-and-tractor photo a drainage swale, the utility pedestal a shed pad. They
+were written from the filename and the surrounding copy, then carried through
+two rewrites unchecked. That is false content for search engines and a lie to a
+screen reader. Read the image, then write what is in it.
+
+Related: `ServiceDetail.image` is **optional**. A service with no honest
+photograph of that work ships without one rather than borrowing a picture of
+something else — `/services/forestry-mulching` and `/services/trail-systems`
+currently have none. The `[slug]` template drops to a single column when the
+image is absent. When real job photos arrive, add them to `PHOTOS` in
+`scripts/optimize-images.mjs`, run `npm run images`, and fill in the `image`
+field with the true source dimensions.
+
 **Caching**: derivatives are named by width, not by content hash, and the
 script rewrites them in place — so `/images/*` is **not** served as `immutable`.
 `_headers` gives it a day of hard caching plus a week of
@@ -1194,53 +1258,87 @@ references them. They can be removed once you are happy with the derivatives.
 ### Company Information
 
 **Name**: The A.W. Vaughan Company
-**Location**: Virginia Beach, Virginia
-**Service Area**: Virginia Beach, Norfolk, Chesapeake, Hampton Roads (757 area)
+**Location**: Williamsburg, Virginia
+**Service Area**: Williamsburg, Toano, Norge, Lightfoot, Yorktown, New Kent, Providence Forge, West Point, Gloucester, Gloucester Point, Saluda, Urbanna — the Historic Triangle and the Middle Peninsula
+**Founded In**: Virginia Beach, Virginia (relocated to Williamsburg)
 **Business Type**: Excavation and Grading Contractor
 **Established**: 2025
 
 ### Core Services
 
-1. **Gravel Driveway Repair**
-   - Crown restoration
-   - Pothole filling
-   - Grading and leveling
+1. **Land Clearing**
+   - Building site and lot clearing
+   - Pasture and field reclamation
+   - Stump removal and grubbing
+   - Debris handling and final grade
 
-2. **Drainage Solutions**
-   - Ditch and swale repair
-   - Culvert installation
-   - French drains
-   - Standing water remediation
+2. **Bush Hogging**
+   - Overgrown field and pasture mowing
+   - Vacant lot and right-of-way cutting
+   - Hunting land and food plot edges
+   - Scheduled seasonal cutting
 
-3. **Shed Pad Preparation**
-   - Site prep and leveling
-   - Gravel base installation
+3. **Forestry Mulching**
+   - Underbrush and understory clearing
+   - Invasive species knockdown
+   - Fence and property line clearing
+   - Selective clearing and view lines
 
-4. **Small Excavation**
-   - Residential site work
-   - Rural property maintenance
+4. **Trail Systems**
+   - Trail layout and routing
+   - Corridor cutting and mulching
+   - Crossings, culverts and water bars
+   - Maintenance and reopening
+
+5. **Property Maintenance**
+   - Grass cutting and lawn maintenance
+   - Trimming and edging (buildings, fences, well heads, culvert ends)
+   - Wood line and yard edge upkeep
+   - Seasonal and absentee property care
+
+**Bush hogging and property maintenance are different services**, and the copy
+must keep them distinct: bush hogging is rough cutting that reclaims ground
+which got away (a rotary cutter, saplings to roughly 2 inches); property
+maintenance is finish mowing that keeps ground which has not. Blurring them
+loses both the "bush hogging vs mowing" search and the reason a customer would
+call for one rather than the other.
+
+**Retired** (2026-09): gravel driveway repair, drainage solutions, shed pad
+preparation, small excavation. Their URLs are 301'd in `_redirects`. Do not
+reintroduce copy targeting those terms — ranking for work the company no longer
+does produces calls it has to turn down.
 
 ### Target Customers
 
 **Primary**:
 
-- Homeowners with gravel driveways experiencing drainage issues
-- Property owners needing driveway grading/repair
-- Customers preparing sites for sheds or small structures
+- Landowners with a parcel that has grown up and needs reclaiming
+- Owners of one-to-five-acre lots too large for a suburban lawn route
+- Property owners preparing a building site, pasture, or fence line
+- Hunters and recreational landowners wanting access and trails
+- Owners of vacant lots and acreage needing seasonal cutting
 
 **Pain Points Addressed**:
 
-- Standing water in driveways
-- Potholes and washouts
-- Muddy/uneven driveways
-- Poor drainage causing property damage
+- A field that has not been cut in several seasons
+- Woods too thick with underbrush to walk or hunt
+- Invasives taking over a property line or fence row
+- No way to reach the back of a property
+- Trails that wash out every spring
+- Grass cut but every edge skipped — fences, well heads, culvert ends
+- A wood line taking a foot of yard a year
+- Absentee, rental or inherited property that needs keeping presentable
 
 ### Competitive Advantages
 
 - Small, owner-operated (personalized service)
 - Quick response times
-- Specialized in small-to-medium projects
-- Local expertise in 757 area
+- Equipment sized for gates, lanes and back lots, not subdivisions
+- Grading and drainage background — clearing and trails are planned for where
+  water will go, which most clearing outfits skip
+- Honest about method: mowing vs mulching vs full clearing, and the real limits
+  of each (roughly 2" for a rotary cutter, roughly 8" for a mulching head)
+- Local expertise across the Historic Triangle and Middle Peninsula
 - Faith-based values (Jeremiah 29:11)
 
 ### Contact Information
@@ -1339,6 +1437,36 @@ of leads.
   `.node-version`, so that file is the single source of truth — do not pin a
   Node version in the workflow or the Pages dashboard.
 - **Root directory**: `/`
+
+### Retired routes and `_redirects`
+
+When a service is removed, its URL must not simply 404. `_redirects` in the
+**project root** (adapter-cloudflare copies it into the build, same as
+`_headers`) maps each retired path to a live one. Cloudflare Pages applies these
+at its asset handler, before a prerendered page is served — which is why they
+reach routes `src/hooks.server.ts` never sees.
+
+The 2026-09 move from excavation to land management retired four service pages:
+
+| Retired path                       | Redirects to              | Why                          |
+| ---------------------------------- | ------------------------- | ---------------------------- |
+| `/services/excavation`             | `/services/land-clearing` | Closest surviving equivalent |
+| `/services/gravel-driveway-repair` | `/services`               | No equivalent service        |
+| `/services/drainage-solutions`     | `/services`               | No equivalent service        |
+| `/services/shed-pad-preparation`   | `/services`               | No equivalent service        |
+
+Rules:
+
+1. **Redirect to something honest.** Pointing a retired page at a specific
+   service the company does not offer is worse than sending it to the listing.
+2. **301, not 302** — a temporary redirect leaves the old URL as the indexed
+   one.
+3. **Never redirect a live route.** The asset handler answers first, so the
+   service page would become unreachable with no error anywhere.
+
+Three tests in `src/lib/config/deployment.test.ts` enforce all of this against
+`ROUTES` and `serviceDetails`, so a redirect cannot outlive the route it points
+at.
 
 ### Package manager: npm, and only one lockfile
 
@@ -1440,7 +1568,8 @@ The split is therefore:
    script by nonce or hash. A second policy intersects with it and blocks that
    script, breaking hydration with no visible error.
 2. **`_headers` lives in the project root**, not `static/` — adapter-cloudflare
-   requires it there and copies it into the build.
+   requires it there and copies it into the build. So does **`_redirects`**; see
+   Retired Routes below.
 3. **Add a header to both places.** A test asserts `_headers` repeats every entry
    in `security-headers.ts`.
 4. **`frame-ancestors` is not usable here** — it is ignored when a policy arrives
@@ -1583,6 +1712,47 @@ rather than passing unnoticed.
   which also drives the page copy's counts and the Schema.org `areaServed`
 - `ROUTES` is now held against the sitemap by a test, so a page added to the nav
   cannot go unlisted
+
+**2026-09-13** - Added property maintenance as a fifth service
+
+- Grass cutting, lawn maintenance and general upkeep at
+  `/services/property-maintenance`, with the copy, Schema.org `serviceType`
+  entries, and keyword terms that go with it
+- Deliberately distinct from bush hogging — rough cutting versus finish mowing —
+  and both pages say so, since the two are easy to blur and serve different
+  customers
+
+**2026-09-13** - Services replaced with land management
+
+- The four services are now Land Clearing, Bush Hogging, Forestry Mulching and
+  Trail Systems. Gravel driveway repair, drainage solutions, shed pad
+  preparation and small excavation are retired
+- Site identity re-pointed: homepage `h1`, every title and description,
+  `COMPANY_INFO.businessType` and `description`, Schema.org `serviceType`, the
+  homepage value props, `/about`, `/services` and `/contact`
+- `_redirects` added at the project root, 301'ing the four retired service URLs;
+  three drift-guard tests assert every destination is a live route, no live
+  route is shadowed by a redirect, and all redirects are permanent
+- `ServiceDetail.image` is now optional. The repo's alt text described work the
+  photographs do not show, sitewide; every string was rewritten against the
+  actual images, and the two services with no honest photograph ship without one
+  rather than borrowing an unrelated picture
+- `docs/keyword-strategy.md` rewritten around land management terms
+
+**2026-09-11** - Relocation to Williamsburg: copy and SEO rewrite
+
+- The company moved from Virginia Beach to Williamsburg. Every page's copy,
+  title, description, Open Graph metadata, and image alt text was rewritten to
+  target Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and
+  Saluda, and the Historic Triangle and Middle Peninsula regions
+- `COMPANY_INFO.serviceArea` gained a `region` phrase and the full town list;
+  `foundedIn` records Virginia Beach so the About page can still tell that story
+- Schema.org: `address` and `geo` moved to Williamsburg, `areaServed` now lists
+  the new towns, and a `foundingLocation` node keeps Virginia Beach without
+  competing with `address`
+- `docs/keyword-strategy.md` rewritten around the new geography, including the
+  off-site moves (Google Business Profile, Nextdoor URL, social locations) that
+  cannot be made from this repository
 
 **2026-09-11** - Code review remediation
 

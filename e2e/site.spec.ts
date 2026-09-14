@@ -83,7 +83,7 @@ test.describe('content security policy', () => {
 		'/',
 		'/about',
 		'/services',
-		'/services/excavation',
+		'/services/land-clearing',
 		'/service-area',
 		'/contact'
 	]) {
@@ -113,7 +113,7 @@ test.describe('content security policy', () => {
 
 test.describe('page metadata', () => {
 	test('every page has its own title and canonical URL', async ({ page }) => {
-		// Nine navigations, and only <head> matters, so this waits for the DOM
+		// Ten navigations, and only <head> matters, so this waits for the DOM
 		// rather than for third-party subresources to settle.
 		test.slow();
 		// These were previously identical sitewide, and every canonical pointed at
@@ -124,10 +124,11 @@ test.describe('page metadata', () => {
 			'/',
 			'/about',
 			'/services',
-			'/services/gravel-driveway-repair',
-			'/services/drainage-solutions',
-			'/services/shed-pad-preparation',
-			'/services/excavation',
+			'/services/land-clearing',
+			'/services/bush-hogging',
+			'/services/forestry-mulching',
+			'/services/trail-systems',
+			'/services/property-maintenance',
 			'/service-area',
 			'/contact'
 		]) {
@@ -277,21 +278,38 @@ test.describe('contact form', () => {
 test.describe('service pages', () => {
 	test('all four render from the shared template', async ({ page }) => {
 		test.slow();
+		// The `heading` field of each record in src/lib/data/services.ts — which is
+		// not the same string as its `title`, the card label used on the listing.
 		const expected = [
-			['/services/gravel-driveway-repair', 'Gravel Driveway Repair & Restoration'],
-			['/services/drainage-solutions', 'Drainage Solutions & Grading'],
-			['/services/shed-pad-preparation', 'Shed Pad & Foundation Preparation'],
-			['/services/excavation', 'Small Excavation & Site Work']
+			['/services/land-clearing', 'Land Clearing in Williamsburg, VA'],
+			['/services/bush-hogging', 'Bush Hogging in Williamsburg & the Middle Peninsula'],
+			['/services/forestry-mulching', 'Forestry Mulching in Williamsburg, VA'],
+			['/services/trail-systems', 'Trail Systems & Recreational Access'],
+			['/services/property-maintenance', 'Property Maintenance in Williamsburg, VA']
 		];
 
 		for (const [path, heading] of expected) {
 			await page.goto(path, { waitUntil: 'domcontentloaded' });
 			await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
-			// Four offerings and a photograph, from the service data. Scoped to
-			// main, since the footer has headings of its own.
+			// Four offerings, from the service data. Scoped to main, since the
+			// footer has headings of its own. The photograph is deliberately not
+			// asserted: `image` is optional, and a service with no honest photo of
+			// the work ships without one.
 			const main = page.locator('#main-content');
 			await expect(main.getByRole('heading', { level: 3 })).toHaveCount(4);
-			await expect(main.locator('picture img').first()).toBeVisible();
+		}
+	});
+
+	test('retired service URLs redirect instead of 404ing', async ({ page }) => {
+		test.slow();
+		// These four were retired when the company moved to land management.
+		// Redirects live in _redirects and are applied by Cloudflare Pages, which
+		// `vite preview` does not emulate — so this only asserts the destinations
+		// are reachable. The mapping itself is guarded in deployment.test.ts.
+		const destinations = ['/services/land-clearing', '/services'];
+		for (const path of destinations) {
+			const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+			expect(response?.status(), `${path} should be served`).toBe(200);
 		}
 	});
 
@@ -333,5 +351,51 @@ test.describe('navigation', () => {
 
 		await page.keyboard.press('Escape');
 		await expect(menu).toBeHidden();
+	});
+});
+
+test.describe('homepage services carousel', () => {
+	// The homepage services grid became a carousel. The risk a carousel carries
+	// is that the cards it is not showing stop existing — for the visitor without
+	// JavaScript, and for the crawler that never runs it — so what is asserted
+	// here is that all five service links ship in the prerendered HTML, and that
+	// the controls move the track and track their own position.
+	test('ships every service link in the HTML and steps through the pages', async ({ page }) => {
+		const slugs = [
+			'land-clearing',
+			'bush-hogging',
+			'forestry-mulching',
+			'trail-systems',
+			'property-maintenance'
+		];
+
+		const html = await (await page.request.get('/')).text();
+		for (const slug of slugs) {
+			expect(html).toContain(`href="/services/${slug}"`);
+		}
+
+		await page.goto('/');
+		const carousel = page.getByRole('group', { name: 'Our services' });
+		const track = carousel.getByRole('group', { name: /scrollable/i });
+		const previous = carousel.getByRole('button', { name: 'Previous services' });
+		const next = carousel.getByRole('button', { name: 'Next services' });
+		const dots = carousel.getByRole('button', { name: /^Go to services/ });
+
+		await expect(previous).toBeDisabled();
+		await expect(dots.first()).toHaveAttribute('aria-current', 'true');
+
+		// How many cards fit is decided by CSS, so the page count is read from the
+		// dots rather than assumed: two per view on desktop, one on mobile.
+		const pageCount = await dots.count();
+		expect(pageCount).toBeGreaterThan(1);
+
+		for (let index = 1; index < pageCount; index++) {
+			await next.click();
+			await expect(dots.nth(index)).toHaveAttribute('aria-current', 'true');
+		}
+
+		await expect(next).toBeDisabled();
+		await expect(previous).toBeEnabled();
+		await expect.poll(() => track.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
 	});
 });

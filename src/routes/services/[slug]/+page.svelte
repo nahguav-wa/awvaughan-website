@@ -25,7 +25,7 @@
 
 <Section variant="white">
 	<div class="mx-auto max-w-4xl">
-		<div class="grid items-start gap-12 md:grid-cols-2">
+		<div class="grid items-start gap-12 {service.image ? 'md:grid-cols-2' : ''}">
 			<div>
 				<h2 class="mb-4 text-gray-900">{service.problem.heading}</h2>
 				<div class="space-y-4 text-base font-normal text-gray-600">
@@ -34,16 +34,18 @@
 					{/each}
 				</div>
 			</div>
-			<div class="overflow-hidden rounded-lg shadow-lg">
-				<Picture
-					name={service.image.name}
-					alt={service.image.alt}
-					width={service.image.width}
-					height={service.image.height}
-					sizes="(min-width: 768px) 28rem, 100vw"
-					class="h-auto w-full object-cover"
-				/>
-			</div>
+			{#if service.image}
+				<div class="overflow-hidden rounded-lg shadow-lg">
+					<Picture
+						name={service.image.name}
+						alt={service.image.alt}
+						width={service.image.width}
+						height={service.image.height}
+						sizes="(min-width: 768px) 28rem, 100vw"
+						class="h-auto w-full object-cover"
+					/>
+				</div>
+			{/if}
 		</div>
 	</div>
 </Section>
@@ -65,10 +67,7 @@
 <Section variant="white">
 	<div class="mx-auto max-w-4xl text-center">
 		<h2 class="mb-6 text-gray-900">{service.cta.heading}</h2>
-		<p class="mb-8 text-lg font-normal text-gray-600">
-			{service.cta.body} We serve {COMPANY_INFO.serviceArea.primary} and the entire {COMPANY_INFO
-				.serviceArea.areaCode} area.
-		</p>
+		<p class="mb-8 text-lg font-normal text-gray-600">{service.cta.body}</p>
 		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<Button variant="primary" href="/contact" size="md">Get a Free Quote</Button>
 			<Button variant="secondary" href={COMPANY_INFO.phoneHref} size="md">

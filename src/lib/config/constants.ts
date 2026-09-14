@@ -25,8 +25,8 @@ export function absoluteUrl(path: string): string {
 export const COMPANY_INFO = {
 	name: 'The A.W. Vaughan Company',
 	tagline: 'Jeremiah 29:11',
-	location: 'Virginia Beach, Virginia',
-	locationFull: 'Virginia Beach, VA',
+	location: 'Williamsburg, Virginia',
+	locationFull: 'Williamsburg, VA',
 	phone: '757-402-1100',
 	/** E.164 form, required by Schema.org and preferred by Google. */
 	phoneE164: '+1-757-402-1100',
@@ -36,16 +36,47 @@ export const COMPANY_INFO = {
 
 	// Service area
 	serviceArea: {
-		primary: 'Virginia Beach',
-		areaCode: '757',
-		regions: ['Virginia Beach', 'Norfolk', 'Chesapeake', 'Hampton Roads']
+		primary: 'Williamsburg',
+		/**
+		 * Umbrella phrase for the whole footprint, used wherever copy needs to
+		 * name the region rather than list towns.
+		 *
+		 * There is deliberately no `areaCode` here to reach for instead. One
+		 * existed, and the service page template rendered "we serve Williamsburg
+		 * and the entire 757 area" on all four pages — which told every
+		 * prospect in West Point, Gloucester and Saluda they were out of area,
+		 * since those are 804. The footprint straddles both area codes, so no
+		 * single one describes it. The phone number stays a 757 number and is
+		 * written out in `phone`.
+		 */
+		region: 'the Historic Triangle and Middle Peninsula',
+		/**
+		 * Towns served, primary first. Rendered as the service-area list on
+		 * /about and as the Schema.org `areaServed` entries.
+		 */
+		regions: [
+			'Williamsburg',
+			'Toano',
+			'Norge',
+			'Lightfoot',
+			'Yorktown',
+			'New Kent',
+			'Providence Forge',
+			'West Point',
+			'Gloucester',
+			'Gloucester Point',
+			'Saluda',
+			'Urbanna'
+		]
 	},
 
 	// Business details for SEO
-	businessType: 'Excavation and Grading Contractor',
+	businessType: 'Land Management Contractor',
 	yearEstablished: 2025,
+	/** Where the company started. It is now based in Williamsburg. */
+	foundedIn: 'Virginia Beach, Virginia',
 	description:
-		'Professional gravel driveway repair, drainage solutions, and excavation services in the Virginia Beach 757 area. Specializing in driveway grading, shed pad preparation, and rural property maintenance.'
+		'Land management and property maintenance in Williamsburg, VA: land clearing, bush hogging, forestry mulching, trail systems, and grass cutting. Serving Toano, Yorktown, New Kent, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula.'
 } as const;
 
 /**

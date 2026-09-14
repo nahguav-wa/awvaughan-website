@@ -18,9 +18,10 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">Our Service Area</h1>
 		<p class="text-lg font-normal text-gray-600">
-			We bring gravel driveway repair, drainage solutions, and small excavation to {counties} counties
-			and {cities} cities across southeastern Virginia — from the oceanfront up through the Peninsula
-			and Middle Peninsula to Greater Richmond.
+			Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across
+			{counties} counties and {cities} cities in eastern Virginia — from King and Queen and Gloucester
+			on the Middle Peninsula, through Williamsburg and the Historic Triangle, down to Suffolk,
+			Chesapeake and Virginia Beach.
 		</p>
 	</div>
 </Section>
@@ -53,8 +54,8 @@
 		</p>
 		<p class="text-base font-normal text-gray-600">
 			Virginia's independent cities sit outside any county, so Virginia Beach, Chesapeake, Suffolk,
-			Williamsburg, and Poquoson are listed as cities rather than counties above. Gravel driveways,
-			ditches, swales, culverts, and shed pads all get the same attention wherever you are on the
+			Williamsburg, and Poquoson are listed as cities rather than counties above. Clearing, cutting,
+			mulching, trail work, and property upkeep all get the same attention wherever you are on the
 			map.
 		</p>
 	</div>
