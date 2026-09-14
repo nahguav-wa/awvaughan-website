@@ -20,8 +20,8 @@
 		<p class="text-lg font-normal text-gray-600">
 			Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across
 			{counties} counties and {cities} cities in eastern Virginia — from King and Queen and Gloucester
-			on the Middle Peninsula, through Williamsburg and the Historic Triangle, down to Suffolk,
-			Chesapeake and Virginia Beach.
+			on the Middle Peninsula, through Williamsburg and the Historic Triangle, down to Suffolk, Chesapeake
+			and Virginia Beach.
 		</p>
 	</div>
 </Section>
