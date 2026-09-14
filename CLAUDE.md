@@ -1604,41 +1604,58 @@ The split is therefore:
 6. **The pixel bootstrap is a file** (`static/meta-pixel.js`), not an inline
    script, so `script-src` does not need `'unsafe-inline'`.
 
-#### The retired Stape gateway
+#### The retired Stape gateway — removed
 
 This site uses the **pure Meta implementation**: the browser pixel posts to
 Facebook, and Conversions API events are sent server-side straight to
-`graph.facebook.com` from `/api/contact`. Stape is no longer used.
+`graph.facebook.com` from `/api/contact`. Nothing in this repository references
+Stape.
 
-A Stape **Conversions API Gateway** is nevertheless still configured in Meta
-Events Manager, so with a real network `fbevents.js` reads it at runtime and
-tries to post visitor events to:
+A Stape **Conversions API Gateway** was configured in Meta Events Manager long
+after it stopped being used, so `fbevents.js` read it at runtime and tried to
+post visitor events to `capig.stape.st` and the Cloud Run service Stape hosted
+the per-customer gateway on. `connect-src` allowed neither, so the attempts were
+blocked — the intended outcome, but two wasted requests on every page view, and
+the data would have flowed again had the CSP ever been relaxed.
 
-- `https://capig.stape.st/events` — Stape
-- `https://g3a3d23a843935-hgy3ps6pca-uc.a.run.app/events` — the Cloud Run
-  service Stape hosts a per-customer gateway on
+**That gateway has been removed** (2026-09-14), verified by a live page load
+reporting no violation for either host. `RETIRED_GATEWAY_HOSTS` in
+`e2e/site.spec.ts` was removed with it, so the CSP e2e test now fails on **any**
+blocked host: a third-party endpoint added to the pixel configuration surfaces
+as a decision rather than passing unnoticed. Do not reintroduce an exemption
+list — if a blocked host appears, that is the test working.
 
-`connect-src` does not allow either, so the attempts are blocked. That is the
-intended outcome and no change should be made to allow them. Nothing in this
-repository references Stape.
+Declining Meta's offers to set one up again is part of keeping it that way. The
+dataset's Conversions API page presents "Set up with Meta → Connect now" and an
+"Enable automatic Meta Pixel connection for Conversions API Gateway" banner;
+both create a new gateway. The direct integration lives in `/api/contact` and
+needs nothing registered there, so that page showing only setup options is the
+correct state.
 
-**Remaining cleanup, in Meta Events Manager** (not in this repository):
+**Still unverified**: `META_AGENT_NAME`. `/api/meta-emq` passes it to Meta's
+Dataset Quality API as `agent_name`, which filters Event Match Quality to events
+delivered by that partner agent. If it still names the Stape agent it now names
+something that no longer exists. Note also that `sendMetaConversionEvent()` sets
+no `partner_agent` on its events, so the endpoint may return nothing for the
+direct integration whatever that variable says.
 
-1. Remove the Conversions API Gateway: Events Manager → the dataset for
-   `META_PIXEL_ID` → Settings → Conversions API Gateway. Until this is done the
-   pixel keeps making two blocked requests on every page view — harmless, but
-   wasted, and the data would flow again if the CSP were ever relaxed.
-2. Check `META_AGENT_NAME`. `/api/meta-emq` passes it to Meta's Dataset Quality
-   API as `agent_name`, which filters Event Match Quality to events delivered by
-   that partner agent. If it still names the Stape agent, the EMQ figures
-   describe the retired gateway's traffic rather than this site's direct
-   integration, and will read as empty or stale once the gateway is gone.
-3. Then empty `RETIRED_GATEWAY_HOSTS` in `e2e/site.spec.ts`, so that any
-   reappearance of a third-party endpoint fails the test.
+#### Cloudflare Web Analytics
 
-The e2e test already fails on any blocked host that is not on that list, so a
-new third-party endpoint added to the pixel configuration surfaces as a decision
-rather than passing unnoticed.
+`script-src` allows `static.cloudflareinsights.com` and `connect-src` allows
+`cloudflareinsights.com` (different hosts: the script is served from the
+subdomain, the measurements are POSTed to the apex).
+
+Cloudflare injects that beacon into the HTML **at its edge, after the build**,
+so nothing in this repository references it and no local build or preview ever
+sees it. That is how it went unnoticed that the policy was blocking the script
+on every page load, so the site recorded no traffic analytics at all — while the
+e2e suite, which runs against a local preview with no Cloudflare edge in front
+of it, stayed green. A drift guard in `src/lib/config/deployment.test.ts` now
+asserts both hosts are present.
+
+The general lesson: an edge-injected script is invisible to every test in this
+repository. The CSP is the only thing here that decides whether it runs, and the
+only place the breakage shows up is a real browser on the deployed site.
 
 ### Security Considerations
 

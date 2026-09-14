@@ -77,6 +77,19 @@ describe('content security policy', () => {
 		expect(config).toContain('https://www.facebook.com');
 	});
 
+	it('allows the Cloudflare Web Analytics beacon', () => {
+		// Cloudflare injects beacon.min.js at its edge, after the build, so this
+		// policy is the only thing in the repository that decides whether it runs.
+		// The script host was absent for months: the beacon was blocked on every
+		// page load and the site collected no traffic analytics at all, while
+		// nothing in the build or the tests could see a problem.
+		//
+		// The two hosts differ — the script is served from the static. subdomain
+		// and the measurements are POSTed to the apex — so both are needed.
+		expect(config).toContain('https://static.cloudflareinsights.com');
+		expect(config).toContain('https://cloudflareinsights.com');
+	});
+
 	it('allows Turnstile to load and frame itself', () => {
 		expect(config).toContain("'frame-src': ['https://challenges.cloudflare.com']");
 	});

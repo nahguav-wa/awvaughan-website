@@ -34,7 +34,19 @@ const config = {
 				// connect.facebook.net serves fbevents.js; without it the Meta
 				// pixel is silently blocked and the browser Lead event never
 				// leaves the queue.
-				'script-src': ['self', 'https://connect.facebook.net', 'https://challenges.cloudflare.com'],
+				//
+				// static.cloudflareinsights.com serves the Web Analytics beacon.
+				// Cloudflare injects that script into the HTML at its edge, after
+				// the build, so nothing in this repository references it and only
+				// the deployed site is affected — which is how it went unnoticed
+				// that the policy was blocking it and the site was recording no
+				// traffic analytics at all.
+				'script-src': [
+					'self',
+					'https://connect.facebook.net',
+					'https://challenges.cloudflare.com',
+					'https://static.cloudflareinsights.com'
+				],
 				// No inline event-handler attributes anywhere in the app.
 				'script-src-attr': ['none'],
 				'style-src': ['self', 'unsafe-inline'],
@@ -44,12 +56,16 @@ const config = {
 				// www.facebook.com serves the pixel's tracking beacon and the
 				// <noscript> fallback image.
 				'img-src': ['self', 'data:', 'https://www.facebook.com'],
+				// cloudflareinsights.com (no subdomain) is where the Web Analytics
+				// beacon POSTs its measurements, which is a different host from the
+				// one serving the script.
 				'connect-src': [
 					'self',
 					'https://www.facebook.com',
 					'https://connect.facebook.net',
 					'https://graph.facebook.com',
-					'https://challenges.cloudflare.com'
+					'https://challenges.cloudflare.com',
+					'https://cloudflareinsights.com'
 				],
 				'font-src': ['self'],
 				'frame-src': ['https://challenges.cloudflare.com'],
