@@ -189,6 +189,13 @@ export async function buildUserData(user: MetaLeadUser): Promise<Record<string, 
  * version hardcoded 0.0, which gives Meta's value-based bidding nothing to
  * optimize toward while presenting itself as a real measurement.
  *
+ * `partnerAgent` tags the event with the name /api/meta-emq passes to the
+ * Dataset Quality API as its `agent_name` filter. Both come from
+ * META_AGENT_NAME, and they have to: the endpoint filters Event Match Quality
+ * to one partner agent's events, so if nothing stamps that name on an event the
+ * filter matches nothing and the endpoint returns empty however many leads come
+ * in. It did exactly that until this field was added.
+ *
  * Throws when Meta rejects the event. Meta returns HTTP 200 with an `error` body
  * for some failures, so the body is inspected as well as the status — otherwise a
  * broken integration looks identical to a working one.
@@ -201,6 +208,7 @@ export async function sendMetaConversionEvent(options: {
 	sourceUrl: string;
 	testEventCode?: string;
 	leadValue?: number;
+	partnerAgent?: string;
 }): Promise<void> {
 	const event: Record<string, unknown> = {
 		event_name: 'Lead',
@@ -213,6 +221,12 @@ export async function sendMetaConversionEvent(options: {
 
 	if (options.leadValue !== undefined) {
 		event.custom_data = { value: options.leadValue, currency: META_LEAD_CURRENCY };
+	}
+
+	// Omitted rather than sent empty when unconfigured: an empty partner_agent is
+	// not the same as an absent one to Meta.
+	if (options.partnerAgent) {
+		event.partner_agent = options.partnerAgent;
 	}
 
 	const body: Record<string, unknown> = { data: [event] };

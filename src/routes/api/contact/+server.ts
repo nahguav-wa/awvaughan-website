@@ -454,7 +454,10 @@ Time: ${new Date().toISOString()}
 			},
 			sourceUrl: resolveEventSourceUrl(formData.event_source_url ?? request.headers.get('referer')),
 			testEventCode: platform?.env?.META_TEST_EVENT_CODE,
-			leadValue: leadValue !== undefined && Number.isFinite(leadValue) ? leadValue : undefined
+			leadValue: leadValue !== undefined && Number.isFinite(leadValue) ? leadValue : undefined,
+			// Same env var /api/meta-emq filters by, so the events carry the name
+			// that endpoint looks for.
+			partnerAgent: platform?.env?.META_AGENT_NAME
 		}).catch((metaError) => {
 			// A CAPI failure must not break form submission, but it must be visible:
 			// an unlogged failure means Lead tracking can stop entirely without

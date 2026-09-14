@@ -1632,12 +1632,16 @@ both create a new gateway. The direct integration lives in `/api/contact` and
 needs nothing registered there, so that page showing only setup options is the
 correct state.
 
-**Still unverified**: `META_AGENT_NAME`. `/api/meta-emq` passes it to Meta's
-Dataset Quality API as `agent_name`, which filters Event Match Quality to events
-delivered by that partner agent. If it still names the Stape agent it now names
-something that no longer exists. Note also that `sendMetaConversionEvent()` sets
-no `partner_agent` on its events, so the endpoint may return nothing for the
-direct integration whatever that variable says.
+`META_AGENT_NAME` is `awvaughan-sveltekit` — it never named the Stape agent, so
+nothing there needed repointing. It was, however, only ever _read_:
+`/api/meta-emq` passed it to the Dataset Quality API as the `agent_name` filter
+while `sendMetaConversionEvent()` stamped no `partner_agent` on the events, so
+the endpoint asked Meta for a partner agent nothing had ever reported under and
+returned empty by construction. The events now carry it (2026-09-14).
+
+**Both uses must stay on the same value.** Changing one without the other
+silently breaks the endpoint again, and it fails by returning nothing rather
+than erroring — which looks identical to having no traffic.
 
 #### Cloudflare Web Analytics
 
