@@ -328,7 +328,7 @@ describe('buildUserData — omissions', () => {
 	});
 });
 
-describe('sendMetaConversionEvent — conversion value', () => {
+describe('sendMetaConversionEvent — event payload', () => {
 	function stubMeta() {
 		const bodies: string[] = [];
 		vi.stubGlobal(
@@ -362,5 +362,20 @@ describe('sendMetaConversionEvent — conversion value', () => {
 			value: 250,
 			currency: 'USD'
 		});
+	});
+
+	it('omits partner_agent when none is configured', async () => {
+		const bodies = stubMeta();
+		await sendMetaConversionEvent(base);
+		expect(JSON.parse(bodies[0]).data[0].partner_agent).toBeUndefined();
+	});
+
+	it('tags the event with the partner agent when one is configured', async () => {
+		// /api/meta-emq filters Event Match Quality by this same name. Without it
+		// on the event the filter matches nothing and that endpoint returns empty
+		// no matter how many leads come in.
+		const bodies = stubMeta();
+		await sendMetaConversionEvent({ ...base, partnerAgent: 'awvaughan-sveltekit' });
+		expect(JSON.parse(bodies[0]).data[0].partner_agent).toBe('awvaughan-sveltekit');
 	});
 });

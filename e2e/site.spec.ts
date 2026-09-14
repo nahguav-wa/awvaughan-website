@@ -1,39 +1,6 @@
 import { expect, test, type ConsoleMessage, type Page } from '@playwright/test';
 
 /**
- * Hosts belonging to the retired Stape Conversions API Gateway.
- *
- * Stape is no longer used — this site sends Conversions API events directly to
- * Meta from /api/contact — but a Conversions API Gateway is still configured in
- * Meta Events Manager, so fbevents.js reads it at runtime and still attempts to
- * post events there. The CSP blocks those attempts, which is the intended
- * outcome; they are listed here only so this test does not fail on a
- * decommissioning that is still in progress.
- *
- * Once the gateway is removed in Events Manager these hosts stop appearing:
- * empty this list at that point, so any reappearance fails the test. See
- * CLAUDE.md.
- */
-const RETIRED_GATEWAY_HOSTS = ['capig.stape.st', '.a.run.app'];
-
-/**
- * The host of the resource a violation is about.
- *
- * Every Chromium CSP message names the blocked resource before it quotes the
- * policy ("Connecting to 'X' violates...", "Fetch API cannot load X.",
- * "Refused to load the script 'X'..."), so the first URL in the text is the
- * subject and any later ones belong to the policy.
- */
-function blockedHost(message: string): string | null {
-	const match = message.match(/https?:\/\/([^/'"\s,]+)/);
-	return match ? match[1] : null;
-}
-
-function isRetiredGatewayHost(host: string): boolean {
-	return RETIRED_GATEWAY_HOSTS.some((known) => host === known || host.endsWith(known));
-}
-
-/**
  * Collect Content-Security-Policy violations reported by the browser.
  *
  * Network failures are ignored: outbound calls to Facebook and Cloudflare are
@@ -52,33 +19,15 @@ function collectCspViolations(page: Page): string[] {
 	return violations;
 }
 
-/**
- * Split violations into the ones that matter — the app's own resources being
- * blocked, which breaks hydration silently — and the retired gateway's hosts.
- * Any other host counts as unexpected and fails the test, so a third-party
- * endpoint nobody decided on cannot appear unnoticed.
- */
-function partitionViolations(violations: string[], pageOrigin: string) {
-	const ownHost = new URL(pageOrigin).host;
-	const unexpected: string[] = [];
-	const retiredGateway: string[] = [];
-
-	for (const violation of violations) {
-		const host = blockedHost(violation);
-		if (host && host !== ownHost && isRetiredGatewayHost(host)) {
-			retiredGateway.push(violation);
-		} else {
-			unexpected.push(violation);
-		}
-	}
-
-	return { unexpected, retiredGateway };
-}
-
 test.describe('content security policy', () => {
 	// The policy is delivered as a <meta> tag on prerendered pages and as a
 	// response header on server-rendered ones. A policy that blocks the app's own
 	// scripts breaks hydration with no visible error at all.
+	//
+	// Any violation fails, third-party hosts included: the retired Stape gateway
+	// that used to be exempted here has been removed in Events Manager, so a
+	// blocked third-party endpoint now means something was added to the pixel
+	// configuration that nobody decided on.
 	for (const path of [
 		'/',
 		'/about',
@@ -87,13 +36,12 @@ test.describe('content security policy', () => {
 		'/service-area',
 		'/contact'
 	]) {
-		test(`does not block the app's own resources on ${path}`, async ({ page, baseURL }) => {
+		test(`does not block the app's own resources on ${path}`, async ({ page }) => {
 			const violations = collectCspViolations(page);
 			await page.goto(path);
 			await expect(page.locator('h1')).toBeVisible();
 
-			const { unexpected } = partitionViolations(violations, baseURL!);
-			expect(unexpected).toEqual([]);
+			expect(violations).toEqual([]);
 		});
 	}
 
