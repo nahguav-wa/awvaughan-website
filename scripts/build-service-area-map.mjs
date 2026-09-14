@@ -37,6 +37,11 @@ const OUTPUT = 'src/lib/data/service-area.ts';
  * City and York counties. They are included deliberately: leaving them out
  * renders them as holes punched through the middle of the shaded area, which
  * reads as a rendering fault rather than a boundary.
+ *
+ * Middlesex is here because Saluda and Urbanna are both in it, and both are
+ * named in `COMPANY_INFO.serviceArea.regions` and in docs/keyword-strategy.md.
+ * Leaving it out had the map contradicting the rest of the site: /about said we
+ * work in Saluda while the map showed its county unshaded.
  */
 const SERVED = [
 	'51810', // Virginia Beach city
@@ -52,6 +57,7 @@ const SERVED = [
 	'51199', // York County
 	'51735', // Poquoson city
 	'51073', // Gloucester County
+	'51119', // Middlesex County
 	'51101', // King William County
 	'51097' // King and Queen County
 ];

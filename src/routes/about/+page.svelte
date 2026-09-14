@@ -5,7 +5,7 @@
 <script lang="ts">
 	import { Section, FeatureCard, Picture } from '$lib';
 	import { features } from '$lib/data/features';
-	import { COMPANY_INFO } from '$lib/config/constants';
+	import { COMPANY_INFO, ROUTES } from '$lib/config/constants';
 </script>
 
 <!--
@@ -142,8 +142,13 @@
 		<p class="mb-8 text-lg font-normal text-gray-600">
 			Based in {COMPANY_INFO.serviceArea.primary} and serving
 			{COMPANY_INFO.serviceArea.regions.slice(1).join(', ')}, and the surrounding Historic Triangle
-			and Middle Peninsula. Not sure whether you are in range? Call and ask — if we can get there,
-			we will.
+			and Middle Peninsula. Not sure whether you are in range?
+			<a
+				href={ROUTES.serviceArea}
+				class="font-bold text-primary-500 underline transition-colors hover:text-primary-600"
+			>
+				See the full service area map
+			</a>, or call and ask — if we can get there, we will.
 		</p>
 		<a
 			href="/contact"

@@ -40,7 +40,20 @@ is still a 757 number and stays as it is.
 
 County-level terms worth working into body copy where they fit naturally: James
 City County, York County, New Kent County, King William County, Gloucester
-County, Middlesex County.
+County, Middlesex County. `/service-area` is where these live: it names every
+county and city as indexed text beside the map, which is the natural home for
+county terms that would read as stuffing anywhere else.
+
+**The map is wider than the marketed geography, and that is deliberate.** The
+localities shaded on `/service-area` include Charles City, Henrico, Surry, Isle
+of Wight, Suffolk, Chesapeake and Virginia Beach, which are none of them target
+terms. They are drawn because the company will travel for the right job; they
+are not named in that page's prose, `<title>`, description, or any structured
+data, and they must not be. `/service-area` deliberately contributes **no**
+Schema.org node at all: the layout's LocalBusiness already carries `areaServed`
+from `COMPANY_INFO.serviceArea.regions`, and a second `areaServed` against the
+same `@id` merges into it — which is how Virginia Beach briefly found its way
+back into the business's serving geography after the relocation.
 
 ## How to use this
 
@@ -88,6 +101,13 @@ Geographic plus core service — these are what the money pages target.
 | land management Williamsburg VA         | /services                      |
 | land clearing Historic Triangle         | /services                      |
 | land management Middle Peninsula        | /services                      |
+| land clearing James City County VA      | /service-area                  |
+| land clearing York County VA            | /service-area                  |
+| bush hogging New Kent County VA         | /service-area                  |
+| bush hogging King William County VA     | /service-area                  |
+| land clearing Gloucester County VA      | /service-area                  |
+| brush clearing Middlesex County VA      | /service-area                  |
+| land clearing service area Williamsburg | /service-area                  |
 
 ## Secondary terms
 

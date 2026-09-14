@@ -162,8 +162,8 @@ test.describe('service area map', () => {
 		await page.goto('/service-area', { waitUntil: 'domcontentloaded' });
 
 		const shapes = page.locator('svg[role="img"] path[aria-hidden="true"]');
-		// Fifteen served localities plus one combined backdrop path.
-		await expect(shapes).toHaveCount(16);
+		// Sixteen served localities plus one combined backdrop path.
+		await expect(shapes).toHaveCount(17);
 
 		// The locality names are the accessible equivalent of the map and the text
 		// search engines index, so they must be real content, not just shapes.
@@ -182,18 +182,25 @@ test.describe('service area map', () => {
 		await expect(page.locator('figcaption')).toHaveText('York County');
 	});
 
-	test('names the localities in the area served structured data', async ({ page }) => {
+	test('adds no area served claims of its own', async ({ page }) => {
+		// The map shades localities the company will travel to but does not market
+		// — Virginia Beach and Chesapeake among them. This page contributing its
+		// own LocalBusiness node merged those back into the business's serving
+		// geography, because a second `areaServed` against the same `@id` is read
+		// as one entity. See docs/keyword-strategy.md.
 		await page.goto('/service-area', { waitUntil: 'domcontentloaded' });
 
-		const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
-		const areas = blocks
+		const areas = (await page.locator('script[type="application/ld+json"]').allTextContents())
 			.join('\n')
 			.split('\n')
 			.map((line) => JSON.parse(line))
-			.flatMap((node) => node.areaServed ?? []);
+			.flatMap((node) => node.areaServed ?? [])
+			.map((area) => area.name);
 
-		expect(areas).toContainEqual({ '@type': 'AdministrativeArea', name: 'Gloucester County' });
-		expect(areas).toContainEqual({ '@type': 'City', name: 'Poquoson' });
+		expect(areas.length).toBeGreaterThan(0);
+		for (const retired of ['Virginia Beach', 'Chesapeake', 'Norfolk']) {
+			expect(areas, `${retired} must not be claimed as served`).not.toContain(retired);
+		}
 	});
 });
 

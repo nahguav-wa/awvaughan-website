@@ -44,7 +44,7 @@
 				viewBox={SERVICE_AREA_VIEWBOX}
 				class="h-auto w-full"
 				role="img"
-				aria-label="Map of southeastern Virginia showing the {serviceAreaLocalities.length} counties and cities served by The A.W. Vaughan Company"
+				aria-label="Map showing the {serviceAreaLocalities.length} Virginia counties and cities served by The A.W. Vaughan Company, centred on Williamsburg"
 			>
 				<!--
 					Neighbouring localities. Unlabelled and non-interactive: they exist so

@@ -1,10 +1,11 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 import {
 	SERVICE_AREA_CONTEXT_PATH,
 	SERVICE_AREA_VIEWBOX,
 	serviceAreaLocalities
 } from './service-area';
-import { getLocalBusinessSchema, getServiceAreaSchema } from '$lib/utils/seo';
+import { getLocalBusinessSchema } from '$lib/utils/seo';
 import { ROUTES } from '$lib/config/constants';
 import { _paths as sitemapPaths } from '../../routes/sitemap.xml/+server';
 
@@ -15,7 +16,22 @@ import { _paths as sitemapPaths } from '../../routes/sitemap.xml/+server';
  */
 describe('service area map data', () => {
 	it('covers the localities the business serves', () => {
-		expect(serviceAreaLocalities).toHaveLength(15);
+		expect(serviceAreaLocalities).toHaveLength(16);
+	});
+
+	it('shades the counties the named towns are in', () => {
+		// Every town in COMPANY_INFO.serviceArea.regions has to fall inside a
+		// shaded locality, or the map contradicts the rest of the site. Saluda and
+		// Urbanna are the ones this catches: both are in Middlesex, which the map
+		// originally left grey while /about said we work there.
+		const names = serviceAreaLocalities.map((l) => l.name);
+		expect(names).toContain('Middlesex');
+		expect(names).toContain('Gloucester');
+		expect(names).toContain('King William');
+		expect(names).toContain('New Kent');
+		expect(names).toContain('James City');
+		expect(names).toContain('York');
+		expect(names).toContain('Williamsburg');
 	});
 
 	it('has a unique GEOID and a drawable path for every locality', () => {
@@ -110,21 +126,41 @@ describe('service area map data', () => {
 	});
 });
 
-describe('service area structured data', () => {
-	it('extends the business node rather than describing a second business', () => {
-		// Same @id as the LocalBusiness the layout emits on every page, so the two
-		// JSON-LD nodes on this page merge into one entity.
-		expect(getServiceAreaSchema()['@id']).toBe(getLocalBusinessSchema()['@id']);
+describe('retired geography', () => {
+	/**
+	 * The company relocated from Virginia Beach to Williamsburg. Virginia Beach
+	 * survives only in `foundingLocation`, which deliberately does not compete
+	 * with `address` for the local pack.
+	 *
+	 * `constants.test.ts` guards the constant, but the constant was never the way
+	 * this broke: /service-area emitted its own LocalBusiness node against the
+	 * same `@id`, and a second `areaServed` merges into the first — so the map's
+	 * southern localities reappeared as places the business serves, with every
+	 * existing test still green. This asserts on the emitted schema instead.
+	 */
+	const RETIRED = ['Virginia Beach', 'Norfolk', 'Chesapeake', 'Hampton Roads'];
+
+	it('keeps retired geography out of the emitted areaServed', () => {
+		const served = getLocalBusinessSchema().areaServed.map((area) => area.name);
+		RETIRED.forEach((place) => {
+			expect(served, `${place} must not be an areaServed entry`).not.toContain(place);
+		});
 	});
 
-	it('types counties and independent cities differently', () => {
-		const areas = getServiceAreaSchema().areaServed;
-		expect(areas).toHaveLength(serviceAreaLocalities.length);
+	it('keeps Virginia Beach as the founding location only', () => {
+		const schema = getLocalBusinessSchema();
+		expect(schema.foundingLocation.address.addressLocality).toBe('Virginia Beach');
+		expect(schema.address.addressLocality).toBe('Williamsburg');
+	});
 
-		expect(areas).toContainEqual({ '@type': 'AdministrativeArea', name: 'York County' });
-		// Schema.org has no county type, so counties are AdministrativeArea; the
-		// independent cities genuinely are City.
-		expect(areas).toContainEqual({ '@type': 'City', name: 'Virginia Beach' });
+	it('adds no structured data from the service area page', () => {
+		// The map shades localities the company will travel to but does not
+		// market. Contributing a node here is what merged them back in.
+		const source = readFileSync(
+			new URL('../../routes/service-area/+page.ts', import.meta.url),
+			'utf8'
+		);
+		expect(source).not.toContain('structuredData');
 	});
 });
 
