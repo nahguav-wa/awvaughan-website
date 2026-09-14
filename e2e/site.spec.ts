@@ -79,7 +79,14 @@ test.describe('content security policy', () => {
 	// The policy is delivered as a <meta> tag on prerendered pages and as a
 	// response header on server-rendered ones. A policy that blocks the app's own
 	// scripts breaks hydration with no visible error at all.
-	for (const path of ['/', '/about', '/services', '/services/excavation', '/contact']) {
+	for (const path of [
+		'/',
+		'/about',
+		'/services',
+		'/services/land-clearing',
+		'/service-area',
+		'/contact'
+	]) {
 		test(`does not block the app's own resources on ${path}`, async ({ page, baseURL }) => {
 			const violations = collectCspViolations(page);
 			await page.goto(path);
@@ -106,7 +113,7 @@ test.describe('content security policy', () => {
 
 test.describe('page metadata', () => {
 	test('every page has its own title and canonical URL', async ({ page }) => {
-		// Eight navigations, and only <head> matters, so this waits for the DOM
+		// Ten navigations, and only <head> matters, so this waits for the DOM
 		// rather than for third-party subresources to settle.
 		test.slow();
 		// These were previously identical sitewide, and every canonical pointed at
@@ -122,6 +129,7 @@ test.describe('page metadata', () => {
 			'/services/forestry-mulching',
 			'/services/trail-systems',
 			'/services/property-maintenance',
+			'/service-area',
 			'/contact'
 		]) {
 			await page.goto(path, { waitUntil: 'domcontentloaded' });
@@ -143,6 +151,56 @@ test.describe('page metadata', () => {
 		await page.goto('/about');
 		const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');
 		expect(ogImage).toBe('https://awvaughan.com/og-image.jpg');
+	});
+});
+
+test.describe('service area map', () => {
+	test('renders every locality as a shape and as text', async ({ page }) => {
+		// The map is inline SVG rather than a tile layer precisely so it survives
+		// prerendering. If it ever became client-only this would catch it: the
+		// shapes would be absent from the served HTML.
+		await page.goto('/service-area', { waitUntil: 'domcontentloaded' });
+
+		const shapes = page.locator('svg[role="img"] path[aria-hidden="true"]');
+		// Seventeen served localities plus one combined backdrop path.
+		await expect(shapes).toHaveCount(18);
+
+		// The locality names are the accessible equivalent of the map and the text
+		// search engines index, so they must be real content, not just shapes.
+		for (const name of ['York County', 'City of Virginia Beach', 'King and Queen County']) {
+			await expect(page.getByRole('button', { name: `Show ${name} on the map` })).toBeVisible();
+		}
+	});
+
+	test('highlights a locality from the keyboard', async ({ page }) => {
+		await page.goto('/service-area');
+
+		const button = page.getByRole('button', { name: 'Show York County on the map' });
+		await button.focus();
+
+		await expect(button).toHaveAttribute('aria-pressed', 'true');
+		await expect(page.locator('figcaption')).toHaveText('York County');
+	});
+
+	test('adds no area served claims of its own', async ({ page }) => {
+		// The map shades localities the company will travel to but does not market
+		// — Virginia Beach and Chesapeake among them. This page contributing its
+		// own LocalBusiness node merged those back into the business's serving
+		// geography, because a second `areaServed` against the same `@id` is read
+		// as one entity. See docs/keyword-strategy.md.
+		await page.goto('/service-area', { waitUntil: 'domcontentloaded' });
+
+		const areas = (await page.locator('script[type="application/ld+json"]').allTextContents())
+			.join('\n')
+			.split('\n')
+			.map((line) => JSON.parse(line))
+			.flatMap((node) => node.areaServed ?? [])
+			.map((area) => area.name);
+
+		expect(areas.length).toBeGreaterThan(0);
+		for (const retired of ['Virginia Beach', 'Chesapeake', 'Norfolk']) {
+			expect(areas, `${retired} must not be claimed as served`).not.toContain(retired);
+		}
 	});
 });
 

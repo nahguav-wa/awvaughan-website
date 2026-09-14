@@ -19,6 +19,7 @@
 		"format": "prettier --write .",
 		"coverage": "vitest run --coverage",
 		"images": "node scripts/optimize-images.mjs",
+		"service-area-map": "node scripts/build-service-area-map.mjs",
 		"test:e2e": "playwright test"
 	},
 	"devDependencies": {

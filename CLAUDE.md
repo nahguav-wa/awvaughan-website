@@ -1,6 +1,6 @@
 # CLAUDE.md - AI Assistant Documentation
 
-**Last Updated**: 2026-09-11
+**Last Updated**: 2026-09-14
 **Project**: The A.W. Vaughan Company Website
 **Repository**: awvaughan-website
 
@@ -100,6 +100,9 @@ src/routes/
 │   └── [slug]/             # One template for all four service pages
 │       ├── +page.svelte    # Renders a ServiceDetail record
 │       └── +page.ts        # Resolves the slug, builds SEO + Service schema
+├── service-area/
+│   ├── +page.svelte        # Service area map page (/service-area)
+│   └── +page.ts            # SEO + Schema.org areaServed
 ├── contact/
 │   ├── +page.svelte        # Contact page (/contact)
 │   └── +page.server.ts     # Server load: SEO + Turnstile site key
@@ -181,6 +184,7 @@ awvaughan-website/
 │   │   │   └── typography.ts   # Typography system config
 │   │   ├── data/               # Static data files
 │   │   │   ├── features.ts     # Feature/value propositions
+│   │   │   ├── service-area.ts # GENERATED map paths (npm run service-area-map)
 │   │   │   └── services.ts     # Service offerings + full service page content
 │   │   ├── types/              # TypeScript type definitions
 │   │   │   └── index.ts        # Shared interfaces
@@ -197,6 +201,11 @@ awvaughan-website/
 │       └── api/                # API endpoints
 │           ├── contact/        # Contact form submission
 │           └── meta-emq/       # Meta EMQ diagnostics (admin-gated)
+├── scripts/                    # Build-time pipelines (run by hand, output committed)
+│   ├── data/
+│   │   └── localities.geojson  # Census boundary extract, input to the map
+│   ├── build-service-area-map.mjs
+│   └── optimize-images.mjs
 ├── static/                     # Static assets (images, logos, etc.)
 │   ├── hero-image.jpg          # Main hero background
 │   ├── about-image.jpg         # About section image
@@ -380,6 +389,13 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
 
 - Displays services from `src/lib/data/services.ts`
 - ServiceCard components in grid layout
+
+**ServiceAreaMap.svelte** - Interactive map of the counties and cities served
+
+- Inline SVG built from Census boundaries; no mapping library, no tiles, no CSP
+  change, and it survives prerendering
+- The shapes are a pointer affordance and are hidden from assistive technology;
+  the button list beside them carries keyboard access and is the indexed text
 
 **CTASection.svelte** - Call-to-action section
 
@@ -960,8 +976,15 @@ generated at build time and most pages are prerendered. They cover: no CSP
 violations on any route, per-page titles and canonicals, an absolute `og:image`,
 the contact form submitting and surfacing the server's message, the form never
 claiming success when the submission was not captured, all four service pages
-rendering from the shared template, heading hierarchy in computed pixels, and
-the mobile menu's `aria-expanded`/`aria-current`/Escape behaviour.
+rendering from the shared template, the service area map rendering every
+locality as both a shape and a keyboard-reachable button, heading hierarchy in
+computed pixels, and the mobile menu's `aria-expanded`/`aria-current`/Escape
+behaviour.
+
+`src/lib/data/service-area.test.ts` guards the generated map: that the paths
+parse and reconstruct inside the declared viewBox, that the independent cities
+are typed as cities, that the enclaves are present, and that every route in
+`ROUTES` reaches the sitemap.
 
 **Drift guards** (`src/lib/config/deployment.test.ts`) assert the things that
 live in two places stay in step: `_headers` against `security-headers.ts`, the
@@ -1122,6 +1145,63 @@ The four service pages used to be four near-identical `.svelte` files differing
 only in strings, so every layout change meant four edits and the copies drifted.
 Do not reintroduce a bespoke page for a service unless it genuinely needs a
 different layout.
+
+### Changing the Service Area
+
+**Edit one list**: `SERVED` in `scripts/build-service-area-map.mjs`, then run:
+
+```bash
+npm run service-area-map
+```
+
+That regenerates `src/lib/data/service-area.ts`, and the map, the locality list,
+the page copy's county and city counts, and the Schema.org `areaServed` all
+follow from it. Boundaries come from `scripts/data/localities.geojson`, an
+extract of the US Census cartographic boundary file for county-equivalents; add
+a locality outside that extract and the script fails loudly rather than dropping
+it silently.
+
+Two things to know before editing the list:
+
+- **Virginia's independent cities are not in any county.** Suffolk, Chesapeake,
+  Virginia Beach, Williamsburg and Poquoson are city-equivalents, and the
+  generator derives `kind` from the Census legal name so the page and the
+  structured data cannot disagree about which is which. Counties emit
+  `AdministrativeArea` (Schema.org has no county type); independent cities emit
+  `City`.
+- **Enclaves have to be included or explained.** Williamsburg and Poquoson are
+  entirely surrounded by James City and York. Leaving an enclave out punches a
+  visible hole through the middle of the shaded area, which reads as a rendering
+  fault rather than a boundary.
+- **Every town in `COMPANY_INFO.serviceArea.regions` must fall inside a shaded
+  locality.** Saluda and Urbanna are both in Middlesex, so a map without
+  Middlesex had `/about` naming towns the map showed as unserved. A test asserts
+  the counties behind the named towns are present.
+- **The map is wider than the marketed geography, deliberately.** It shades
+  localities the company will travel to but does not target — Charles City,
+  Henrico, Surry, Isle of Wight, Suffolk, Chesapeake and Virginia Beach. None of
+  them may appear in the page's prose, `<title>`, description, or any structured
+  data; see docs/keyword-strategy.md.
+
+**`/service-area` contributes no structured data, on purpose.** The layout
+already emits one LocalBusiness node whose `areaServed` comes from
+`COMPANY_INFO.serviceArea.regions`. A second `areaServed` against that same
+`@id` merges into it rather than replacing it, so a page-level schema listing
+the mapped counties put Virginia Beach and Chesapeake back into the business's
+serving geography — precisely what the relocation work removed, and with every
+existing test still green, because `constants.test.ts` guards the constant and
+not the emitted schema. `service-area.test.ts` now asserts on the emitted
+schema and on this page returning no `structuredData`.
+
+Localities that are _not_ served but border the area are drawn once as a grey
+backdrop. That is what makes the gap left by Norfolk, Portsmouth, Hampton and
+Newport News read as four cities outside the service area rather than a hole.
+
+Paths are emitted as integer relative deltas rather than absolute coordinates.
+The viewBox is 1000 units wide and the map never renders wider, so a unit is
+always under a pixel — and the data is inlined into the prerendered HTML _and_
+bundled into the client chunk that hydrates the map, so every byte is paid for
+twice. The encoding roughly halves it at no visible cost.
 
 ### Updating Images
 
@@ -1475,8 +1555,12 @@ continuing.
    own `canonical`
 3. **Always include alt text** - All images need descriptive alt text
 4. **Always sanitize user input** - Contact form and any user data
-5. **Always add new routes to the generated sitemap source** - `paths` in
-   `src/routes/sitemap.xml/+server.ts` (service pages are automatic)
+5. **Always add new routes to the generated sitemap source** - `_paths` in
+   `src/routes/sitemap.xml/+server.ts` (service pages are automatic). A test
+   asserts every route in `ROUTES` appears there, so a page added to the nav and
+   not the sitemap fails rather than quietly going unindexed. The underscore is
+   required: a `+server.ts` may only export handlers and its own config, so any
+   other export has to be prefixed to be allowed through.
 6. **Always test locally** - Run dev server before pushing
 7. **Always use $lib imports** - Don't use relative paths for shared code
 8. **Always follow Prettier rules** - Tabs, single quotes, 100 char width
@@ -1636,6 +1720,26 @@ rather than passing unnoticed.
 ---
 
 ## Changelog
+
+**2026-09-14** - Service area map
+
+- Added `/service-area`: an interactive map of the 12 counties and 5 independent
+  cities served, drawn as inline SVG from US Census cartographic boundaries. No
+  mapping library, no tile provider, no CSP change, and it prerenders, so the
+  locality names are in the HTML a crawler sees rather than painted into tiles
+- Boundaries are generated by `npm run service-area-map` from one `SERVED` list,
+  which also drives the page copy's counts
+- Middlesex County added: Saluda and Urbanna are both in it and both are named
+  sitewide, so the map had been contradicting `/about`. Mathews added alongside
+  it, completing the tip of the Middle Peninsula
+- The page emits no structured data. An earlier version emitted its own
+  LocalBusiness `areaServed`, which merged into the layout's node by `@id` and
+  quietly restored Virginia Beach and Chesapeake as places the business serves.
+  A test now asserts on the emitted schema rather than the constant
+- `/about`'s "Where We Work" links to the map; `/service-area` terms added to
+  `docs/keyword-strategy.md`
+- `ROUTES` is now held against the sitemap by a test, so a page added to the nav
+  cannot go unlisted
 
 **2026-09-13** - Added property maintenance as a fifth service
 
