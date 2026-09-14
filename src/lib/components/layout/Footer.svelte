@@ -13,6 +13,7 @@
 	const quickLinks = [
 		{ label: 'About', href: ROUTES.about },
 		{ label: 'Services', href: ROUTES.services },
+		{ label: 'Service Area', href: ROUTES.serviceArea },
 		{ label: 'Contact', href: ROUTES.contact }
 	];
 

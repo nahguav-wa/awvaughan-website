@@ -17,16 +17,25 @@ import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-const paths = [
+/**
+ * Every indexable route.
+ *
+ * Exported so a test can hold it against ROUTES and catch a page that was added
+ * to the nav but not here. The underscore is SvelteKit's convention: a
+ * `+server.ts` may only export request handlers and its own config, so any
+ * other export has to be prefixed to be allowed through.
+ */
+export const _paths = [
 	'/',
 	'/about',
 	'/services',
 	...serviceDetails.map(({ slug }) => `/services/${slug}`),
+	'/service-area',
 	'/contact'
 ];
 
 export const GET: RequestHandler = () => {
-	const urls = paths
+	const urls = _paths
 		.map((path) => `\t<url>\n\t\t<loc>${SITE_URL}${path}</loc>\n\t</url>`)
 		.join('\n');
 

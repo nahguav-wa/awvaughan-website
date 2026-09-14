@@ -10,6 +10,7 @@
  */
 
 import { absoluteUrl, COMPANY_INFO, SITE_URL, SOCIAL_LINKS } from '$lib/config/constants';
+import { serviceAreaLocalities } from '$lib/data/service-area';
 import type { SEOMetadata } from '$lib/types';
 
 /**
@@ -68,6 +69,30 @@ export function getLocalBusinessSchema() {
 			'Driveway Grading',
 			'Shed Pad Preparation'
 		]
+	};
+}
+
+/**
+ * Area-served structured data for the /service-area page.
+ *
+ * Emitted against the same `@id` as the LocalBusiness node the layout renders
+ * on every page, so consumers read one business with a fully enumerated service
+ * area rather than two businesses making different claims.
+ *
+ * Counties are `AdministrativeArea`: Schema.org has no county type, and `City`
+ * would be wrong — but it is right for Virginia's independent cities, which are
+ * city-equivalents outside any county.
+ */
+export function getServiceAreaSchema() {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'LocalBusiness',
+		'@id': BUSINESS_ID,
+		areaServed: serviceAreaLocalities.map(({ name, kind }) =>
+			kind === 'county'
+				? { '@type': 'AdministrativeArea', name: `${name} County` }
+				: { '@type': 'City', name }
+		)
 	};
 }
 

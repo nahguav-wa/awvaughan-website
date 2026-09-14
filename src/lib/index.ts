@@ -22,6 +22,7 @@ export { default as SocialMediaIcons } from './components/SocialMediaIcons.svelt
 export { default as Hero } from './components/sections/Hero.svelte';
 export { default as AboutSection } from './components/sections/AboutSection.svelte';
 export { default as ServicesSection } from './components/sections/ServicesSection.svelte';
+export { default as ServiceAreaMap } from './components/sections/ServiceAreaMap.svelte';
 export { default as CTASection } from './components/sections/CTASection.svelte';
 
 // SEO Components

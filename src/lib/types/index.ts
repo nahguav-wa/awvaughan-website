@@ -73,6 +73,26 @@ export interface ServiceDetail {
 }
 
 /**
+ * One locality in the service area map.
+ *
+ * `kind` is not decoration. Virginia's independent cities sit outside any
+ * county, so Suffolk, Chesapeake, Virginia Beach, Williamsburg and Poquoson are
+ * city-equivalents rather than counties — calling them counties is wrong to
+ * every local reader, and it changes the Schema.org type the page emits.
+ *
+ * Generated into src/lib/data/service-area.ts; see scripts/build-service-area-map.mjs.
+ */
+export interface ServiceAreaLocality {
+	/** US Census GEOID, the stable key that joins a name to its boundary. */
+	geoid: string;
+	/** Locality name without its "County" or "city" suffix. */
+	name: string;
+	kind: 'county' | 'city';
+	/** SVG path data in the SERVICE_AREA_VIEWBOX coordinate space. */
+	path: string;
+}
+
+/**
  * Feature/Value Proposition Card Data
  */
 export interface Feature {
