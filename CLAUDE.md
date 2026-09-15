@@ -97,12 +97,12 @@ src/routes/
 ├── services/
 │   ├── +page.svelte        # Services listing (/services)
 │   ├── +page.ts            # Services listing load function
-│   └── [slug]/             # One template for all four service pages
+│   └── [slug]/             # One template for every service page
 │       ├── +page.svelte    # Renders a ServiceDetail record
 │       └── +page.ts        # Resolves the slug, builds SEO + Service schema
 ├── service-area/
 │   ├── +page.svelte        # Service area map page (/service-area)
-│   └── +page.ts            # SEO + Schema.org areaServed
+│   └── +page.ts            # SEO only — no structured data, see Changing the Service Area
 ├── contact/
 │   ├── +page.svelte        # Contact page (/contact)
 │   └── +page.server.ts     # Server load: SEO + Turnstile site key
@@ -197,6 +197,7 @@ awvaughan-website/
 │       ├── +page.svelte        # Homepage
 │       ├── about/              # About page
 │       ├── services/           # Services page
+│       ├── service-area/       # Service area map
 │       ├── contact/            # Contact page
 │       └── api/                # API endpoints
 │           ├── contact/        # Contact form submission
@@ -975,7 +976,7 @@ because the bugs worth catching there only exist in built output — the CSP is
 generated at build time and most pages are prerendered. They cover: no CSP
 violations on any route, per-page titles and canonicals, an absolute `og:image`,
 the contact form submitting and surfacing the server's message, the form never
-claiming success when the submission was not captured, all four service pages
+claiming success when the submission was not captured, all five service pages
 rendering from the shared template, the service area map rendering every
 locality as both a shape and a keyboard-reachable button, heading hierarchy in
 computed pixels, and the mobile menu's `aria-expanded`/`aria-current`/Escape
