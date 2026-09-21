@@ -17,10 +17,11 @@
 
 		<!-- Company Description - lg size, regular weight -->
 		<p class="mb-8 text-lg font-normal text-gray-600">
-			The A.W. Vaughan Company is a land management contractor based in Williamsburg, Virginia. We
-			clear land, bush hog fields that have gone up, mulch out underbrush and invasives, cut trail
-			systems that drain properly, and keep grass and grounds maintained — on rural and residential
-			property across Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.
+			The A.W. Vaughan Company is a landscape maintenance contractor based in Williamsburg,
+			Virginia. Your long-term property viability should be at the heart of your landscape program,
+			so ours starts with horticultural recommendations and a written maintenance plan — then
+			comprehensive maintenance, full service turf care, tree and shrub care, and seasonal clean-up
+			across Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.
 		</p>
 
 		<!-- Value Propositions Grid -->

@@ -13,22 +13,22 @@ import { absoluteUrl, COMPANY_INFO } from '$lib/config/constants';
  */
 export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
-		title: 'Services | Land Clearing, Mulching & Property Maintenance in Williamsburg VA',
+		title: 'Services | Landscape Maintenance & Management in Williamsburg VA',
 		description:
-			'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance in Williamsburg, VA. Serving Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
+			'Landscape maintenance and management in Williamsburg, VA. Comprehensive maintenance programs, full service turf care, tree and shrub care, and spring and fall clean-up. Serving Toano, Yorktown, New Kent, West Point, Gloucester and Saluda.',
 		canonical: absoluteUrl('/services'),
 		openGraph: {
 			type: 'website',
-			title: 'Land Management Services | The A.W. Vaughan Company',
+			title: 'Landscape Maintenance & Management | The A.W. Vaughan Company',
 			description:
-				'Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula.',
+				'Comprehensive maintenance programs, full service turf care, tree and shrub care, and seasonal clean-up across the Historic Triangle and Middle Peninsula.',
 			url: absoluteUrl('/services'),
 			siteName: COMPANY_INFO.name,
 			image: {
 				url: absoluteUrl('/og-image.jpg'),
 				width: 1200,
 				height: 630,
-				alt: 'The A.W. Vaughan Company land management services in Williamsburg, VA'
+				alt: 'The A.W. Vaughan Company landscape maintenance services in Williamsburg, VA'
 			}
 		}
 	};

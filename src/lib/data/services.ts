@@ -9,10 +9,19 @@
  * Target keywords per service are documented in docs/keyword-strategy.md rather
  * than held here: they inform the copy, but nothing in the app renders them.
  *
- * The company previously offered gravel driveway repair, drainage solutions,
- * shed pads and small excavation. Those services were retired in favour of land
- * management; their URLs are 301'd in `_redirects` at the project root, and a
- * test asserts every redirect still points at a route that exists.
+ * The company has offered two earlier sets of services. Gravel driveway repair,
+ * drainage solutions, shed pads and small excavation were retired 2026-09-13;
+ * land clearing, bush hogging, forestry mulching, trail systems and property
+ * maintenance were retired 2026-09-21, when the business moved to landscape
+ * maintenance and management. Every one of those URLs is 301'd in `_redirects`
+ * at the project root, and a test asserts each redirect still points at a route
+ * that exists.
+ *
+ * The five commitments in the "We Provide" list — comprehensive maintenance,
+ * turf care, tree and shrub care, seasonal clean-up, and spring and fall
+ * clean-up — are covered by four pages: spring and fall clean-up is the
+ * seasonal clean-up page rather than a near-duplicate of it. Two pages saying
+ * the same thing split their own ranking and read as filler.
  */
 
 import type { Service, ServiceDetail } from '$lib/types';
@@ -22,247 +31,18 @@ import type { Service, ServiceDetail } from '$lib/types';
  */
 export const serviceDetails: ServiceDetail[] = [
 	{
-		slug: 'land-clearing',
-		title: 'Land Clearing',
+		slug: 'maintenance-solutions',
+		title: 'Comprehensive Maintenance Solutions',
 		description:
-			'Land clearing in Williamsburg, VA and across the Historic Triangle. Brush, saplings, trees and stumps taken off building lots, pasture, and overgrown parcels, then graded back to usable ground.',
-		heading: 'Land Clearing in Williamsburg, VA',
+			'A single landscape maintenance program covering the whole property in Williamsburg, VA — turf, trees and shrubs, beds and seasonal work — built around a written plan, documented budgets, and monthly site inspections.',
+		heading: 'Comprehensive Landscape Maintenance in Williamsburg, VA',
 		intro:
-			'Building lots, reclaimed pasture, fence lines, and parcels that have grown up — cleared and left as ground you can actually use.',
+			'One program covering the whole property, planned around the long-term viability of the site rather than a fixed weekly route.',
 		problem: {
-			heading: 'Reclaiming Ground That Has Grown Up',
+			heading: 'A Program, Not a Route',
 			paragraphs: [
-				'Land goes back to woods quickly in this part of Virginia. A field that misses a couple of seasons fills with sweetgum, pine and cedar whips; give it ten years and it is a thicket you cannot walk through, let alone build on. The same thing creeps in from the edges of a yard, swallowing a few feet of lawn a year until the wood line is at the back door.',
-				'There are two honest ways to take it back, and they suit different jobs. Full mechanical clearing pulls the stumps and roots and leaves you bare, gradeable dirt — that is what you want before building, running a driveway, seeding pasture, or putting in a septic field. Forestry mulching grinds everything down in place and leaves the root mat intact, which is faster and gentler on the ground but is not a building surface. We will tell you which one your project actually needs rather than selling you the more expensive one.'
-			]
-		},
-		image: {
-			name: 'about-image',
-			alt: 'Cleared field meeting the wood line on a rural property near Williamsburg, Virginia',
-			width: 844,
-			height: 1125
-		},
-		offeringsHeading: 'Our Land Clearing Services',
-		offerings: [
-			{
-				title: 'Lot & Building Site Clearing',
-				description:
-					'Full clearing for a house site, shop, barn, driveway route, or septic field — trees down, stumps out, and the site left gradeable.'
-			},
-			{
-				title: 'Pasture & Field Reclamation',
-				description:
-					'Taking a field back from the saplings and briars that have claimed it, so it can be mowed, fenced, and grazed again.'
-			},
-			{
-				title: 'Stump Removal & Grubbing',
-				description:
-					'Stumps and root balls pulled rather than ground flush, for sites where anything left in the ground will cause problems later.'
-			},
-			{
-				title: 'Debris Handling & Final Grade',
-				description:
-					'Material chipped, piled, burned where permitted, or hauled — then the site graded so water leaves it. Clearing changes how a parcel drains, and that is not an afterthought for us.'
-			}
-		],
-		cta: {
-			heading: 'Ready to Clear Your Property?',
-			body: 'Free walk-through and quote across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
-		},
-		schemaDescription:
-			'Land clearing including building site clearing, pasture reclamation, stump removal and grubbing, and final grading in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
-		seo: {
-			title: 'Land Clearing Williamsburg VA | The A.W. Vaughan Company',
-			description:
-				'Land clearing in Williamsburg, VA. Building site clearing, pasture reclamation, stump removal, and grading in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Land Clearing in Williamsburg, VA | The A.W. Vaughan Company',
-			ogDescription:
-				'Building lots, pasture reclamation, and overgrown parcels cleared across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt: 'Land clearing in Williamsburg, VA - The A.W. Vaughan Company'
-		}
-	},
-	{
-		slug: 'bush-hogging',
-		title: 'Bush Hogging',
-		description:
-			'Bush hogging and field mowing in Williamsburg, VA and the Middle Peninsula. Overgrown fields, pasture, vacant lots, hunting land and right-of-way cut back in a single pass.',
-		heading: 'Bush Hogging in Williamsburg & the Middle Peninsula',
-		intro:
-			'Overgrown fields, pasture, vacant lots and hunting land cut back — once to reclaim it, or on a schedule so it never gets away from you again.',
-		problem: {
-			heading: 'Field Gone to Seed?',
-			paragraphs: [
-				'A rotary cutter is the right tool for grass, weeds, briars and saplings up to roughly two inches through. That covers most fields that have sat a season or two, most vacant lots, and most hunting land between seasons. Past about two inches the cutter starts fighting the material instead of cutting it, and the job becomes forestry mulching — we will say so up front rather than beating up your property and our equipment to avoid quoting the other service.',
-				'What bush hogging really buys you is that the field stays a field. Cut once or twice a season and the woody stuff never gets established; skip three years and you are paying for clearing instead of mowing. It also pushes back the ticks and snakes that thrive in waist-high cover, and it keeps you clear of county nuisance and vegetation ordinances on a lot you are holding.'
-			]
-		},
-		image: {
-			name: 'work-example-4',
-			alt: 'Field cut back around a utility pedestal, with the uncut brush line still standing behind it',
-			width: 675,
-			height: 844
-		},
-		offeringsHeading: 'Our Bush Hogging Services',
-		offerings: [
-			{
-				title: 'Overgrown Field & Pasture Mowing',
-				description:
-					'First-cut work on fields that have gone up, and routine cutting to keep pasture and hay ground clean.'
-			},
-			{
-				title: 'Vacant Lot & Right-of-Way Cutting',
-				description:
-					'Lots being held, road frontage, easements and utility corridors kept cut and presentable.'
-			},
-			{
-				title: 'Hunting Land & Food Plot Maintenance',
-				description:
-					'Shooting lanes, plot edges, and access lanes cut back ahead of the season on properties out toward New Kent, West Point and King and Queen.'
-			},
-			{
-				title: 'Scheduled Seasonal Cutting',
-				description:
-					'Put the property on a schedule and we come when it needs it, which costs less over a year than reclaiming it every third spring.'
-			}
-		],
-		cta: {
-			heading: 'Get Your Field Cut',
-			body: 'Free quote on one-time or seasonal cutting anywhere from Williamsburg to the Middle Peninsula.'
-		},
-		schemaDescription:
-			'Bush hogging and rotary mowing for overgrown fields, pasture, vacant lots, right-of-way and hunting land in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
-		seo: {
-			title: 'Bush Hogging Williamsburg VA | Field & Pasture Mowing',
-			description:
-				'Bush hogging in Williamsburg, VA. Overgrown fields, pasture, vacant lots, right-of-way and hunting land cut back in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Bush Hogging & Field Mowing | The A.W. Vaughan Company',
-			ogDescription:
-				'Overgrown fields, pasture and hunting land cut back across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt: 'Bush hogging and field mowing in Williamsburg, VA - The A.W. Vaughan Company'
-		}
-	},
-	{
-		slug: 'forestry-mulching',
-		title: 'Forestry Mulching',
-		description:
-			'Forestry mulching in Williamsburg, VA and the Middle Peninsula. Standing brush and small trees ground in place into a mulch mat — no burn piles, no hauling, no torn-up ground.',
-		heading: 'Forestry Mulching in Williamsburg, VA',
-		intro:
-			'Underbrush, invasives, fence lines and view corridors cleared in a single pass, with the material left on the ground instead of in a burn pile.',
-		problem: {
-			heading: 'Clearing Without the Cleanup',
-			paragraphs: [
-				'A mulching head grinds standing brush and small trees where they stand and lays the material down as a mulch mat. That removes the three worst parts of conventional clearing in one go: no burn piles and no permit to sit with, no trucking debris off the property, and no field of stump holes to fill afterwards. Because the machine works off the surface rather than digging, the ground comes through largely undisturbed.',
-				'The mat that gets left behind is doing real work, not just sitting there. It holds soil on slopes through a hard rain, suppresses the seed bank that would otherwise come straight back, and breaks down into the ground over a couple of seasons. On the sandy ground around Toano and Norge, where bare cleared soil washes badly, that mat is often worth more than the clearing itself. Honest limits: this is sized for stems up to roughly eight inches, anything bigger comes out another way, and since the roots stay in the ground it is not a substitute for grubbing a building site.'
-			]
-		},
-		offeringsHeading: 'Our Forestry Mulching Services',
-		offerings: [
-			{
-				title: 'Underbrush & Understory Clearing',
-				description:
-					'Clearing the tangle beneath mature hardwoods while leaving the trees you want — the fastest way to make woods walkable again.'
-			},
-			{
-				title: 'Invasive Species Knockdown',
-				description:
-					'Privet, autumn olive, wisteria, tree-of-heaven and Bradford pear taken down hard. Mulching alone will not kill the roots, so we will be straight with you about follow-up treatment.'
-			},
-			{
-				title: 'Fence & Property Line Clearing',
-				description:
-					'Grown-in fence lines, survey lines and easements opened back up so a fence can be run, repaired, or simply seen.'
-			},
-			{
-				title: 'Selective Clearing & View Lines',
-				description:
-					'Opening a view to the water or the field, thinning without clear-cutting, and cutting light into ground you want to plant.'
-			}
-		],
-		cta: {
-			heading: 'Clear It Without the Burn Pile',
-			body: 'Free assessment across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
-		},
-		schemaDescription:
-			'Forestry mulching including underbrush clearing, invasive species removal, fence line clearing and selective view-line clearing in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
-		seo: {
-			title: 'Forestry Mulching Williamsburg VA | The A.W. Vaughan Company',
-			description:
-				'Forestry mulching in Williamsburg, VA. Underbrush, invasives, fence lines and view corridors cleared in place with no burn piles, in Toano, Yorktown, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Forestry Mulching in Williamsburg, VA | The A.W. Vaughan Company',
-			ogDescription:
-				'Brush and small trees ground in place — no burn piles, no hauling, no stump holes. Across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt: 'Forestry mulching in Williamsburg, VA - The A.W. Vaughan Company'
-		}
-	},
-	{
-		slug: 'trail-systems',
-		title: 'Trail Systems',
-		description:
-			'Trail cutting and maintenance in Williamsburg, VA and the Middle Peninsula. ATV, walking and hunting trails laid out to shed water, cut, and kept open — plus crossings at the wet spots.',
-		heading: 'Trail Systems & Recreational Access',
-		intro:
-			'ATV and UTV trails, walking and riding trails, hunting access and firebreaks — routed to drain, cut clean, and maintained so they stay open.',
-		problem: {
-			heading: 'A Trail Is Only as Good as Its Drainage',
-			paragraphs: [
-				'Almost every failed trail we are called out to fix failed the same way. It was cut straight up the slope, so the first hard rain used it as a channel, and by the third it was a rutted gully that is harder to walk than the woods beside it. A trail is a small piece of earthwork, and the route has to be chosen for where water will go long before anyone thinks about where the view is.',
-				'This is the part of the old business we brought with us. We came up doing driveway grading and drainage, and the same rules apply at trail scale: cross the slope rather than run down it, outslope the tread so water sheds off instead of collecting, break long runs with water bars, and put a real crossing at the wet spot rather than hoping it dries out. Get that right at layout and the trail needs a cut once a year instead of a rebuild every spring.'
-			]
-		},
-		offeringsHeading: 'Our Trail Services',
-		offerings: [
-			{
-				title: 'Trail Layout & Routing',
-				description:
-					'We walk the property with you and lay the route to the ground — grade, drainage, and the places worth getting to.'
-			},
-			{
-				title: 'Trail Cutting & Mulching',
-				description:
-					'The corridor cleared and mulched to the width you want, from a foot trail to something a side-by-side or a tractor can use.'
-			},
-			{
-				title: 'Crossings, Culverts & Water Bars',
-				description:
-					'Wet crossings, ditch lines and low spots built properly, so the trail survives the weather instead of being defined by it.'
-			},
-			{
-				title: 'Trail Maintenance & Reopening',
-				description:
-					'Existing trails brushed back, re-cut, and repaired — including ones that have been closed in for years.'
-			}
-		],
-		cta: {
-			heading: 'Open Up Your Property',
-			body: 'Free walk-through and quote on new trails or reopening old ones, anywhere across the Historic Triangle and Middle Peninsula.'
-		},
-		schemaDescription:
-			'Trail system layout, cutting, drainage crossings and maintenance for ATV, walking, riding and hunting trails in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
-		seo: {
-			title: 'Trail Systems Williamsburg VA | ATV & Hunting Trail Cutting',
-			description:
-				'Trail cutting and maintenance in Williamsburg, VA. ATV, walking and hunting trails routed to drain properly, with crossings and water bars, in New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Trail Systems & Recreational Access | The A.W. Vaughan Company',
-			ogDescription:
-				'ATV, walking and hunting trails laid out to shed water, cut clean, and kept open across the Historic Triangle and Middle Peninsula.',
-			ogImageAlt:
-				'Trail cutting and recreational access in Williamsburg, VA - The A.W. Vaughan Company'
-		}
-	},
-	{
-		slug: 'property-maintenance',
-		title: 'Property Maintenance',
-		description:
-			'Grass cutting, lawn maintenance and general property upkeep in Williamsburg, VA. Larger residential lots, rural property and acreage kept mown, trimmed and presentable year round.',
-		heading: 'Property Maintenance in Williamsburg, VA',
-		intro:
-			'Grass cutting, lawn maintenance and the general upkeep that keeps a larger lot or a rural property looking like somebody is on top of it.',
-		problem: {
-			heading: 'Keeping a Property Looking Kept',
-			paragraphs: [
-				'This is the finish side of what we do, and it is a different job from bush hogging. A rotary cutter is for ground that has got away from you — a field, a lot gone to briars. This is mown grass, trimmed edges, and a property that looks maintained week to week. Both are mowing; they are not the same work and they do not take the same equipment.',
-				'Bigger lots out here fall through a gap. They are too much ground and too far out for a lawn company working a tight suburban route, and too fine for the rough-cutting crowd. So the grass gets cut and everything else gets left: around the shed and the well head, along the fence, at the culvert ends, behind the propane tank, and the wood line quietly taking a foot of yard a year. We already have the equipment out on these properties for the heavier work, which is what makes the acre-to-five-acre places worth doing properly.'
+				'Your long-term property viability should be at the heart of your landscape program. That is why our full range of services starts with horticultural recommendations and a written landscape management and maintenance plan made with the life of the property in mind — what the turf, the trees and the beds will need over years, not what fits neatly into one visit.',
+				'In addition to the services listed below, we prepare budgets and estimates detailing maintenance costs and recommendations, provide digital photos documenting site improvements and potential issues, and conduct quality monthly site inspections performed by senior management. That is the difference between a crew that mows and a program that is actually being managed: you can see what was done, what it cost, and what is coming.'
 			]
 		},
 		image: {
@@ -271,44 +51,212 @@ export const serviceDetails: ServiceDetail[] = [
 			width: 900,
 			height: 1125
 		},
-		offeringsHeading: 'Our Property Maintenance Services',
+		offeringsHeading: 'What the Program Covers',
 		offerings: [
 			{
-				title: 'Grass Cutting & Lawn Maintenance',
+				title: 'Landscape Management Plans',
 				description:
-					'Regular mowing on larger residential lots, rural property and acreage, on a schedule that matches how fast it actually grows rather than a fixed suburban route.'
+					'A written plan for the property: what gets maintained, on what schedule, and what we recommend changing — turf, trees, shrubs, beds and the seasonal work, in one document rather than five separate quotes.'
 			},
 			{
-				title: 'Trimming & Edging',
+				title: 'Budgets, Estimates & Recommendations',
 				description:
-					'The places a mower cannot reach and most crews skip — around outbuildings, fence lines and posts, well heads, culvert ends, propane tanks and utility pedestals.'
+					'Maintenance costs laid out ahead of the year, with recommendations priced separately from routine work, so you can approve improvements on their own merits instead of finding them on an invoice.'
 			},
 			{
-				title: 'Wood Line & Yard Edge Upkeep',
+				title: 'Photo Documentation',
 				description:
-					'Keeping the tree line where it is. Left alone it takes a foot or two of yard a year, and reclaiming it later costs far more than holding it does.'
+					'Digital photos recording site improvements and potential issues as we find them. An absentee owner, a board, or a manager covering several sites should not have to take our word for the condition of the grounds.'
 			},
 			{
-				title: 'Seasonal & Absentee Property Care',
+				title: 'Monthly Site Inspections',
 				description:
-					'Rental, hunting, weekend and inherited property kept presentable for owners who are not there to see it — including one-time cleanups before a visit or a sale.'
+					'A quality inspection every month, walked by senior management rather than the crew that did the work. Problems get caught while they are still small — drainage, thinning turf, a declining shrub, a wood line creeping in.'
 			}
 		],
 		cta: {
-			heading: 'Keep It Looking Kept',
-			body: 'Free quote on a one-time cleanup or regular maintenance, across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
+			heading: 'Ready for a Managed Landscape?',
+			body: 'Free walk-through and a written maintenance plan across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
 		},
 		schemaDescription:
-			'Property maintenance including grass cutting, lawn maintenance, trimming and edging, wood line upkeep and seasonal property care in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+			'Comprehensive landscape maintenance programs including written management plans, maintenance budgets and estimates, photo documentation, and monthly site inspections in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
 		seo: {
-			title: 'Property Maintenance Williamsburg VA | Lawn & Grass Cutting',
+			title: 'Landscape Maintenance Williamsburg VA | The A.W. Vaughan Company',
 			description:
-				'Grass cutting, lawn maintenance and property upkeep in Williamsburg, VA. Larger residential lots, rural property and acreage in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
-			ogTitle: 'Property Maintenance & Lawn Care | The A.W. Vaughan Company',
+				'Comprehensive landscape maintenance and management in Williamsburg, VA. Written maintenance plans, budgets, photo documentation and monthly site inspections in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Comprehensive Landscape Maintenance | The A.W. Vaughan Company',
 			ogDescription:
-				'Grass cutting, trimming and general upkeep for larger lots and rural property across the Historic Triangle and Middle Peninsula.',
+				'One managed program for the whole property — planned, budgeted, documented and inspected monthly, across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Landscape maintenance in Williamsburg, VA - The A.W. Vaughan Company'
+		}
+	},
+	{
+		slug: 'turf-care',
+		title: 'Full Service Turf Care Programs',
+		description:
+			'Full service turf care in Williamsburg, VA. Mowing, trimming and edging on a proper schedule, plus fertilization, weed and disease control, aeration and overseeding — managed as a season-long program.',
+		heading: 'Full Service Turf Care Programs in Williamsburg, VA',
+		intro:
+			'Mowing, feeding, weed and disease control, aeration and overseeding — run as one season-long program instead of a cut and a bag of fertilizer.',
+		problem: {
+			heading: 'Cutting Grass Is Not Turf Care',
+			paragraphs: [
+				'Most lawns in this part of Virginia are not failing because nobody mows them. They fail because the soil has never been tested, the fertility program is a guess, the mowing height is wrong for the species, and the weeds are being pulled instead of being crowded out. Cutting is maintenance of the symptom. Turf care is management of the stand.',
+				'Tidewater turf also lives a hard life. Tall fescue thins out through a humid August and has to be carried into fall; warm-season turf wants the opposite calendar. Compacted ground sheds water instead of taking it in, and thin turf is what lets crabgrass and nutsedge in during the first hot spell. A program sequenced to the season — feed, control, aerate, overseed, at the right times — is the only thing that actually changes the stand rather than the appearance of it.'
+			]
+		},
+		image: {
+			name: 'work-example-4',
+			alt: 'Grass cut and trimmed close around a utility pedestal and meter post at the edge of a property near Williamsburg, Virginia',
+			width: 675,
+			height: 844
+		},
+		offeringsHeading: 'Our Turf Care Services',
+		offerings: [
+			{
+				title: 'Mowing, Trimming & Edging',
+				description:
+					'Cut at the right height for the species and the season, with the edges actually done — around buildings, fence lines, well heads, culvert ends, utility pedestals and bed lines.'
+			},
+			{
+				title: 'Fertilization & Soil Health',
+				description:
+					'A fertility program built on what the soil test says the ground is short of, applied on a calendar that matches the turf you have rather than a generic four-step bag program.'
+			},
+			{
+				title: 'Weed, Insect & Disease Control',
+				description:
+					'Pre-emergent and targeted post-emergent control for crabgrass, nutsedge and broadleaf weeds, plus treatment for the grubs and fungal issues that show up in a Tidewater summer.'
+			},
+			{
+				title: 'Aeration, Overseeding & Renovation',
+				description:
+					'Core aeration to open compacted ground, fall overseeding to thicken a stand that thinned through the heat, and full renovation where a lawn is past feeding back.'
+			}
+		],
+		cta: {
+			heading: 'Get a Turf Program Built for Your Lawn',
+			body: 'Free assessment and a season-long turf plan across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
+		},
+		schemaDescription:
+			'Full service turf care programs including mowing, trimming and edging, fertilization, weed, insect and disease control, core aeration and overseeding in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Turf Care Programs Williamsburg VA | Lawn Fertilization & Weed Control',
+			description:
+				'Full service turf care in Williamsburg, VA. Mowing, fertilization, weed and disease control, aeration and overseeding in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Full Service Turf Care Programs | The A.W. Vaughan Company',
+			ogDescription:
+				'Mowing, feeding, weed and disease control, aeration and overseeding — one season-long program across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Turf care and lawn maintenance in Williamsburg, VA - The A.W. Vaughan Company'
+		}
+	},
+	{
+		slug: 'tree-and-shrub-care',
+		title: 'Tree and Shrub Care',
+		description:
+			'Tree and shrub care in Williamsburg, VA. Pruning done to the plant rather than to a shape, plus root-zone feeding, insect and disease management, and bed and mulch care that keeps plantings healthy.',
+		heading: 'Tree and Shrub Care in Williamsburg, VA',
+		intro:
+			'Pruning, feeding, and pest and disease management for the plantings that take the longest to replace and the longest to recover.',
+		problem: {
+			heading: 'The Slowest Thing on the Property to Replace',
+			paragraphs: [
+				'Turf recovers in a season. A shrub bed takes years, and a specimen tree takes a generation — which is exactly why the trees and shrubs are usually the part of a property that gets the least attention until something is visibly wrong. By then the options are narrower and more expensive than they were two seasons earlier.',
+				'Most of the damage we are called out to look at is not storm damage. It is a crape myrtle topped back to stubs every spring, hollies sheared into boxes until the interior is dead wood, mulch piled against trunks, and beds that have never been fed below the surface. Pruning is a horticultural decision — what the plant is, when it sets its buds, and what it is being asked to do in that spot — not a shape decision made with a hedge trimmer in February.'
+			]
+		},
+		offeringsHeading: 'Our Tree & Shrub Services',
+		offerings: [
+			{
+				title: 'Pruning & Structural Shaping',
+				description:
+					'Cut to the plant and its bloom cycle: thinning and structural work on ornamental trees, renewal pruning on overgrown shrubs, and hedges kept dense rather than sheared hollow.'
+			},
+			{
+				title: 'Fertilization & Root Health',
+				description:
+					'Root-zone feeding for trees and shrubs, which are competing with turf for the same ground and rarely get anything a lawn program applies to the surface.'
+			},
+			{
+				title: 'Insect & Disease Management',
+				description:
+					'Monitoring and treatment for what actually turns up here — scale, bagworms, lace bugs, borers, and the fungal problems a humid Tidewater summer brings on.'
+			},
+			{
+				title: 'Mulching & Bed Care',
+				description:
+					'Beds edged, weeded and mulched to the right depth and pulled back off the trunks. Mulch volcanoes rot bark and girdle roots, and they are the most common thing we undo.'
+			}
+		],
+		cta: {
+			heading: 'Protect the Plantings You Cannot Replace Quickly',
+			body: 'Free assessment of your trees, shrubs and beds across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
+		},
+		schemaDescription:
+			'Tree and shrub care including structural and renewal pruning, root-zone fertilization, insect and disease management, and bed edging and mulching in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Tree & Shrub Care Williamsburg VA | Pruning, Feeding & Bed Care',
+			description:
+				'Tree and shrub care in Williamsburg, VA. Structural and renewal pruning, root-zone fertilization, insect and disease treatment, and bed mulching in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Tree and Shrub Care | The A.W. Vaughan Company',
+			ogDescription:
+				'Pruning done to the plant, root-zone feeding, pest and disease management and proper bed care across the Historic Triangle and Middle Peninsula.',
+			ogImageAlt: 'Tree and shrub care in Williamsburg, VA - The A.W. Vaughan Company'
+		}
+	},
+	{
+		slug: 'seasonal-cleanup',
+		title: 'Seasonal Clean-Up',
+		description:
+			'Spring and fall clean-up in Williamsburg, VA. Leaf removal, bed renewal, cutbacks, storm debris and winter preparation — the two clean-ups that set up the rest of the maintenance year.',
+		heading: 'Spring and Fall Clean-Up in Williamsburg, VA',
+		intro:
+			'The two clean-ups that decide how the rest of the year goes, plus the storm and seasonal work in between.',
+		problem: {
+			heading: 'Two Weeks That Set Up Twelve Months',
+			paragraphs: [
+				'Spring and fall clean-ups are not tidying. They are the two points in the year where the property is reset, and skipping either one costs more than the clean-up would have. A fall left on the ground mats down over the turf through a wet winter and kills it in patches by March. Perennials left standing and beds left unmulched come out of winter with weeds already established and nothing holding moisture.',
+				'The spring clean-up is what lets the rest of the program work: the ground is cleared, beds are cut back and re-edged, mulch goes down before the weed seed germinates, and the first fertilizer application lands on turf that can actually use it. Get these two right and the weekly visits through the season are maintenance. Skip them and every visit is catching up.'
+			]
+		},
+		offeringsHeading: 'Our Seasonal Clean-Up Services',
+		offerings: [
+			{
+				title: 'Spring Clean-Up',
+				description:
+					'Winter debris cleared, beds cut back and re-edged, perennials and ornamental grasses taken down, fresh mulch laid, and the property set up before the growing season starts on it.'
+			},
+			{
+				title: 'Fall Clean-Up & Leaf Removal',
+				description:
+					'Leaves off the turf and out of the beds through the drop rather than in one pass at the end, plus cutbacks and winter bed preparation. Under a wet Tidewater winter, matted leaves kill turf outright.'
+			},
+			{
+				title: 'Storm & Debris Clean-Up',
+				description:
+					'Limbs, branches and blow-down cleared after a storm, and the grounds put back in order. Coastal Virginia gets the tail of enough tropical systems that this is a routine part of the year, not an emergency.'
+			},
+			{
+				title: 'Bed Renewal & Winter Preparation',
+				description:
+					'Beds re-cut and re-mulched, drainage and washouts addressed before the wet months, and plantings protected where the site exposes them.'
+			}
+		],
+		cta: {
+			heading: 'Book Your Spring or Fall Clean-Up',
+			body: 'Free quote on a one-time clean-up or a full seasonal program across Williamsburg, the Historic Triangle, and the Middle Peninsula.'
+		},
+		schemaDescription:
+			'Seasonal clean-up including spring clean-up, fall clean-up and leaf removal, storm debris clearing, bed renewal and winter preparation in Williamsburg, Toano, Yorktown, West Point, Gloucester and Saluda, Virginia.',
+		seo: {
+			title: 'Spring & Fall Clean-Up Williamsburg VA | Leaf Removal & Bed Renewal',
+			description:
+				'Spring and fall clean-up in Williamsburg, VA. Leaf removal, bed cutbacks and mulching, storm debris and winter preparation in Toano, Yorktown, New Kent, West Point, Gloucester and Saluda. Call 757-402-1100.',
+			ogTitle: 'Spring & Fall Clean-Up | The A.W. Vaughan Company',
+			ogDescription:
+				'Leaf removal, bed renewal, cutbacks and winter preparation across the Historic Triangle and Middle Peninsula.',
 			ogImageAlt:
-				'Property maintenance and lawn care in Williamsburg, VA - The A.W. Vaughan Company'
+				'Seasonal clean-up and leaf removal in Williamsburg, VA - The A.W. Vaughan Company'
 		}
 	}
 ];

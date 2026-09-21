@@ -23,20 +23,20 @@ export const load: PageLoad = () => {
 	const seo: SEOMetadata = {
 		title: 'Service Area | Williamsburg, the Historic Triangle & Middle Peninsula',
 		description:
-			'An interactive map of the counties and cities we work in, from Williamsburg and the Historic Triangle through New Kent, West Point, Gloucester and Saluda on the Middle Peninsula. Land clearing, bush hogging, forestry mulching, trail systems and property maintenance.',
+			'An interactive map of the counties and cities we work in, from Williamsburg and the Historic Triangle through New Kent, West Point, Gloucester and Saluda on the Middle Peninsula. Landscape maintenance, turf care, tree and shrub care, and seasonal clean-up.',
 		canonical: absoluteUrl('/service-area'),
 		openGraph: {
 			type: 'website',
 			title: 'Where We Work | The A.W. Vaughan Company Service Area',
 			description:
-				'An interactive map of the counties and cities served by The A.W. Vaughan Company for land clearing, bush hogging, forestry mulching, trail systems and property maintenance across the Historic Triangle and Middle Peninsula.',
+				'An interactive map of the counties and cities served by The A.W. Vaughan Company for landscape maintenance, turf care, tree and shrub care, and seasonal clean-up across the Historic Triangle and Middle Peninsula.',
 			url: absoluteUrl('/service-area'),
 			siteName: COMPANY_INFO.name,
 			image: {
 				url: absoluteUrl('/og-image.jpg'),
 				width: 1200,
 				height: 630,
-				alt: 'The A.W. Vaughan Company land management service area around Williamsburg, Virginia'
+				alt: 'The A.W. Vaughan Company landscape maintenance service area around Williamsburg, Virginia'
 			}
 		}
 	};

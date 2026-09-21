@@ -32,7 +32,7 @@ test.describe('content security policy', () => {
 		'/',
 		'/about',
 		'/services',
-		'/services/land-clearing',
+		'/services/maintenance-solutions',
 		'/service-area',
 		'/contact'
 	]) {
@@ -72,11 +72,10 @@ test.describe('page metadata', () => {
 			'/',
 			'/about',
 			'/services',
-			'/services/land-clearing',
-			'/services/bush-hogging',
-			'/services/forestry-mulching',
-			'/services/trail-systems',
-			'/services/property-maintenance',
+			'/services/maintenance-solutions',
+			'/services/turf-care',
+			'/services/tree-and-shrub-care',
+			'/services/seasonal-cleanup',
 			'/service-area',
 			'/contact'
 		]) {
@@ -236,11 +235,13 @@ test.describe('service pages', () => {
 		// The `heading` field of each record in src/lib/data/services.ts — which is
 		// not the same string as its `title`, the card label used on the listing.
 		const expected = [
-			['/services/land-clearing', 'Land Clearing in Williamsburg, VA'],
-			['/services/bush-hogging', 'Bush Hogging in Williamsburg & the Middle Peninsula'],
-			['/services/forestry-mulching', 'Forestry Mulching in Williamsburg, VA'],
-			['/services/trail-systems', 'Trail Systems & Recreational Access'],
-			['/services/property-maintenance', 'Property Maintenance in Williamsburg, VA']
+			[
+				'/services/maintenance-solutions',
+				'Comprehensive Landscape Maintenance in Williamsburg, VA'
+			],
+			['/services/turf-care', 'Full Service Turf Care Programs in Williamsburg, VA'],
+			['/services/tree-and-shrub-care', 'Tree and Shrub Care in Williamsburg, VA'],
+			['/services/seasonal-cleanup', 'Spring and Fall Clean-Up in Williamsburg, VA']
 		];
 
 		for (const [path, heading] of expected) {
@@ -257,11 +258,12 @@ test.describe('service pages', () => {
 
 	test('retired service URLs redirect instead of 404ing', async ({ page }) => {
 		test.slow();
-		// These four were retired when the company moved to land management.
-		// Redirects live in _redirects and are applied by Cloudflare Pages, which
-		// `vite preview` does not emulate — so this only asserts the destinations
-		// are reachable. The mapping itself is guarded in deployment.test.ts.
-		const destinations = ['/services/land-clearing', '/services'];
+		// Two rounds of services have been retired — the excavation set, then the
+		// land management set. Redirects live in _redirects and are applied by
+		// Cloudflare Pages, which `vite preview` does not emulate — so this only
+		// asserts the destinations are reachable. The mapping itself is guarded in
+		// deployment.test.ts.
+		const destinations = ['/services', '/services/maintenance-solutions'];
 		for (const path of destinations) {
 			const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
 			expect(response?.status(), `${path} should be served`).toBe(200);
@@ -313,16 +315,10 @@ test.describe('homepage services carousel', () => {
 	// The homepage services grid became a carousel. The risk a carousel carries
 	// is that the cards it is not showing stop existing — for the visitor without
 	// JavaScript, and for the crawler that never runs it — so what is asserted
-	// here is that all five service links ship in the prerendered HTML, and that
+	// here is that every service link ships in the prerendered HTML, and that
 	// the controls move the track and track their own position.
 	test('ships every service link in the HTML and steps through the pages', async ({ page }) => {
-		const slugs = [
-			'land-clearing',
-			'bush-hogging',
-			'forestry-mulching',
-			'trail-systems',
-			'property-maintenance'
-		];
+		const slugs = ['maintenance-solutions', 'turf-care', 'tree-and-shrub-care', 'seasonal-cleanup'];
 
 		const html = await (await page.request.get('/')).text();
 		for (const slug of slugs) {

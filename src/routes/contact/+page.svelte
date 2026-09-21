@@ -220,8 +220,9 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 text-gray-900">Contact Us</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Free quotes on land clearing, bush hogging, forestry mulching, trail systems and property
-			maintenance in Williamsburg and across the Historic Triangle and Middle Peninsula.
+			Free quotes on comprehensive maintenance, full service turf care, tree and shrub care, and
+			spring and fall clean-up in Williamsburg and across the Historic Triangle and Middle
+			Peninsula.
 		</p>
 	</div>
 </Section>
@@ -237,8 +238,8 @@
 				<div>
 					<h2 class="mb-6 text-gray-900">Get In Touch</h2>
 					<p class="mb-6 text-base font-normal text-gray-600">
-						Tell us about the property — roughly how many acres, how long since it was last cut, and
-						how thick it has got. Photos help more than anything. The more you give us, the more
+						Tell us about the property — roughly how much ground, what is being maintained now, and
+						what is not working. Photos help more than anything. The more you give us, the more
 						useful the first answer will be. Use the form, or call and talk it through.
 					</p>
 				</div>

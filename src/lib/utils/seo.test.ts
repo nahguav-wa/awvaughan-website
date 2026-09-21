@@ -82,8 +82,24 @@ describe('getLocalBusinessSchema', () => {
 	it('includes service types', () => {
 		const schema = getLocalBusinessSchema();
 		expect(Array.isArray(schema.serviceType)).toBe(true);
-		expect(schema.serviceType).toContain('Land Clearing');
-		expect(schema.serviceType).toContain('Forestry Mulching');
+		expect(schema.serviceType).toContain('Landscape Maintenance');
+		expect(schema.serviceType).toContain('Turf Care');
+		expect(schema.serviceType).toContain('Tree and Shrub Care');
+	});
+
+	it('claims no service type the company has retired', () => {
+		// Ranking for work the company no longer does produces calls it has to
+		// turn down. These were the land management services, retired in 2026-09.
+		const schema = getLocalBusinessSchema();
+		for (const retired of [
+			'Land Clearing',
+			'Bush Hogging',
+			'Forestry Mulching',
+			'Trail Construction',
+			'Pasture Reclamation'
+		]) {
+			expect(schema.serviceType, `${retired} is retired`).not.toContain(retired);
+		}
 	});
 });
 

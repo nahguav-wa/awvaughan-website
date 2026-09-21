@@ -18,9 +18,9 @@
 
 		<!-- CTA Description - lg size, regular weight -->
 		<p class="mx-auto mb-8 max-w-2xl text-lg font-normal">
-			Have a parcel that has grown up, a field that needs cutting, or a trail you want opened? Tell
-			us what you are looking at and we will come walk it with you. Free quotes across Williamsburg,
-			the Historic Triangle, and the Middle Peninsula — call {COMPANY_INFO.phone}.
+			Looking for a maintenance program you do not have to chase? Tell us about the property and we
+			will come walk it with you and put a plan and a budget in writing. Free quotes across
+			Williamsburg, the Historic Triangle, and the Middle Peninsula — call {COMPANY_INFO.phone}.
 		</p>
 
 		<!-- CTA Button -->
