@@ -70,47 +70,43 @@ an FAQ entry or a short explainer section.
 
 Geographic plus core service — these are what the money pages target.
 
-| Term                                    | Page                           |
-| --------------------------------------- | ------------------------------ |
-| land clearing Williamsburg VA           | /services/land-clearing        |
-| land clearing services near me          | /services/land-clearing        |
-| lot clearing Williamsburg VA            | /services/land-clearing        |
-| pasture reclamation Virginia            | /services/land-clearing        |
-| stump removal Williamsburg VA           | /services/land-clearing        |
-| land clearing New Kent VA               | /services/land-clearing        |
-| bush hogging Williamsburg VA            | /services/bush-hogging         |
-| bush hogging near me                    | /services/bush-hogging         |
-| field mowing Williamsburg VA            | /services/bush-hogging         |
-| brush hog services Gloucester VA        | /services/bush-hogging         |
-| overgrown field mowing Virginia         | /services/bush-hogging         |
-| bush hogging West Point VA              | /services/bush-hogging         |
-| forestry mulching Williamsburg VA       | /services/forestry-mulching    |
-| forestry mulching near me               | /services/forestry-mulching    |
-| underbrush clearing Virginia            | /services/forestry-mulching    |
-| mulching head clearing Yorktown VA      | /services/forestry-mulching    |
-| invasive species removal Virginia       | /services/forestry-mulching    |
-| fence line clearing Williamsburg        | /services/forestry-mulching    |
-| trail clearing Williamsburg VA          | /services/trail-systems        |
-| ATV trail building Virginia             | /services/trail-systems        |
-| hunting trail cutting Virginia          | /services/trail-systems        |
-| walking trail construction Williamsburg | /services/trail-systems        |
-| firebreak cutting Virginia              | /services/trail-systems        |
-| property maintenance Williamsburg VA    | /services/property-maintenance |
-| grass cutting Williamsburg VA           | /services/property-maintenance |
-| lawn maintenance Williamsburg VA        | /services/property-maintenance |
-| lawn care Toano VA                      | /services/property-maintenance |
-| acreage mowing Virginia                 | /services/property-maintenance |
-| absentee property maintenance Virginia  | /services/property-maintenance |
-| land management Williamsburg VA         | /services                      |
-| land clearing Historic Triangle         | /services                      |
-| land management Middle Peninsula        | /services                      |
-| land clearing James City County VA      | /service-area                  |
-| land clearing York County VA            | /service-area                  |
-| bush hogging New Kent County VA         | /service-area                  |
-| bush hogging King William County VA     | /service-area                  |
-| land clearing Gloucester County VA      | /service-area                  |
-| brush clearing Middlesex County VA      | /service-area                  |
-| land clearing service area Williamsburg | /service-area                  |
+| Term                                            | Page                            |
+| ----------------------------------------------- | ------------------------------- |
+| landscape maintenance Williamsburg VA           | /services/maintenance-solutions |
+| landscape management Williamsburg VA            | /services/maintenance-solutions |
+| commercial landscape maintenance Virginia       | /services/maintenance-solutions |
+| grounds maintenance Williamsburg VA             | /services/maintenance-solutions |
+| landscape maintenance contract Yorktown VA      | /services/maintenance-solutions |
+| property maintenance program Virginia           | /services/maintenance-solutions |
+| turf care Williamsburg VA                       | /services/turf-care             |
+| lawn care Williamsburg VA                       | /services/turf-care             |
+| lawn fertilization Williamsburg VA              | /services/turf-care             |
+| weed control Williamsburg VA                    | /services/turf-care             |
+| lawn aeration and overseeding Virginia          | /services/turf-care             |
+| lawn care Toano VA                              | /services/turf-care             |
+| lawn mowing service Yorktown VA                 | /services/turf-care             |
+| tree and shrub care Williamsburg VA             | /services/tree-and-shrub-care   |
+| shrub pruning Williamsburg VA                   | /services/tree-and-shrub-care   |
+| ornamental tree pruning Virginia                | /services/tree-and-shrub-care   |
+| shrub fertilization Virginia                    | /services/tree-and-shrub-care   |
+| bed mulching Williamsburg VA                    | /services/tree-and-shrub-care   |
+| tree and shrub insect treatment Virginia        | /services/tree-and-shrub-care   |
+| spring clean up Williamsburg VA                 | /services/seasonal-cleanup      |
+| fall clean up Williamsburg VA                   | /services/seasonal-cleanup      |
+| leaf removal Williamsburg VA                    | /services/seasonal-cleanup      |
+| seasonal clean up Virginia                      | /services/seasonal-cleanup      |
+| yard clean up Yorktown VA                       | /services/seasonal-cleanup      |
+| storm debris cleanup Gloucester VA              | /services/seasonal-cleanup      |
+| landscape maintenance Historic Triangle         | /services                       |
+| landscape management Middle Peninsula           | /services                       |
+| landscaping company Williamsburg VA             | /services                       |
+| lawn care James City County VA                  | /service-area                   |
+| landscape maintenance York County VA            | /service-area                   |
+| lawn care New Kent County VA                    | /service-area                   |
+| landscape maintenance Gloucester County VA      | /service-area                   |
+| lawn care King William County VA                | /service-area                   |
+| landscaping Middlesex County VA                 | /service-area                   |
+| landscape maintenance service area Williamsburg | /service-area                   |
 
 ## Secondary terms
 
@@ -118,54 +114,70 @@ Problem-focused, question-shaped searches. These are the ones worth answering
 with real content — an FAQ section or a short article earns these, a meta tag
 never did.
 
-- bush hogging vs mowing
-- forestry mulching vs land clearing
-- how much does land clearing cost per acre
-- how often should a field be bush hogged
-- what size trees can a forestry mulcher handle
-- do you need a permit to clear land in Virginia
-- how to get rid of privet / autumn olive
-- reclaiming a field that has grown up
-- why do my trails wash out
+- when to aerate and overseed fescue in Virginia
+- best mowing height for tall fescue
+- how much does a landscape maintenance contract cost
+- when to prune crape myrtles in Virginia
+- how deep should mulch be around a tree
+- why is my lawn thinning out in August
+- how to get rid of crabgrass and nutsedge
+- do leaves left on the lawn kill grass
+- when should a spring clean up be done
+- what is included in a landscape maintenance program
 
 ## Content the copy already leans on
 
 These are genuine differentiators and should keep appearing in body copy,
 because they are what separates this company from a man with a tractor:
 
+- **A managed program, not a weekly visit.** The written maintenance plan, the
+  budget prepared ahead of the year, the photo documentation, and the monthly
+  quality inspection are the positioning for the whole business. They are what
+  separate this from a mowing route, and they are what a property manager or an
+  absentee owner is actually shopping for.
 - **Drainage carries over.** The company came up doing grading and drainage.
-  Clearing changes where water goes, and a trail cut straight up a slope becomes
-  a gully. That is on `/services/trail-systems` and `/about`, and it is the most
-  defensible thing on the site.
-- **Naming the right method.** Mowing, mulching and full clearing solve
-  different problems at different prices. Saying so plainly — including the
-  honest limits, roughly two inches for a rotary cutter and roughly eight for a
-  mulching head — earns the "vs" searches above.
-- **Equipment that fits.** Machines that get through a farm gate and down a
-  narrow lane matter to exactly the rural properties this business serves.
-- **The gap property maintenance fills.** Lots of an acre to five acres are too
-  much ground for a suburban lawn route and too fine for a rotary cutter, so the
-  edges get skipped. Naming those edges specifically — well heads, culvert ends,
-  fence posts, propane tanks, the creeping wood line — is what makes that page
-  read as written by someone who has actually been on these properties.
+  Compacted ground sheds a summer storm instead of taking it in, beds wash out,
+  and turf drowns in the low corner. Reading a site that way first is the most
+  defensible thing on the site, and almost no maintenance competitor says it.
+- **Turf care is not cutting grass.** Soil test, fertility on the right
+  calendar, pre-emergent timing, aeration and overseeding. Saying plainly that
+  mowing is one line in a program — not the program — earns the "vs" and "why is
+  my lawn" searches above.
+- **Pruning is horticultural, not cosmetic.** Topped crape myrtles, hollies
+  sheared hollow, and mulch volcanoes are specific, recognisable mistakes.
+  Naming them is what makes that page read as written by someone who has been on
+  these properties rather than assembled from a template.
+- **The gap this business fills.** Larger residential lots, rural property and
+  small commercial grounds are too much ground for a tight suburban route and
+  too fine to be treated as rough cutting.
 
-**Keep bush hogging and property maintenance distinct.** They are both mowing
-and it would be easy to let the copy blur them, but they are different jobs for
-different customers: rough cutting reclaims ground that got away, property
-maintenance keeps ground that has not. Each page says so explicitly, which also
-earns the "bush hogging vs mowing" search above.
+**Keep the four service pages distinct.** Comprehensive maintenance is the
+program and the reporting around it; turf care is the stand of grass; tree and
+shrub care is the plantings; seasonal clean-up is the two resets that make the
+rest of it work. It would be easy to let all four drift into "we maintain your
+property", which would leave four pages competing for one term.
 
 ## Notes
 
 - The four service pages are generated from `src/lib/data/services.ts`. Edit the
   copy there; the page template is `src/routes/services/[slug]/+page.svelte`.
-- The company previously sold gravel driveway repair, drainage solutions, shed
-  pads and small excavation. Those services are retired; their URLs are 301'd in
-  `_redirects` at the project root. Do not write copy targeting those terms —
+- The "We Provide" list on `/services` names five commitments but there are four
+  pages: spring and fall clean-up **is** the seasonal clean-up page. A fifth
+  near-identical page would split its own ranking and read as filler.
+- Two rounds of services are retired, and every one of their URLs is 301'd in
+  `_redirects` at the project root. **Do not write copy targeting these terms** —
   ranking for work the company no longer does produces calls it has to turn
-  down.
+  down:
+  - gravel driveway repair, drainage solutions, shed pad preparation, small
+    excavation (retired 2026-09-13)
+  - land clearing, bush hogging, forestry mulching, trail systems, pasture
+    reclamation, stump removal, ATV and hunting trail cutting (retired
+    2026-09-21, when the business moved to landscape maintenance and management)
+  - The grading and drainage **background** is still fair to mention, and the
+    copy does: it explains how the company reads a site. Selling drainage work,
+    clearing or trail cutting is what is retired, not the history.
 - `/contact` and `/about` target brand and intent terms ("contact A.W. Vaughan",
-  "free land clearing quote Williamsburg") rather than service terms.
+  "free landscape maintenance quote Williamsburg") rather than service terms.
 - Adding a service to `src/lib/data/services.ts` automatically creates its page,
   adds it to the services listing and homepage grid, and includes it in
   `/sitemap.xml`. Add its target terms to the table above at the same time.

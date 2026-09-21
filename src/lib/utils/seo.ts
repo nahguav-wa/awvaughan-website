@@ -73,14 +73,15 @@ export function getLocalBusinessSchema() {
 			name: region
 		})),
 		serviceType: [
-			'Land Clearing',
-			'Bush Hogging',
-			'Forestry Mulching',
-			'Trail Construction',
-			'Brush Removal',
-			'Pasture Reclamation',
-			'Property Maintenance',
-			'Lawn Maintenance'
+			'Landscape Maintenance',
+			'Landscape Management',
+			'Turf Care',
+			'Lawn Fertilization',
+			'Weed Control',
+			'Tree and Shrub Care',
+			'Pruning',
+			'Seasonal Clean-Up',
+			'Leaf Removal'
 		]
 	};
 }

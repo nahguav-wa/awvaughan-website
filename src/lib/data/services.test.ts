@@ -2,8 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { getServiceBySlug, serviceDetails, services } from './services';
 
 describe('services data', () => {
-	it('has 5 services', () => {
-		expect(services).toHaveLength(5);
+	it('has 4 services', () => {
+		// Four pages cover the five "We Provide" commitments: spring and fall
+		// clean-up is what the seasonal clean-up page is. See services.ts.
+		expect(services).toHaveLength(4);
 	});
 
 	it('each service has required fields', () => {
@@ -48,19 +50,25 @@ describe('services data', () => {
 	});
 
 	it('resolves a service by slug and rejects unknown ones', () => {
-		expect(getServiceBySlug('forestry-mulching')?.title).toBe('Forestry Mulching');
+		expect(getServiceBySlug('turf-care')?.title).toBe('Full Service Turf Care Programs');
 		expect(getServiceBySlug('nope')).toBeUndefined();
 	});
 
 	it('does not resurrect a retired service slug', () => {
-		// These four were retired when the company moved to land management, and
-		// _redirects points their URLs elsewhere. A slug reappearing here would
-		// be shadowed by its own redirect and never render.
+		// Two rounds of retirements: the excavation services, and then the land
+		// management services the company moved on from. _redirects points every
+		// one of these URLs elsewhere, so a slug reappearing here would be
+		// shadowed by its own redirect and never render.
 		for (const slug of [
 			'gravel-driveway-repair',
 			'drainage-solutions',
 			'shed-pad-preparation',
-			'excavation'
+			'excavation',
+			'land-clearing',
+			'bush-hogging',
+			'forestry-mulching',
+			'trail-systems',
+			'property-maintenance'
 		]) {
 			expect(getServiceBySlug(slug)).toBeUndefined();
 		}
@@ -73,11 +81,10 @@ describe('services data', () => {
 
 	it('service hrefs match expected routes', () => {
 		const expectedHrefs = [
-			'/services/land-clearing',
-			'/services/bush-hogging',
-			'/services/forestry-mulching',
-			'/services/trail-systems',
-			'/services/property-maintenance'
+			'/services/maintenance-solutions',
+			'/services/turf-care',
+			'/services/tree-and-shrub-care',
+			'/services/seasonal-cleanup'
 		];
 		const actualHrefs = services.map((s) => s.href);
 		expectedHrefs.forEach((href) => {

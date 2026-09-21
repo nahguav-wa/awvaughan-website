@@ -15,8 +15,9 @@
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">About The A.W. Vaughan Company</h1>
 		<p class="text-lg font-normal text-gray-600">
-			A Williamsburg-based land management contractor — clearing, bush hogging, forestry mulching,
-			trail systems and property maintenance across the Historic Triangle and the Middle Peninsula.
+			A Williamsburg-based landscape maintenance contractor — comprehensive maintenance programs,
+			full service turf care, tree and shrub care, and seasonal clean-up across the Historic
+			Triangle and the Middle Peninsula.
 		</p>
 	</div>
 </Section>
@@ -50,18 +51,25 @@
 						out through New Kent, West Point, Gloucester and Saluda.
 					</p>
 					<p>
-						Moving inland changed what people needed from us. Out here the problem is rarely a
-						driveway; it is a parcel that has grown up, a field that has not been cut in three
-						seasons, woods you cannot walk through, or a back forty you have no way to reach. So
-						that is the work we do now: land clearing, bush hogging, forestry mulching, trail
-						systems, and keeping the grass and grounds maintained once the heavy work is done.
+						What we do now is landscape maintenance and management. Your long-term property
+						viability should be at the heart of your landscape program, so ours starts with
+						horticultural recommendations and a written maintenance plan made with the life of the
+						property in mind — comprehensive maintenance, full service turf care, tree and shrub
+						care, and the spring and fall clean-ups that set up the rest of the year.
 					</p>
 					<p>
-						What we kept from the earlier work is the part most land clearing outfits skip. Taking
-						the cover off a piece of ground changes where the water goes, and a trail cut without
-						thinking about grade is a gully by the second storm. We plan for that at layout, not
-						after the first hard rain. Clear communication, honest estimates, fair pricing — and we
-						will tell you when the job needs a different service than the one you called about.
+						We also prepare budgets and estimates detailing maintenance costs and recommendations,
+						provide digital photos documenting site improvements or potential issues, and conduct
+						quality monthly site inspections. That is the difference between a crew that turns up
+						and a program somebody is actually managing.
+					</p>
+					<p>
+						What we kept from the earlier work is the part most maintenance outfits skip: where the
+						water goes. Compacted ground sheds a summer storm instead of taking it in, beds wash
+						out, and turf drowns in the low corner every wet winter. We came up doing grading and
+						drainage, so we read a site that way first. Clear communication, honest estimates, fair
+						pricing — and we will tell you when what the property needs is not what you called
+						about.
 					</p>
 				</div>
 			</div>
@@ -95,29 +103,30 @@
 		<div class="grid gap-8 md:grid-cols-2">
 			<!-- Reason 1 -->
 			<div class="border-l-4 border-primary-500 pl-6">
-				<h3 class="mb-2 font-bold text-gray-900">Local Expertise</h3>
+				<h3 class="mb-2 font-bold text-gray-900">Local Horticultural Knowledge</h3>
 				<p class="text-base font-normal text-gray-600">
-					Virginia pine, sweetgum and hardwood, the invasives that take hold here, and how quickly a
-					field reverts on Toano sand versus Middle Peninsula bottomland. We clear for the ground
-					you actually have.
+					Tall fescue that thins through a humid August, warm-season turf on the opposite calendar,
+					and the scale, lace bugs and fungal problems a Tidewater summer brings on. We maintain for
+					the ground and the climate you actually have.
 				</p>
 			</div>
 
 			<!-- Reason 2 -->
 			<div class="border-l-4 border-primary-500 pl-6">
-				<h3 class="mb-2 font-bold text-gray-900">Right-Sized Service</h3>
+				<h3 class="mb-2 font-bold text-gray-900">Planned, Not Reactive</h3>
 				<p class="text-base font-normal text-gray-600">
-					Back lots, single fields, one grown-in fence line. A half-day job is not too small for us
-					— it is exactly the work our equipment is sized for.
+					A written management plan and a budget ahead of the year, so improvements are decisions
+					you approve rather than line items you discover on an invoice.
 				</p>
 			</div>
 
 			<!-- Reason 3 -->
 			<div class="border-l-4 border-primary-500 pl-6">
-				<h3 class="mb-2 font-bold text-gray-900">The Right Method</h3>
+				<h3 class="mb-2 font-bold text-gray-900">Right-Sized Attention</h3>
 				<p class="text-base font-normal text-gray-600">
-					Mulching, mowing and full clearing solve different problems and cost different amounts. We
-					tell you which one your job actually needs rather than quoting the biggest one.
+					Larger residential lots, rural property and small commercial grounds — too much ground for
+					a tight suburban route and too fine to be treated as rough cutting. That is exactly the
+					work we are set up for.
 				</p>
 			</div>
 

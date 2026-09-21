@@ -17,14 +17,15 @@
 	Leads with Williamsburg and reaches for COMPANY_INFO.serviceArea.region rather
 	than spelling the region out, both per docs/keyword-strategy.md. The southern
 	localities the map shades are deliberately not named in prose: Virginia Beach,
-	Chesapeake and "Hampton Roads" are retired target terms, and ranking for land
-	clearing down there earns calls that are a sixty-mile drive away.
+	Chesapeake and "Hampton Roads" are retired target terms, and ranking for
+	landscape maintenance down there earns weekly-visit work that is a sixty-mile
+	drive away.
 -->
 <Section variant="gray">
 	<div class="mx-auto max-w-4xl text-center">
 		<h1 class="mb-6 font-bold text-gray-900">Our Williamsburg Service Area</h1>
 		<p class="text-lg font-normal text-gray-600">
-			Land clearing, bush hogging, forestry mulching, trail systems and property maintenance across
+			Landscape maintenance, turf care, tree and shrub care, and seasonal clean-up across
 			{counties} counties and {cities} cities. We are based in {COMPANY_INFO.serviceArea.primary} and
 			work throughout {COMPANY_INFO.serviceArea.region} — Toano and Norge, out to Yorktown, up through
 			New Kent and West Point, and across to Gloucester, Saluda and Urbanna.
@@ -60,8 +61,9 @@
 		</p>
 		<p class="text-base font-normal text-gray-600">
 			Virginia is unusual in having independent cities that sit outside any county, which is why
-			several entries above are listed as cities rather than counties. Clearing, cutting, mulching,
-			trail work, and property upkeep all get the same attention wherever you are on the map.
+			several entries above are listed as cities rather than counties. Maintenance programs, turf
+			care, tree and shrub work, and seasonal clean-ups all get the same attention wherever you are
+			on the map.
 		</p>
 	</div>
 </Section>

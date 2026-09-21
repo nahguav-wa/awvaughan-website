@@ -71,12 +71,12 @@ export const COMPANY_INFO = {
 	},
 
 	// Business details for SEO
-	businessType: 'Land Management Contractor',
+	businessType: 'Landscape Maintenance Contractor',
 	yearEstablished: 2025,
 	/** Where the company started. It is now based in Williamsburg. */
 	foundedIn: 'Virginia Beach, Virginia',
 	description:
-		'Land management and property maintenance in Williamsburg, VA: land clearing, bush hogging, forestry mulching, trail systems, and grass cutting. Serving Toano, Yorktown, New Kent, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula.'
+		'Landscape maintenance and management in Williamsburg, VA: comprehensive maintenance programs, full service turf care, tree and shrub care, and spring and fall clean-up. Serving Toano, Yorktown, New Kent, West Point, Saluda, Gloucester and the surrounding Historic Triangle and Middle Peninsula.'
 } as const;
 
 /**

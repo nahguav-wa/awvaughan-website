@@ -1,6 +1,6 @@
 # CLAUDE.md - AI Assistant Documentation
 
-**Last Updated**: 2026-09-14
+**Last Updated**: 2026-09-21
 **Project**: The A.W. Vaughan Company Website
 **Repository**: awvaughan-website
 
@@ -29,7 +29,7 @@ This document provides comprehensive guidance for AI assistants working on this 
 
 ## Project Overview
 
-This is a professional business website for The A.W. Vaughan Company, a land management contractor based in Williamsburg, Virginia and serving the Historic Triangle and the Middle Peninsula. The five services are land clearing, bush hogging, forestry mulching, trail systems, and property maintenance. The site is built with modern web technologies and optimized for SEO and conversions.
+This is a professional business website for The A.W. Vaughan Company, a landscape maintenance contractor based in Williamsburg, Virginia and serving the Historic Triangle and the Middle Peninsula. The services are comprehensive maintenance solutions, full service turf care programs, tree and shrub care, and seasonal clean-up (spring and fall). The site is built with modern web technologies and optimized for SEO and conversions.
 
 **Primary Goals**:
 
@@ -39,7 +39,7 @@ This is a professional business website for The A.W. Vaughan Company, a land man
 - Build trust and credibility
 - Mobile-first responsive design
 
-**Target Audience**: Rural and residential property owners, landowners, hunters and property managers in Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic Triangle and Middle Peninsula needing land clearing, field mowing, brush and underbrush removal, or trail access.
+**Target Audience**: Residential, rural and small commercial property owners, HOA and property managers, and absentee owners in Williamsburg, Toano, Yorktown, New Kent, West Point, Gloucester, Saluda, and the surrounding Historic Triangle and Middle Peninsula needing an ongoing landscape maintenance program — turf care, tree and shrub care, and seasonal clean-up.
 
 ---
 
@@ -643,19 +643,21 @@ location fields on Facebook, Instagram and YouTube.
 
 **Geographic + Core Services**:
 
-- land clearing Williamsburg VA
-- bush hogging Williamsburg VA
-- forestry mulching Williamsburg VA
-- trail clearing Williamsburg VA
-- field mowing Yorktown VA
-- lot clearing New Kent VA
+- landscape maintenance Williamsburg VA
+- landscape management Williamsburg VA
+- turf care Williamsburg VA
+- lawn care Williamsburg VA
+- tree and shrub care Williamsburg VA
+- spring and fall clean up Williamsburg VA
+- lawn care Toano VA
+- leaf removal Yorktown VA
 
 **Service-Specific**:
 
-- underbrush clearing Virginia
-- forestry mulching near me
-- pasture reclamation Virginia
-- ATV trail building Virginia
+- commercial landscape maintenance Virginia
+- lawn fertilization and weed control Virginia
+- lawn aeration and overseeding Virginia
+- shrub pruning and bed mulching Virginia
 
 **Full list**: See `docs/keyword-strategy.md`. Keywords are a content planning
 document, not markup: the `<meta name="keywords">` tag is not emitted, because
@@ -1253,11 +1255,20 @@ screen reader. Read the image, then write what is in it.
 
 Related: `ServiceDetail.image` is **optional**. A service with no honest
 photograph of that work ships without one rather than borrowing a picture of
-something else — `/services/forestry-mulching` and `/services/trail-systems`
-currently have none. The `[slug]` template drops to a single column when the
-image is absent. When real job photos arrive, add them to `PHOTOS` in
-`scripts/optimize-images.mjs`, run `npm run images`, and fill in the `image`
-field with the true source dimensions.
+something else — `/services/tree-and-shrub-care` and
+`/services/seasonal-cleanup` currently have none. The `[slug]` template drops to
+a single column when the image is absent. When real job photos arrive, add them
+to `PHOTOS` in `scripts/optimize-images.mjs`, run `npm run images`, and fill in
+the `image` field with the true source dimensions.
+
+**The photo library is still the old business's.** Every photograph in `static/`
+was taken on land management jobs: a shed on mown ground, a cut field meeting a
+wood line, a truck and tractor on a street, and grass cut around a utility
+pedestal. Two of those are honest enough for the maintenance pages that use them
+(grounds kept around a building; grass cut and trimmed around an obstacle) and
+the rest are not. Turf care, pruning and clean-up photographs are the single
+highest-value thing to add to this site — until they exist, do **not** illustrate
+those pages with what is on hand.
 
 **Caching**: derivatives are named by width, not by content hash, and the
 script rewrites them in place — so `/images/*` is **not** served as `immutable`.
@@ -1280,83 +1291,96 @@ references them. They can be removed once you are happy with the derivatives.
 **Location**: Williamsburg, Virginia
 **Service Area**: Williamsburg, Toano, Norge, Lightfoot, Yorktown, New Kent, Providence Forge, West Point, Gloucester, Gloucester Point, Saluda, Urbanna — the Historic Triangle and the Middle Peninsula
 **Founded In**: Virginia Beach, Virginia (relocated to Williamsburg)
-**Business Type**: Excavation and Grading Contractor
+**Business Type**: Landscape Maintenance Contractor
 **Established**: 2025
 
 ### Core Services
 
-1. **Land Clearing**
-   - Building site and lot clearing
-   - Pasture and field reclamation
-   - Stump removal and grubbing
-   - Debris handling and final grade
+The business is a **landscape maintenance program**, not a set of one-off jobs.
+That framing is the positioning for the whole site: a written management plan,
+a budget prepared ahead of the year, photo documentation, and a monthly quality
+site inspection. Keep it in the copy — it is what separates this from a mowing
+route, and it is what a property manager is actually shopping for.
 
-2. **Bush Hogging**
-   - Overgrown field and pasture mowing
-   - Vacant lot and right-of-way cutting
-   - Hunting land and food plot edges
-   - Scheduled seasonal cutting
+1. **Comprehensive Maintenance Solutions**
+   - Written landscape management and maintenance plans
+   - Maintenance budgets, estimates and recommendations
+   - Digital photo documentation of improvements and issues
+   - Monthly quality site inspections
 
-3. **Forestry Mulching**
-   - Underbrush and understory clearing
-   - Invasive species knockdown
-   - Fence and property line clearing
-   - Selective clearing and view lines
+2. **Full Service Turf Care Programs**
+   - Mowing at the right height for the species and season
+   - Trimming and edging (buildings, fences, well heads, bed lines)
+   - Fertilization and soil health
+   - Weed, insect and disease control; aeration and overseeding
 
-4. **Trail Systems**
-   - Trail layout and routing
-   - Corridor cutting and mulching
-   - Crossings, culverts and water bars
-   - Maintenance and reopening
+3. **Tree and Shrub Care**
+   - Structural, thinning and renewal pruning
+   - Root-zone fertilization
+   - Insect and disease management
+   - Bed edging, weeding and mulching
 
-5. **Property Maintenance**
-   - Grass cutting and lawn maintenance
-   - Trimming and edging (buildings, fences, well heads, culvert ends)
-   - Wood line and yard edge upkeep
-   - Seasonal and absentee property care
+4. **Seasonal Clean-Up** (spring and fall)
+   - Spring clean-up, cutbacks and re-edging
+   - Fall clean-up and leaf removal
+   - Storm and blow-down debris
+   - Bed renewal and winter preparation
 
-**Bush hogging and property maintenance are different services**, and the copy
-must keep them distinct: bush hogging is rough cutting that reclaims ground
-which got away (a rotary cutter, saplings to roughly 2 inches); property
-maintenance is finish mowing that keeps ground which has not. Blurring them
-loses both the "bush hogging vs mowing" search and the reason a customer would
-call for one rather than the other.
+**The "We Provide" list on `/services` names five commitments but there are four
+pages.** Spring and fall clean-up **is** the seasonal clean-up page; a fifth
+near-duplicate page would split its own ranking and read as filler. If a fifth
+page is ever wanted, it needs a genuinely different target, not a rewording.
 
-**Retired** (2026-09): gravel driveway repair, drainage solutions, shed pad
-preparation, small excavation. Their URLs are 301'd in `_redirects`. Do not
-reintroduce copy targeting those terms — ranking for work the company no longer
-does produces calls it has to turn down.
+**Keep the four pages distinct.** Comprehensive maintenance is the program and
+the reporting around it; turf care is the stand of grass; tree and shrub care is
+the plantings; seasonal clean-up is the two resets that make the rest work. It
+is easy to let all four drift into "we maintain your property", which leaves
+four pages competing for one term.
+
+**Retired** (2026-09-13): gravel driveway repair, drainage solutions, shed pad
+preparation, small excavation.
+
+**Retired** (2026-09-21): land clearing, bush hogging, forestry
+mulching, trail systems, property maintenance — the land management set the
+business moved on from. All nine URLs are 301'd in `_redirects`. Do not
+reintroduce copy targeting any of those terms; ranking for work the company no
+longer does produces calls it has to turn down. The grading and drainage
+**background** is still fair to mention, and the copy does — it explains how the
+company reads a site. Selling that work is what is retired, not the history.
 
 ### Target Customers
 
 **Primary**:
 
-- Landowners with a parcel that has grown up and needs reclaiming
-- Owners of one-to-five-acre lots too large for a suburban lawn route
-- Property owners preparing a building site, pasture, or fence line
-- Hunters and recreational landowners wanting access and trails
-- Owners of vacant lots and acreage needing seasonal cutting
+- Owners of larger residential lots — too much ground for a tight suburban route
+- Rural and country property owners wanting grounds kept properly year round
+- Small commercial sites, HOAs and property managers needing a documented program
+- Absentee, rental and inherited property owners who are not there to check
+- Owners whose lawn or plantings are declining and who want it diagnosed, not just cut
 
 **Pain Points Addressed**:
 
-- A field that has not been cut in several seasons
-- Woods too thick with underbrush to walk or hunt
-- Invasives taking over a property line or fence row
-- No way to reach the back of a property
-- Trails that wash out every spring
-- Grass cut but every edge skipped — fences, well heads, culvert ends
-- A wood line taking a foot of yard a year
-- Absentee, rental or inherited property that needs keeping presentable
+- Grass cut but every edge skipped — fences, well heads, culvert ends, bed lines
+- A lawn that thins out every August and never fully comes back
+- Crabgrass and nutsedge taking over because nothing was applied pre-emergent
+- Shrubs sheared into hollow boxes and crape myrtles topped to stubs
+- Mulch piled against trunks, beds never fed below the surface
+- Leaves left down over winter, killing turf in patches by March
+- Turf drowning in the low corner and beds washing out every wet season
+- No idea what was actually done on site, or what it is going to cost this year
 
 ### Competitive Advantages
 
 - Small, owner-operated (personalized service)
 - Quick response times
-- Equipment sized for gates, lanes and back lots, not subdivisions
-- Grading and drainage background — clearing and trails are planned for where
-  water will go, which most clearing outfits skip
-- Honest about method: mowing vs mulching vs full clearing, and the real limits
-  of each (roughly 2" for a rotary cutter, roughly 8" for a mulching head)
+- A managed program rather than a weekly visit: plan, budget, photos, monthly
+  inspection — almost no maintenance competitor in this market offers that
+- Grading and drainage background — compacted ground, washing beds and the low
+  corner that drowns are read first, which most maintenance outfits skip
+- Turf care as agronomy, not cutting: soil test, fertility calendar,
+  pre-emergent timing, aeration and overseeding
+- Pruning as a horticultural decision about the plant and its bloom cycle
+- Right-sized for larger lots, rural property and small commercial grounds
 - Local expertise across the Historic Triangle and Middle Peninsula
 - Faith-based values (Jeremiah 29:11)
 
@@ -1465,14 +1489,24 @@ When a service is removed, its URL must not simply 404. `_redirects` in the
 at its asset handler, before a prerendered page is served — which is why they
 reach routes `src/hooks.server.ts` never sees.
 
-The 2026-09 move from excavation to land management retired four service pages:
+Two rounds of retirements are in force. The 2026-09-13 move from excavation to
+land management retired four pages; the 2026-09-21 move from land management to
+landscape maintenance retired five more — including `/services/land-clearing`,
+which was previously a redirect **destination**. That is the trap this table
+exists to prevent: retiring a service can orphan an older redirect that points
+at it, so check the destinations whenever a route is removed.
 
-| Retired path                       | Redirects to              | Why                          |
-| ---------------------------------- | ------------------------- | ---------------------------- |
-| `/services/excavation`             | `/services/land-clearing` | Closest surviving equivalent |
-| `/services/gravel-driveway-repair` | `/services`               | No equivalent service        |
-| `/services/drainage-solutions`     | `/services`               | No equivalent service        |
-| `/services/shed-pad-preparation`   | `/services`               | No equivalent service        |
+| Retired path                       | Redirects to                      | Why                          |
+| ---------------------------------- | --------------------------------- | ---------------------------- |
+| `/services/excavation`             | `/services`                       | Its old target is retired    |
+| `/services/gravel-driveway-repair` | `/services`                       | No equivalent service        |
+| `/services/drainage-solutions`     | `/services`                       | No equivalent service        |
+| `/services/shed-pad-preparation`   | `/services`                       | No equivalent service        |
+| `/services/land-clearing`          | `/services`                       | No equivalent service        |
+| `/services/bush-hogging`           | `/services`                       | No equivalent service        |
+| `/services/forestry-mulching`      | `/services`                       | No equivalent service        |
+| `/services/trail-systems`          | `/services`                       | No equivalent service        |
+| `/services/property-maintenance`   | `/services/maintenance-solutions` | Closest surviving equivalent |
 
 Rules:
 
@@ -1741,6 +1775,40 @@ only place the breakage shows up is a real browser on the deployed site.
 ---
 
 ## Changelog
+
+**2026-09-21** - Services replaced with landscape maintenance and management
+
+- The company now sells an ongoing **landscape maintenance program**. The four
+  services are Comprehensive Maintenance Solutions, Full Service Turf Care
+  Programs, Tree and Shrub Care, and Seasonal Clean-Up. Land clearing, bush
+  hogging, forestry mulching, trail systems and property maintenance are retired
+- The positioning is the program itself, not the tasks: long-term property
+  viability, a written management and maintenance plan, budgets and estimates,
+  digital photo documentation, and monthly quality site inspections. That copy
+  leads `/services`, `/about` and the homepage About section
+- Four pages cover five "We Provide" commitments — spring and fall clean-up
+  **is** the seasonal clean-up page. A near-duplicate fifth page would split its
+  own ranking and read as filler; `/services` lists all five commitments as text
+- Site identity re-pointed: homepage `h1` and `Hero` defaults, every title,
+  description and Open Graph tag, `COMPANY_INFO.businessType` and `description`,
+  Schema.org `serviceType`, the three homepage value props, `/about`'s story and
+  "Why Choose Us", `/services`, `/service-area` and `/contact`
+- `_redirects` gained five 301s, and `/services/excavation` was repointed:
+  it targeted `/services/land-clearing`, which this change retired. A redirect
+  destination can be orphaned by a later retirement — the drift-guard tests in
+  `src/lib/config/deployment.test.ts` catch it, and did
+- A new test asserts the LocalBusiness `serviceType` array claims none of the
+  retired land management services. `constants.test.ts` guards the constant;
+  this guards what is actually emitted
+- Photographs: only two of the existing images honestly show maintenance work,
+  so `/services/tree-and-shrub-care` and `/services/seasonal-cleanup` ship with
+  no image rather than borrowing one. Turf, pruning and clean-up photos are the
+  highest-value asset to add next
+- The grading and drainage background is kept on `/about` and in the value
+  props. It is retired as a _service_, not as the reason the company reads a
+  site for water first
+- `docs/keyword-strategy.md` rewritten around landscape maintenance terms, with
+  both retired service sets listed as terms not to target
 
 **2026-09-14** - Service area map
 
