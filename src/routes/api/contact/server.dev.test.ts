@@ -8,6 +8,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
  * is the opposite — see server.test.ts.
  */
 vi.mock('$app/environment', () => ({ dev: true }));
+// Exercise the live form; the under-construction refusal is tested separately.
+vi.mock('$lib/config/site-status', () => ({ UNDER_CONSTRUCTION: false }));
 
 const { POST } = await import('./+server');
 

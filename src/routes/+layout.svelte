@@ -12,7 +12,8 @@
 	/**
 	 * Imports - Internal Components
 	 */
-	import { Header, Footer, SEOHead } from '$lib';
+	import { Header, Footer, SEOHead, UnderConstruction } from '$lib';
+	import { UNDER_CONSTRUCTION } from '$lib/config/site-status';
 	import { getLocalBusinessSchema } from '$lib/utils/seo';
 
 	import type { Snippet } from 'svelte';
@@ -75,30 +76,34 @@
 -->
 <SEOHead metadata={seo} {structuredData} />
 
-<!--
-	Skip to Content Link - Accessibility
--->
-<a
-	href="#main-content"
-	class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-md focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white"
->
-	Skip to main content
-</a>
+{#if UNDER_CONSTRUCTION}
+	<UnderConstruction />
+{:else}
+	<!--
+		Skip to Content Link - Accessibility
+	-->
+	<a
+		href="#main-content"
+		class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-md focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white"
+	>
+		Skip to main content
+	</a>
 
-<!--
-	Page Header - Main navigation
--->
-<Header />
+	<!--
+		Page Header - Main navigation
+	-->
+	<Header />
 
-<!--
-	Main Content Area - Page-specific content
-	Rendered from individual +page.svelte files
--->
-<main id="main-content" class={isHomepage ? '' : 'pt-16 md:pt-28'}>
-	{@render children()}
-</main>
+	<!--
+		Main Content Area - Page-specific content
+		Rendered from individual +page.svelte files
+	-->
+	<main id="main-content" class={isHomepage ? '' : 'pt-16 md:pt-28'}>
+		{@render children()}
+	</main>
 
-<!--
-	Page Footer - Site-wide footer
--->
-<Footer />
+	<!--
+		Page Footer - Site-wide footer
+	-->
+	<Footer />
+{/if}

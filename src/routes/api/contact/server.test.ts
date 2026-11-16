@@ -4,6 +4,8 @@ import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 // unconfigured mailer is logged rather than treated as a failure, is covered in
 // server.dev.test.ts.
 vi.mock('$app/environment', () => ({ dev: false }));
+// Exercise the live form; the under-construction refusal is tested separately.
+vi.mock('$lib/config/site-status', () => ({ UNDER_CONSTRUCTION: false }));
 
 /**
  * Contact API endpoint tests

@@ -1,4 +1,10 @@
 import { expect, test, type ConsoleMessage, type Page } from '@playwright/test';
+import { UNDER_CONSTRUCTION } from '../src/lib/config/site-status';
+
+/** Skips a group that exercises the full site while it is switched off. */
+function requiresFullSite() {
+	test.skip(UNDER_CONSTRUCTION, 'site is under construction (src/lib/config/site-status.ts)');
+}
 
 /**
  * Collect Content-Security-Policy violations reported by the browser.
@@ -103,6 +109,8 @@ test.describe('page metadata', () => {
 });
 
 test.describe('service area map', () => {
+	requiresFullSite();
+
 	test('renders every locality as a shape and as text', async ({ page }) => {
 		// The map is inline SVG rather than a tile layer precisely so it survives
 		// prerendering. If it ever became client-only this would catch it: the
@@ -153,6 +161,8 @@ test.describe('service area map', () => {
 });
 
 test.describe('contact form', () => {
+	requiresFullSite();
+
 	test('submits successfully and reports the outcome', async ({ page }) => {
 		await page.goto('/contact');
 
@@ -231,6 +241,8 @@ test.describe('contact form', () => {
 });
 
 test.describe('service pages', () => {
+	requiresFullSite();
+
 	test('all four render from the shared template', async ({ page }) => {
 		test.slow();
 		// The `heading` field of each record in src/lib/data/services.ts — which is
@@ -275,6 +287,8 @@ test.describe('service pages', () => {
 });
 
 test.describe('headings', () => {
+	requiresFullSite();
+
 	test('h1 is visibly larger than h2', async ({ page }) => {
 		// Every heading was pinned at 20px, so pages had no visual hierarchy.
 		await page.goto('/about');
@@ -290,6 +304,8 @@ test.describe('headings', () => {
 });
 
 test.describe('navigation', () => {
+	requiresFullSite();
+
 	test('mobile menu opens, marks the current page, and closes on Escape', async ({
 		page
 	}, testInfo) => {
@@ -310,6 +326,8 @@ test.describe('navigation', () => {
 });
 
 test.describe('homepage services carousel', () => {
+	requiresFullSite();
+
 	// The homepage services grid became a carousel. The risk a carousel carries
 	// is that the cards it is not showing stop existing — for the visitor without
 	// JavaScript, and for the crawler that never runs it — so what is asserted
@@ -352,5 +370,25 @@ test.describe('homepage services carousel', () => {
 		await expect(next).toBeDisabled();
 		await expect(previous).toBeEnabled();
 		await expect.poll(() => track.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
+	});
+});
+
+test.describe('under construction', () => {
+	test.skip(!UNDER_CONSTRUCTION, 'site is live');
+
+	test('every page shows the notice and offers no way to send a lead', async ({ page }) => {
+		for (const path of ['/', '/about', '/services', '/services/land-clearing', '/contact']) {
+			await page.goto(path);
+			await expect(page.locator('h1')).toHaveText('Under Construction');
+			await expect(page.locator('form')).toHaveCount(0);
+			await expect(page.locator('a[href^="tel:"], a[href^="mailto:"]')).toHaveCount(0);
+		}
+	});
+
+	test('the contact endpoint refuses submissions', async ({ request }) => {
+		const response = await request.post('/api/contact', {
+			data: { firstName: 'A', lastName: 'B', email: 'a@example.com', message: 'Hi' }
+		});
+		expect(response.status()).toBe(503);
 	});
 });

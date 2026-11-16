@@ -1742,6 +1742,16 @@ only place the breakage shows up is a real browser on the deployed site.
 
 ## Changelog
 
+**2026-11-16** - Site under construction (business on hold)
+
+- `UNDER_CONSTRUCTION` in `src/lib/config/site-status.ts` replaces every page
+  with an under construction notice (no nav, phone, email or form) and makes
+  `/api/contact` return 503 before anything is emailed, stored or sent to Meta
+- Per-page titles and canonicals are untouched so search listings recover when
+  it is switched off. Set it to `false` to restore the full site; e2e groups
+  that exercise the full site skip while it is on, and an `under construction`
+  group runs instead
+
 **2026-09-14** - Service area map
 
 - Added `/service-area`: an interactive map of the 12 counties and 5 independent

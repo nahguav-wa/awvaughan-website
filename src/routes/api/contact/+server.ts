@@ -7,6 +7,7 @@ import { json, error } from '@sveltejs/kit';
 import { dev } from '$app/environment';
 import type { RequestHandler } from './$types';
 import { COMPANY_INFO, META_PIXEL_ID } from '$lib/config/constants';
+import { UNDER_CONSTRUCTION } from '$lib/config/site-status';
 import { isValidEventId, resolveEventSourceUrl, sendMetaConversionEvent } from '$lib/utils/meta';
 
 /**
@@ -253,6 +254,13 @@ async function sendNotificationEmail(options: {
  * POST handler for contact form submissions
  */
 export const POST: RequestHandler = async ({ request, platform, cookies }) => {
+	// The form is not rendered while the site is under construction, but a
+	// cached page or a bot can still post here. Refuse before anything is
+	// emailed, stored, or reported to Meta as a Lead.
+	if (UNDER_CONSTRUCTION) {
+		throw error(503, 'We are not taking new work at this time.');
+	}
+
 	const declaredLength = Number(request.headers.get('content-length') ?? 0);
 	if (declaredLength > MAX_BODY_BYTES) {
 		throw error(413, 'Message is too large');

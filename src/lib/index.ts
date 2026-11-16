@@ -24,6 +24,7 @@ export { default as AboutSection } from './components/sections/AboutSection.svel
 export { default as ServicesSection } from './components/sections/ServicesSection.svelte';
 export { default as ServiceAreaMap } from './components/sections/ServiceAreaMap.svelte';
 export { default as CTASection } from './components/sections/CTASection.svelte';
+export { default as UnderConstruction } from './components/sections/UnderConstruction.svelte';
 
 // SEO Components
 export { default as SEOHead } from './components/seo/SEOHead.svelte';
